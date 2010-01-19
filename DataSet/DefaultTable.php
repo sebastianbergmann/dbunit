@@ -43,12 +43,6 @@
  * @since      File available since Release 3.2.0
  */
 
-require_once 'PHPUnit/Framework.php';
-
-require_once 'PHPUnit/Extensions/Database/DataSet/AbstractTable.php';
-
-PHP_CodeCoverage_Filter::getInstance()->addFileToBlacklist(__FILE__, 'PHPUNIT');
-
 /**
  * Provides default table functionality.
  *
@@ -83,7 +77,21 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTable extends PHPUnit_Extension
     public function addRow($values = array())
     {
         $columnNames = $this->getTableMetaData()->getColumns();
-        $this->data[] = array_merge(array_fill_keys($columnNames, NULL), $values);
+
+         if (function_exists('array_fill_keys')) {	
+             $this->data[] = array_merge(
+               array_fill_keys($columnNames, NULL),
+               $values
+             );
+         } else {
+             $this->data[] = array_merge(
+               array_combine(
+                 $columnNames,
+                 array_fill(0, count($columnNames), NULL)
+               ),
+               $values
+             );
+         }
     }
 
     /**
