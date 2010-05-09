@@ -40,7 +40,7 @@
  * @copyright  2002-2010 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link       http://www.phpunit.de/
- * @since      File available since Release 3.2.0
+ * @since      File available since Release 1.0.0
  */
 
 /**
@@ -57,7 +57,7 @@
  * @deprecated The PHPUnit_Extension_Database_DataSet_QueryTable should be used instead
  * @see        PHPUnit_Extension_Database_DataSet_QueryTable
  * @see        PHPUnit_Extension_Database_DataSet_QueryDataSet
- * @since      Class available since Release 3.2.0
+ * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_ResultSetTable extends PHPUnit_Extensions_Database_DataSet_AbstractTable
 {

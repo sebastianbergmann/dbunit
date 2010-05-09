@@ -40,7 +40,7 @@
  * @copyright  2002-2010 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link       http://www.phpunit.de/
- * @since      File available since Release 3.2.0
+ * @since      File available since Release 1.0.0
  */
 
 require_once 'PHPUnit/Framework/TestCase.php';
@@ -59,7 +59,7 @@ require_once 'PHPUnit/Extensions/Database/Constraint/DataSetIsEqual.php';
  * @copyright  2002-2010 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link       http://www.phpunit.de/
- * @since      File available since Release 3.2.0
+ * @since      File available since Release 1.0.0
  */
 class Extensions_Database_DataSet_XmlDataSetsTest extends PHPUnit_Framework_TestCase
 {
