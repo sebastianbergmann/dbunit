@@ -7,7 +7,7 @@
                       http://pear.php.net/dtd/tasks-1.0.xsd
                       http://pear.php.net/dtd/package-2.0
                       http://pear.php.net/dtd/package-2.0.xsd">
- <name>PHPUnit_DbUnit</name>
+ <name>DbUnit</name>
  <channel>pear.phpunit.de</channel>
  <summary>DbUnit port for PHP/PHPUnit.</summary>
  <description>DbUnit port for PHP/PHPUnit</description>
@@ -17,14 +17,14 @@
   <email>sb@sebastian-bergmann.de</email>
   <active>yes</active>
  </lead>
- <date>2010-MM-DD</date>
+ <date>2010-06-08</date>
  <version>
-  <release>1.0.0-dev</release>
+  <release>1.0.0beta1</release>
   <api>1.0.0</api>
  </version>
  <stability>
-  <release>devel</release>
-  <api>devel</api>
+  <release>beta</release>
+  <api>beta</api>
  </stability>
  <license>BSD License</license>
  <notes>http://github.com/sebastianbergmann/dbunit/blob/master/README.markdown</notes>
@@ -317,6 +317,8 @@
        <tasks:replace from="@package_version@" to="version" type="package-info" />
       </file>
      </dir>
+    </dir>
+   </dir>
    <dir name="Samples">
     <dir name="BankAccountDB">
      <dir name="_files">
@@ -367,13 +369,14 @@
    <package>
     <name>PHPUnit</name>
     <channel>pear.phpunit.de</channel>
-    <min>3.5.0</min>
+    <min>3.5.0beta1</min>
    </package>
    <package>
     <name>YAML</name>
     <channel>pear.symfony-project.com</channel>
     <min>1.0.2</min>
    </package>
+  </required>
  </dependencies>
  <phprelease>
   <installconditions>
