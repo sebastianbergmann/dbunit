@@ -57,8 +57,7 @@
  */
 class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
 {
-
-    protected function getTableInfo(Array &$tableColumns, Array &$tableValues)
+    protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {
         if ($this->xmlFileContents->getName() != 'mysqldump') {
             throw new Exception('The root element of a MySQL XML data set file must be called <mysqldump>');
@@ -81,6 +80,7 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
 
             foreach ($tableElement->xpath('./row/field') as $columnElement) {
                 $columnName = (string)$columnElement['name'];
+
                 if (empty($columnName)) {
                     throw new Exception('<field> element name attributes cannot be empty');
                 }
@@ -92,13 +92,15 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
 
             foreach ($this->xmlFileContents->xpath('./database/table_data[@name="' . $tableName . '"]/row') as $rowElement) {
                 $rowValues = array();
+
                 foreach ($tableColumns[$tableName] as $columnName) {
-                    $fields = $rowElement->xpath('./field[@name="' . $columnName . '"]');
-                    $column = array_shift($fields);
-                    $null = isset($column['nil']);
-                    $columnValue = $null ? NULL : (string)$column;
+                    $fields                 = $rowElement->xpath('./field[@name="' . $columnName . '"]');
+                    $column                 = array_shift($fields);
+                    $null                   = isset($column['nil']);
+                    $columnValue            = $null ? NULL : (string)$column;
                     $rowValues[$columnName] = $columnValue;
                 }
+
                 $tableValues[$tableName][] = $rowValues;
             }
         }
@@ -106,12 +108,14 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
 
     public static function write(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset, $filename)
     {
-        $pers = new PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml();
+        $pers = new PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml;
         $pers->setFileName($filename);
 
         try {
             $pers->write($dataset);
-        } catch (RuntimeException $e) {
+        }
+
+        catch (RuntimeException $e) {
             throw new PHPUnit_Framework_Exception(__METHOD__ . ' called with an unwritable file.');
         }
     }

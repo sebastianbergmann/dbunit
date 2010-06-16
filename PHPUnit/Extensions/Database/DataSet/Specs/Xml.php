@@ -75,4 +75,3 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Xml implements PHPUnit_Extension
         return new PHPUnit_Extensions_Database_DataSet_XmlDataSet($dataSetSpec);
     }
 }
-

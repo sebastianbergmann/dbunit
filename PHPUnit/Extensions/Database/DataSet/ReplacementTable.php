@@ -82,8 +82,8 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $table, Array $fullReplacements = array(), Array $subStrReplacements = array())
     {
-        $this->table = $table;
-        $this->fullReplacements = $fullReplacements;
+        $this->table              = $table;
+        $this->fullReplacements   = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 
@@ -164,7 +164,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
      */
     public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITable $other)
     {
-        $thisMetaData = $this->getTableMetaData();
+        $thisMetaData  = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();
 
         $thisMetaData->assertEquals($otherMetaData);
@@ -173,8 +173,10 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
             throw new Exception("Expected row count of {$this->getRowCount()}, has a row count of {$other->getRowCount()}");
         }
 
-        $columns = $thisMetaData->getColumns();
-        for ($i = 0; $i < $this->getRowCount(); $i++) {
+        $columns  = $thisMetaData->getColumns();
+        $rowCount = $this->getRowCount();
+
+        for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
                 if ($this->getValue($i, $columnName) != $other->getValue($i, $columnName)) {
                     throw new Exception("Expected value of {$this->getValue($i, $columnName)} for row {$i} column {$columnName}, has a value of {$other->getValue($i, $columnName)}");
@@ -190,16 +192,19 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
         $columns = $this->getTableMetaData()->getColumns();
 
         $lineSeperator = str_repeat('+----------------------', count($columns)) . "+\n";
-        $lineLength = strlen($lineSeperator) - 1;
+        $lineLength    = strlen($lineSeperator) - 1;
 
-        $tableString = $lineSeperator;
+        $tableString  = $lineSeperator;
         $tableString .= '| ' . str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
         $tableString .= $lineSeperator;
         $tableString .= $this->rowToString($columns);
         $tableString .= $lineSeperator;
 
-        for ($i = 0; $i < $this->getRowCount(); $i++) {
+        $rowCount = $this->getRowCount();
+
+        for ($i = 0; $i < $rowCount; $i++) {
             $values = array();
+
             foreach ($columns as $columnName) {
                 $values[] = $this->getValue($i, $columnName);
             }
@@ -214,10 +219,12 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
     protected function rowToString(Array $row)
     {
         $rowString = '';
+
         foreach ($row as $value) {
             if (is_null($value)) {
                 $value = 'NULL';
             }
+
             $rowString .= '| ' . str_pad(substr($value, 0, 20), 20, ' ', STR_PAD_BOTH) . ' ';
         }
 
@@ -226,16 +233,15 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
 
     protected function getReplacedValue($value)
     {
-        if (is_scalar($value) && array_key_exists((string)$value, $this->fullReplacements))
-        {
+        if (is_scalar($value) && array_key_exists((string)$value, $this->fullReplacements)) {
             return $this->fullReplacements[$value];
         }
-        elseif (count($this->subStrReplacements))
-        {
+
+        else if (count($this->subStrReplacements)) {
             return str_replace(array_keys($this->subStrReplacements), array_values($this->subStrReplacements), $value);
         }
-        else
-        {
+
+        else {
             return $value;
         }
     }

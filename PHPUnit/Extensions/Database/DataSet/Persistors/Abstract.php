@@ -68,10 +68,11 @@ abstract class PHPUnit_Extensions_Database_DataSet_Persistors_Abstract implement
     protected function saveDataSet(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset)
     {
         $this->startDataSet($dataset);
-        foreach ($dataset as $table)
-        {
+
+        foreach ($dataset as $table) {
             $this->saveTable($table);
         }
+
         $this->endDataSet($dataset);
     }
 
@@ -80,11 +81,13 @@ abstract class PHPUnit_Extensions_Database_DataSet_Persistors_Abstract implement
      */
     protected function saveTable(PHPUnit_Extensions_Database_DataSet_ITable $table)
     {
+        $rowCount = $table->getRowCount();
         $this->startTable($table);
-        for ($i = 0; $i < $table->getRowCount(); $i++)
-        {
+
+        for ($i = 0; $i < $rowCount; $i++) {
             $this->row($table->getRow($i), $table);
         }
+
         $this->endTable($table);
     }
 
@@ -124,4 +127,3 @@ abstract class PHPUnit_Extensions_Database_DataSet_Persistors_Abstract implement
      */
     abstract protected function row(Array $row, PHPUnit_Extensions_Database_DataSet_ITable $table);
 }
-

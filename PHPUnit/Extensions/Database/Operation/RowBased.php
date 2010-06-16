@@ -86,19 +86,26 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
         foreach ($dsIterator as $table) {
             /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
             $databaseTableMetaData = $databaseDataSet->getTableMetaData($table->getTableMetaData()->getTableName());
-            $query = $this->buildOperationQuery($databaseTableMetaData, $table, $connection);
+            $query                 = $this->buildOperationQuery($databaseTableMetaData, $table, $connection);
 
             if ($query === FALSE && $table->getRowCount() > 0) {
                 throw new PHPUnit_Extensions_Database_Operation_Exception($this->operationName, '', array(), $table, "Rows requested for insert, but no columns provided!");
             }
 
             $statement = $connection->getConnection()->prepare($query);
-            for ($i = 0; $i < $table->getRowCount(); $i++) {
+            $rowCount  = $table->getRowCount();
+
+            for ($i = 0; $i < $rowCount; $i++) {
                 $args = $this->buildOperationArguments($databaseTableMetaData, $table, $i);
+
                 try {
                     $statement->execute($args);
-                } catch (Exception $e) {
-                    throw new PHPUnit_Extensions_Database_Operation_Exception($this->operationName, $query, $args, $table, $e->getMessage());
+                }
+
+                catch (Exception $e) {
+                    throw new PHPUnit_Extensions_Database_Operation_Exception(
+                      $this->operationName, $query, $args, $table, $e->getMessage()
+                    );
                 }
             }
         }
@@ -107,9 +114,11 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
     protected function buildPreparedColumnArray($columns, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
     {
         $columnArray = array();
+
         foreach ($columns as $columnName) {
             $columnArray[] = "{$connection->quoteSchemaObject($columnName)} = ?";
         }
+
         return $columnArray;
     }
 }

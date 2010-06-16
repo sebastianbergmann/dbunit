@@ -85,8 +85,8 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends PHPUnit_Ext
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet, Array $fullReplacements = array(), Array $subStrReplacements = array())
     {
-        $this->dataSet = $dataSet;
-        $this->fullReplacements = $fullReplacements;
+        $this->dataSet            = $dataSet;
+        $this->fullReplacements   = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 

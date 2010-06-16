@@ -67,8 +67,8 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData extends PHPUnit_E
      */
     public function __construct($tableName, Array $columns, Array $primaryKeys = array())
     {
-        $this->tableName = $tableName;
-        $this->columns = $columns;
+        $this->tableName   = $tableName;
+        $this->columns     = $columns;
         $this->primaryKeys = array();
 
         foreach ($primaryKeys as $columnName) {

@@ -75,4 +75,3 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Yaml implements PHPUnit_Extensio
         return new PHPUnit_Extensions_Database_DataSet_YamlDataSet($dataSetSpec);
     }
 }
-

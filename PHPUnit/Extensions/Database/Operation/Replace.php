@@ -92,9 +92,8 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
      */
     public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
-        $insertOperation = new PHPUnit_Extensions_Database_Operation_Insert();
-        $updateOperation = new PHPUnit_Extensions_Database_Operation_Update();
-
+        $insertOperation = new PHPUnit_Extensions_Database_Operation_Insert;
+        $updateOperation = new PHPUnit_Extensions_Database_Operation_Update;
         $databaseDataSet = $connection->createDataSet();
 
         foreach ($dataSet as $table) {
@@ -109,26 +108,35 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
             $updateStatement = $connection->getConnection()->prepare($updateQuery);
             $selectStatement = $connection->getConnection()->prepare($selectQuery);
 
-            for ($i = 0; $i < $table->getRowCount(); $i++) {
+            $rowCount = $table->getRowCount();
+
+            for ($i = 0; $i < $rowCount; $i++) {
                 $selectArgs = $this->buildOperationArguments($databaseTableMetaData, $table, $i);
-                $query = $selectQuery;
-                $args = $selectArgs;
+                $query      = $selectQuery;
+                $args       = $selectArgs;
+
                 try {
                     $selectStatement->execute($selectArgs);
 
                     if ($selectStatement->fetchColumn(0) > 0) {
                         $updateArgs = $updateOperation->buildOperationArguments($databaseTableMetaData, $table, $i);
-                        $query = $updateQuery;
-                        $args = $updateArgs;
+                        $query      = $updateQuery;
+                        $args       = $updateArgs;
+
                         $updateStatement->execute($updateArgs);
                     } else {
                         $insertArgs = $insertOperation->buildOperationArguments($databaseTableMetaData, $table, $i);
-                        $query = $insertQuery;
-                        $args = $insertArgs;
+                        $query      = $insertQuery;
+                        $args       = $insertArgs;
+
                         $insertStatement->execute($insertArgs);
                     }
-                } catch (Exception $e) {
-                    throw new PHPUnit_Extensions_Database_Operation_Exception($this->operationName, $query, $args, $table, $e->getMessage());
+                }
+
+                catch (Exception $e) {
+                    throw new PHPUnit_Extensions_Database_Operation_Exception(
+                      $this->operationName, $query, $args, $table, $e->getMessage()
+                    );
                 }
             }
         }

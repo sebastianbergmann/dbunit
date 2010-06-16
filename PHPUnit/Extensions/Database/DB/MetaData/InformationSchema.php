@@ -130,7 +130,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_InformationSchema extends PHPUnit_
     protected function loadColumnInfo($tableName)
     {
         $this->columns[$tableName] = array();
-        $this->keys[$tableName] = array();
+        $this->keys[$tableName]    = array();
 
         $columnQuery = "
             SELECT DISTINCT

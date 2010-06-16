@@ -90,7 +90,9 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTable extends PHPUnit_Extension
     public function addTableRows(PHPUnit_Extensions_Database_DataSet_ITable $table)
     {
         $tableColumns = $this->getTableMetaData()->getColumns();
-        for ($i = 0; $i < $table->getRowCount(); $i++) {
+        $rowCount     = $table->getRowCount();
+
+        for ($i = 0; $i < $rowCount; $i++) {
             $newRow = array();
             foreach ($tableColumns as $columnName) {
                 $newRow[$columnName] = $table->getValue($i, $columnName);

@@ -85,7 +85,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
         }
 
         $tableColumns = array();
-        $tableValues = array();
+        $tableValues  = array();
 
         $this->getTableInfo($tableColumns, $tableValues);
         $this->createTables($tableColumns, $tableValues);
@@ -117,7 +117,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
     protected function getOrCreateTable($tableName, $tableColumns)
     {
         if (empty($this->tables[$tableName])) {
-            $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $tableColumns);
+            $tableMetaData            = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $tableColumns);
             $this->tables[$tableName] = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
         }
 

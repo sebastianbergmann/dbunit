@@ -59,9 +59,24 @@
  */
 class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {
+    /**
+     * @var array
+     */
     protected $tables = array();
+
+    /**
+     * @var string
+     */
     protected $delimiter = ',';
+
+    /**
+     * @var string
+     */
     protected $enclosure = '"';
+
+    /**
+     * @var string
+     */
     protected $escape = '"';
 
     /**
@@ -77,7 +92,7 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_
     {
         $this->delimiter = $delimiter;
         $this->enclosure = $enclosure;
-        $this->escape = $escape;
+        $this->escape    = $escape;
     }
 
     /**
@@ -99,7 +114,7 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_
             throw new InvalidArgumentException("Could not read csv file: {$csvFile}");
         }
 
-        $fh = fopen($csvFile, 'r');
+        $fh      = fopen($csvFile, 'r');
         $columns = $this->getCsvRow($fh);
 
         if ($columns === FALSE)
@@ -108,7 +123,7 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_
         }
 
         $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
-        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
+        $table    = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
 
         while (($row = $this->getCsvRow($fh)) !== FALSE)
         {

@@ -82,8 +82,8 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements Ou
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_ITableIterator $innerIterator, Array $fullReplacements = array(), Array $subStrReplacements = array())
     {
-        $this->innerIterator = $innerIterator;
-        $this->fullReplacements = $fullReplacements;
+        $this->innerIterator      = $innerIterator;
+        $this->fullReplacements   = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 

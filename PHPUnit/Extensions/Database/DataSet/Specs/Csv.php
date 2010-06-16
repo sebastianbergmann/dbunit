@@ -68,7 +68,6 @@
  */
 class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extensions_Database_DataSet_ISpec
 {
-
     /**
      * Creates CSV Data Set from a data set spec.
      *
@@ -78,12 +77,13 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extension
     public function getDataSet($dataSetSpec)
     {
         $csvDataSetArgs = $this->getCsvOptions($dataSetSpec);
-        $csvDataSetRfl = new ReflectionClass('PHPUnit_Extensions_Database_DataSet_CsvDataSet');
-        $csvDataSet = $csvDataSetRfl->newInstanceArgs($csvDataSetArgs);
+        $csvDataSetRfl  = new ReflectionClass('PHPUnit_Extensions_Database_DataSet_CsvDataSet');
+        $csvDataSet     = $csvDataSetRfl->newInstanceArgs($csvDataSetArgs);
 
         foreach ($this->getTableFileMap($dataSetSpec) as $tableName => $file) {
             $csvDataSet->addTable($tableName, $file);
         }
+
         return $csvDataSet;
     }
 
@@ -116,12 +116,12 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extension
     protected function getTableFileMap($dataSetSpec)
     {
         $tables = array();
+
         foreach (explode(',', $dataSetSpec) as $csvfile) {
             list($tableName, $file) = explode(':', $csvfile, 2);
-            $tables[$tableName] = $file;
+            $tables[$tableName]     = $file;
         }
 
         return $tables;
     }
 }
-

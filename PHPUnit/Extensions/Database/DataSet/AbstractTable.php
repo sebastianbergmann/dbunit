@@ -147,7 +147,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
      */
     public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITable $other)
     {
-        $thisMetaData = $this->getTableMetaData();
+        $thisMetaData  = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();
 
         $thisMetaData->assertEquals($otherMetaData);
@@ -156,8 +156,10 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
             throw new Exception("Expected row count of {$this->getRowCount()}, has a row count of {$other->getRowCount()}");
         }
 
-        $columns = $thisMetaData->getColumns();
-        for ($i = 0; $i < $this->getRowCount(); $i++) {
+        $columns  = $thisMetaData->getColumns();
+        $rowCount = $this->getRowCount();
+
+        for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
                 if ($this->getValue($i, $columnName) != $other->getValue($i, $columnName)) {
                     throw new Exception("Expected value of {$this->getValue($i, $columnName)} for row {$i} column {$columnName}, has a value of {$other->getValue($i, $columnName)}");
@@ -170,25 +172,26 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
 
     public function __toString()
     {
-        $columns = $this->getTableMetaData()->getColumns();
-
+        $columns       = $this->getTableMetaData()->getColumns();
         $lineSeperator = str_repeat('+----------------------', count($columns)) . "+\n";
-        $lineLength = strlen($lineSeperator) - 1;
+        $lineLength    = strlen($lineSeperator) - 1;
 
-        $tableString = $lineSeperator;
+        $tableString  = $lineSeperator;
         $tableString .= '| ' . str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
         $tableString .= $lineSeperator;
         $tableString .= $this->rowToString($columns);
         $tableString .= $lineSeperator;
 
-        for ($i = 0; $i < $this->getRowCount(); $i++) {
+        $rowCount = $this->getRowCount();
+
+        for ($i = 0; $i < $rowCount; $i++) {
             $values = array();
+
             foreach ($columns as $columnName) {
                 $values[] = $this->getValue($i, $columnName);
             }
 
-            $tableString .= $this->rowToString($values);
-            $tableString .= $lineSeperator;
+            $tableString .= $this->rowToString($values) . $lineSeperator;
         }
 
         return "\n" . $tableString . "\n";
@@ -197,10 +200,12 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
     protected function rowToString(Array $row)
     {
         $rowString = '';
+
         foreach ($row as $value) {
             if (is_null($value)) {
                 $value = 'NULL';
             }
+
             $rowString .= '| ' . str_pad(substr($value, 0, 20), 20, ' ', STR_PAD_BOTH) . ' ';
         }
 

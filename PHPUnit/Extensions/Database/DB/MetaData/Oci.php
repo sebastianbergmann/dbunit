@@ -59,15 +59,24 @@ class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Dat
 {
     /**
      * No character used to quote schema objects.
+     * @var string
      */
     protected $schemaObjectQuoteChar = '';
 
     /**
      * The command used to perform a TRUNCATE operation.
+     * @var string
      */
     protected $truncateCommand = 'TRUNCATE TABLE';
 
+    /**
+     * @var array
+     */
     protected $columns = array();
+
+    /**
+     * @var array
+     */
     protected $keys = array();
 
     /**
@@ -141,7 +150,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Dat
 
         if (!empty($tableParts['schema']))
         {
-            $ownerQuery = " AND OWNER = '{$tableParts['schema']}'";
+            $ownerQuery    = " AND OWNER = '{$tableParts['schema']}'";
             $conOwnerQuery = " AND a.owner = '{$tableParts['schema']}'";
         }
 

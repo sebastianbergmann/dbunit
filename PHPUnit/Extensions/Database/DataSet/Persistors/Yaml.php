@@ -81,13 +81,12 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Yaml implements PHPUnit_Ext
     {
         $phpArr = array();
 
-        foreach ($dataset as $table)
-        {
-            $tableName = $table->getTableMetaData()->getTableName();
+        foreach ($dataset as $table) {
+            $tableName          = $table->getTableMetaData()->getTableName();
             $phpArr[$tableName] = array();
+            $rowCount           = $table->getRowCount();
 
-            for ($i = 0; $i < $table->getRowCount(); $i++)
-            {
+            for ($i = 0; $i < $rowCount; $i++) {
                 $phpArr[$tableName][] = $table->getRow($i);
             }
         }
@@ -95,4 +94,3 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Yaml implements PHPUnit_Ext
         file_put_contents($this->filename, sfYaml::dump($phpArr, 3));
     }
 }
-

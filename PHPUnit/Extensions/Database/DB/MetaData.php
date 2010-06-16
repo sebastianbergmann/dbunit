@@ -99,7 +99,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
      */
     public final function __construct(PDO $pdo, $schema = '')
     {
-        $this->pdo = $pdo;
+        $this->pdo    = $pdo;
         $this->schema = $schema;
     }
 
@@ -171,7 +171,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
      */
     public function quoteSchemaObject($object)
     {
-        $parts = explode('.', $object);
+        $parts       = explode('.', $object);
         $quotedParts = array();
 
         foreach ($parts as $part) {

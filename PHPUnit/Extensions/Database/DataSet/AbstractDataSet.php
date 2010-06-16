@@ -138,7 +138,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
      */
     public function assertEquals(PHPUnit_Extensions_Database_DataSet_IDataSet $other)
     {
-        $thisTableNames = $this->getTableNames();
+        $thisTableNames  = $this->getTableNames();
         $otherTableNames = $other->getTableNames();
 
         sort($thisTableNames);

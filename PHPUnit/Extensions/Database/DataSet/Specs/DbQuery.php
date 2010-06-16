@@ -100,15 +100,14 @@ class PHPUnit_Extensions_Database_DataSet_Specs_DbQuery implements PHPUnit_Exten
      */
     public function getDataSet($dataSetSpec)
     {
-        $pdoRflc = new ReflectionClass('PDO');
         list($dbLabel, $schema, $table, $sql) = explode(':', $dataSetSpec, 4);
+        $databaseInfo                         = $this->databases[$dbLabel];
 
-        $databaseInfo = $this->databases[$dbLabel];
-        $pdo = $pdoRflc->newInstanceArgs(explode('|', $databaseInfo));
-
+        $pdoRflc      = new ReflectionClass('PDO');
+        $pdo          = $pdoRflc->newInstanceArgs(explode('|', $databaseInfo));
         $dbConnection = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($pdo, $schema);
-        $table = $dbConnection->createQueryTable($table, $sql);
+        $table        = $dbConnection->createQueryTable($table, $sql);
+
         return new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table));
     }
 }
-

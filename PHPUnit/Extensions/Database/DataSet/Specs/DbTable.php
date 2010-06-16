@@ -99,14 +99,13 @@ class PHPUnit_Extensions_Database_DataSet_Specs_DbTable implements PHPUnit_Exten
      */
     public function getDataSet($dataSetSpec)
     {
-        $pdoRflc = new ReflectionClass('PDO');
         list($dbLabel, $schema, $tables) = explode(':', $dataSetSpec, 3);
+        $databaseInfo                    = $this->databases[$dbLabel];
 
-        $databaseInfo = $this->databases[$dbLabel];
-        $pdo = $pdoRflc->newInstanceArgs(explode('|', $databaseInfo));
-
+        $pdoRflc      = new ReflectionClass('PDO');
+        $pdo          = $pdoRflc->newInstanceArgs(explode('|', $databaseInfo));
         $dbConnection = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($pdo, $schema);
+
         return !empty($tables) ? $dbConnection->createDataSet(explode(',', $tables)) : $dbConnection->createDataSet();
     }
 }
-

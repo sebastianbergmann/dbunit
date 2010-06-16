@@ -60,8 +60,8 @@ class PHPUnit_Extensions_Database_DB_TableMetaData extends PHPUnit_Extensions_Da
 
     public function __construct($tableName, PHPUnit_Extensions_Database_DB_IMetaData $databaseMetaData)
     {
-        $this->tableName = $tableName;
-        $this->columns = $databaseMetaData->getTableColumns($tableName);
+        $this->tableName   = $tableName;
+        $this->columns     = $databaseMetaData->getTableColumns($tableName);
         $this->primaryKeys = $databaseMetaData->getTablePrimaryKeys($tableName);
     }
 }

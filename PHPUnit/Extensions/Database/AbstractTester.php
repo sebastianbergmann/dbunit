@@ -85,7 +85,7 @@ abstract class PHPUnit_Extensions_Database_AbstractTester implements PHPUnit_Ext
      */
     public function __construct()
     {
-        $this->setUpOperation = PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT();
+        $this->setUpOperation    = PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT();
         $this->tearDownOperation = PHPUnit_Extensions_Database_Operation_Factory::NONE();
     }
 

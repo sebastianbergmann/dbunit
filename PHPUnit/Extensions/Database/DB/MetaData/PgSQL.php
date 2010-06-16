@@ -67,7 +67,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
     {
         $query = "
             SELECT DISTINCT
-            	TABLE_NAME
+                TABLE_NAME
             FROM INFORMATION_SCHEMA.TABLES
             WHERE
                 TABLE_TYPE='BASE TABLE' AND
@@ -86,51 +86,51 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
         return $tableNames;
     }
 
-	/**
-	 * Returns an array containing the names of all the columns in the
-	 * $tableName table,
-	 *
-	 * @param string $tableName
-	 * @return array
-	 */
-	public function getTableColumns($tableName)
-	{
-		if (!isset($this->columns[$tableName])) {
-			$this->loadColumnInfo($tableName);
-		}
+    /**
+     * Returns an array containing the names of all the columns in the
+     * $tableName table,
+     *
+     * @param string $tableName
+     * @return array
+     */
+    public function getTableColumns($tableName)
+    {
+        if (!isset($this->columns[$tableName])) {
+            $this->loadColumnInfo($tableName);
+        }
 
-		return $this->columns[$tableName];
-	}
+        return $this->columns[$tableName];
+    }
 
-	/**
-	 * Returns an array containing the names of all the primary key columns in
-	 * the $tableName table.
-	 *
-	 * @param string $tableName
-	 * @return array
-	 */
-	public function getTablePrimaryKeys($tableName)
-	{
-		if (!isset($this->keys[$tableName])) {
-			$this->loadColumnInfo($tableName);
-		}
-		
-		return $this->keys[$tableName];
-	}
+    /**
+     * Returns an array containing the names of all the primary key columns in
+     * the $tableName table.
+     *
+     * @param string $tableName
+     * @return array
+     */
+    public function getTablePrimaryKeys($tableName)
+    {
+        if (!isset($this->keys[$tableName])) {
+            $this->loadColumnInfo($tableName);
+        }
 
-	/**
-	 * Loads column info from a database table.
+        return $this->keys[$tableName];
+    }
+
+    /**
+     * Loads column info from a database table.
      *
      * @param string $tableName
      */
     protected function loadColumnInfo($tableName)
     {
         $this->columns[$tableName] = array();
-        $this->keys[$tableName] = array();
+        $this->keys[$tableName]    = array();
 
         $columnQuery = "
             SELECT DISTINCT
-            	COLUMN_NAME, ORDINAL_POSITION
+                COLUMN_NAME, ORDINAL_POSITION
             FROM INFORMATION_SCHEMA.COLUMNS
             WHERE
                 TABLE_NAME = ? AND
@@ -146,20 +146,20 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
         }
 
         $keyQuery = "
-			SELECT
-				KCU.COLUMN_NAME,
-				KCU.ORDINAL_POSITION
-			FROM
-				INFORMATION_SCHEMA.KEY_COLUMN_USAGE as KCU
-			LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS as TC
-				ON TC.TABLE_NAME = KCU.TABLE_NAME
-			WHERE
-				TC.CONSTRAINT_TYPE = 'PRIMARY KEY' AND
-				TC.TABLE_NAME = ? AND
-				TC.TABLE_SCHEMA = ?
-			ORDER BY
-				KCU.ORDINAL_POSITION ASC
-    	";
+            SELECT
+                KCU.COLUMN_NAME,
+                KCU.ORDINAL_POSITION
+            FROM
+                INFORMATION_SCHEMA.KEY_COLUMN_USAGE as KCU
+            LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS as TC
+                ON TC.TABLE_NAME = KCU.TABLE_NAME
+            WHERE
+                TC.CONSTRAINT_TYPE = 'PRIMARY KEY' AND
+                TC.TABLE_NAME = ? AND
+                TC.TABLE_SCHEMA = ?
+            ORDER BY
+                KCU.ORDINAL_POSITION ASC
+        ";
 
         $keyStatement = $this->pdo->prepare($keyQuery);
         $keyStatement->execute(array($tableName, $this->getSchema()));
@@ -169,19 +169,19 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
         }
     }
 
-	/**
-	 * Returns the schema for the connection.
-	 *
-	 * @return string
-	 */
-	public function getSchema()
-	{
-		if (empty($this->schema)) {
-			return 'public';
-		} else {
-			return $this->schema;
-		}
-	}
+    /**
+     * Returns the schema for the connection.
+     *
+     * @return string
+     */
+    public function getSchema()
+    {
+        if (empty($this->schema)) {
+            return 'public';
+        } else {
+            return $this->schema;
+        }
+    }
 
     /**
      * Returns true if the rdbms allows cascading

@@ -57,7 +57,6 @@
  */
 class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterator
 {
-
     /**
      * An array of tables in the iterator.
      *
@@ -81,7 +80,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUni
      */
     public function __construct(Array $tables, $reverse = FALSE)
     {
-        $this->tables = $tables;
+        $this->tables  = $tables;
         $this->reverse = $reverse;
 
         $this->rewind();

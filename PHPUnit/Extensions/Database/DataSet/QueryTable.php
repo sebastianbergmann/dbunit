@@ -81,9 +81,9 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
      */
     public function __construct($tableName, $query, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection)
     {
-        $this->query = $query;
+        $this->query              = $query;
         $this->databaseConnection = $databaseConnection;
-        $this->tableName = $tableName;
+        $this->tableName          = $tableName;
     }
 
     /**
@@ -147,7 +147,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     {
         if ($this->data === NULL) {
             $pdoStatement = $this->databaseConnection->getConnection()->query($this->query);
-            $this->data = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+            $this->data   = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 

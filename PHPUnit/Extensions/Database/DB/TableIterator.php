@@ -83,8 +83,8 @@ class PHPUnit_Extensions_Database_DB_TableIterator implements PHPUnit_Extensions
     public function __construct($tableNames, PHPUnit_Extensions_Database_DB_DataSet $dataSet, $reverse = FALSE)
     {
         $this->tableNames = $tableNames;
-        $this->dataSet = $dataSet;
-        $this->reverse = $reverse;
+        $this->dataSet    = $dataSet;
+        $this->reverse    = $reverse;
 
         $this->rewind();
     }

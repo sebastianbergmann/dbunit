@@ -87,7 +87,9 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Xml extends PHPUnit_Extensi
         $this->fh = fopen($this->filename, 'w');
 
         if ($this->fh === FALSE) {
-           throw new PHPUnit_Framework_Exception("Could not open {$this->filename} for writing see " . __CLASS__ . "::setFileName()");
+            throw new PHPUnit_Framework_Exception(
+              "Could not open {$this->filename} for writing see " . __CLASS__ . "::setFileName()"
+            );
         }
 
         fwrite($this->fh, "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n");
@@ -149,4 +151,3 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Xml extends PHPUnit_Extensi
         fwrite($this->fh, "\t\t</row>\n");
     }
 }
-

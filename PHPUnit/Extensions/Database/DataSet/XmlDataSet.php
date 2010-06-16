@@ -96,7 +96,8 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
 
             foreach ($tableElement->xpath('./row') as $rowElement) {
                 $rowValues = array();
-                $index = 0;
+                $index     = 0;
+
                 foreach ($rowElement->children() as $columnValue) {
                     switch ($columnValue->getName()) {
                         case 'value':
@@ -124,7 +125,9 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
 
         try {
             $pers->write($dataset);
-        } catch (RuntimeException $e) {
+        }
+
+        catch (RuntimeException $e) {
             throw new PHPUnit_Framework_Exception(__METHOD__ . ' called with an unwritable file.');
         }
     }

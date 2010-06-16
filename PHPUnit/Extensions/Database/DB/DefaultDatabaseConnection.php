@@ -78,7 +78,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
     public function __construct(PDO $connection, $schema = '')
     {
         $this->connection = $connection;
-        $this->metaData = PHPUnit_Extensions_Database_DB_MetaData::createMetaData($connection, $schema);
+        $this->metaData   = PHPUnit_Extensions_Database_DB_MetaData::createMetaData($connection, $schema);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -120,7 +120,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      * @todo Implement the filtered data set.
      */
-    public function createDataSet(Array $tableNames = NULL)
+    public function createDataSet(array $tableNames = NULL)
     {
         if (empty($tableNames)) {
             return new PHPUnit_Extensions_Database_DB_DataSet($this);
@@ -148,7 +148,6 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
      */
     public function getConfig()
     {
-
     }
 
     /**

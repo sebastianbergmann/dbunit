@@ -96,11 +96,12 @@ class PHPUnit_Extensions_Database_Operation_Exception extends RuntimeException
     public function __construct($operation, $current_query, $current_args, $current_table, $error)
     {
         parent::__construct("{$operation} operation failed on query: {$current_query} using args: " . print_r($current_args, TRUE) . " [{$error}]");
-        $this->operation = $operation;
+
+        $this->operation     = $operation;
         $this->preparedQuery = $current_query;
-        $this->preparedArgs = $current_args;
-        $this->table = $current_table;
-        $this->error = $error;
+        $this->preparedArgs  = $current_args;
+        $this->table         = $current_table;
+        $this->error         = $error;
     }
 
     public function getOperation()

@@ -98,19 +98,19 @@ class PHPUnit_Extensions_Database_DB_DataSet extends PHPUnit_Extensions_Database
 
         $columns = $tableMetaData->getColumns();
         if ($databaseConnection) {
-        	$columns = array_map(array($databaseConnection, 'quoteSchemaObject'), $columns);
+            $columns = array_map(array($databaseConnection, 'quoteSchemaObject'), $columns);
         }
         $columnList = implode(', ', $columns);
 
         if ($databaseConnection) {
-        	$tableName = $databaseConnection->quoteSchemaObject($tableMetaData->getTableName());
+            $tableName = $databaseConnection->quoteSchemaObject($tableMetaData->getTableName());
         } else {
-        	$tableName = $tableMetaData->getTableName();
+            $tableName = $tableMetaData->getTableName();
         }
 
         $primaryKeys = $tableMetaData->getPrimaryKeys();
         if ($databaseConnection) {
-        	$primaryKeys = array_map(array($databaseConnection, 'quoteSchemaObject'), $primaryKeys);
+            $primaryKeys = array_map(array($databaseConnection, 'quoteSchemaObject'), $primaryKeys);
         }
         if (count($primaryKeys)) {
             $orderBy = 'ORDER BY ' . implode(' ASC, ', $primaryKeys) . ' ASC';
