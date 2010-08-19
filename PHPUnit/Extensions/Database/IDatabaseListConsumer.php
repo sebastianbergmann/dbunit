@@ -34,8 +34,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @package    PHPUnit
- * @subpackage Extensions_Database
+ * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
  * @copyright  2002-2010 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -46,8 +45,7 @@
 /**
  * An interface for classes that require a list of databases to operate.
  *
- * @package    PHPUnit
- * @subpackage Extensions_Database
+ * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
  * @copyright  2010 Mike Lively <m@digitalsandwich.com>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License

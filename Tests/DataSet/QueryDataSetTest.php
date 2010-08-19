@@ -34,8 +34,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   Testing
- * @package    PHPUnit
+ * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
  * @copyright  2002-2010 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -50,8 +49,7 @@ require_once dirname(__FILE__). '/../_files/DatabaseTestUtility.php';
 //require_once 'PHPUnit/Extensions/Database/DB/DefaultDatabaseConnection.php';
 
 /**
- * @category   Testing
- * @package    PHPUnit
+ * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
  * @copyright  2002-2010 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License

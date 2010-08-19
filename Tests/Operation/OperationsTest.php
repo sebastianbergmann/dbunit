@@ -34,8 +34,7 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * @category   Testing
- * @package    PHPUnit
+ * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
  * @copyright  2002-2010 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
@@ -60,8 +59,7 @@ require_once 'PHPUnit/Extensions/Database/Operation/Replace.php';
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
 
 /**
- * @category   Testing
- * @package    PHPUnit
+ * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
  * @copyright  2002-2010 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
