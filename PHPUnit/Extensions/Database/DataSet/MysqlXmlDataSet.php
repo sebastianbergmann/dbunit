@@ -78,20 +78,20 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
                 $tableValues[$tableName] = array();
             }
 
-            foreach ($tableElement->xpath('./row/field') as $columnElement) {
-                $columnName = (string)$columnElement['name'];
-
-                if (empty($columnName)) {
-                    throw new Exception('<field> element name attributes cannot be empty');
-                }
-
-                if (!in_array($columnName, $tableColumns[$tableName])) {
-                    $tableColumns[$tableName][] = $columnName;
-                }
-            }
-
-            foreach ($this->xmlFileContents->xpath('./database/table_data[@name="' . $tableName . '"]/row') as $rowElement) {
+            foreach ($tableElement->xpath('./row') as $rowElement) {
                 $rowValues = array();
+
+                foreach ($rowElement->xpath('./field') as $columnElement) {
+                    if (empty($columnElement['name'])) {
+                        throw new Exception('<field> element name attributes cannot be empty');
+                    }
+
+                    $columnName = (string)$columnElement['name'];
+
+                    if (!in_array($columnName, $tableColumns[$tableName])) {
+                        $tableColumns[$tableName][] = $columnName;
+                    }
+                }
 
                 foreach ($tableColumns[$tableName] as $columnName) {
                     $fields                 = $rowElement->xpath('./field[@name="' . $columnName . '"]');
@@ -103,6 +103,26 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
                 }
 
                 $tableValues[$tableName][] = $rowValues;
+            }
+        }
+
+        foreach ($this->xmlFileContents->xpath('./database/table_structure') as $tableElement) {
+            if (empty($tableElement['name'])) {
+                throw new Exception('<table_structure> elements must include a name attribute');
+            }
+
+            $tableName = (string) $tableElement['name'];
+
+            foreach ($tableElement->xpath('./field') as $fieldElement) {
+                if (empty($fieldElement['Field'])) {
+                    throw new Exception('<field> elements must include a Field attribute');
+                }
+
+                $columnName = (string) $fieldElement['Field'];
+
+                if (!in_array($columnName, $tableColumns[$tableName])) {
+                    $tableColumns[$tableName][] = $columnName;
+                }
             }
         }
     }
