@@ -44,7 +44,7 @@
  */
 
 /**
- * Data set implementation for the output of mysqldump --xml -t.
+ * Data set implementation for the output of mysqldump --xml.
  *
  * @package    PHPUnit
  * @subpackage Extensions_Database_DataSet
