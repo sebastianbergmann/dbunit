@@ -122,7 +122,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
 
         $yamlDataSet = new PHPUnit_Extensions_Database_DataSet_YamlDataSet(dirname(__FILE__) . '/../_files/YamlDataSets/testDataSet.yaml');
 
-        PHPUnit_Extensions_Database_DataSet_YamlDataSet::write($yamlDataSet, '/tmp/yaml.dataset');
+        PHPUnit_Extensions_Database_DataSet_YamlDataSet::write($yamlDataSet, sys_get_temp_dir() . '/yaml.dataset');
 
         PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($expectedDataSet, $yamlDataSet);
     }
