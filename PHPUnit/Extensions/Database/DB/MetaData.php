@@ -61,7 +61,8 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
         'mysql'  => 'PHPUnit_Extensions_Database_DB_MetaData_MySQL',
         'oci'    => 'PHPUnit_Extensions_Database_DB_MetaData_Oci',
         'sqlite' => 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
-        'sqlite2'=> 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite'
+        'sqlite2'=> 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
+        'sqlsrv' => 'PHPUnit_Extensions_Database_DB_MetaData_SqlSrv'
     );
 
     /**
