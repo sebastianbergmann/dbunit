@@ -133,4 +133,18 @@ interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
      * @return bool
      */
     public function allowsCascading();
+
+    /**
+    * Disables primary keys if connection does not allow setting them otherwise
+    *
+    * @param string $tableName
+    */
+    public function disablePrimaryKeys($tableName);
+
+    /**
+    * Reenables primary keys after they have been disabled
+    *
+    * @param string $tableName
+    */
+    public function enablePrimaryKeys($tableName);
 }

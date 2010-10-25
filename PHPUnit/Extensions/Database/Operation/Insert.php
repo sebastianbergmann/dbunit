@@ -93,4 +93,12 @@ class PHPUnit_Extensions_Database_Operation_Insert extends PHPUnit_Extensions_Da
         }
         return $args;
     }
+
+    protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    {
+        if (count($databaseTableMetaData->getPrimaryKeys())) {
+            return TRUE;
+        }
+        return FALSE;
+    }
 }

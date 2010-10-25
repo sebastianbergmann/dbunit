@@ -224,4 +224,24 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
     {
         return FALSE;
     }
+
+    /**
+    * Disables primary keys if the rdbms does not allow setting them otherwise
+    *
+    * @param string $tableName
+    */
+    public function disablePrimaryKeys($tableName)
+    {
+        return;
+    }
+
+    /**
+    * Reenables primary keys after they have been disabled
+    *
+    * @param string $tableName
+    */
+    public function enablePrimaryKeys($tableName)
+    {
+        return;
+    }
 }

@@ -137,4 +137,36 @@ class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends PHPUnit_Extensions_
 
         return $columnNames;
     }
+
+    /**
+    * Allow overwriting identities for the given table.
+    *
+    * @param string $tableName
+    */
+    public function disablePrimaryKeys($tableName)
+    {
+        try {
+            $query = "SET IDENTITY_INSERT $tableName ON";
+            $this->pdo->exec($query);
+        }
+        catch (PDOException $e) {
+            // ignore the error here - can happen if primary key is not an identity
+        }
+    }
+
+    /**
+    * Reenable auto creation of identities for the given table.
+    *
+    * @param string $tableName
+    */
+    public function enablePrimaryKeys($tableName)
+    {
+        try {
+            $query = "SET IDENTITY_INSERT $tableName OFF";
+            $this->pdo->exec($query);
+        }
+        catch (PDOException $e) {
+            // ignore the error here - can happen if primary key is not an identity
+        }
+    }
 }

@@ -66,10 +66,10 @@ class PHPUnit_Extensions_Database_Operation_Update extends PHPUnit_Extensions_Da
         $setStatement   = 'SET ' . implode(', ', $this->buildPreparedColumnArray($columns, $connection));
 
         $query = "
-			UPDATE {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}
-			{$setStatement}
-			{$whereStatement}
-		";
+            UPDATE {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}
+            {$setStatement}
+            {$whereStatement}
+        ";
 
         return $query;
     }
@@ -86,5 +86,13 @@ class PHPUnit_Extensions_Database_Operation_Update extends PHPUnit_Extensions_Da
         }
 
         return $args;
+    }
+
+    protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    {
+        if (count($databaseTableMetaData->getPrimaryKeys())) {
+            return TRUE;
+        }
+        return FALSE;
     }
 }
