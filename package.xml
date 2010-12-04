@@ -307,6 +307,9 @@
       <file baseinstalldir="/" name="AbstractTester.php" role="php">
        <tasks:replace from="@package_version@" to="version" type="package-info" />
       </file>
+      <file baseinstalldir="/" name="Autoload.php" role="php">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
       <file baseinstalldir="/" name="DefaultTester.php" role="php">
        <tasks:replace from="@package_version@" to="version" type="package-info" />
       </file>
