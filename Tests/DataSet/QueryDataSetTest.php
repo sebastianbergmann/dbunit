@@ -42,12 +42,6 @@
  * @since      File available since Release 1.0.0
  */
 
-require_once 'PHPUnit/Extensions/Database/TestCase.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/QueryDataSet.php';
-require_once dirname(__FILE__). '/../_files/DatabaseTestUtility.php';
-//require_once 'PHPUnit/Extensions/Database/DataSet/DefaultTable.php';
-//require_once 'PHPUnit/Extensions/Database/DB/DefaultDatabaseConnection.php';
-
 /**
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>

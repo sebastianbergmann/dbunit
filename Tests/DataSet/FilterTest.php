@@ -42,11 +42,6 @@
  * @since      File available since Release 1.0.0
  */
 
-require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/FlatXmlDataSet.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DataSetFilter.php';
-require_once 'PHPUnit/Extensions/Database/Constraint/DataSetIsEqual.php';
-
 /**
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>

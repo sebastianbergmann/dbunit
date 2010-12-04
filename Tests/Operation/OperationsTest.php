@@ -42,20 +42,6 @@
  * @since      File available since Release 1.0.0
  */
 
-require_once 'PHPUnit/Extensions/Database/TestCase.php';
-require_once 'PHPUnit/Extensions/Database/DB/DefaultDatabaseConnection.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/FlatXmlDataSet.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultDataSet.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultTable.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultTableMetaData.php';
-
-require_once 'PHPUnit/Extensions/Database/Operation/Delete.php';
-require_once 'PHPUnit/Extensions/Database/Operation/DeleteAll.php';
-require_once 'PHPUnit/Extensions/Database/Operation/Insert.php';
-require_once 'PHPUnit/Extensions/Database/Operation/Update.php';
-require_once 'PHPUnit/Extensions/Database/Operation/Truncate.php';
-require_once 'PHPUnit/Extensions/Database/Operation/Replace.php';
-
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
 
 /**

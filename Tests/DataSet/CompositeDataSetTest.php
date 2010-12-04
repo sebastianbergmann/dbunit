@@ -42,13 +42,6 @@
  * @since      File available since Release 1.0.0
  */
 
-require_once 'PHPUnit/Framework/TestCase.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultDataSet.php';
-require_once 'PHPUnit/Extensions/Database/TestCase.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultTable.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/DefaultTableMetaData.php';
-require_once 'PHPUnit/Extensions/Database/DataSet/CompositeDataSet.php';
-
 /**
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
