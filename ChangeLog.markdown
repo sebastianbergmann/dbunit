@@ -1,9 +1,9 @@
-DbUnit 1.0
+DbUnit 1.1
 ==========
 
-This is the list of changes for the DbUnit 1.0 release series.
+This is the list of changes for the DbUnit 1.1 release series.
 
-DbUnit 1.0.0
+DbUnit 1.1.0
 -------------
 
-* Initial release as separate component.
+* Added support for MS SQL Server.
