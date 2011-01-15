@@ -154,7 +154,24 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
         if ($this->tableMetaData === NULL)
         {
             $this->loadData();
-            $this->tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($this->tableName, array_keys($this->data[0]));
+
+            // if some rows are in the table
+            $columns = array();
+            if (isset($this->data[0]))
+                // get column names from data
+                $columns = array_keys($this->data[0]);
+            else {
+                // if no rows found, get column names from database
+                $pdoStatement = $this->databaseConnection->getConnection()->prepare("SELECT column_name FROM information_schema.COLUMNS WHERE table_schema=:schema AND table_name=:table");
+                $pdoStatement->execute(array(
+                    "table"        => $this->tableName,
+                    "schema"    => $this->databaseConnection->getSchema()
+                ));
+
+                $columns = $pdoStatement->fetchAll(PDO::FETCH_COLUMN, 0);
+            }
+            // create metadata
+            $this->tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($this->tableName, $columns);
         }
     }
 }
