@@ -57,14 +57,18 @@ class Extensions_Database_DataSet_YamlDataSetTest extends PHPUnit_Framework_Test
     public function testYamlDataSet()
     {
         $table1MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
-            'table1', array('table1_id', 'column1', 'column2', 'column3', 'column4')
+            'table1', array('table1_id', 'column1', 'column2', 'column3', 'column4', 'extraColumn')
         );
         $table2MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
             'table2', array('table2_id', 'column5', 'column6', 'column7', 'column8')
         );
+        $emptyTableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+            'emptyTable', array()
+        );
 
         $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
         $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
+        $emptyTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($emptyTableMetaData);
 
         $table1->addRow(array(
             'table1_id' => 1,
@@ -78,7 +82,8 @@ class Extensions_Database_DataSet_YamlDataSetTest extends PHPUnit_Framework_Test
             'column1' => 'hk;afg',
             'column2' => 654,
             'column3' => 46.54,
-            'column4' => '24rwehhads'
+            'column4' => '24rwehhads',
+            'extraColumn' => 'causes no worries'
         ));
         $table1->addRow(array(
             'table1_id' => 3,
@@ -111,7 +116,7 @@ class Extensions_Database_DataSet_YamlDataSetTest extends PHPUnit_Framework_Test
 asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         ));
 
-        $expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1, $table2));
+        $expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1, $table2, $emptyTable));
 
         $yamlDataSet = new PHPUnit_Extensions_Database_DataSet_YamlDataSet(dirname(__FILE__) . '/../_files/YamlDataSets/testDataSet.yaml');
 

@@ -84,26 +84,51 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
     {
         $data = sfYaml::load($yamlFile);
 
-        foreach ($data as $tableName => $rows)
-        {
+        foreach ($data as $tableName => $rows) {
+            if (!isset($rows)) {
+                $rows = array();
+            }
+
             if (!is_array($rows)) {
                 continue;
             }
 
-            if (!array_key_exists($tableName, $this->tables))
-            {
-                $columns = count($rows) ? array_keys(current($rows)) : array();
+            if (!array_key_exists($tableName, $this->tables)) {
+                $columns = $this->getColumns($rows);
 
-                $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
+                $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+                  $tableName, $columns
+                );
 
-                $this->tables[$tableName] = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+                $this->tables[$tableName] = new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+                  $tableMetaData
+                );
             }
 
-            foreach ($rows as $row)
-            {
+            foreach ($rows as $row) {
                 $this->tables[$tableName]->addRow($row);
             }
         }
+    }
+
+    /**
+     * Creates a unique list of columns from all the rows in a table.
+     * If the table is defined another time in the Yaml, and if the Yaml
+     * parser could return the multiple occerrences, then this would be
+     * insufficient unless we grouped all the occurences of the table
+     * into onwe row set.  sfYaml, however, does not provide multiple tables
+     * with the same name, it only supplies the last table.
+     *
+     * @params all the rows in a table.
+     */
+    private function getColumns($rows) {
+        $columns = array();
+
+        foreach ($rows as $row) {
+            $columns = array_merge($columns, array_keys($row));
+        }
+
+        return array_values(array_unique($columns));
     }
 
     /**
@@ -115,7 +140,9 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
      */
     protected function createIterator($reverse = FALSE)
     {
-        return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
+        return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator(
+          $this->tables, $reverse
+        );
     }
 
     /**
@@ -130,8 +157,12 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
 
         try {
             $pers->write($dataset);
-        } catch (RuntimeException $e) {
-            throw new PHPUnit_Framework_Exception(__METHOD__ . ' called with an unwritable file.');
+        }
+
+        catch (RuntimeException $e) {
+            throw new PHPUnit_Framework_Exception(
+              __METHOD__ . ' called with an unwritable file.'
+            );
         }
     }
 }
