@@ -11,6 +11,7 @@ table1:
     column2: 654
     column3: 46.54
     column4: 24rwehhads
+    extraColumn: 'causes no worries'
   -
     table1_id: 3
     column1: ha;gyt
@@ -38,3 +39,6 @@ table2:
     column8: |-
       thesethasdl
       asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf
+
+emptyTable:
+
