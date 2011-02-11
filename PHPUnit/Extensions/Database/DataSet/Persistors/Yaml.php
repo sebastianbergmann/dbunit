@@ -77,15 +77,18 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Yaml implements PHPUnit_Ext
      */
     public function write(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset)
     {
-        $phpArr = array();
+        $phpArr      = array();
         $emptyTables = array();
+
         foreach ($dataset as $table) {
             $tableName          = $table->getTableMetaData()->getTableName();
             $rowCount           = $table->getRowCount();
+
             if (!$rowCount) {
                 $emptyTables[] = $tableName;
                 continue;
             }
+
             $phpArr[$tableName] = array();
 
             for ($i = 0; $i < $rowCount; $i++) {
@@ -93,10 +96,14 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Yaml implements PHPUnit_Ext
             }
         }
 
-        $emptyTablesAsString = "";
+        $emptyTablesAsString = '';
+
         if (count($emptyTables)) {
             $emptyTablesAsString = implode(":\n", $emptyTables) . ":\n\n";
         }
-        file_put_contents($this->filename, sfYaml::dump($phpArr, 3).$emptyTablesAsString);
+
+        file_put_contents(
+          $this->filename, sfYaml::dump($phpArr, 3) . $emptyTablesAsString
+        );
     }
 }
