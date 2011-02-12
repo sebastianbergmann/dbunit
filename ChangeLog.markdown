@@ -9,6 +9,7 @@ DbUnit 1.0.1
 * Fixed GH-24: YAML dataset does not respect empty tables.
 * Fixed GH-25: YAML dataset only looks at columns in first row instead of entire data set.
 * Fixed MySQL dataset to respect empty tables.
+* Updated list of dependencies in `package.xml`.
 
 DbUnit 1.0.0
 ------------
