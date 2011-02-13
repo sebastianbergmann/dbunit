@@ -3,6 +3,11 @@ DbUnit 1.0
 
 This is the list of changes for the DbUnit 1.0 release series.
 
+DbUnit 1.0.2
+------------
+
+* Implemented proper error handling for XML dataset processing.
+
 DbUnit 1.0.1
 ------------
 
