@@ -379,6 +379,18 @@
     <channel>pear.symfony-project.com</channel>
     <min>1.0.2</min>
    </package>
+   <extension>
+    <name>pdo</name>
+   </extension>
+   <extension>
+    <name>reflection</name>
+   </extension>
+   <extension>
+    <name>simplexml</name>
+   </extension>
+   <extension>
+    <name>spl</name>
+   </extension>
   </required>
  </dependencies>
  <phprelease>

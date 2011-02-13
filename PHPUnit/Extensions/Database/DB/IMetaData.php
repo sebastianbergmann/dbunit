@@ -55,7 +55,6 @@
  */
 interface PHPUnit_Extensions_Database_DB_IMetaData
 {
-
     /**
      * Returns an array containing the names of all the tables in the database.
      *
@@ -104,16 +103,16 @@ interface PHPUnit_Extensions_Database_DB_IMetaData
     public function allowsCascading();
 
     /**
-    * Disables primary keys if rdbms does not allow setting them otherwise
-    *
-    * @param string $tableName
-    */
+     * Disables primary keys if rdbms does not allow setting them otherwise
+     *
+     * @param string $tableName
+     */
     public function disablePrimaryKeys($tableName);
 
     /**
-    * Reenables primary keys after they have been disabled
-    *
-    * @param string $tableName
-    */
+     * Reenables primary keys after they have been disabled
+     *
+     * @param string $tableName
+     */
     public function enablePrimaryKeys($tableName);
 }
