@@ -42,8 +42,6 @@
  * @since      File available since Release 1.0.0
  */
 
-PHP_CodeCoverage_Filter::getInstance()->addFileToBlacklist(__FILE__, 'PHPUNIT');
-
 /**
  *
  * @package    DbUnit
