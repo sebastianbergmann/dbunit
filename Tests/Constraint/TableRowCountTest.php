@@ -43,45 +43,28 @@
  */
 
 /**
- * Creates the appropriate Persistor based on a given type and spec.
- *
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010 Mike Lively <m@digitalsandwich.com>
+ * @copyright  2002-2011 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de//**
- * @since      Class available since Release 1.0.0
+ * @link       http://www.phpunit.de/
+ * @since      File available since Release 1.0.0
  */
-class PHPUnit_Extensions_Database_DataSet_Persistors_Factory
+class Extensions_Database_Constraint_TableRowCountTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * Returns the persistor.
-     *
-     * @param string $type
-     * @param string $spec
-     * @return PHPUnit_Extensions_Database_DataSet_IPersistable
-     */
-    public function getPersistorBySpec($type, $spec)
+    public function testConstraint()
     {
-        switch (strtolower($type)) {
-            case 'xml':
-                $xmlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_Xml();
-                $xmlPersistor->setFileName($spec);
-                return $xmlPersistor;
+        $constraint = new PHPUnit_Extensions_Database_Constraint_TableRowCount('name', 42);
+        $this->assertTrue($constraint->evaluate(42));
+        $this->assertFalse($constraint->evaluate(24));
+        $this->assertEquals('is equal to expected row count 42', $constraint->toString());
 
-            case 'flatxml':
-                $flatXmlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_FlatXml();
-                $flatXmlPersistor->setFileName($spec);
-                return $flatXmlPersistor;
+        try {
+            $constraint->fail(24, '');
+        }
 
-            case 'yaml':
-                $yamlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_Yaml();
-                $yamlPersistor->setFileName($spec);
-                return $yamlPersistor;
-
-            default:
-                throw new PHPUnit_Extensions_Database_Exception("I don't know what you want from me. PERSISTOR");
+        catch (PHPUnit_Framework_ExpectationFailedException $e) {
+            $this->assertEquals('Failed asserting that table "name" has 42 rows (actual row count: 24)', $e->getMessage());
         }
     }
 }

@@ -83,7 +83,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Factory implements PHPUnit_Exten
                 return new PHPUnit_Extensions_Database_DataSet_Specs_DbQuery();
 
             default:
-                throw new Exception("I don't know what you want from me.");
+                throw new PHPUnit_Extensions_Database_Exception("I don't know what you want from me.");
         }
     }
 }

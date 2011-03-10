@@ -143,7 +143,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
         sort($otherTableNames);
 
         if ($thisTableNames != $otherTableNames) {
-            throw new Exception("Expected following tables: " . implode(', ', $thisTableNames) . "; has columns: " . implode(', ', $otherTableNames));
+            throw new PHPUnit_Extensions_Database_Exception("Expected following tables: " . implode(', ', $thisTableNames) . "; has columns: " . implode(', ', $otherTableNames));
         }
 
         foreach ($thisTableNames as $tableName) {

@@ -113,11 +113,11 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData impleme
     public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITableMetaData $other)
     {
         if ($this->getTableName() != $other->getTableName()) {
-            throw new Exception("Expected table name of {$this->getTableName()}, has a name of {$other->getTableName()}");
+            throw new PHPUnit_Extensions_Database_Exception("Expected table name of {$this->getTableName()}, has a name of {$other->getTableName()}");
         }
 
         if ($this->getColumns() != $other->getColumns()) {
-            throw new Exception("Expected following columns: " . implode(', ', $this->getColumns()) . "; has columns: " . implode(', ', $other->getColumns()));
+            throw new PHPUnit_Extensions_Database_Exception("Expected following columns: " . implode(', ', $this->getColumns()) . "; has columns: " . implode(', ', $other->getColumns()));
         }
 
         return TRUE;

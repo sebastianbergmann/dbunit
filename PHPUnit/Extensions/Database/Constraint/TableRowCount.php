@@ -43,45 +43,68 @@
  */
 
 /**
- * Creates the appropriate Persistor based on a given type and spec.
+ * Asserts the row count in a table
  *
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
  * @copyright  2010 Mike Lively <m@digitalsandwich.com>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: @package_version@
- * @link       http://www.phpunit.de//**
+ * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
-class PHPUnit_Extensions_Database_DataSet_Persistors_Factory
+class PHPUnit_Extensions_Database_Constraint_TableRowCount extends PHPUnit_Framework_Constraint
 {
     /**
-     * Returns the persistor.
-     *
-     * @param string $type
-     * @param string $spec
-     * @return PHPUnit_Extensions_Database_DataSet_IPersistable
+     * @var int
      */
-    public function getPersistorBySpec($type, $spec)
+    protected $value;
+
+    /**
+     * @var string
+     */
+    protected $tableName;
+
+    /**
+     * Creates a new constraint.
+     *
+     * @param int $expected
+     */
+    public function __construct($tableName, $value)
     {
-        switch (strtolower($type)) {
-            case 'xml':
-                $xmlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_Xml();
-                $xmlPersistor->setFileName($spec);
-                return $xmlPersistor;
+        $this->tableName = $tableName;
+        $this->value = $value;
+    }
 
-            case 'flatxml':
-                $flatXmlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_FlatXml();
-                $flatXmlPersistor->setFileName($spec);
-                return $flatXmlPersistor;
+    /**
+     * Determines whether or not the given table has the expected amount of rows
+     *
+     * @param int $other
+     * @return bool
+     */
+    public function evaluate($other)
+    {
+        return $other == $this->value;
+    }
 
-            case 'yaml':
-                $yamlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_Yaml();
-                $yamlPersistor->setFileName($spec);
-                return $yamlPersistor;
+    protected function customFailureDescription($other, $description, $not)
+    {
+        return sprintf(
+          'Failed asserting that table "%s" has %d %s (actual row count: %d)',
+           $this->tableName,
+           $this->value,
+           ($this->value == 1 ? 'row' : 'rows'),
+           $other
+         );
+    }
 
-            default:
-                throw new PHPUnit_Extensions_Database_Exception("I don't know what you want from me. PERSISTOR");
-        }
+    /**
+     * Returns a string representation of the constraint.
+     *
+     * @return string
+     */
+    public function toString()
+    {
+        return sprintf('is equal to expected row count %d', $this->value);
     }
 }
