@@ -123,7 +123,7 @@ class Extensions_Database_DataSet_QueryTableTest extends PHPUnit_Framework_TestC
 
     public function testAssertEqualsFails()
     {
-        $this->setExpectedException('Exception', 'Expected row count of 2, has a row count of 3');
+        $this->setExpectedException('PHPUnit_Extensions_Database_Exception', 'Expected row count of 2, has a row count of 3');
 
         $expected_table = new PHPUnit_Extensions_Database_DataSet_DefaultTable(new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1', array('col1', 'col2', 'col3')));
         $expected_table->addRow(array('col1' => 'value1', 'col2' => 'value2', 'col3' => 'value3'));
