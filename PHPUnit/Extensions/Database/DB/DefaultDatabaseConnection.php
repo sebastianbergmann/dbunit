@@ -173,6 +173,8 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
         if (isset($whereClause)) {
             $query .= " WHERE {$whereClause}";
         }
+
+        return (int) $this->connection->query($query)->fetchColumn();
     }
 
     /**
