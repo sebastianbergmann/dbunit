@@ -168,6 +168,18 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
         return TRUE;
     }
 
+    /**
+     * Checks if a given row is in the table
+     *
+     * @param array $row
+     *
+     * @return bool
+     */
+    public function assertContainsRow(array $row)
+    {
+        return in_array($row, $this->data);
+    }
+
     public function __toString()
     {
         $columns       = $this->getTableMetaData()->getColumns();

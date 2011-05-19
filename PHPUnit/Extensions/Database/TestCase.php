@@ -262,4 +262,16 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
 
         self::assertThat($actual, $constraint, $message);
     }
+
+    /**
+     * Asserts that a given table contains a given row
+     *
+     * @param array $expectedRow Row expected to find
+     * @param PHPUnit_Extensions_Database_DataSet_ITable $table Table to look into
+     * @param string $message Optional message
+     */
+    public function assertTableContains(array $expectedRow, PHPUnit_Extensions_Database_DataSet_ITable $table, $message = '')
+    {
+        self::assertThat($table->assertContainsRow($expectedRow), self::isTrue(), $message);
+    }
 }
