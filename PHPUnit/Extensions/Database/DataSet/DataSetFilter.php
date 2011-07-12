@@ -98,7 +98,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet
      * @param Array $excludeTables @deprecated use set* methods instead.
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet, Array $excludeTables = array())
+    public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet, array $excludeTables = array())
     {
         $this->originalDataSet = $originalDataSet;
 
