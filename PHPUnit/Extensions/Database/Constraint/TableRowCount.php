@@ -79,10 +79,13 @@ class PHPUnit_Extensions_Database_Constraint_TableRowCount extends PHPUnit_Frame
     /**
      * Determines whether or not the given table has the expected amount of rows
      *
-     * @param int $other
-     * @return bool
+     * @param  mixed  $other
+     * @param  string $description
+     * @param  bool   $returnResult
+     * @return mixed
+     * @throws PHPUnit_Framework_ExpectationFailedException
      */
-    public function evaluate($other)
+    public function evaluate($other, $description = '', $returnResult = FALSE)
     {
         return $other == $this->value;
     }

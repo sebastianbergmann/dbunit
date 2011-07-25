@@ -80,10 +80,13 @@ class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends PHPUnit_Fram
      * Determines whether or not the given dataset matches the dataset used to
      * create this constraint.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet $other
-     * @return bool
+     * @param  mixed  $other
+     * @param  string $description
+     * @param  bool   $returnResult
+     * @return mixed
+     * @throws PHPUnit_Framework_ExpectationFailedException
      */
-    public function evaluate($other)
+    public function evaluate($other, $description = '', $returnResult = FALSE)
     {
         if ($other instanceof PHPUnit_Extensions_Database_DataSet_IDataSet) {
             try {

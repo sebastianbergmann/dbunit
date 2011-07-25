@@ -55,7 +55,6 @@
  */
 class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framework_Constraint
 {
-
     /**
      * @var PHPUnit_Extensions_Database_DataSet_ITable
      */
@@ -80,10 +79,13 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
      * Determines whether or not the given table matches the table used to
      * create this constraint.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $other
-     * @return bool
+     * @param  mixed  $other
+     * @param  string $description
+     * @param  bool   $returnResult
+     * @return mixed
+     * @throws PHPUnit_Framework_ExpectationFailedException
      */
-    public function evaluate($other)
+    public function evaluate($other, $description = '', $returnResult = FALSE)
     {
         if ($other instanceof PHPUnit_Extensions_Database_DataSet_ITable) {
             try {
