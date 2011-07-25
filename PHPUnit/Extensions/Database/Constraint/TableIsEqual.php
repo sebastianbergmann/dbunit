@@ -96,7 +96,9 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
         try {
             $this->value->assertEquals($other);
             return TRUE;
-        } catch (Exception $e) {
+        }
+
+        catch (Exception $e) {
             $this->failure_reason = $e->getMessage();
             return FALSE;
         }
@@ -120,8 +122,8 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
      */
     public function toString()
     {
-        return sprintf('is equal to expected %s',
-
-        PHPUnit_Util_Type::toString($this->value));
+        return sprintf(
+          'is equal to expected %s', PHPUnit_Util_Type::toString($this->value)
+        );
     }
 }
