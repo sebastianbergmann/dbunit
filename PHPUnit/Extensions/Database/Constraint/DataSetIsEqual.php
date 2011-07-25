@@ -55,7 +55,6 @@
  */
 class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends PHPUnit_Framework_Constraint
 {
-
     /**
      * @var PHPUnit_Extensions_Database_DataSet_IDataSet
      */
