@@ -87,16 +87,18 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
      */
     public function evaluate($other, $description = '', $returnResult = FALSE)
     {
-        if ($other instanceof PHPUnit_Extensions_Database_DataSet_ITable) {
-            try {
-                $this->value->assertEquals($other);
-                return TRUE;
-            } catch (Exception $e) {
-                $this->failure_reason = $e->getMessage();
-                return FALSE;
-            }
-        } else {
-            throw new InvalidArgumentException("PHPUnit_Extensions_Database_DataSet_ITable expected");
+        if (!$other instanceof PHPUnit_Extensions_Database_DataSet_ITable) {
+            throw new InvalidArgumentException(
+              'PHPUnit_Extensions_Database_DataSet_ITable expected'
+            );
+        }
+
+        try {
+            $this->value->assertEquals($other);
+            return TRUE;
+        } catch (Exception $e) {
+            $this->failure_reason = $e->getMessage();
+            return FALSE;
         }
     }
 

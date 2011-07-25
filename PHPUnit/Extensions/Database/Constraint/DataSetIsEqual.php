@@ -87,16 +87,18 @@ class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends PHPUnit_Fram
      */
     public function evaluate($other, $description = '', $returnResult = FALSE)
     {
-        if ($other instanceof PHPUnit_Extensions_Database_DataSet_IDataSet) {
-            try {
-                $this->value->assertEquals($other);
-                return TRUE;
-            } catch (Exception $e) {
-                $this->failure_reason = $e->getMessage();
-                return FALSE;
-            }
-        } else {
-            throw new InvalidArgumentException("PHPUnit_Extensions_Database_DataSet_IDataSet expected");
+        if (!$other instanceof PHPUnit_Extensions_Database_DataSet_IDataSet) {
+            throw new InvalidArgumentException(
+              'PHPUnit_Extensions_Database_DataSet_IDataSet expected'
+            );
+        }
+
+        try {
+            $this->value->assertEquals($other);
+            return TRUE;
+        } catch (Exception $e) {
+            $this->failure_reason = $e->getMessage();
+            return FALSE;
         }
     }
 
