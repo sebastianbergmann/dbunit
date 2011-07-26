@@ -69,6 +69,8 @@ class PHPUnit_Extensions_Database_DefaultTester extends PHPUnit_Extensions_Datab
      */
     public function __construct(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
     {
+        parent::__construct();
+
         $this->connection = $connection;
     }
 

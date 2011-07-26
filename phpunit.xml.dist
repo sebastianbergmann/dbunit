@@ -10,6 +10,7 @@
     <testsuite name="PHPUnit">
       <directory suffix="Test.php">Tests/DataSet</directory>
       <directory suffix="Test.php">Tests/Operation</directory>
+      <directory suffix="Test.php">Tests/DB</directory>
     </testsuite>
   </testsuites>
 
