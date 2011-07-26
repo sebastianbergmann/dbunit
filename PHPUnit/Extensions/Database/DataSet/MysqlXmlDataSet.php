@@ -92,12 +92,19 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
                 }
 
                 foreach ($tableColumns[$tableName] as $columnName) {
-                    $fields                 = $rowElement->xpath('./field[@name="' . $columnName . '"]');
-                    $column                 = $fields[0];
-                    $attr                   = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
-                    $null                   = isset($column['nil']) || isset($attr[0]);
-                    $columnValue            = $null ? NULL : (string)$column;
+                    $fields          = $rowElement->xpath('./field[@name="' . $columnName . '"]');
+                    $column          = $fields[0];
+                    $attr            = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
+
+                    if (isset($attr['type']) && (string) $attr['type'] === 'xs:hexBinary') {
+                        $columnValue = pack('H*',(string)$column);
+                    } else {
+                        $null        = isset($column['nil']) || isset($attr[0]);
+                        $columnValue = $null ? NULL : (string)$column;
+                    }
+
                     $rowValues[$columnName] = $columnValue;
+
                 }
 
                 $tableValues[$tableName][] = $rowValues;
