@@ -9,8 +9,8 @@
                       http://pear.php.net/dtd/package-2.0.xsd">
  <name>DbUnit</name>
  <channel>pear.phpunit.de</channel>
- <summary>DbUnit port for PHP/PHPUnit.</summary>
- <description>DbUnit port for PHP/PHPUnit</description>
+ <summary>DbUnit port for PHP/PHPUnit to support database interaction testing.</summary>
+ <description>DbUnit port for PHP/PHPUnit to support database interaction testing.</description>
  <lead>
   <name>Sebastian Bergmann</name>
   <user>sb</user>
