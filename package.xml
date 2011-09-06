@@ -381,6 +381,11 @@
     <min>1.9.4</min>
    </pearinstaller>
    <package>
+    <name>PHPUnit</name>
+    <channel>pear.phpunit.de</channel>
+    <min>3.6.0RC1</min>
+   </package>
+   <package>
     <name>YAML</name>
     <channel>pear.symfony-project.com</channel>
     <min>1.0.2</min>
