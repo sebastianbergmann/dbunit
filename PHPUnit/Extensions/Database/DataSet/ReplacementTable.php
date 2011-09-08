@@ -235,7 +235,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
             return $this->fullReplacements[$value];
         }
 
-        else if (count($this->subStrReplacements)) {
+        else if (count($this->subStrReplacements) && isset($value)) {
             return str_replace(array_keys($this->subStrReplacements), array_values($this->subStrReplacements), $value);
         }
 
