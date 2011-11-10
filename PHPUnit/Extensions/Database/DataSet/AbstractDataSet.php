@@ -134,7 +134,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
      *
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $other
      */
-    public function assertEquals(PHPUnit_Extensions_Database_DataSet_IDataSet $other)
+    public function matches(PHPUnit_Extensions_Database_DataSet_IDataSet $other)
     {
         $thisTableNames  = $this->getTableNames();
         $otherTableNames = $other->getTableNames();
@@ -143,11 +143,15 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
         sort($otherTableNames);
 
         if ($thisTableNames != $otherTableNames) {
-            throw new PHPUnit_Extensions_Database_Exception("Expected following tables: " . implode(', ', $thisTableNames) . "; has columns: " . implode(', ', $otherTableNames));
+            return FALSE;
         }
 
         foreach ($thisTableNames as $tableName) {
-            $this->getTable($tableName)->assertEquals($other->getTable($tableName));
+            $table = $this->getTable($tableName);
+
+            if (!$table->matches($other->getTable($tableName))) {
+                return FALSE;
+            }
         }
 
         return TRUE;

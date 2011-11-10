@@ -91,5 +91,5 @@ interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
      *
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $other
      */
-    public function assertEquals(PHPUnit_Extensions_Database_DataSet_IDataSet $other);
+    public function matches(PHPUnit_Extensions_Database_DataSet_IDataSet $other);
 }

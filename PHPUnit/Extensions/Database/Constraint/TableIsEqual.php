@@ -76,16 +76,15 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
     }
 
     /**
-     * Determines whether or not the given table matches the table used to
-     * create this constraint.
+     * Evaluates the constraint for parameter $other. Returns TRUE if the
+     * constraint is met, FALSE otherwise.
      *
-     * @param  mixed  $other
-     * @param  string $description
-     * @param  bool   $returnResult
-     * @return mixed
-     * @throws PHPUnit_Framework_ExpectationFailedException
+     * This method can be overridden to implement the evaluation algorithm.
+     *
+     * @param mixed $other Value or object to evaluate.
+     * @return bool
      */
-    public function evaluate($other, $description = '', $returnResult = FALSE)
+    protected function matches($other)
     {
         if (!$other instanceof PHPUnit_Extensions_Database_DataSet_ITable) {
             throw new InvalidArgumentException(
@@ -93,26 +92,7 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
             );
         }
 
-        try {
-            $this->value->assertEquals($other);
-            return TRUE;
-        }
-
-        catch (PHPUnit_Extensions_Database_Exception $e) {
-            $this->failure_reason = $e->getMessage();
-            return FALSE;
-        }
-    }
-
-    protected function customFailureDescription($other, $description, $not)
-    {
-        return sprintf(
-          'Failed asserting that actual %s %s Reason: %s',
-
-           $other->__toString(),
-           $this->toString(),
-           $this->failure_reason
-         );
+        return $this->value->matches($other);
     }
 
     /**

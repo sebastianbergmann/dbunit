@@ -135,10 +135,10 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITable $other
      */
-    public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITable $other)
+    public function matches(PHPUnit_Extensions_Database_DataSet_ITable $other)
     {
         $this->loadData();
-        return parent::assertEquals($other);
+        return parent::matches($other);
     }
 
     protected function loadData()

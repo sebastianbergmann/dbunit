@@ -91,5 +91,5 @@ interface PHPUnit_Extensions_Database_DataSet_ITable
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITable $other
      */
-    public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITable $other);
+    public function matches(PHPUnit_Extensions_Database_DataSet_ITable $other);
 }

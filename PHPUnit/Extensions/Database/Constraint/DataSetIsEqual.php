@@ -76,16 +76,15 @@ class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends PHPUnit_Fram
     }
 
     /**
-     * Determines whether or not the given dataset matches the dataset used to
-     * create this constraint.
+     * Evaluates the constraint for parameter $other. Returns TRUE if the
+     * constraint is met, FALSE otherwise.
      *
-     * @param  mixed  $other
-     * @param  string $description
-     * @param  bool   $returnResult
-     * @return mixed
-     * @throws PHPUnit_Framework_ExpectationFailedException
+     * This method can be overridden to implement the evaluation algorithm.
+     *
+     * @param mixed $other Value or object to evaluate.
+     * @return bool
      */
-    public function evaluate($other, $description = '', $returnResult = FALSE)
+    protected function matches($other)
     {
         if (!$other instanceof PHPUnit_Extensions_Database_DataSet_IDataSet) {
             throw new InvalidArgumentException(
@@ -93,26 +92,21 @@ class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends PHPUnit_Fram
             );
         }
 
-        try {
-            $this->value->assertEquals($other);
-            return TRUE;
-        }
-
-        catch (PHPUnit_Extensions_Database_Exception $e) {
-            $this->failure_reason = $e->getMessage();
-            return FALSE;
-        }
+        return $this->value->matches($other);
     }
 
-    protected function customFailureDescription($other, $description, $not)
+    /**
+     * Returns the description of the failure
+     *
+     * The beginning of failure messages is "Failed asserting that" in most
+     * cases. This method should return the second part of that sentence.
+     *
+     * @param  mixed $other Evaluated value or object.
+     * @return string
+     */
+    protected function failureDescription($other)
     {
-        return sprintf(
-          'Failed asserting that actual %s %s Reason: %s',
-
-           $other->__toString(),
-           $this->toString(),
-           $this->failure_reason
-         );
+        return $other->__toString() . ' ' . $this->toString();
     }
 
     /**

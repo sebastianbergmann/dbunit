@@ -160,15 +160,14 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITable $other
      */
-    public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITable $other)
+    public function matches(PHPUnit_Extensions_Database_DataSet_ITable $other)
     {
         $thisMetaData  = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();
 
-        $thisMetaData->assertEquals($otherMetaData);
-
-        if ($this->getRowCount() != $other->getRowCount()) {
-            throw new PHPUnit_Extensions_Database_Exception("Expected row count of {$this->getRowCount()}, has a row count of {$other->getRowCount()}");
+        if (!$thisMetaData->matches($otherMetaData) ||
+            $this->getRowCount() != $other->getRowCount()) {
+            return FALSE;
         }
 
         $columns  = $thisMetaData->getColumns();
@@ -177,7 +176,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
                 if ($this->getValue($i, $columnName) != $other->getValue($i, $columnName)) {
-                    throw new PHPUnit_Extensions_Database_Exception("Expected value of {$this->getValue($i, $columnName)} for row {$i} column {$columnName}, has a value of {$other->getValue($i, $columnName)}");
+                    return FALSE;
                 }
             }
         }

@@ -110,14 +110,11 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData impleme
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $other
      */
-    public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITableMetaData $other)
+    public function matches(PHPUnit_Extensions_Database_DataSet_ITableMetaData $other)
     {
-        if ($this->getTableName() != $other->getTableName()) {
-            throw new PHPUnit_Extensions_Database_Exception("Expected table name of {$this->getTableName()}, has a name of {$other->getTableName()}");
-        }
-
-        if ($this->getColumns() != $other->getColumns()) {
-            throw new PHPUnit_Extensions_Database_Exception("Expected following columns: " . implode(', ', $this->getColumns()) . "; has columns: " . implode(', ', $other->getColumns()));
+        if ($this->getTableName() != $other->getTableName() ||
+            $this->getColumns() != $other->getColumns()) {
+            return FALSE;
         }
 
         return TRUE;

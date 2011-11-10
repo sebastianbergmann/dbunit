@@ -77,28 +77,17 @@ class PHPUnit_Extensions_Database_Constraint_TableRowCount extends PHPUnit_Frame
     }
 
     /**
-     * Determines whether or not the given table has the expected amount of rows
+     * Evaluates the constraint for parameter $other. Returns TRUE if the
+     * constraint is met, FALSE otherwise.
      *
-     * @param  mixed  $other
-     * @param  string $description
-     * @param  bool   $returnResult
-     * @return mixed
-     * @throws PHPUnit_Framework_ExpectationFailedException
+     * This method can be overridden to implement the evaluation algorithm.
+     *
+     * @param mixed $other Value or object to evaluate.
+     * @return bool
      */
-    public function evaluate($other, $description = '', $returnResult = FALSE)
+    protected function matches($other)
     {
         return $other == $this->value;
-    }
-
-    protected function customFailureDescription($other, $description, $not)
-    {
-        return sprintf(
-          'Failed asserting that table "%s" has %d %s (actual row count: %d)',
-           $this->tableName,
-           $this->value,
-           ($this->value == 1 ? 'row' : 'rows'),
-           $other
-         );
     }
 
     /**

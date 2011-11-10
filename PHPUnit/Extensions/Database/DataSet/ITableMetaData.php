@@ -82,5 +82,5 @@ interface PHPUnit_Extensions_Database_DataSet_ITableMetaData
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $other
      */
-    public function assertEquals(PHPUnit_Extensions_Database_DataSet_ITableMetaData $other);
+    public function matches(PHPUnit_Extensions_Database_DataSet_ITableMetaData $other);
 }
