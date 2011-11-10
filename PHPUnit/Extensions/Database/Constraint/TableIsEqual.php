@@ -98,7 +98,7 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
             return TRUE;
         }
 
-        catch (Exception $e) {
+        catch (PHPUnit_Extensions_Database_Exception $e) {
             $this->failure_reason = $e->getMessage();
             return FALSE;
         }
