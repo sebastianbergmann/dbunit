@@ -103,7 +103,7 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
     public function toString()
     {
         return sprintf(
-          'is equal to expected %s', PHPUnit_Util_Type::toString($this->value)
+          'is equal to expected %s', PHPUnit_Util_Type::export($this->value)
         );
     }
 }
