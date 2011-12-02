@@ -42,7 +42,10 @@
  * @since      File available since Release 1.0.0
  */
 
-require_once 'SymfonyComponents/YAML/sfYaml.php';
+if (!class_exists('sfYaml', false))
+{
+    require_once 'SymfonyComponents/YAML/sfYaml.php';
+}
 
 /**
  * Creates CsvDataSets.
