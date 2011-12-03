@@ -42,8 +42,7 @@
  * @since      File available since Release 1.0.0
  */
 
-if (!class_exists('sfYaml', false))
-{
+if (!class_exists('sfYaml', FALSE)) {
     require_once 'SymfonyComponents/YAML/sfYaml.php';
 }
 
