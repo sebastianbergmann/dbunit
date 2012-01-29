@@ -258,7 +258,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
     public function assertTableRowCount($tableName, $expected, $message = '')
     {
         $constraint = new PHPUnit_Extensions_Database_Constraint_TableRowCount($tableName, $expected);
-        $actual = $this->getConnection()->getRowCount($tableName);
+        $actual = self::getConnection()->getRowCount($tableName);
 
         self::assertThat($actual, $constraint, $message);
     }
