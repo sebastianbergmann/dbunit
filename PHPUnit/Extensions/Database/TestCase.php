@@ -255,7 +255,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
      * @param int $expected Expected amount of rows in the table
      * @param string $message Optional message
      */
-    public static function assertTableRowCount($tableName, $expected, $message = '')
+    public function assertTableRowCount($tableName, $expected, $message = '')
     {
         $constraint = new PHPUnit_Extensions_Database_Constraint_TableRowCount($tableName, $expected);
         $actual = $this->getConnection()->getRowCount($tableName);
