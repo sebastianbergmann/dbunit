@@ -93,6 +93,9 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
 
                 foreach ($tableColumns[$tableName] as $columnName) {
                     $fields                 = $rowElement->xpath('./field[@name="' . $columnName . '"]');
+                    if (!isset($fields[0])) {
+                        throw new Exception('<field name="'.$columnName.'"> element in table '.$tableName.' is missing');
+                    }
                     $column                 = $fields[0];
                     $attr                   = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
                     $null                   = isset($column['nil']) || isset($attr[0]);
