@@ -42,6 +42,8 @@
  * @since      File available since Release 1.0.0
  */
 
+use Symfony\Components\Yaml\Yaml;
+
 /**
  * A yaml dataset persistor
  *
@@ -103,7 +105,7 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Yaml implements PHPUnit_Ext
         }
 
         file_put_contents(
-          $this->filename, sfYaml::dump($phpArr, 3) . $emptyTablesAsString
+          $this->filename, Yaml::dump($phpArr, 3) . $emptyTablesAsString
         );
     }
 }

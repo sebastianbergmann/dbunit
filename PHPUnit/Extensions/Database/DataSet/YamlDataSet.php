@@ -42,9 +42,11 @@
  * @since      File available since Release 1.0.0
  */
 
-if (!class_exists('sfYaml', FALSE)) {
-    require_once 'SymfonyComponents/YAML/sfYaml.php';
+if (!class_exists('Symfony\\Component\\Yaml\\Yaml', FALSE)) {
+    require_once 'Symfony/Components/Yaml/Yaml.php';
 }
+
+use Symfony\Components\Yaml\Yaml;
 
 /**
  * Creates CsvDataSets.
@@ -84,7 +86,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
      */
     public function addYamlFile($yamlFile)
     {
-        $data = sfYaml::load($yamlFile);
+        $data = Yaml::parse($yamlFile);
 
         foreach ($data as $tableName => $rows) {
             if (!isset($rows)) {
