@@ -95,6 +95,21 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
         return parent::getTableMetaData();
     }
 
+
+	/**
+     * Checks if a given row is in the table
+     *
+     * @param array $row
+     *
+     * @return bool
+     */
+	public function assertContainsRow(Array $row)
+	{
+		$this->loadData();
+		return parent::assertContainsRow($row);
+	}
+
+
     /**
      * Returns the number of rows in this table.
      *
