@@ -1,0 +1,32 @@
+{
+    "name": "phpunit/dbunit",
+    "description": "DbUnit port for PHP/PHPUnit to support database interaction testing.",
+    "type": "library",
+    "keywords": [
+        "database",
+        "testing",
+        "xunit"
+    ],
+    "homepage": "http://www.phpunit.de/",
+    "authors": [
+        {
+            "name": "Sebastian Bergmann",
+            "email": "sebastian@phpunit.de",
+            "homepage": "http://www.phpunit.de/"
+        }
+    ],
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": ">=5.2.7"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1.3-dev"
+        }
+    }
+
+}
