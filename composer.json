@@ -22,6 +22,10 @@
     "config": {
         "bin-dir": "bin"
     },
+    "bin": [
+        "dbunit.php",
+        "dbunit.bat"
+    ],
     "autoload": {
         "classmap": ["PHPUnit/"]
     },
