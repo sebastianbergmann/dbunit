@@ -103,7 +103,8 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Yaml implements PHPUnit_Ext
         }
 
         file_put_contents(
-          $this->filename, sfYaml::dump($phpArr, 3) . $emptyTablesAsString
+          $this->filename,
+          Symfony\Component\Yaml\Yaml::dump($phpArr, 3) . $emptyTablesAsString
         );
     }
 }

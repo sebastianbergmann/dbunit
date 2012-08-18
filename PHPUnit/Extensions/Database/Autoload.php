@@ -2,7 +2,7 @@
 /**
  * PHPUnit
  *
- * Copyright (c) 2002-2010, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * Copyright (c) 2002-2012, Sebastian Bergmann <sb@sebastian-bergmann.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,6 +41,20 @@
  * @link       http://www.phpunit.de/
  * @since      File available since Release 1.1.0
  */
+
+require_once 'Symfony/Component/Yaml/Dumper.php';
+require_once 'Symfony/Component/Yaml/Escaper.php';
+require_once 'Symfony/Component/Yaml/Exception/ExceptionInterface.php';
+require_once 'Symfony/Component/Yaml/Exception/DumpException.php';
+require_once 'Symfony/Component/Yaml/Exception/ParseException.php';
+require_once 'Symfony/Component/Yaml/Inline.php';
+require_once 'Symfony/Component/Yaml/Parser.php';
+require_once 'Symfony/Component/Yaml/Tests/DumperTest.php';
+require_once 'Symfony/Component/Yaml/Tests/ParserTest.php';
+require_once 'Symfony/Component/Yaml/Tests/InlineTest.php';
+require_once 'Symfony/Component/Yaml/Tests/YamlTest.php';
+require_once 'Symfony/Component/Yaml/Unescaper.php';
+require_once 'Symfony/Component/Yaml/Yaml.php';
 
 function phpunit_dbunit_autoload($class = NULL) {
     static $classes = NULL;
