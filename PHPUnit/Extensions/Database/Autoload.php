@@ -49,10 +49,6 @@ require_once 'Symfony/Component/Yaml/Exception/DumpException.php';
 require_once 'Symfony/Component/Yaml/Exception/ParseException.php';
 require_once 'Symfony/Component/Yaml/Inline.php';
 require_once 'Symfony/Component/Yaml/Parser.php';
-require_once 'Symfony/Component/Yaml/Tests/DumperTest.php';
-require_once 'Symfony/Component/Yaml/Tests/ParserTest.php';
-require_once 'Symfony/Component/Yaml/Tests/InlineTest.php';
-require_once 'Symfony/Component/Yaml/Tests/YamlTest.php';
 require_once 'Symfony/Component/Yaml/Unescaper.php';
 require_once 'Symfony/Component/Yaml/Yaml.php';
 
