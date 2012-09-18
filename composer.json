@@ -16,8 +16,6 @@
             "role": "lead"
         }
     ],
-    "version": "1.2.0RC1",
-    "time": "2012-08-18",
     "support": {
         "issues": "https://github.com/sebastianbergmann/dbunit/issues",
         "irc": "irc://irc.freenode.net/phpunit"
@@ -32,8 +30,7 @@
         "ext-spl": "*"
     },
     "bin": [
-        "dbunit.php",
-        "dbunit.bat"
+        "dbunit.php"
     ],
     "config": {
         "bin-dir": "bin"
@@ -43,7 +40,13 @@
             "PHPUnit/Extentions/Database/Autoload.php"
         ]
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2.x-dev"
+        }
+    },
     "include-path": [
-        ""
+        "",
+        "../../symfony/yaml/"
     ]
 }
