@@ -14,10 +14,15 @@
         "files": ["PHPUnit/Extentions/Database/Autoload.php"]
     },
     "include_path": [
-        ""
+        "",
+        "../../symfony/yaml/"
     ],
     "bin": [
-        "dbunit.php",
-        "dbunit.bat"
-    ]
+        "dbunit.php"
+    ],
+    "branch-alias": {
+        "dev-master": "1.2.x-dev"
+    },
+    "version": false,
+    "time": false
 }
