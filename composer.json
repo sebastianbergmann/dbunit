@@ -8,35 +8,42 @@
         "xunit"
     ],
     "homepage": "http://www.phpunit.de/",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Sebastian Bergmann",
-            "email": "sebastian@phpunit.de",
-            "homepage": "http://www.phpunit.de/"
+            "email": "sb@sebastian-bergmann.de",
+            "role": "lead"
         }
     ],
-    "license": "BSD-3-Clause",
-    "require": {
-        "php": ">=5.2.7"
+    "version": "1.2.0RC1",
+    "time": "2012-08-18",
+    "support": {
+        "issues": "https://github.com/sebastianbergmann/dbunit/issues",
+        "irc": "irc://irc.freenode.net/phpunit"
     },
-    "config": {
-        "bin-dir": "bin"
+    "require": {
+        "php": ">=5.3.3",
+        "phpunit/phpunit": ">=3.7.0",
+        "symfony/yaml": ">=2.1.0RC1",
+        "ext-pdo": "*",
+        "ext-reflection": "*",
+        "ext-simplexml": "*",
+        "ext-spl": "*"
     },
     "bin": [
         "dbunit.php",
         "dbunit.bat"
     ],
-    "autoload": {
-        "psr-0": {
-            "PHPUnit_Extensions_Database_": ""
-        },
-        "files": ["PHPUnit/Extensions/Database/Autoload.php"]
+    "config": {
+        "bin-dir": "bin"
     },
-    "minimum-stability": "dev",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.1.x-dev"
-        }
-    }
-
+    "autoload": {
+        "files": [
+            "PHPUnit/Extentions/Database/Autoload.php"
+        ]
+    },
+    "include-path": [
+        ""
+    ]
 }
