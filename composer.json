@@ -22,8 +22,8 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "phpunit/phpunit": ">=3.7.0",
-        "symfony/yaml": ">=2.1.0RC1",
+        "phpunit/phpunit": ">=3.7.0@stable",
+        "symfony/yaml": ">=2.1.0@stable",
         "ext-pdo": "*",
         "ext-reflection": "*",
         "ext-simplexml": "*",
