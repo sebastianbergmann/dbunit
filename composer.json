@@ -21,9 +21,9 @@
         "irc": "irc://irc.freenode.net/phpunit"
     },
     "require": {
-        "php": ">=5.3.3",
-        "phpunit/phpunit": ">=3.7.0@stable",
-        "symfony/yaml": ">=2.1.0@stable",
+        "php": ">=5.4.7",
+        "phpunit/phpunit": ">=3.8.0",
+        "symfony/yaml": ">=2.1.0",
         "ext-pdo": "*",
         "ext-reflection": "*",
         "ext-simplexml": "*",
@@ -42,7 +42,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.2.x-dev"
+            "dev-master": "1.3.x-dev"
         }
     },
     "include-path": [
