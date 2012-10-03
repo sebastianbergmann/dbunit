@@ -52,35 +52,26 @@ require_once 'Symfony/Component/Yaml/Parser.php';
 require_once 'Symfony/Component/Yaml/Unescaper.php';
 require_once 'Symfony/Component/Yaml/Yaml.php';
 
-function phpunit_dbunit_autoload($class = NULL) {
-    static $classes = NULL;
-    static $path = NULL;
+spl_autoload_register(
+  function ($class)
+  {
+      static $classes = NULL;
+      static $path = NULL;
 
-    if ($classes === NULL) {
-        $classes = array(
-          ___CLASSLIST___
-        );
+      if ($classes === NULL) {
+          $classes = array(
+            ___CLASSLIST___
+          );
 
-        $path = dirname(dirname(dirname(__FILE__)));
-    }
+          $path = dirname(dirname(dirname(__FILE__)));
+      }
 
-    if ($class === NULL) {
-        $result = array(__FILE__);
+      $cn = strtolower($class);
 
-        foreach ($classes as $file) {
-            $result[] = $path . $file;
-        }
+      if (isset($classes[$cn])) {
+          $file = $path . $classes[$cn];
 
-        return $result;
-    }
-
-    $cn = strtolower($class);
-
-    if (isset($classes[$cn])) {
-        $file = $path . $classes[$cn];
-
-        require $file;
-    }
-}
-
-spl_autoload_register('phpunit_dbunit_autoload');
+          require $file;
+      }
+  }
+);
