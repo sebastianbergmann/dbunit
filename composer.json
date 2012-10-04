@@ -36,7 +36,8 @@
         "bin-dir": "bin"
     },
     "autoload": {
-        "files": [
+        "classmap": [
+            "PHPUnit/"
         ]
     },
     "extra": {
