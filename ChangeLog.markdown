@@ -3,6 +3,11 @@ DbUnit 1.2
 
 This is the list of changes for the DbUnit 1.2 release series.
 
+DbUnit 1.2.1
+------------
+
+* No changes.
+
 DbUnit 1.2.0
 -------------
 
