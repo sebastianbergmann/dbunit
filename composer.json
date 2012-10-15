@@ -7,7 +7,7 @@
         "testing",
         "xunit"
     ],
-    "homepage": "http://www.phpunit.de/",
+    "homepage": "https://github.com/sebastianbergmann/dbunit/",
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -25,9 +25,7 @@
         "phpunit/phpunit": ">=3.7.0@stable",
         "symfony/yaml": ">=2.1.0@stable",
         "ext-pdo": "*",
-        "ext-reflection": "*",
-        "ext-simplexml": "*",
-        "ext-spl": "*"
+        "ext-simplexml": "*"
     },
     "bin": [
         "dbunit.php"
