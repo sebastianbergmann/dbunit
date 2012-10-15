@@ -394,13 +394,7 @@
     <name>pdo</name>
    </extension>
    <extension>
-    <name>reflection</name>
-   </extension>
-   <extension>
     <name>simplexml</name>
-   </extension>
-   <extension>
-    <name>spl</name>
    </extension>
   </required>
  </dependencies>

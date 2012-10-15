@@ -1,9 +1,7 @@
-DbUnit 1.2
+DbUnit 1.3
 ==========
 
-This is the list of changes for the DbUnit 1.2 release series.
+This is the list of changes for the DbUnit 1.3 release series.
 
-DbUnit 1.2.0
+DbUnit 1.3.0
 -------------
-
-* Updated for PHPUnit 3.7.
