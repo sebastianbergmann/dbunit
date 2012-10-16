@@ -43,9 +43,9 @@
  */
 
 /**
- * Creates CsvDataSets.
+ * Creates YamlDataSets.
  *
- * You can incrementally add CSV files as tables to your datasets
+ * You can incrementally add YAML files as tables to your datasets
  *
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
