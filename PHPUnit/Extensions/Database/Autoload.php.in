@@ -45,6 +45,7 @@
 require_once 'Symfony/Component/Yaml/Dumper.php';
 require_once 'Symfony/Component/Yaml/Escaper.php';
 require_once 'Symfony/Component/Yaml/Exception/ExceptionInterface.php';
+require_once 'Symfony/Component/Yaml/Exception/RuntimeException.php';
 require_once 'Symfony/Component/Yaml/Exception/DumpException.php';
 require_once 'Symfony/Component/Yaml/Exception/ParseException.php';
 require_once 'Symfony/Component/Yaml/Inline.php';
