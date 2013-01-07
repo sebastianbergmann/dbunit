@@ -16,7 +16,6 @@ before_script:
     - git clone --branch=master --depth=100 --quiet git://github.com/symfony/Yaml.git vendor/Symfony/Component/Yaml
     - git clone --branch=master --depth=100 --quiet git://github.com/pear/pear-core.git vendor/pear-core
     - git clone --branch=trunk --depth=100 --quiet git://github.com/pear/Console_Getopt.git vendor/console-getopt
-    - mysql -e 'create database myapp_test;'
 
 script: php -d include_path=vendor/phpunit:vendor/php-text-template:vendor/php-token-stream:vendor/php-file-iterator:vendor/php-code-coverage:vendor/phpunit-mock-objects:vendor/php-timer:vendor/version:vendor/pear-core:vendor/console-getopt:vendor:. ./vendor/phpunit/phpunit.php --configuration ./build/travis-ci.xml
 
