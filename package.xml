@@ -388,7 +388,7 @@
    <package>
     <name>YAML</name>
     <channel>pear.symfony.com</channel>
-    <min>2.1.6</min>
+    <min>2.1.0</min>
    </package>
    <extension>
     <name>pdo</name>
