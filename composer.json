@@ -28,7 +28,7 @@
         "ext-simplexml": "*"
     },
     "bin": [
-        "dbunit.php"
+        "composer/bin/dbunit"
     ],
     "config": {
         "bin-dir": "bin"
