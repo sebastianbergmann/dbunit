@@ -80,6 +80,11 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Factory
                 $yamlPersistor->setFileName($spec);
                 return $yamlPersistor;
 
+            case 'mysqlxml':
+                $mysqlXmlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml();
+                $mysqlXmlPersistor->setFileName($spec);
+                return $mysqlXmlPersistor;
+
             default:
                 throw new PHPUnit_Extensions_Database_Exception("I don't know what you want from me. PERSISTOR");
         }
