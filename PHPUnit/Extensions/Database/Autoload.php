@@ -42,16 +42,6 @@
  * @since      File available since Release 1.1.0
  */
 
-require_once 'Symfony/Component/Yaml/Dumper.php';
-require_once 'Symfony/Component/Yaml/Escaper.php';
-require_once 'Symfony/Component/Yaml/Exception/ExceptionInterface.php';
-require_once 'Symfony/Component/Yaml/Exception/DumpException.php';
-require_once 'Symfony/Component/Yaml/Exception/ParseException.php';
-require_once 'Symfony/Component/Yaml/Inline.php';
-require_once 'Symfony/Component/Yaml/Parser.php';
-require_once 'Symfony/Component/Yaml/Unescaper.php';
-require_once 'Symfony/Component/Yaml/Yaml.php';
-
 spl_autoload_register(
   function ($class)
   {
