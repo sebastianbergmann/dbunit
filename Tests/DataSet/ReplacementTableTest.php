@@ -251,4 +251,205 @@ class Extensions_Database_DataSet_ReplacementTableTest extends PHPUnit_Framework
         $this->assertNull($actual->getValue(2, 'column4'));
         $this->assertEquals('My name is Mike Lively', $actual->getValue(0, 'column1'));
     }
+
+    public function testMatchesWithNonMatchingMetaData()
+    {
+        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+
+        $table = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $table->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($tableMetaData));
+
+        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $otherTable->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($otherMetaData));
+
+        $tableMetaData->expects($this->once())
+            ->method('matches')
+            ->with($otherMetaData)
+            ->will($this->returnValue(false));
+
+        $replacementTable = new PHPUnit_Extensions_Database_DataSet_ReplacementTable($table);
+        $this->assertFalse($replacementTable->matches($otherTable));
+    }
+
+    public function testMatchesWithNonMatchingRowCount()
+    {
+        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+
+        $table = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $table->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($tableMetaData));
+
+        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $otherTable->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($otherMetaData));
+        $otherTable->expects($this->once())
+            ->method('getRowCount')
+            ->will($this->returnValue(0));
+
+        $tableMetaData->expects($this->once())
+            ->method('matches')
+            ->with($otherMetaData)
+            ->will($this->returnValue(true));
+
+        $replacementTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ReplacementTable', array('getRowCount'), array($table));
+        $replacementTable->expects($this->once())
+            ->method('getRowCount')
+            ->will($this->returnValue(1));
+        $this->assertFalse($replacementTable->matches($otherTable));
+    }
+
+    /**
+     * @param array $tableColumnValues
+     * @param array $otherColumnValues
+     * @param boolean $matches
+     * @dataProvider providerMatchesWithColumnValueComparisons
+     */
+    public function testMatchesWithColumnValueComparisons($tableColumnValues, $otherColumnValues, $matches)
+    {
+        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+
+        $table = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $table->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($tableMetaData));
+
+        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $otherTable->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($otherMetaData));
+        $otherTable->expects($this->once())
+            ->method('getRowCount')
+            ->will($this->returnValue(count($otherColumnValues)));
+
+        $tableMetaData->expects($this->once())
+            ->method('getColumns')
+            ->will($this->returnValue(array_keys(reset($tableColumnValues))));
+        $tableMetaData->expects($this->once())
+            ->method('matches')
+            ->with($otherMetaData)
+            ->will($this->returnValue(true));
+
+        $replacementTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ReplacementTable', array('getRowCount', 'getValue'), array($table));
+        $replacementTable->expects($this->any())
+            ->method('getRowCount')
+            ->will($this->returnValue(count($tableColumnValues)));
+
+        $tableMap = array();
+        $otherMap = array();
+        foreach ($tableColumnValues as $rowIndex => $rowData) {
+            foreach ($rowData as $columnName => $columnValue) {
+                $tableMap[] = array($rowIndex, $columnName, $columnValue);
+                $otherMap[] = array($rowIndex, $columnName, $otherColumnValues[$rowIndex][$columnName]);
+            }
+        }
+        $replacementTable->expects($this->any())
+            ->method('getValue')
+            ->will($this->returnValueMap($tableMap));
+        $otherTable->expects($this->any())
+            ->method('getValue')
+            ->will($this->returnValueMap($otherMap));
+
+        $this->assertSame($matches, $replacementTable->matches($otherTable));
+    }
+
+    public function providerMatchesWithColumnValueComparisons()
+    {
+        return array(
+
+            // One row, one column, matches
+            array(
+                array(
+                    array('id' => 1),
+                ),
+                array(
+                    array('id' => 1),
+                ),
+                true,
+            ),
+
+            // One row, one column, does not match
+            array(
+                array(
+                    array('id' => 1),
+                ),
+                array(
+                    array('id' => 2),
+                ),
+                false,
+            ),
+
+            // Multiple rows, one column, matches
+            array(
+                array(
+                    array('id' => 1),
+                    array('id' => 2),
+                ),
+                array(
+                    array('id' => 1),
+                    array('id' => 2),
+                ),
+                true,
+            ),
+
+            // Multiple rows, one column, do not match
+            array(
+                array(
+                    array('id' => 1),
+                    array('id' => 2),
+                ),
+                array(
+                    array('id' => 1),
+                    array('id' => 3),
+                ),
+                false,
+            ),
+
+            // Multiple rows, multiple columns, matches
+            array(
+                array(
+                    array('id' => 1, 'name' => 'foo'),
+                    array('id' => 2, 'name' => 'bar'),
+                ),
+                array(
+                    array('id' => 1, 'name' => 'foo'),
+                    array('id' => 2, 'name' => 'bar'),
+                ),
+                true,
+            ),
+
+            // Multiple rows, multiple columns, do not match
+            array(
+                array(
+                    array('id' => 1, 'name' => 'foo'),
+                    array('id' => 2, 'name' => 'bar'),
+                ),
+                array(
+                    array('id' => 1, 'name' => 'foo'),
+                    array('id' => 2, 'name' => 'baz'),
+                ),
+                false,
+            ),
+
+            // Comparisons must include a type check
+            array(
+                array(
+                    array('id' => 0),
+                ),
+                array(
+                    array('id' => null),
+                ),
+                false,
+            ),
+        );
+    }
+
 }

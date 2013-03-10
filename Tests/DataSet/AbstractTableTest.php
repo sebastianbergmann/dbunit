@@ -72,6 +72,8 @@ class Extensions_Database_DataSet_AbstractTableTest extends PHPUnit_Framework_Te
     }
 
     /**
+     * @param array $row
+     * @param boolean $exists
      * @dataProvider providerTableContainsRow
      */
     public function testTableContainsRow($row, $exists)
@@ -87,4 +89,190 @@ class Extensions_Database_DataSet_AbstractTableTest extends PHPUnit_Framework_Te
             array(array('id' => 1, 'column1' => 'notExistingValue'), false)
         );
     }
+
+    public function testMatchesWithNonMatchingMetaData()
+    {
+        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+
+        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $otherTable->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($otherMetaData));
+
+        $tableMetaData->expects($this->once())
+            ->method('matches')
+            ->with($otherMetaData)
+            ->will($this->returnValue(false));
+
+        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+        $this->assertFalse($table->matches($otherTable));
+    }
+
+    public function testMatchesWithNonMatchingRowCount()
+    {
+        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+
+        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $otherTable->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($otherMetaData));
+        $otherTable->expects($this->once())
+            ->method('getRowCount')
+            ->will($this->returnValue(0));
+
+        $tableMetaData->expects($this->once())
+            ->method('matches')
+            ->with($otherMetaData)
+            ->will($this->returnValue(true));
+
+        $table = $this->getMock('PHPUnit_Extensions_Database_DataSet_DefaultTable', array('getRowCount'), array($tableMetaData));
+        $table->expects($this->once())
+            ->method('getRowCount')
+            ->will($this->returnValue(1));
+        $this->assertFalse($table->matches($otherTable));
+    }
+
+    /**
+     * @param array $tableColumnValues
+     * @param array $otherColumnValues
+     * @param boolean $matches
+     * @dataProvider providerMatchesWithColumnValueComparisons
+     */
+    public function testMatchesWithColumnValueComparisons($tableColumnValues, $otherColumnValues, $matches)
+    {
+        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+
+        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $otherTable->expects($this->once())
+            ->method('getTableMetaData')
+            ->will($this->returnValue($otherMetaData));
+        $otherTable->expects($this->once())
+            ->method('getRowCount')
+            ->will($this->returnValue(count($otherColumnValues)));
+
+        $tableMetaData->expects($this->once())
+            ->method('getColumns')
+            ->will($this->returnValue(array_keys(reset($tableColumnValues))));
+        $tableMetaData->expects($this->once())
+            ->method('matches')
+            ->with($otherMetaData)
+            ->will($this->returnValue(true));
+
+        $table = $this->getMock('PHPUnit_Extensions_Database_DataSet_DefaultTable', array('getRowCount', 'getValue'), array($tableMetaData));
+        $table->expects($this->any())
+            ->method('getRowCount')
+            ->will($this->returnValue(count($tableColumnValues)));
+
+        $tableMap = array();
+        $otherMap = array();
+        foreach ($tableColumnValues as $rowIndex => $rowData) {
+            foreach ($rowData as $columnName => $columnValue) {
+                $tableMap[] = array($rowIndex, $columnName, $columnValue);
+                $otherMap[] = array($rowIndex, $columnName, $otherColumnValues[$rowIndex][$columnName]);
+            }
+        }
+        $table->expects($this->any())
+            ->method('getValue')
+            ->will($this->returnValueMap($tableMap));
+        $otherTable->expects($this->any())
+            ->method('getValue')
+            ->will($this->returnValueMap($otherMap));
+
+        $this->assertSame($matches, $table->matches($otherTable));
+    }
+
+    public function providerMatchesWithColumnValueComparisons()
+    {
+        return array(
+
+            // One row, one column, matches
+            array(
+                array(
+                    array('id' => 1),
+                ),
+                array(
+                    array('id' => 1),
+                ),
+                true,
+            ),
+
+            // One row, one column, does not match
+            array(
+                array(
+                    array('id' => 1),
+                ),
+                array(
+                    array('id' => 2),
+                ),
+                false,
+            ),
+
+            // Multiple rows, one column, matches
+            array(
+                array(
+                    array('id' => 1),
+                    array('id' => 2),
+                ),
+                array(
+                    array('id' => 1),
+                    array('id' => 2),
+                ),
+                true,
+            ),
+
+            // Multiple rows, one column, do not match
+            array(
+                array(
+                    array('id' => 1),
+                    array('id' => 2),
+                ),
+                array(
+                    array('id' => 1),
+                    array('id' => 3),
+                ),
+                false,
+            ),
+
+            // Multiple rows, multiple columns, matches
+            array(
+                array(
+                    array('id' => 1, 'name' => 'foo'),
+                    array('id' => 2, 'name' => 'bar'),
+                ),
+                array(
+                    array('id' => 1, 'name' => 'foo'),
+                    array('id' => 2, 'name' => 'bar'),
+                ),
+                true,
+            ),
+
+            // Multiple rows, multiple columns, do not match
+            array(
+                array(
+                    array('id' => 1, 'name' => 'foo'),
+                    array('id' => 2, 'name' => 'bar'),
+                ),
+                array(
+                    array('id' => 1, 'name' => 'foo'),
+                    array('id' => 2, 'name' => 'baz'),
+                ),
+                false,
+            ),
+
+            // Comparisons must include a type check
+            array(
+                array(
+                    array('id' => 0),
+                ),
+                array(
+                    array('id' => null),
+                ),
+                false,
+            ),
+        );
+    }
+
 }

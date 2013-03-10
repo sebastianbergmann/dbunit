@@ -158,7 +158,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                if ($this->getValue($i, $columnName) != $other->getValue($i, $columnName)) {
+                if ($this->getValue($i, $columnName) !== $other->getValue($i, $columnName)) {
                     return FALSE;
                 }
             }
