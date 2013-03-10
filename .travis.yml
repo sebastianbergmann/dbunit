@@ -6,7 +6,7 @@ php:
 before_script:
     - composer install --prefer-source
 
-script: bin/phpunit.php --configuration ./build/travis-ci.xml
+script: bin/phpunit --configuration ./build/travis-ci.xml
 
 notifications:
   email: false
