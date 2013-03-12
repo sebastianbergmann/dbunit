@@ -89,7 +89,7 @@ class Extensions_Database_Operation_RowBasedTest extends PHPUnit_Extensions_Data
         return new PHPUnit_Extensions_Database_DataSet_DefaultDataSet($tables);
     }
 
-    public function testExcecute()
+    public function testExecute()
     {
         $connection = $this->getConnection();
         /* @var $connection PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection */
@@ -170,5 +170,33 @@ class Extensions_Database_Operation_RowBasedTest extends PHPUnit_Extensions_Data
         $mockOperation->execute($connection, $dataSet);
 
         $this->assertDataSetsEqual(new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__).'/../_files/XmlDataSets/RowBasedExecute.xml'), $connection->createDataSet(array('table1', 'table2')));
+    }
+
+    public function testExecuteWithBadQuery()
+    {
+        $mockDatabaseTableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $mockDatabaseDataSet = $this->getMock('PHPUnit_Extensions_Database_DataSet_DefaultDataSet');
+        $mockDatabaseDataSet->expects($this->once())->method('getTableMetaData')->will($this->returnValue($mockDatabaseTableMetaData));
+
+        $mockConnection = $this->getMock('PHPUnit_Extensions_Database_DB_IDatabaseConnection');
+        $mockConnection->expects($this->once())->method('createDataSet')->will($this->returnValue($mockDatabaseDataSet));
+        foreach (array('getConnection', 'disablePrimaryKeys', 'enablePrimaryKeys') as $method) {
+            $mockConnection->expects($this->never())->method($method);
+        }
+
+        $mockTableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $mockTableMetaData->expects($this->any())->method('getTableName')->will($this->returnValue('table'));
+        $mockTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $mockTable->expects($this->any())->method('getTableMetaData')->will($this->returnValue($mockTableMetaData));
+        $mockTable->expects($this->once())->method('getRowCount')->will($this->returnValue(0));
+
+        $mockDataSet = $this->getMock('PHPUnit_Extensions_Database_DataSet_DefaultDataSet');
+        $mockDataSet->expects($this->once())->method('getIterator')->will($this->returnValue(new ArrayIterator(array($mockTable))));
+
+        $mockOperation = $this->getMock('PHPUnit_Extensions_Database_Operation_RowBased', array('buildOperationQuery', 'buildOperationArguments'));
+        $mockOperation->expects($this->never())->method('buildOperationArguments');
+        $mockOperation->expects($this->once())->method('buildOperationQuery')->will($this->returnValue(false));
+
+        $mockOperation->execute($mockConnection, $mockDataSet);
     }
 }

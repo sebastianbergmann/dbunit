@@ -67,6 +67,9 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
 
     protected $iteratorDirection = self::ITERATOR_TYPE_FORWARD;
 
+    /**
+     * @return string|boolean String containing the query or FALSE if a valid query cannot be constructed
+     */
     protected abstract function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection);
 
     protected abstract function buildOperationArguments(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, $row);
@@ -99,8 +102,11 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
             $query                 = $this->buildOperationQuery($databaseTableMetaData, $table, $connection);
             $disablePrimaryKeys    = $this->disablePrimaryKeys($databaseTableMetaData, $table, $connection);
 
-            if ($query === FALSE && $table->getRowCount() > 0) {
-                throw new PHPUnit_Extensions_Database_Operation_Exception($this->operationName, '', array(), $table, "Rows requested for insert, but no columns provided!");
+            if ($query === FALSE) {
+                if ($table->getRowCount() > 0) {
+                    throw new PHPUnit_Extensions_Database_Operation_Exception($this->operationName, '', array(), $table, "Rows requested for insert, but no columns provided!");
+                }
+                continue;
             }
 
             if ($disablePrimaryKeys) {
