@@ -102,6 +102,7 @@ spl_autoload_register(
             'phpunit_extensions_database_db_idatabaseconnection' => '/Extensions/Database/DB/IDatabaseConnection.php',
             'phpunit_extensions_database_db_imetadata' => '/Extensions/Database/DB/IMetaData.php',
             'phpunit_extensions_database_db_metadata' => '/Extensions/Database/DB/MetaData.php',
+            'phpunit_extensions_database_db_metadata_firebird' => '/Extensions/Database/DB/MetaData/Firebird.php',
             'phpunit_extensions_database_db_metadata_informationschema' => '/Extensions/Database/DB/MetaData/InformationSchema.php',
             'phpunit_extensions_database_db_metadata_mysql' => '/Extensions/Database/DB/MetaData/MySQL.php',
             'phpunit_extensions_database_db_metadata_oci' => '/Extensions/Database/DB/MetaData/Oci.php',
