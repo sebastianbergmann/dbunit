@@ -91,7 +91,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUni
      */
     public function getTable()
     {
-        $this->current();
+        return $this->current();
     }
 
     /**
@@ -101,7 +101,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUni
      */
     public function getTableMetaData()
     {
-        $this->current()->getTableMetaData();
+        return $this->current()->getTableMetaData();
     }
 
     /**
