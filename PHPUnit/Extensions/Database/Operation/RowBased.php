@@ -97,6 +97,10 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
         $dsIterator = $this->iteratorDirection == self::ITERATOR_TYPE_REVERSE ? $dataSet->getReverseIterator() : $dataSet->getIterator();
 
         foreach ($dsIterator as $table) {
+            $rowCount = $table->getRowCount();
+            
+            if($rowCount == 0) continue;
+            
             /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
             $databaseTableMetaData = $databaseDataSet->getTableMetaData($table->getTableMetaData()->getTableName());
             $query                 = $this->buildOperationQuery($databaseTableMetaData, $table, $connection);
@@ -114,7 +118,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
             }
 
             $statement = $connection->getConnection()->prepare($query);
-            $rowCount  = $table->getRowCount();
+            
 
             for ($i = 0; $i < $rowCount; $i++) {
                 $args = $this->buildOperationArguments($databaseTableMetaData, $table, $i);
