@@ -174,9 +174,8 @@ class Extensions_Database_Operation_RowBasedTest extends PHPUnit_Extensions_Data
 
     public function testExecuteWithBadQuery()
     {
-        $mockDatabaseTableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
         $mockDatabaseDataSet = $this->getMock('PHPUnit_Extensions_Database_DataSet_DefaultDataSet');
-        $mockDatabaseDataSet->expects($this->once())->method('getTableMetaData')->will($this->returnValue($mockDatabaseTableMetaData));
+        $mockDatabaseDataSet->expects($this->never())->method('getTableMetaData');
 
         $mockConnection = $this->getMock('PHPUnit_Extensions_Database_DB_IDatabaseConnection');
         $mockConnection->expects($this->once())->method('createDataSet')->will($this->returnValue($mockDatabaseDataSet));
@@ -195,7 +194,7 @@ class Extensions_Database_Operation_RowBasedTest extends PHPUnit_Extensions_Data
 
         $mockOperation = $this->getMock('PHPUnit_Extensions_Database_Operation_RowBased', array('buildOperationQuery', 'buildOperationArguments'));
         $mockOperation->expects($this->never())->method('buildOperationArguments');
-        $mockOperation->expects($this->once())->method('buildOperationQuery')->will($this->returnValue(false));
+        $mockOperation->expects($this->never())->method('buildOperationQuery');
 
         $mockOperation->execute($mockConnection, $mockDataSet);
     }
