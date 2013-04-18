@@ -96,18 +96,18 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     }
 
 
-	/**
+    /**
      * Checks if a given row is in the table
      *
      * @param array $row
      *
      * @return bool
      */
-	public function assertContainsRow(Array $row)
-	{
-		$this->loadData();
-		return parent::assertContainsRow($row);
-	}
+    public function assertContainsRow(Array $row)
+    {
+        $this->loadData();
+        return parent::assertContainsRow($row);
+    }
 
 
     /**

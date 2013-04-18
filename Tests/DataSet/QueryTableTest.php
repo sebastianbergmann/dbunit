@@ -130,10 +130,10 @@ class Extensions_Database_DataSet_QueryTableTest extends PHPUnit_Framework_TestC
         $this->assertFalse($this->table->matches($expected_table));
     }
 
-	public function testAssertRowContains()
-	{
-		$this->assertTrue($this->table->assertContainsRow(
-			array('col1' => 'value1', 'col2' => 'value2', 'col3' => 'value3') 
-		));	
-	}
+    public function testAssertRowContains()
+    {
+        $this->assertTrue($this->table->assertContainsRow(
+            array('col1' => 'value1', 'col2' => 'value2', 'col3' => 'value3')
+        ));
+    }
 }
