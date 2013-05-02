@@ -73,6 +73,10 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
      */
     public function __construct($xmlFile)
     {
+        if (!function_exists('simplexml_load_file')) {
+            throw new RuntimeException("simplexml_load_file does not exist - is simplexml installed?");
+        }
+        
         if (!is_file($xmlFile)) {
             throw new InvalidArgumentException(
               "Could not find xml file: {$xmlFile}"
