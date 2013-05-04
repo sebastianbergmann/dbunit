@@ -79,7 +79,6 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
             );
         }
 
-        $errorReporting        = error_reporting(0);
         $libxmlErrorReporting  = libxml_use_internal_errors(TRUE);
         $this->xmlFileContents = simplexml_load_file($xmlFile);
 
@@ -95,7 +94,6 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
 
         libxml_clear_errors();
         libxml_use_internal_errors($libxmlErrorReporting);
-        error_reporting($errorReporting);
 
         $tableColumns = array();
         $tableValues  = array();
