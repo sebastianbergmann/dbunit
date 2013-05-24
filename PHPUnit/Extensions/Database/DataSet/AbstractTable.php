@@ -119,7 +119,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
             if (!in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
             } else {
-                return null;
+                return NULL;
             }
         }
     }
@@ -138,7 +138,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
             if ($this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) does not exist in table {$this->getTableMetaData()->getTableName()}");
             } else {
-                return null;
+                return NULL;
             }
         }
     }
@@ -155,7 +155,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
 
         if (!$thisMetaData->matches($otherMetaData) ||
             $this->getRowCount() != $other->getRowCount()) {
-            return false;
+            return FALSE;
         }
 
         $columns  = $thisMetaData->getColumns();
@@ -165,12 +165,12 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
             foreach ($columns as $columnName) {
                 if ($this->getValue($i, $columnName) !== $other->getValue($i, $columnName)) {
                     $this->other = $other;
-                    return false;
+                    return FALSE;
                 }
             }
         }
 
-        return true;
+        return TRUE;
     }
 
     /**
@@ -207,8 +207,8 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
                     if ($this->getValue($i, $columnName) != $this->other->getValue($i, $columnName)) {
                         $values[] = sprintf(
                             '%s != actual %s',
-                            var_export($this->getValue($i, $columnName), true),
-                            var_export($this->other->getValue($i, $columnName), true)
+                            var_export($this->getValue($i, $columnName), TRUE),
+                            var_export($this->other->getValue($i, $columnName), TRUE)
                         );
                     } else {
                         $values[] = $this->getValue($i, $columnName);
