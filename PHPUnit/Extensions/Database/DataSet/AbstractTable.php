@@ -203,25 +203,29 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
             $values = array();
 
             foreach ($columns as $columnName) {
-                try {
-                    if ($this->getValue($i, $columnName) != $this->other->getValue($i, $columnName)) {
-                        $values[] = sprintf(
-                            '%s != actual %s',
-                            var_export($this->getValue($i, $columnName), TRUE),
-                            var_export($this->other->getValue($i, $columnName), TRUE)
-                        );
-                    } else {
-                        $values[] = $this->getValue($i, $columnName);
+                if ($this->other) {
+                    try {
+                        if ($this->getValue($i, $columnName) != $this->other->getValue($i, $columnName)) {
+                            $values[] = sprintf(
+                                '%s != actual %s',
+                                var_export($this->getValue($i, $columnName), TRUE),
+                                var_export($this->other->getValue($i, $columnName), TRUE)
+                            );
+                        } else {
+                            $values[] = $this->getValue($i, $columnName);
+                        }
+                    } catch (\InvalidArgumentException $ex) {
+                        $values[] = $this->getValue($i, $columnName) . ': no row';
                     }
-                } catch (\InvalidArgumentException $ex) {
-                    $values[] = $this->getValue($i, $columnName) . ': no row';
+                } else {
+                    $values[] = $this->getValue($i, $columnName);
                 }
             }
 
             $tableString .= $this->rowToString($values) . $lineSeperator;
         }
 
-        return "(table diff enabled) \n" . $tableString . "\n";
+        return ($this->other ? '(table diff enabled)' : '') . "\n" . $tableString . "\n";
     }
 
     protected function rowToString(Array $row)
