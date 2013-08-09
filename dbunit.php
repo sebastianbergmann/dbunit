@@ -41,8 +41,6 @@ if (strpos('@php_bin@', '@php_bin') === 0) {
 
 require_once 'PHPUnit/Autoload.php';
 
-PHP_CodeCoverage_Filter::getInstance()->addFileToBlacklist(__FILE__, 'PHPUNIT');
-
 $command = new PHPUnit_Extensions_Database_UI_Command(
   new PHPUnit_Extensions_Database_UI_ModeFactory()
 );
