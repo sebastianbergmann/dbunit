@@ -150,7 +150,8 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
             FROM
                 INFORMATION_SCHEMA.KEY_COLUMN_USAGE as KCU
             LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS as TC
-                ON TC.TABLE_NAME = KCU.TABLE_NAME
+                ON TC.TABLE_NAME = KCU.TABLE_NAME AND
+                TC.CONSTRAINT_NAME = KCU.CONSTRAINT_NAME
             WHERE
                 TC.CONSTRAINT_TYPE = 'PRIMARY KEY' AND
                 TC.TABLE_NAME = ? AND
