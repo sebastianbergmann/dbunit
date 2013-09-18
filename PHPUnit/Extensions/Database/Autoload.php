@@ -73,6 +73,7 @@ spl_autoload_register(
             'phpunit_extensions_database_dataset_itableiterator' => '/Extensions/Database/DataSet/ITableIterator.php',
             'phpunit_extensions_database_dataset_itablemetadata' => '/Extensions/Database/DataSet/ITableMetaData.php',
             'phpunit_extensions_database_dataset_mysqlxmldataset' => '/Extensions/Database/DataSet/MysqlXmlDataSet.php',
+	    	'phpunit_extensions_database_dataset_nulldataset' => '/Extensions/Database/DataSet/NullDataSet.php',
             'phpunit_extensions_database_dataset_persistors_abstract' => '/Extensions/Database/DataSet/Persistors/Abstract.php',
             'phpunit_extensions_database_dataset_persistors_factory' => '/Extensions/Database/DataSet/Persistors/Factory.php',
             'phpunit_extensions_database_dataset_persistors_flatxml' => '/Extensions/Database/DataSet/Persistors/FlatXml.php',
