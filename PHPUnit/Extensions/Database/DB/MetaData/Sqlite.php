@@ -79,6 +79,8 @@ class PHPUnit_Extensions_Database_DB_MetaData_Sqlite extends PHPUnit_Extensions_
 
         $result = $this->pdo->query($query);
 
+        $tableNames = array();
+
         while ($tableName = $result->fetchColumn(0)) {
             $tableNames[] = $tableName;
         }
