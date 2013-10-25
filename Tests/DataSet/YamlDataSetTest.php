@@ -124,4 +124,39 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
 
         PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($expectedDataSet, $yamlDataSet);
     }
+
+    public function testAlternateParser() {
+        $table1MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+            'math_table', array('answer')
+        );
+        $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
+        $table1->addRow(array(
+            'answer' => 'pi/2'
+        ));
+        $expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1));
+
+        $parser = new Extensions_Database_DataSet_YamlDataSetTest_PiOver2Parser();
+        $yamlDataSet = new PHPUnit_Extensions_Database_DataSet_YamlDataSet(
+            dirname(__FILE__) . '/../_files/YamlDataSets/testDataSet.yaml',
+            $parser);
+        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($expectedDataSet, $yamlDataSet);
+    }
+}
+
+/**
+ * A trivial YAML parser that always returns the same array.
+ *
+ * @package    DbUnit
+ * @author     Yash Parghi <yash@yashparghi.com>
+ * @copyright  2013 Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      Class available since Release 1.3.1
+ */
+class Extensions_Database_DataSet_YamlDataSetTest_PiOver2Parser implements PHPUnit_Extensions_Database_DataSet_IYamlParser {
+    public function parseYaml($yamlFile) {
+        return array('math_table' =>
+            array(
+                array('answer' => 'pi/2')));
+    }
 }
