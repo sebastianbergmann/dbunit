@@ -63,14 +63,22 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
     protected $tables = array();
 
     /**
+     * @var PHPUnit_Extensions_Database_DataSet_IYamlParser
+     */
+    protected $parser;
+
+    /**
      * Creates a new YAML dataset
      *
      * @param string $yamlFile
-     * @param string $enclosure
-     * @param string $escape
+     * @param PHPUnit_Extensions_Database_DataSet_IYamlParser $parser
      */
-    public function __construct($yamlFile)
+    public function __construct($yamlFile, $parser = NULL)
     {
+        if ($parser == NULL) {
+            $parser = new PHPUnit_Extensions_Database_DataSet_SymfonyYamlParser();
+        }
+        $this->parser = $parser;
         $this->addYamlFile($yamlFile);
     }
 
@@ -80,7 +88,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
      */
     public function addYamlFile($yamlFile)
     {
-        $data = Symfony\Component\Yaml\Yaml::parse($yamlFile);
+        $data = $this->parser->parseYaml($yamlFile);
 
         foreach ($data as $tableName => $rows) {
             if (!isset($rows)) {
