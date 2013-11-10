@@ -72,7 +72,7 @@ class Extensions_Database_DataSet_CompositeDataSetTest extends PHPUnit_Framework
         $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
         $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
         $table3 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table3MetaData);
-
+        
         $table1->addRow(array(
             'table1_id' => 1,
             'column1' => 'tgfahgasdf',
@@ -94,7 +94,7 @@ class Extensions_Database_DataSet_CompositeDataSetTest extends PHPUnit_Framework
             'column3' => 1654.4,
             'column4' => 'asfgklg'
         ));
-
+        
         $table2->addRow(array(
             'table2_id' => 1,
             'column5' => 'fhah',
@@ -140,6 +140,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'column12' => '0y8hosnd a/df7y olgbjs da'
         ));
 
+
         $this->expectedDataSet1 = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1, $table2));
         $this->expectedDataSet2 = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table3));
         $this->expectedDataSet3 = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1, $table2, $table3));
@@ -152,11 +153,25 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($this->expectedDataSet3, $actual);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testDuplicateTables()
+    public function testCompatibleTablesInDifferentDataSetsNonDuplicateRows()
     {
-        new PHPUnit_Extensions_Database_DataSet_CompositeDataSet(array($this->expectedDataSet1, $this->expectedDataSet1));
+        $compatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+            $this->expectedDataSet3->getTable("table3")->getTableMetaData()
+        ); 
+
+        $compatibleTable->addRow(array(
+            'table3_id' => 4,
+            'column9' => 'asdasd',
+            'column10' => 17,
+            'column11' => 42.57,
+            'column12' => 'askldja'
+        ));
+        
+        $compositeDataSet = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet(array(
+            new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($compatibleTable)),
+            $this->expectedDataSet2
+        ));
+       
+        $this->assertEquals(4, $compositeDataSet->getTable("table3")->getRowCount());
     }
 }
