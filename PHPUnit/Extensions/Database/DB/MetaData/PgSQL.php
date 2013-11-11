@@ -2,7 +2,7 @@
 /**
  * PHPUnit
  *
- * Copyright (c) 2002-2012, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * Copyright (c) 2002-2013, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2002-2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @copyright  2002-2013 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.phpunit.de/
  * @since      File available since Release 1.0.0
@@ -47,7 +47,7 @@
  *
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2002-2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @copyright  2002-2013 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/
@@ -150,7 +150,8 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
             FROM
                 INFORMATION_SCHEMA.KEY_COLUMN_USAGE as KCU
             LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS as TC
-                ON TC.TABLE_NAME = KCU.TABLE_NAME
+                ON TC.TABLE_NAME = KCU.TABLE_NAME AND
+                TC.CONSTRAINT_NAME = KCU.CONSTRAINT_NAME
             WHERE
                 TC.CONSTRAINT_TYPE = 'PRIMARY KEY' AND
                 TC.TABLE_NAME = ? AND

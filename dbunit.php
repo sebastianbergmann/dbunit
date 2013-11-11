@@ -2,7 +2,7 @@
 <?php
 /* PHPUnit
  *
- * Copyright (c) 2002-2012, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * Copyright (c) 2002-2013, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,8 +40,6 @@ if (strpos('@php_bin@', '@php_bin') === 0) {
 }
 
 require_once 'PHPUnit/Autoload.php';
-
-PHP_CodeCoverage_Filter::getInstance()->addFileToBlacklist(__FILE__, 'PHPUNIT');
 
 $command = new PHPUnit_Extensions_Database_UI_Command(
   new PHPUnit_Extensions_Database_UI_ModeFactory()

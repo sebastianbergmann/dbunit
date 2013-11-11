@@ -2,7 +2,7 @@
 /**
  * PHPUnit
  *
- * Copyright (c) 2002-2012, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * Copyright (c) 2002-2013, Sebastian Bergmann <sebastian@phpunit.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2002-2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @copyright  2002-2013 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.phpunit.de/
  * @since      File available since Release 1.0.0
@@ -47,7 +47,7 @@
  *
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010 Mike Lively <m@digitalsandwich.com>
+ * @copyright  2010-2013 Mike Lively <m@digitalsandwich.com>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @version    Release: @package_version@
  * @link       http://www.phpunit.de/
@@ -67,6 +67,11 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
      * @var array
      */
     protected $data;
+
+    /**
+     * @var PHPUnit_Extensions_Database_DataSet_ITable|null
+     */
+    private $other;
 
     /**
      * Sets the metadata for this table.
@@ -158,7 +163,8 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                if ($this->getValue($i, $columnName) != $other->getValue($i, $columnName)) {
+                if ($this->getValue($i, $columnName) !== $other->getValue($i, $columnName)) {
+                    $this->other = $other;
                     return FALSE;
                 }
             }
@@ -197,13 +203,29 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
             $values = array();
 
             foreach ($columns as $columnName) {
-                $values[] = $this->getValue($i, $columnName);
+                if ($this->other) {
+                    try {
+                        if ($this->getValue($i, $columnName) != $this->other->getValue($i, $columnName)) {
+                            $values[] = sprintf(
+                                '%s != actual %s',
+                                var_export($this->getValue($i, $columnName), TRUE),
+                                var_export($this->other->getValue($i, $columnName), TRUE)
+                            );
+                        } else {
+                            $values[] = $this->getValue($i, $columnName);
+                        }
+                    } catch (\InvalidArgumentException $ex) {
+                        $values[] = $this->getValue($i, $columnName) . ': no row';
+                    }
+                } else {
+                    $values[] = $this->getValue($i, $columnName);
+                }
             }
 
             $tableString .= $this->rowToString($values) . $lineSeperator;
         }
 
-        return "\n" . $tableString . "\n";
+        return ($this->other ? '(table diff enabled)' : '') . "\n" . $tableString . "\n";
     }
 
     protected function rowToString(Array $row)

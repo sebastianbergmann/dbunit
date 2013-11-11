@@ -17,10 +17,10 @@
   <email>sb@sebastian-bergmann.de</email>
   <active>yes</active>
  </lead>
- <date>2012-01-27</date>
+ <date>2013-11-01</date>
  <version>
-  <release>1.1.2</release>
-  <api>1.1.0</api>
+  <release>1.3.0</release>
+  <api>1.3.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -145,6 +145,9 @@
        <file baseinstalldir="/" name="ITableMetaData.php" role="php">
         <tasks:replace from="@package_version@" to="version" type="package-info" />
        </file>
+       <file baseinstalldir="/" name="IYamlParser.php" role="php">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
        <file baseinstalldir="/" name="MysqlXmlDataSet.php" role="php">
         <tasks:replace from="@package_version@" to="version" type="package-info" />
        </file>
@@ -161,6 +164,9 @@
         <tasks:replace from="@package_version@" to="version" type="package-info" />
        </file>
        <file baseinstalldir="/" name="ReplacementTableIterator.php" role="php">
+        <tasks:replace from="@package_version@" to="version" type="package-info" />
+       </file>
+       <file baseinstalldir="/" name="SymfonyYamlParser.php" role="php">
         <tasks:replace from="@package_version@" to="version" type="package-info" />
        </file>
        <file baseinstalldir="/" name="TableFilter.php" role="php">
@@ -375,7 +381,7 @@
  <dependencies>
   <required>
    <php>
-    <min>5.2.7</min>
+    <min>5.3.3</min>
    </php>
    <pearinstaller>
     <min>1.9.4</min>
@@ -383,24 +389,18 @@
    <package>
     <name>PHPUnit</name>
     <channel>pear.phpunit.de</channel>
-    <min>3.6.0</min>
+    <min>3.7.0</min>
    </package>
    <package>
-    <name>YAML</name>
-    <channel>pear.symfony-project.com</channel>
-    <min>1.0.2</min>
+    <name>Yaml</name>
+    <channel>pear.symfony.com</channel>
+    <min>2.1.0</min>
    </package>
    <extension>
     <name>pdo</name>
    </extension>
    <extension>
-    <name>reflection</name>
-   </extension>
-   <extension>
     <name>simplexml</name>
-   </extension>
-   <extension>
-    <name>spl</name>
    </extension>
   </required>
  </dependencies>
