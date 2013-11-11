@@ -57,7 +57,7 @@
  */
 class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {
-    protected $dataSets = array();
+    protected $motherDataSet;
 
     /**
      * Creates a new Composite dataset
@@ -70,6 +70,8 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
      */
     public function __construct(Array $dataSets)
     {
+        $this->motherDataset = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet();
+
         foreach ($dataSets as $dataSet)
         {
             $this->addDataSet($dataSet);
@@ -87,13 +89,14 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
     {
         foreach ($dataSet->getTableNames() as $tableName)
         {
-            if (in_array($tableName, $this->getTableNames()))
+            if (!in_array($tableName, $this->getTableNames()))
             {
-                throw new InvalidArgumentException("DataSet contains a table that already exists: {$tableName}");
+                $this->motherDataset->addTable($dataSet->getTable($tableName));
+                continue;
             }
-        }
 
-        $this->dataSets[] = $dataSet;
+            $this->getTable($tableName)->addTableRows($dataSet->getTable($tableName));
+        }
     }
 
     /**
@@ -105,16 +108,6 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
      */
     protected function createIterator($reverse = FALSE)
     {
-        $iterator = new AppendIterator();
-
-        $dataSets = $reverse ? array_reverse($this->dataSets) : $this->dataSets;
-
-        foreach ($dataSets as $dataSet)
-        {
-            /* @var $dataSet PHPUnit_Extensions_Database_DataSet_IDataSet */
-            $dataSetIterator = $reverse ? $dataSet->getReverseIterator() : $dataSet->getIterator();
-            $iterator->append($dataSetIterator);
-        }
-        return $iterator;
+        return $this->motherDataset->getIterator($reverse);
     }
 }
