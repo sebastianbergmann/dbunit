@@ -79,21 +79,34 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
     /**
      * Adds a new data set to the composite.
      *
-     * The dataset may not define tables that already exist in the composite.
+     * If the new data set defines a table that already exists in the
+     * composite, then the rows from the table in the new data set are
+     * appended in order to the existing table in the composite. If
+     * two tables have non-matching meta-data, an exception is thrown.
      *
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet
      */
     public function addDataSet(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
+	$dataSetNewTables = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet();
         foreach ($dataSet->getTableNames() as $tableName)
         {
             if (in_array($tableName, $this->getTableNames()))
-            {
-                throw new InvalidArgumentException("DataSet contains a table that already exists: {$tableName}");
-            }
+	    {
+		$tableMetaData = $this->getTable($tableName)->getTableMetaData();
+		if (! $tableMetaData->matches($dataSet->getTable($tableName)->getTableMetaData()))
+		{
+		    throw new InvalidArgumentException
+			("DataSet contains an incompatible table that already exists: {$tableName}");
+		}
+		$this->getTable($tableName)->addTableRows($dataSet->getTable($tableName));
+	    } 
+	    else 
+	    {
+		$dataSetNewTables->addTable($dataSet->getTable($tableName));
+	    }
         }
-
-        $this->dataSets[] = $dataSet;
+        $this->dataSets[] = $dataSetNewTables;
     }
 
     /**
