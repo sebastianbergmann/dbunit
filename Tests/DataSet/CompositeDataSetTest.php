@@ -68,10 +68,14 @@ class Extensions_Database_DataSet_CompositeDataSetTest extends PHPUnit_Framework
         $table3MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
             'table3', array('table3_id', 'column9', 'column10', 'column11', 'column12')
         );
+        $table4MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+            'table1', array('table1_id', 'column1', 'column2', 'column3', 'column4')
+        );
 
         $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
         $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
         $table3 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table3MetaData);
+        $table4 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table4MetaData);
 
         $table1->addRow(array(
             'table1_id' => 1,
@@ -139,10 +143,14 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'column11' => 123.456,
             'column12' => '0y8hosnd a/df7y olgbjs da'
         ));
+	$table4->addTableRows($table1);
+	$table4->addTableRows($table1);
 
         $this->expectedDataSet1 = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1, $table2));
         $this->expectedDataSet2 = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table3));
         $this->expectedDataSet3 = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1, $table2, $table3));
+	$this->expectedDataSet4 = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1));
+	$this->expectedDataSet5 = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table4));
     }
 
     public function testCompositeDataSet()
@@ -152,11 +160,9 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($this->expectedDataSet3, $actual);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testDuplicateTables()
     {
-        new PHPUnit_Extensions_Database_DataSet_CompositeDataSet(array($this->expectedDataSet1, $this->expectedDataSet1));
+	$actual = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet(array($this->expectedDataSet4, $this->expectedDataSet4));
+	PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($this->expectedDataSet5, $actual);
     }
 }
