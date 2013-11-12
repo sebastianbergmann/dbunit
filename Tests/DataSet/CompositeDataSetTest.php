@@ -174,4 +174,53 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
        
         $this->assertEquals(4, $compositeDataSet->getTable("table3")->getRowCount());
     }
+
+    /**
+     * @expectedException           InvalidArgumentException
+     * @expectedExceptionMessage    There is already a table named table3 with different table definition
+     */
+    public function testExceptionOnIncompatibleTablesSameTableNames()
+    {
+        $inCompatibleTableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+            'table3', array('table3_id', 'column13', 'column14', 'column15', 'column16')
+        );
+
+        $inCompatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($inCompatibleTableMetaData); 
+        $inCompatibleTable->addRow(array(
+            'column13' => 'asdasda asdasd',
+            'column14' => 'aiafsjas asd',
+            'column15' => 'asdasdasd',
+            'column16' => 2141
+        ));
+
+        $compositeDataSet = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet(array(
+            $this->expectedDataSet2,
+            new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($inCompatibleTable))
+        ));
+    }
+
+    
+    /**
+     * @expectedException           InvalidArgumentException
+     * @expectedExceptionMessage    There is already a table named table3 with different table definition
+     */
+    public function testExceptionOnIncompatibleTablesSameTableNames2()
+    {
+        $inCompatibleTableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+            'table3', array('table3_id', 'column13', 'column14', 'column15', 'column16')
+        );
+
+        $inCompatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($inCompatibleTableMetaData); 
+        $inCompatibleTable->addRow(array(
+            'column13' => 'asdasda asdasd',
+            'column14' => 'aiafsjas asd',
+            'column15' => 'asdasdasd',
+            'column16' => 2141
+        ));
+
+        $compositeDataSet = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet(array(
+            new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($inCompatibleTable)),
+            $this->expectedDataSet2
+        ));
+    }
 }
