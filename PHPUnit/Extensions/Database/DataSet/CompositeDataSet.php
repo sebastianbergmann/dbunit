@@ -82,7 +82,8 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
      * If the new data set defines a table that already exists in the
      * composite, then the rows from the table in the new data set are
      * appended in order to the existing table in the composite. If
-     * two tables have non-matching meta-data, an exception is thrown.
+     * the two tables have non-matching meta-data, an exception is
+     * thrown.
      *
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet
      */
