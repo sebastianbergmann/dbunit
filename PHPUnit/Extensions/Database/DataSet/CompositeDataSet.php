@@ -68,7 +68,7 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
      * @param string $enclosure
      * @param string $escape
      */
-    public function __construct(Array $dataSets)
+    public function __construct(Array $dataSets = array())
     {
         $this->motherDataset = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet();
 
