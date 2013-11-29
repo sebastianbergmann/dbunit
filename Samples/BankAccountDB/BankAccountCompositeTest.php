@@ -70,7 +70,7 @@ class BankAccountCompositeTest extends PHPUnit_Framework_TestCase
      */
     protected function getDatabaseTester()
     {
-        $connection = new PHPUnit_Extensions_Database_DB_DefaultConnection($this->pdo, 'sqlite');
+        $connection = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($this->pdo, 'sqlite');
         $tester = new PHPUnit_Extensions_Database_DefaultTester($connection);
         $tester->setSetUpOperation(PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT());
         $tester->setTearDownOperation(PHPUnit_Extensions_Database_Operation_Factory::NONE());
