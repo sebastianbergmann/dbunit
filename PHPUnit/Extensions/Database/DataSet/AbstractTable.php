@@ -176,8 +176,6 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
                 }
             }
         }
-        var_dump($thisValue);
-        var_dump($otherValue);
         return TRUE;
     }
 
