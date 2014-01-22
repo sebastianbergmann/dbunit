@@ -202,6 +202,9 @@
         <file baseinstalldir="/" name="SqlSrv.php" role="php">
          <tasks:replace from="@package_version@" to="version" type="package-info" />
         </file>
+        <file baseinstalldir="/" name="Firebird.php" role="php">
+         <tasks:replace from="@package_version@" to="version" type="package-info" />
+        </file>
        </dir>
        <file baseinstalldir="/" name="DataSet.php" role="php">
         <tasks:replace from="@package_version@" to="version" type="package-info" />
