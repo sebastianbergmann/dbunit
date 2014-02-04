@@ -2,7 +2,7 @@
 /**
  * PHPUnit
  *
- * Copyright (c) 2002-2012, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * Copyright (c) 2002-2014, Sebastian Bergmann <sb@sebastian-bergmann.de>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,7 @@
  *
  * @package    DbUnit
  * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2002-2012 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @copyright  2002-2014 Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link       http://www.phpunit.de/
  * @since      File available since Release 1.0.0
@@ -47,7 +47,7 @@
  *
  * @package    DbUnit
  * @author     Matheus Degiovani (matheus@gigatron.com.br)
- * @copyright  2002-2012 Matheus Degiovani (matheus@gigatron.com.br)
+ * @copyright  2002-2014 Matheus Degiovani (matheus@gigatron.com.br)
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: 1.1.2
  * @link       http://www.phpunit.de/
