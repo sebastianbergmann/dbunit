@@ -93,13 +93,13 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
                 $this->motherDataset->addTable($dataSet->getTable($tableName));
             } else {
                 $other = $dataSet->getTable($tableName);
-                $table = $this->getTable($tableName);  
-                
-                if (!$table->getTableMetaData()->matches($other->getTableMetaData())) 
+                $table = $this->getTable($tableName);
+
+                if (!$table->getTableMetaData()->matches($other->getTableMetaData()))
                 {
-                   throw new InvalidArgumentException("There is already a table named $tableName with different table definition"); 
-                }      
-                
+                   throw new InvalidArgumentException("There is already a table named $tableName with different table definition");
+                }
+
                 $table->addTableRows($dataSet->getTable($tableName));
             }
         }
