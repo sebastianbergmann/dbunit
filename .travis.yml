@@ -1,10 +1,16 @@
 language: php
 
-php:
-    - 5.4
-
 before_script:
-    - composer install --prefer-source
+  - composer self-update
+  - composer install --no-interaction --prefer-source --dev
+
+php:
+  - 5.3.3
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - hhvm
 
 script: bin/phpunit --configuration ./build/travis-ci.xml
 
@@ -14,3 +20,8 @@ notifications:
     channels:
       - "irc.freenode.org#phpunit"
     use_notice: true
+
+matrix:
+  allow_failures:
+    - php: hhvm
+  fast_finish: true

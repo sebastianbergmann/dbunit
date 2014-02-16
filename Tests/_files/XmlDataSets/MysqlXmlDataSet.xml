@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 <database name="database_name">
-	<table_data name="table1">
+    <table_data name="table1">
     <row>
         <field name="table1_id">1</field>
         <field name="column1">tgfahgasdf</field>
@@ -23,8 +23,8 @@
         <field name="column3">1654.4</field>
         <field name="column4">asfgklg</field>
     </row>
-	</table_data>
-	<table_data name="table2">
+    </table_data>
+    <table_data name="table2">
     <row>
         <field name="table2_id">1</field>
         <field name="column5">fhah</field>
@@ -46,6 +46,6 @@
         <field name="column7" xsi:nil="true" />
         <field name="column8" xsi:nil="true" />
     </row>
-	</table_data>
+    </table_data>
 </database>
 </mysqldump>
