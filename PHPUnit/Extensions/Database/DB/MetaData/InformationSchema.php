@@ -69,7 +69,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_InformationSchema extends PHPUnit_
     {
         $query = "
             SELECT DISTINCT
-            	TABLE_NAME
+                TABLE_NAME
             FROM INFORMATION_SCHEMA.TABLES
             WHERE
                 TABLE_TYPE='BASE TABLE' AND
@@ -132,7 +132,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_InformationSchema extends PHPUnit_
 
         $columnQuery = "
             SELECT DISTINCT
-            	COLUMN_NAME
+                COLUMN_NAME
             FROM INFORMATION_SCHEMA.COLUMNS
             WHERE
                 TABLE_NAME = ? AND
@@ -148,21 +148,21 @@ class PHPUnit_Extensions_Database_DB_MetaData_InformationSchema extends PHPUnit_
         }
 
         $keyQuery = "
-			SELECT
-				KCU.COLUMN_NAME
-			FROM
-				INFORMATION_SCHEMA.TABLE_CONSTRAINTS as TC,
-				INFORMATION_SCHEMA.KEY_COLUMN_USAGE as KCU
-			WHERE
-				TC.CONSTRAINT_NAME = KCU.CONSTRAINT_NAME AND
-				TC.TABLE_NAME = KCU.TABLE_NAME AND
-				TC.TABLE_SCHEMA = KCU.TABLE_SCHEMA AND
-				TC.CONSTRAINT_TYPE = 'PRIMARY KEY' AND
-				TC.TABLE_NAME = ? AND
-				TC.TABLE_SCHEMA = ?
-			ORDER BY
-				KCU.ORDINAL_POSITION ASC
-    	";
+            SELECT
+                KCU.COLUMN_NAME
+            FROM
+                INFORMATION_SCHEMA.TABLE_CONSTRAINTS as TC,
+                INFORMATION_SCHEMA.KEY_COLUMN_USAGE as KCU
+            WHERE
+                TC.CONSTRAINT_NAME = KCU.CONSTRAINT_NAME AND
+                TC.TABLE_NAME = KCU.TABLE_NAME AND
+                TC.TABLE_SCHEMA = KCU.TABLE_SCHEMA AND
+                TC.CONSTRAINT_TYPE = 'PRIMARY KEY' AND
+                TC.TABLE_NAME = ? AND
+                TC.TABLE_SCHEMA = ?
+            ORDER BY
+                KCU.ORDINAL_POSITION ASC
+        ";
 
         $keyStatement = $this->pdo->prepare($keyQuery);
         $keyStatement->execute(array($tableName, $this->getSchema()));

@@ -67,9 +67,9 @@ class PHPUnit_Extensions_Database_Operation_Delete extends PHPUnit_Extensions_Da
         $whereStatement = 'WHERE ' . implode(' AND ', $this->buildPreparedColumnArray($keys, $connection));
 
         $query = "
-			DELETE FROM {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}
-			{$whereStatement}
-		";
+            DELETE FROM {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}
+            {$whereStatement}
+        ";
 
         return $query;
     }

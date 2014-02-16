@@ -72,7 +72,7 @@ class Extensions_Database_DataSet_CompositeDataSetTest extends PHPUnit_Framework
         $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
         $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
         $table3 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table3MetaData);
-        
+
         $table1->addRow(array(
             'table1_id' => 1,
             'column1' => 'tgfahgasdf',
@@ -94,7 +94,7 @@ class Extensions_Database_DataSet_CompositeDataSetTest extends PHPUnit_Framework
             'column3' => 1654.4,
             'column4' => 'asfgklg'
         ));
-        
+
         $table2->addRow(array(
             'table2_id' => 1,
             'column5' => 'fhah',
@@ -157,7 +157,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
     {
         $compatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable(
             $this->expectedDataSet3->getTable("table3")->getTableMetaData()
-        ); 
+        );
 
         $compatibleTable->addRow(array(
             'table3_id' => 4,
@@ -166,12 +166,12 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'column11' => 42.57,
             'column12' => 'askldja'
         ));
-        
+
         $compositeDataSet = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet(array(
             new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($compatibleTable)),
             $this->expectedDataSet2
         ));
-       
+
         $this->assertEquals(4, $compositeDataSet->getTable("table3")->getRowCount());
     }
 
@@ -185,7 +185,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'table3', array('table3_id', 'column13', 'column14', 'column15', 'column16')
         );
 
-        $inCompatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($inCompatibleTableMetaData); 
+        $inCompatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($inCompatibleTableMetaData);
         $inCompatibleTable->addRow(array(
             'column13' => 'asdasda asdasd',
             'column14' => 'aiafsjas asd',
@@ -199,7 +199,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         ));
     }
 
-    
+
     /**
      * @expectedException           InvalidArgumentException
      * @expectedExceptionMessage    There is already a table named table3 with different table definition
@@ -210,7 +210,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'table3', array('table3_id', 'column13', 'column14', 'column15', 'column16')
         );
 
-        $inCompatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($inCompatibleTableMetaData); 
+        $inCompatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($inCompatibleTableMetaData);
         $inCompatibleTable->addRow(array(
             'column13' => 'asdasda asdasd',
             'column14' => 'aiafsjas asd',
