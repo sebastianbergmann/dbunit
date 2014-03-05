@@ -92,11 +92,15 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
                 $tableInstanceColumns[] = $columnName;
             }
 
+            
             foreach ($tableElement->xpath('./row') as $rowElement) {
                 $rowValues = array();
                 $index     = 0;
 
                 foreach ($rowElement->children() as $columnValue) {
+                    if ($index >= count($tableInstanceColumns)) {
+                        throw new PHPUnit_Extensions_Database_Exception("More row values defined as columns exists.");
+                    }
                     switch ($columnValue->getName()) {
                         case 'value':
                             $rowValues[$tableInstanceColumns[$index]] = (string)$columnValue;
