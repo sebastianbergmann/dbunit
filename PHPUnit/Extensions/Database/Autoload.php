@@ -111,6 +111,7 @@ spl_autoload_register(
             'phpunit_extensions_database_db_metadata_pgsql' => '/Extensions/Database/DB/MetaData/PgSQL.php',
             'phpunit_extensions_database_db_metadata_sqlite' => '/Extensions/Database/DB/MetaData/Sqlite.php',
             'phpunit_extensions_database_db_metadata_sqlsrv' => '/Extensions/Database/DB/MetaData/SqlSrv.php',
+            'phpunit_extensions_database_db_metadata_dblib' => '/Extensions/Database/DB/MetaData/Dblib.php',
             'phpunit_extensions_database_db_resultsettable' => '/Extensions/Database/DB/ResultSetTable.php',
             'phpunit_extensions_database_db_table' => '/Extensions/Database/DB/Table.php',
             'phpunit_extensions_database_db_tableiterator' => '/Extensions/Database/DB/TableIterator.php',
