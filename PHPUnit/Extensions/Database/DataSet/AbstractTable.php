@@ -114,7 +114,8 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
     public function getValue($row, $column)
     {
         if (isset($this->data[$row][$column])) {
-            return (string)$this->data[$row][$column];
+            $value = $this->data[$row][$column];
+            return ($value instanceof SimpleXMLElement) ? (string) $value : $value;
         } else {
             if (!in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
@@ -163,13 +164,19 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                if ($this->getValue($i, $columnName) !== $other->getValue($i, $columnName)) {
+                $thisValue = $this->getValue($i, $columnName);
+                $otherValue = $other->getValue($i, $columnName);
+                if (is_numeric($thisValue) && is_numeric($otherValue)) {
+                    if ($thisValue != $otherValue) {
+                        $this->other = $other;
+                        return FALSE;
+                    }
+                } elseif ($thisValue !== $otherValue) {
                     $this->other = $other;
                     return FALSE;
                 }
             }
         }
-
         return TRUE;
     }
 

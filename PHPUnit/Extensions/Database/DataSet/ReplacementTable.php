@@ -175,7 +175,13 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                if ($this->getValue($i, $columnName) !== $other->getValue($i, $columnName)) {
+                $thisValue = $this->getValue($i, $columnName);
+                $otherValue = $other->getValue($i, $columnName);
+                if (is_numeric($thisValue) && is_numeric($otherValue)) {
+                    if ($thisValue != $otherValue) {
+                        return FALSE;
+                    }
+                } elseif ($thisValue !== $otherValue) {
                     return FALSE;
                 }
             }
