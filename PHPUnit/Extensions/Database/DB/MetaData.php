@@ -63,7 +63,8 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
         'sqlite' => 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
         'sqlite2'=> 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
         'sqlsrv' => 'PHPUnit_Extensions_Database_DB_MetaData_SqlSrv',
-        'firebird' => 'PHPUnit_Extensions_Database_DB_MetaData_Firebird'
+        'firebird' => 'PHPUnit_Extensions_Database_DB_MetaData_Firebird',
+        'dblib'  => 'PHPUnit_Extensions_Database_DB_MetaData_Dblib'
     );
 
     /**
