@@ -59,10 +59,15 @@ class BankAccountCompositeTest extends PHPUnit_Framework_TestCase
 {
     protected $pdo;
 
-    public function setUp()
+    protected $tester;
+
+    public function __construct($name = null, array $data = array(), $dataName = '')
     {
+        parent::__construct($name, $data, $dataName);
+
         $this->pdo = new PDO('sqlite::memory:');
         BankAccount::createTable($this->pdo);
+        $this->tester = $this->getDatabaseTester();
     }
 
     /**
@@ -75,26 +80,29 @@ class BankAccountCompositeTest extends PHPUnit_Framework_TestCase
         $tester->setSetUpOperation(PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT());
         $tester->setTearDownOperation(PHPUnit_Extensions_Database_Operation_Factory::NONE());
         $tester->setDataSet(new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__).'/_files/bank-account-seed.xml'));
-
         return $tester;
+    }
+
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->tester->onSetUp();
+    }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+        $this->tester->onTearDown();
     }
 
     public function testNewAccountBalanceIsInitiallyZero()
     {
-        $tester = $this->getDatabaseTester();
-        $tester->onSetUp();
-
         $bank_account = new BankAccount('12345678912345678', $this->pdo);
         $this->assertEquals(0, $bank_account->getBalance());
-
-        $tester->onTearDown();
     }
 
     public function testOldAccountInfoInitiallySet()
     {
-        $tester = $this->getDatabaseTester();
-        $tester->onSetUp();
-
         $bank_account = new BankAccount('15934903649620486', $this->pdo);
         $this->assertEquals(100, $bank_account->getBalance());
         $this->assertEquals('15934903649620486', $bank_account->getAccountNumber());
@@ -106,15 +114,10 @@ class BankAccountCompositeTest extends PHPUnit_Framework_TestCase
         $bank_account = new BankAccount('12348612357236185', $this->pdo);
         $this->assertEquals(89, $bank_account->getBalance());
         $this->assertEquals('12348612357236185', $bank_account->getAccountNumber());
-
-        $tester->onTearDown();
     }
 
     public function testAccountBalanceDeposits()
     {
-        $tester = $this->getDatabaseTester();
-        $tester->onSetUp();
-
         $bank_account = new BankAccount('15934903649620486', $this->pdo);
         $bank_account->depositMoney(100);
 
@@ -125,16 +128,11 @@ class BankAccountCompositeTest extends PHPUnit_Framework_TestCase
         $bank_account->depositMoney(24);
 
         $xml_dataset = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__).'/_files/bank-account-after-deposits.xml');
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($xml_dataset, $tester->getConnection()->createDataSet());
-
-        $tester->onTearDown();
+        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($xml_dataset, $this->tester->getConnection()->createDataSet());
     }
 
     public function testAccountBalanceWithdrawals()
     {
-        $tester = $this->getDatabaseTester();
-        $tester->onSetUp();
-
         $bank_account = new BankAccount('15934903649620486', $this->pdo);
         $bank_account->withdrawMoney(100);
 
@@ -145,21 +143,14 @@ class BankAccountCompositeTest extends PHPUnit_Framework_TestCase
         $bank_account->withdrawMoney(24);
 
         $xml_dataset = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__).'/_files/bank-account-after-withdrawals.xml');
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($xml_dataset, $tester->getConnection()->createDataSet());
-
-        $tester->onTearDown();
+        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($xml_dataset, $this->tester->getConnection()->createDataSet());
     }
 
     public function testNewAccountCreation()
     {
-        $tester = $this->getDatabaseTester();
-        $tester->onSetUp();
-
         $bank_account = new BankAccount('12345678912345678', $this->pdo);
 
         $xml_dataset = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__).'/_files/bank-account-after-new-account.xml');
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($xml_dataset, $tester->getConnection()->createDataSet());
-
-        $tester->onTearDown();
+        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($xml_dataset, $this->tester->getConnection()->createDataSet());
     }
 }

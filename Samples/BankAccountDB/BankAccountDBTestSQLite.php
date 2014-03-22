@@ -56,10 +56,10 @@ require_once dirname(__FILE__) . '/BankAccountDBTest.php';
  * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
-class BankAccountDBTestMySQL extends BankAccountDBTest
+class BankAccountDBTestSQLite extends BankAccountDBTest
 {
     protected function getPdo()
     {
-        return new PDO('mysql:host=localhost;dbname=test', 'root');
+        return new PDO('sqlite::memory:');
     }
 }

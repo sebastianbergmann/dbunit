@@ -62,14 +62,14 @@ class BankAccount
      *
      * @var    float
      */
-    protected $balance = 0;
+    protected $balance = 0.00;
 
     /**
      * The bank account's number.
      *
-     * @var    float
+     * @var    string
      */
-    protected $accountNumber = 0;
+    protected $accountNumber = '';
 
     /**
      * The PDO connection used to store and retrieve bank account information.
@@ -78,6 +78,12 @@ class BankAccount
      */
     protected $pdo;
 
+    /**
+     * Initializes the bank account object.
+     *
+     * @param string $accountNumber
+     * @param \PDO $pdo
+     */
     public function __construct($accountNumber, PDO $pdo)
     {
         $this->accountNumber = $accountNumber;
