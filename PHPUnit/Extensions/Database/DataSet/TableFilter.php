@@ -133,4 +133,35 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions
     {
         $this->tableMetaData->clearExcludeColumns();
     }
+
+	/**
+     * Checks if a given row is in the table
+     *
+     * @param array $row
+     *
+     * @return bool
+     */
+    public function assertContainsRow(Array $row)
+    {
+        $this->loadData();
+        return parent::assertContainsRow($row);
+    }
+
+	/**
+	 * Loads data into local data table if it's not already loaded
+     */
+    protected function loadData()
+    {
+        if ($this->data === NULL) {
+            $data = array();
+            for($row = 0;$row < $this->originalTable->getRowCount();$row++) {
+                $tRow = array();
+                foreach($this->getTableMetaData()->getColumns() as $col) {
+                    $tRow[$col] = $this->getValue($row, $col);
+                }
+                $data[$row] = $tRow;
+            }
+            $this->data   = $data;
+        }
+    }
 }
