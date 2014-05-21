@@ -72,6 +72,7 @@ class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framew
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $value)
     {
+        parent::__construct();
         $this->value = $value;
     }
 
