@@ -74,7 +74,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTable extends PHPUnit_Extension
      */
     public function addRow($values = array())
     {
-        $this->data[] = array_merge(
+        $this->data[] = array_replace(
           array_fill_keys($this->getTableMetaData()->getColumns(), NULL),
           $values
         );
