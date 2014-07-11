@@ -75,10 +75,37 @@ class PHPUnit_Extensions_Database_Operation_Truncate implements PHPUnit_Extensio
             }
 
             try {
+                $this->disableForeignKeyChecksForMysql($connection);
                 $connection->getConnection()->query($query);
-            } catch (PDOException $e) {
-                throw new PHPUnit_Extensions_Database_Operation_Exception('TRUNCATE', $query, array(), $table, $e->getMessage());
+                $this->enableForeignKeyChecksForMysql($connection);
+            } catch (\Exception $e) {
+                $this->enableForeignKeyChecksForMysql($connection);
+
+                if ($e instanceof PDOException) {
+                    throw new PHPUnit_Extensions_Database_Operation_Exception('TRUNCATE', $query, array(), $table, $e->getMessage());
+                }
+
+                throw $e;
             }
         }
+    }
+
+    private function disableForeignKeyChecksForMysql(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    {
+        if ($this->isMysql($connection)) {
+            $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS = 0');
+        }
+    }
+
+    private function enableForeignKeyChecksForMysql(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    {
+        if ($this->isMysql($connection)) {
+            $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS = 1');
+        }
+    }
+
+    private function isMysql(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    {
+        return $connection->getConnection()->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql';
     }
 }

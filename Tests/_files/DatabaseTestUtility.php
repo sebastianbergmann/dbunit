@@ -55,6 +55,7 @@
 class DBUnitTestUtility
 {
     protected static $connection;
+    protected static $mysql_connection;
 
     public static function getSQLiteMemoryDB()
     {
@@ -77,13 +78,14 @@ class DBUnitTestUtility
      */
     public static function getMySQLDB()
     {
-        if (self::$connection === NULL) {
-            $connection = new PDO(PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL);
+        if (self::$mysql_connection === NULL) {
+        
+            self::$mysql_connection = new PDO(PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL);
 
-            self::setUpMySQLDatabase($connection);
+            self::setUpMySQLDatabase(self::$mysql_connection);
         }
 
-        return self::$connection;
+        return self::$mysql_connection;
     }
 
     protected static function setUpDatabase(PDO $connection)
