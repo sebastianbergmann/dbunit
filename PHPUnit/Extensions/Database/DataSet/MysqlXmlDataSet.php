@@ -93,6 +93,17 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
 
                 foreach ($tableColumns[$tableName] as $columnName) {
                     $fields          = $rowElement->xpath('./field[@name="' . $columnName . '"]');
+                    
+                    // validate that we found the field in the row, if not, then signal the developer
+                    if ( count( $fields ) === 0 )
+                    {
+                        // convert the SimpleXMLElement to a DOMNode, which 
+                        // we'll use to get the line number of the rowset where the element is missing
+                        $dom = dom_import_simplexml( $rowElement );
+                        
+                        throw new PHPUnit_Extensions_Database_Exception('<field name="'.$columnName.'"> missing for rowset starting @ line '.$dom->getLineNo());
+                    }
+
                     $column          = $fields[0];
                     $attr            = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
 
