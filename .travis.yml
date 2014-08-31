@@ -20,8 +20,3 @@ notifications:
     channels:
       - "irc.freenode.org#phpunit"
     use_notice: true
-
-matrix:
-  allow_failures:
-    - php: hhvm
-  fast_finish: true
