@@ -5,5 +5,6 @@ build/coverage
 build/logs
 build/pdepend
 cache.properties
+composer.lock
 phpunit.xml
 vendor
