@@ -62,7 +62,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends PHPUnit_Extensio
             $this->markTestSkipped('pdo_mysql is required to run this test.');
         }
 
-        if (!defined('PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL')) {
+        if (!defined('PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_DSN')) {
             $this->markTestSkipped('No MySQL server configured for this test.');
         }
 
@@ -86,6 +86,39 @@ class Extensions_Database_Operation_OperationsMySQLTest extends PHPUnit_Extensio
     {
         $truncateOperation = new PHPUnit_Extensions_Database_Operation_Truncate();
         $truncateOperation->execute($this->getConnection(), $this->getDataSet());
+
+        $expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array(
+            new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1',
+                    array('table1_id', 'column1', 'column2', 'column3', 'column4'))
+            ),
+            new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table2',
+                    array('table2_id', 'table1_id', 'column5', 'column6', 'column7', 'column8'))
+            ),
+            new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table3',
+                    array('table3_id', 'table2_id', 'column9', 'column10', 'column11', 'column12'))
+            ),
+        ));
+
+        $this->assertDataSetsEqual($expectedDataSet, $this->getConnection()->createDataSet());
+    }
+
+    public function getCompositeDataSet()
+    {
+        $compositeDataset = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet();
+        
+        $dataset = $this->createXMLDataSet(dirname(__FILE__).'/../_files/XmlDataSets/TruncateCompositeTest.xml');
+        $compositeDataset->addDataSet($dataset);
+
+        return $compositeDataset;
+    }
+
+    public function testTruncateComposite()
+    {
+        $truncateOperation = new PHPUnit_Extensions_Database_Operation_Truncate();
+        $truncateOperation->execute($this->getConnection(), $this->getCompositeDataSet());
 
         $expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array(
             new PHPUnit_Extensions_Database_DataSet_DefaultTable(

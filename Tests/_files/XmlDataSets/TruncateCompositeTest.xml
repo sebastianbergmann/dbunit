@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="table1">
+        <column>table1_id</column>
+        <column>column1</column>
+        <column>column2</column>
+        <column>column3</column>
+        <column>column4</column>
+        <row>
+            <value>1</value>
+            <null />
+            <null />
+            <null />
+            <null />
+        </row>
+    </table>
+    <table name="table2">
+        <column>table2_id</column>
+        <column>table1_id</column>
+        <column>column5</column>
+        <column>column6</column>
+        <column>column7</column>
+        <column>column8</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <null />
+            <null />
+            <null />
+            <null />
+        </row>
+    </table>
+    <table name="table3">
+        <column>table3_id</column>
+        <column>table2_id</column>
+        <column>column9</column>
+        <column>column10</column>
+        <column>column11</column>
+        <column>column12</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <null />
+            <null />
+            <null />
+            <null />
+        </row>
+    </table>
+</dataset>
