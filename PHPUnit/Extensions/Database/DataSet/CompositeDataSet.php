@@ -114,6 +114,10 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
      */
     protected function createIterator($reverse = FALSE)
     {
-        return $this->motherDataset->getIterator($reverse);
+        if ($reverse) {
+            return $this->motherDataset->getReverseIterator();
+        } else {
+            return $this->motherDataset->getIterator();
+        }
     }
 }

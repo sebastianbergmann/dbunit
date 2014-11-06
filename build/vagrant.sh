@@ -2,9 +2,9 @@
 
 COMPOSER="/usr/local/bin/composer"
 DEBIAN_FRONTEND="noninteractive"
-MYSQL_USER="vagrant"
+MYSQL_USER="root"
 MYSQL_PASSWORD="pwd"
-MYSQL_DATABASE="test"
+MYSQL_DATABASE="phpunit_tests"
 
 sed -i "/mirror:\\/\\//d" /etc/apt/sources.list
 sed -i "1ideb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse" /etc/apt/sources.list

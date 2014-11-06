@@ -3,7 +3,9 @@
 <phpunit backupGlobals="false">
   <php>
     <const name="PHPUNIT_TESTSUITE" value="true"/>
-    <!--<const name="PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL" value="mysql:dbname=test;unix_socket=/tmp/mysql.sock"/>-->
+    <!--<const name="PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_DSN" value="mysql:host=127.0.0.1;dbname=phpunit_tests;port=3306"/>-->
+    <!--<const name="PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_USERNAME" value="root"/>-->
+    <!--<const name="PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_PASSWORD" value=""/>-->
   </php>
 
   <testsuites>

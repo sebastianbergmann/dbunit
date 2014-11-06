@@ -82,7 +82,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
             foreach ($tableElement->xpath('./column') as $columnElement) {
                 $columnName = (string)$columnElement;
                 if (empty($columnName)) {
-                    throw new PHPUnit_Extensions_Database_Exception("column elements cannot be empty");
+                    throw new PHPUnit_Extensions_Database_Exception("Missing <column> elements for table $tableName. Add one or more <column> elements to the <table> element.");
                 }
 
                 if (!in_array($columnName, $tableColumns[$tableName])) {
@@ -101,7 +101,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
                 foreach ($rowElement->children() as $columnValue) {
                     
                     if ($index >= $numOfTableInstanceColumns) {
-                        throw new PHPUnit_Extensions_Database_Exception("More row values defined as columns exists.");
+                        throw new PHPUnit_Extensions_Database_Exception("Row contains more values than the number of columns defined for table $tableName.");
                     }
                     switch ($columnValue->getName()) {
                         case 'value':
@@ -113,7 +113,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
                             $index++;
                             break;
                         default:
-                            throw new PHPUnit_Extensions_Database_Exception("Unknown child in the a row element.");
+                            throw new PHPUnit_Extensions_Database_Exception("Unknown element ".$columnValue->getName()." in a row element.");
                     }
                 }
 
