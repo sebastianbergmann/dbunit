@@ -1,3 +1,5 @@
+.idea
+.vagrant
 bin
 build/api
 build/code-browser
