@@ -3,7 +3,7 @@
 COMPOSER="/usr/local/bin/composer"
 DEBIAN_FRONTEND="noninteractive"
 MYSQL_USER="root"
-MYSQL_PASSWORD="pwd"
+MYSQL_PASSWORD="password"
 MYSQL_DATABASE="phpunit_tests"
 
 sed -i "/mirror:\\/\\//d" /etc/apt/sources.list
@@ -19,10 +19,7 @@ debconf-set-selections <<< "mysql-server mysql-server/root_password_again passwo
 
 apt-get install git php5-cli php5-xdebug php5-sqlite php5-mysql mysql-server-5.5 -y --no-install-recommends
 
-mysql -u root -p"$MYSQL_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE; GRANT ALL ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'localhost' IDENTIFIED BY '';"
-service mysql stop
-sed -i "s/^socket.*/socket = \/tmp\/mysql.sock/" /etc/mysql/my.cnf
-service mysql start
+mysql -u root -p"$MYSQL_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
 
 if [ ! -f "$COMPOSER" ]; then
     php -r "readfile('https://getcomposer.org/installer');" | sudo php -d apc.enable_cli=0 -- --install-dir=$(dirname "$COMPOSER") --filename=$(basename "$COMPOSER")

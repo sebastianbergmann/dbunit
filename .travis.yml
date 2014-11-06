@@ -1,8 +1,6 @@
 language: php
 
-before_script:
-  - composer self-update
-  - composer install --no-interaction --prefer-source --dev
+before_script: ./build/travis-ci.sh
 
 php:
   - 5.3.3
