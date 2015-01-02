@@ -4,7 +4,7 @@
  *
  * @package    DbUnit
  * @author     Tom Ford <tom@switchsystems.co.uk>
- * @copyright  2002-2014 Sebastian Bergmann <sb@sebastian-bergmann.de>
+ * @copyright  Sebastian Bergmann <sb@sebastian-bergmann.de>
  * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link       http://www.phpunit.de/
  */
