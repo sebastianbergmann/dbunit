@@ -171,7 +171,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
     }
 
     /**
-     * Performs operation returned by getSetUpOperation().
+     * Performs operation returned by getTearDownOperation().
      */
     protected function tearDown()
     {
