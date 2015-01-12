@@ -77,7 +77,7 @@ interface PHPUnit_Extensions_Database_ITester
     public function setSetUpOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation);
 
     /**
-     * Sets the DatabaseOperation to call when starting the test.
+     * Sets the DatabaseOperation to call when stopping the test.
      *
      * @param PHPUnit_Extensions_Database_Operation_DatabaseOperation $tearDownOperation
      */
