@@ -51,7 +51,7 @@ interface PHPUnit_Extensions_Database_ITester
     public function onSetUp();
 
     /**
-     * TestCases must call this method inside teadDown().
+     * TestCases must call this method inside tearDown().
      */
     public function onTearDown();
 
