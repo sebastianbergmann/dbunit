@@ -112,6 +112,28 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
     }
 
     /**
+     * Creates a new ArrayDataSet with the given array.
+     * The array parameter is an associative array of tables where the key is
+     * the table name and the value an array of rows. Each row is an associative
+     * array by itself with keys representing the field names and the values the
+     * actual data.
+     * For example:
+     * array(
+     *     "addressbook" => array(
+     *         array("id" => 1, "name" => "...", "address" => "..."),
+     *         array("id" => 2, "name" => "...", "address" => "...")
+     *     )
+     * )
+     *
+     * @param array $data
+     * @return PHPUnit_Extensions_Database_DataSet_ArrayDataSet
+     */
+    protected function createArrayDataSet(array $data)
+    {
+        return new PHPUnit_Extensions_Database_DataSet_ArrayDataSet($data);
+    }
+
+    /**
      * Creates a new FlatXmlDataSet with the given $xmlFile. (absolute path.)
      *
      * @param string $xmlFile

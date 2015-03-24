@@ -26,6 +26,19 @@ class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends PHPUnit_Extension
     protected $tables = array();
 
     /**
+     * Constructor to build a new ArrayDataSet with the given array.
+     * The array parameter is an associative array of tables where the key is
+     * the table name and the value an array of rows. Each row is an associative
+     * array by itself with keys representing the field names and the values the
+     * actual data.
+     * For example:
+     * array(
+     *     "addressbook" => array(
+     *         array("id" => 1, "name" => "...", "address" => "..."),
+     *         array("id" => 2, "name" => "...", "address" => "...")
+     *     )
+     * )
+     *
      * @param array $data
      */
     public function __construct(array $data)
