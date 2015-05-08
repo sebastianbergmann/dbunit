@@ -46,7 +46,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
         }
 
         $libxmlErrorReporting  = libxml_use_internal_errors(TRUE);
-        $this->xmlFileContents = simplexml_load_file($xmlFile);
+        $this->xmlFileContents = simplexml_load_file($xmlFile, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE);
 
         if (!$this->xmlFileContents) {
             $message = '';
