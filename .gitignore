@@ -9,3 +9,4 @@ cache.properties
 composer.lock
 phpunit.xml
 vendor
+bin
