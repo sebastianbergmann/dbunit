@@ -52,7 +52,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
             $message = '';
 
             foreach (libxml_get_errors() as $error) {
-                $message .= $error->message;
+                $message .= print_r($error, true);
             }
 
             throw new RuntimeException($message);
