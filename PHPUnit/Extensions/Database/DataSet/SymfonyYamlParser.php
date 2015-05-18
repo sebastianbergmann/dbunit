@@ -21,6 +21,6 @@
 class PHPUnit_Extensions_Database_DataSet_SymfonyYamlParser implements PHPUnit_Extensions_Database_DataSet_IYamlParser {
 
     public function parseYaml($yamlFile) {
-        return Symfony\Component\Yaml\Yaml::parse($yamlFile);
+        return Symfony\Component\Yaml\Yaml::parse(file_get_contents($yamlFile));
     }
 }
