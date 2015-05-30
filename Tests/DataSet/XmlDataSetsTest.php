@@ -20,6 +20,8 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends PHPUnit_Framework_Test
 {
     protected $expectedDataSet;
 
+    protected $expectedStreamDataSet;
+
     public function setUp()
     {
         $table1MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
@@ -77,6 +79,64 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends PHPUnit_Framework_Test
         ));
 
         $this->expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array($table1, $table2));
+
+        $table3MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+            'table3', array('table3_id', 'column1', 'column2', 'column3', 'column4')
+        );
+        $table4MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+            'table4', array('table4_id', 'column5', 'column6', 'column7', 'column8')
+        );
+
+        $table3 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table3MetaData);
+        $table4 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table4MetaData);
+
+        $table3->addRow(array(
+            'table3_id' => 1,
+            'column1' => 'tgfahgasdf',
+            'column2' => 200,
+            'column3' => 34.64,
+            'column4' => 'yghkf;a  hahfg8ja h;'
+        ));
+        $table3->addRow(array(
+            'table3_id' => 2,
+            'column1' => 'hk;afg',
+            'column2' => 654,
+            'column3' => 46.54,
+            'column4' => '24rwehhads'
+        ));
+        $table3->addRow(array(
+            'table3_id' => 3,
+            'column1' => 'ha;gyt',
+            'column2' => 462,
+            'column3' => 1654.4,
+            'column4' => 'asfgklg'
+        ));
+
+        $table4->addRow(array(
+            'table4_id' => 1,
+            'column5' => 'fhah',
+            'column6' => 456,
+            'column7' => 46.5,
+            'column8' => 'fsdbghfdas'
+        ));
+        $table4->addRow(array(
+            'table4_id' => 2,
+            'column5' => 'asdhfoih',
+            'column6' => 654,
+            'column7' => NULL,
+            'column8' => '43asdfhgj'
+        ));
+        $table4->addRow(array(
+            'table4_id' => 3,
+            'column5' => 'ajsdlkfguitah',
+            'column6' => 654,
+            'column7' => NULL,
+            'column8' => NULL
+        ));
+
+        $this->expectedStreamDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet(array(
+            $table1, $table2, $table3, $table4
+        ));
     }
 
     public function testFlatXmlDataSet()
@@ -99,6 +159,14 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends PHPUnit_Framework_Test
     {
         $constraint = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedDataSet);
         $mysqlXmlDataSet = new PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet(dirname(__FILE__).'/../_files/XmlDataSets/MysqlXmlDataSet.xml');
+
+        self::assertThat($mysqlXmlDataSet, $constraint);
+    }
+
+    public function testMysqlStreamXmlDataSet()
+    {
+        $constraint = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedStreamDataSet);
+        $mysqlXmlDataSet = new PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet(dirname(__FILE__).'/../_files/XmlDataSets/MysqlStreamXmlDataSet.xml');
 
         self::assertThat($mysqlXmlDataSet, $constraint);
     }

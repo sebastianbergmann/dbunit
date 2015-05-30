@@ -25,7 +25,8 @@
         "phpunit/phpunit": "~3.7|~4.0",
         "symfony/yaml": "~2.1",
         "ext-pdo": "*",
-        "ext-simplexml": "*"
+        "ext-simplexml": "*",
+        "hakre/xmlreaderiterator": "*"
     },
     "bin": [
         "composer/bin/dbunit"
