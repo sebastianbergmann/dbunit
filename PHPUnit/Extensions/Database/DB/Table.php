@@ -11,17 +11,10 @@
 /**
  * Provides the functionality to represent a database table.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_Table extends PHPUnit_Extensions_Database_DataSet_AbstractTable
 {
-
     /**
      * Creates a new database table object.
      *

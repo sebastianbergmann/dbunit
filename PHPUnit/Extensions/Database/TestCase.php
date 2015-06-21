@@ -12,17 +12,10 @@
  * A TestCase extension that provides functionality for testing and asserting
  * against a real database.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_TestCase
 {
-
     /**
      * @var PHPUnit_Extensions_Database_ITester
      */
@@ -102,8 +95,8 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
      * Creates a new DefaultDatabaseConnection using the given PDO connection
      * and database schema name.
      *
-     * @param PDO $connection
-     * @param string $schema
+     * @param  PDO                                                      $connection
+     * @param  string                                                   $schema
      * @return PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
      */
     protected function createDefaultDBConnection(PDO $connection, $schema = '')
@@ -125,7 +118,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
      *     )
      * )
      *
-     * @param array $data
+     * @param  array                                            $data
      * @return PHPUnit_Extensions_Database_DataSet_ArrayDataSet
      */
     protected function createArrayDataSet(array $data)
@@ -136,7 +129,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
     /**
      * Creates a new FlatXmlDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param string $xmlFile
+     * @param  string                                             $xmlFile
      * @return PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet
      */
     protected function createFlatXMLDataSet($xmlFile)
@@ -147,7 +140,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
     /**
      * Creates a new XMLDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param string $xmlFile
+     * @param  string                                         $xmlFile
      * @return PHPUnit_Extensions_Database_DataSet_XmlDataSet
      */
     protected function createXMLDataSet($xmlFile)
@@ -158,7 +151,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
     /**
      * Create a a new MysqlXmlDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param string $xmlFile
+     * @param  string                                              $xmlFile
      * @return PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet
      * @since  Method available since Release 1.0.0
      */
@@ -201,7 +194,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
         $this->getDatabaseTester()->setDataSet($this->getDataSet());
         $this->getDatabaseTester()->onTearDown();
 
-        /**
+        /*
          * Destroy the tester after the test is run to keep DB connections
          * from piling up.
          */
@@ -213,7 +206,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITable $expected
      * @param PHPUnit_Extensions_Database_DataSet_ITable $actual
-     * @param string $message
+     * @param string                                     $message
      */
     public static function assertTablesEqual(PHPUnit_Extensions_Database_DataSet_ITable $expected, PHPUnit_Extensions_Database_DataSet_ITable $actual, $message = '')
     {
@@ -227,7 +220,7 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITable $expected
      * @param PHPUnit_Extensions_Database_DataSet_ITable $actual
-     * @param string $message
+     * @param string                                     $message
      */
     public static function assertDataSetsEqual(PHPUnit_Extensions_Database_DataSet_IDataSet $expected, PHPUnit_Extensions_Database_DataSet_IDataSet $actual, $message = '')
     {
@@ -240,13 +233,13 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
      * Assert that a given table has a given amount of rows
      *
      * @param string $tableName Name of the table
-     * @param int $expected Expected amount of rows in the table
-     * @param string $message Optional message
+     * @param int    $expected  Expected amount of rows in the table
+     * @param string $message   Optional message
      */
     public function assertTableRowCount($tableName, $expected, $message = '')
     {
         $constraint = new PHPUnit_Extensions_Database_Constraint_TableRowCount($tableName, $expected);
-        $actual = $this->getConnection()->getRowCount($tableName);
+        $actual     = $this->getConnection()->getRowCount($tableName);
 
         self::assertThat($actual, $constraint, $message);
     }
@@ -254,9 +247,9 @@ abstract class PHPUnit_Extensions_Database_TestCase extends PHPUnit_Framework_Te
     /**
      * Asserts that a given table contains a given row
      *
-     * @param array $expectedRow Row expected to find
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $table Table to look into
-     * @param string $message Optional message
+     * @param array                                      $expectedRow Row expected to find
+     * @param PHPUnit_Extensions_Database_DataSet_ITable $table       Table to look into
+     * @param string                                     $message     Optional message
      */
     public function assertTableContains(array $expectedRow, PHPUnit_Extensions_Database_DataSet_ITable $table, $message = '')
     {

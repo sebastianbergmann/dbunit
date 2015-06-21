@@ -15,17 +15,10 @@
  * The if a whitelist (include) filter is specified, then only those columns
  * will be included.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData
 {
-
     /**
      * The table meta data being decorated.
      * @var PHPUnit_Extensions_Database_DataSet_ITableMetaData
@@ -49,7 +42,7 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends PHPUnit_Ex
      * $excludeColumns.
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $originalMetaData
-     * @param array $excludeColumns - Deprecated. Use the set* methods instead.
+     * @param array                                              $excludeColumns   - Deprecated. Use the set* methods instead.
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_ITableMetaData $originalMetaData, Array $excludeColumns = array())
     {

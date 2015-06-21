@@ -11,12 +11,6 @@
 /**
  * A MySQL XML dataset persistor.
  *
- * @package    DbUnit
- * @author     Matthew Turland <tobias382@gmail.com>
- * @copyright  2010-2014 Matthew Turland <tobias382@gmail.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml extends PHPUnit_Extensions_Database_DataSet_Persistors_Abstract
@@ -67,7 +61,7 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml extends PHPUnit_Ex
 
         if ($this->fh === FALSE) {
             throw new PHPUnit_Framework_Exception(
-              "Could not open {$this->filename} for writing see " . __CLASS__ . "::setFileName()"
+              "Could not open {$this->filename} for writing see " . __CLASS__ . '::setFileName()'
             );
         }
 
@@ -110,7 +104,7 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml extends PHPUnit_Ex
     /**
      * Override to save a table row.
      *
-     * @param array $row
+     * @param array                                      $row
      * @param PHPUnit_Extensions_Database_DataSet_ITable $table
      */
     protected function row(Array $row, PHPUnit_Extensions_Database_DataSet_ITable $table)

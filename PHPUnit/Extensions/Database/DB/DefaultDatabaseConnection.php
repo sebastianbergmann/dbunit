@@ -11,12 +11,6 @@
 /**
  * Provides a basic interface for communicating with a database.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUnit_Extensions_Database_DB_IDatabaseConnection
@@ -36,8 +30,8 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
     /**
      * Creates a new database connection
      *
-     * @param PDO $connection
-     * @param string $schema - The name of the database schema you will be testing against.
+     * @param PDO    $connection
+     * @param string $schema     - The name of the database schema you will be testing against.
      */
     public function __construct(PDO $connection, $schema = '')
     {
@@ -80,7 +74,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
      * names are specified then it will created a dataset over the entire
      * database.
      *
-     * @param array $tableNames
+     * @param  array                                        $tableNames
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      * @todo Implement the filtered data set.
      */
@@ -96,8 +90,8 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
     /**
      * Creates a table with the result of the specified SQL statement.
      *
-     * @param string $resultName
-     * @param string $sql
+     * @param  string                               $resultName
+     * @param  string                               $sql
      * @return PHPUnit_Extensions_Database_DB_Table
      */
     public function createQueryTable($resultName, $sql)
@@ -128,13 +122,13 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
      * Returns the number of rows in the given table. You can specify an
      * optional where clause to return a subset of the table.
      *
-     * @param string $tableName
-     * @param string $whereClause
+     * @param  string $tableName
+     * @param  string $whereClause
      * @return int
      */
     public function getRowCount($tableName, $whereClause = NULL)
     {
-        $query = "SELECT COUNT(*) FROM ".$this->quoteSchemaObject($tableName);
+        $query = 'SELECT COUNT(*) FROM ' . $this->quoteSchemaObject($tableName);
 
         if (isset($whereClause)) {
             $query .= " WHERE {$whereClause}";
@@ -146,7 +140,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param string $object
+     * @param  string $object
      * @return string
      */
     public function quoteSchemaObject($object)
@@ -175,20 +169,20 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
     }
 
     /**
-    * Disables primary keys if connection does not allow setting them otherwise
-    *
-    * @param string $tableName
-    */
+     * Disables primary keys if connection does not allow setting them otherwise
+     *
+     * @param string $tableName
+     */
     public function disablePrimaryKeys($tableName)
     {
         $this->getMetaData()->disablePrimaryKeys($tableName);
     }
 
     /**
-    * Reenables primary keys after they have been disabled
-    *
-    * @param string $tableName
-    */
+     * Reenables primary keys after they have been disabled
+     *
+     * @param string $tableName
+     */
     public function enablePrimaryKeys($tableName)
     {
         $this->getMetaData()->enablePrimaryKeys($tableName);

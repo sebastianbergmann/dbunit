@@ -11,12 +11,6 @@
 /**
  * A Flat XML dataset persistor.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_Persistors_FlatXml extends PHPUnit_Extensions_Database_DataSet_Persistors_Abstract
@@ -52,7 +46,7 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_FlatXml extends PHPUnit_Ext
 
         if ($this->fh === FALSE) {
             throw new PHPUnit_Framework_Exception(
-              "Could not open {$this->filename} for writing see " . __CLASS__ . "::setFileName()"
+              "Could not open {$this->filename} for writing see " . __CLASS__ . '::setFileName()'
             );
         }
 
@@ -95,7 +89,7 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_FlatXml extends PHPUnit_Ext
     /**
      * Override to save a table row.
      *
-     * @param array $row
+     * @param array                                      $row
      * @param PHPUnit_Extensions_Database_DataSet_ITable $table
      */
     protected function row(Array $row, PHPUnit_Extensions_Database_DataSet_ITable $table)
@@ -104,7 +98,7 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_FlatXml extends PHPUnit_Ext
 
         foreach ($table->getTableMetaData()->getColumns() as $columnName) {
             if (isset($row[$columnName])) {
-                fwrite($this->fh, "\t\t{$columnName}=\"". htmlspecialchars($row[$columnName]) . "\"\n");
+                fwrite($this->fh, "\t\t{$columnName}=\"" . htmlspecialchars($row[$columnName]) . "\"\n");
             }
         }
 

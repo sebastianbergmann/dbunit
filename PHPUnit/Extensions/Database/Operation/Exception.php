@@ -13,17 +13,10 @@
  * information regarding which operations failed and the query (if any) it
  * failed on.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Exception extends RuntimeException
 {
-
     /**
      * @var string
      */
@@ -52,10 +45,10 @@ class PHPUnit_Extensions_Database_Operation_Exception extends RuntimeException
     /**
      * Creates a new dbunit operation exception
      *
-     * @param string $operation
-     * @param string $current_query
+     * @param string                                     $operation
+     * @param string                                     $current_query
      * @param PHPUnit_Extensions_Database_DataSet_ITable $current_table
-     * @param string $error
+     * @param string                                     $error
      */
     public function __construct($operation, $current_query, $current_args, $current_table, $error)
     {

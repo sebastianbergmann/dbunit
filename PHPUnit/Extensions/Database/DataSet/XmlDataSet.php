@@ -11,29 +11,22 @@
 /**
  * The default implementation of a data set.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
 {
-
     protected function getTableInfo(Array &$tableColumns, Array &$tableValues)
     {
         if ($this->xmlFileContents->getName() != 'dataset') {
-            throw new PHPUnit_Extensions_Database_Exception("The root element of an xml data set file must be called <dataset>");
+            throw new PHPUnit_Extensions_Database_Exception('The root element of an xml data set file must be called <dataset>');
         }
 
         foreach ($this->xmlFileContents->xpath('/dataset/table') as $tableElement) {
             if (empty($tableElement['name'])) {
-                throw new PHPUnit_Extensions_Database_Exception("Table elements must include a name attribute specifying the table name.");
+                throw new PHPUnit_Extensions_Database_Exception('Table elements must include a name attribute specifying the table name.');
             }
 
-            $tableName = (string)$tableElement['name'];
+            $tableName = (string) $tableElement['name'];
 
             if (!isset($tableColumns[$tableName])) {
                 $tableColumns[$tableName] = array();
@@ -46,7 +39,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
             $tableInstanceColumns = array();
 
             foreach ($tableElement->xpath('./column') as $columnElement) {
-                $columnName = (string)$columnElement;
+                $columnName = (string) $columnElement;
                 if (empty($columnName)) {
                     throw new PHPUnit_Extensions_Database_Exception("Missing <column> elements for table $tableName. Add one or more <column> elements to the <table> element.");
                 }
@@ -58,20 +51,19 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
                 $tableInstanceColumns[] = $columnName;
             }
 
-            
             foreach ($tableElement->xpath('./row') as $rowElement) {
-                $rowValues = array();
-                $index     = 0;
+                $rowValues                 = array();
+                $index                     = 0;
                 $numOfTableInstanceColumns = count($tableInstanceColumns);
 
                 foreach ($rowElement->children() as $columnValue) {
-                    
+
                     if ($index >= $numOfTableInstanceColumns) {
                         throw new PHPUnit_Extensions_Database_Exception("Row contains more values than the number of columns defined for table $tableName.");
                     }
                     switch ($columnValue->getName()) {
                         case 'value':
-                            $rowValues[$tableInstanceColumns[$index]] = (string)$columnValue;
+                            $rowValues[$tableInstanceColumns[$index]] = (string) $columnValue;
                             $index++;
                             break;
                         case 'null':
@@ -79,7 +71,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
                             $index++;
                             break;
                         default:
-                            throw new PHPUnit_Extensions_Database_Exception("Unknown element ".$columnValue->getName()." in a row element.");
+                            throw new PHPUnit_Extensions_Database_Exception('Unknown element ' . $columnValue->getName() . ' in a row element.');
                     }
                 }
 

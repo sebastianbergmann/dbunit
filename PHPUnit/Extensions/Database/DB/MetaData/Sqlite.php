@@ -11,17 +11,10 @@
 /**
  * Provides functionality to retrieve meta data from an Sqlite database.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_MetaData_Sqlite extends PHPUnit_Extensions_Database_DB_MetaData
 {
-
     protected $columns = array();
 
     protected $keys = array();
@@ -58,7 +51,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Sqlite extends PHPUnit_Extensions_
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTableColumns($tableName)
@@ -74,7 +67,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Sqlite extends PHPUnit_Extensions_
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTablePrimaryKeys($tableName)

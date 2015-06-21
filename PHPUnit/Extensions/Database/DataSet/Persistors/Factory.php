@@ -11,12 +11,6 @@
 /**
  * Creates the appropriate Persistor based on a given type and spec.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de//**
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_Persistors_Factory
@@ -24,8 +18,8 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Factory
     /**
      * Returns the persistor.
      *
-     * @param string $type
-     * @param string $spec
+     * @param  string                                           $type
+     * @param  string                                           $spec
      * @return PHPUnit_Extensions_Database_DataSet_IPersistable
      */
     public function getPersistorBySpec($type, $spec)
@@ -34,21 +28,25 @@ class PHPUnit_Extensions_Database_DataSet_Persistors_Factory
             case 'xml':
                 $xmlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_Xml();
                 $xmlPersistor->setFileName($spec);
+
                 return $xmlPersistor;
 
             case 'flatxml':
                 $flatXmlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_FlatXml();
                 $flatXmlPersistor->setFileName($spec);
+
                 return $flatXmlPersistor;
 
             case 'yaml':
                 $yamlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_Yaml();
                 $yamlPersistor->setFileName($spec);
+
                 return $yamlPersistor;
 
             case 'mysqlxml':
                 $mysqlXmlPersistor = new PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml();
                 $mysqlXmlPersistor->setFileName($spec);
+
                 return $mysqlXmlPersistor;
 
             default:

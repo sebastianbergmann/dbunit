@@ -11,12 +11,6 @@
 /**
  * Provides functionality to retrieve meta data from a Microsoft SQL Server database.
  *
- * @package    DbUnit
- * @author     Nils Adermann <naderman@naderman.de>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.1.0
  */
 class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends PHPUnit_Extensions_Database_DB_MetaData
@@ -59,7 +53,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends PHPUnit_Extensions_
      * Returns an array containing the names of all the columns in the
      * $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTableColumns($tableName)
@@ -84,7 +78,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends PHPUnit_Extensions_
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTablePrimaryKeys($tableName)
@@ -105,10 +99,10 @@ class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends PHPUnit_Extensions_
     }
 
     /**
-    * Allow overwriting identities for the given table.
-    *
-    * @param string $tableName
-    */
+     * Allow overwriting identities for the given table.
+     *
+     * @param string $tableName
+     */
     public function disablePrimaryKeys($tableName)
     {
         try {
@@ -121,10 +115,10 @@ class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends PHPUnit_Extensions_
     }
 
     /**
-    * Reenable auto creation of identities for the given table.
-    *
-    * @param string $tableName
-    */
+     * Reenable auto creation of identities for the given table.
+     *
+     * @param string $tableName
+     */
     public function enablePrimaryKeys($tableName)
     {
         try {

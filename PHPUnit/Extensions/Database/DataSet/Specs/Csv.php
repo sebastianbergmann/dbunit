@@ -22,12 +22,6 @@
  *
  * Any additional characters in the csv options will be discarded.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extensions_Database_DataSet_ISpec
@@ -35,7 +29,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extension
     /**
      * Creates CSV Data Set from a data set spec.
      *
-     * @param string $dataSetSpec
+     * @param  string                                         $dataSetSpec
      * @return PHPUnit_Extensions_Database_DataSet_CsvDataSet
      */
     public function getDataSet($dataSetSpec)
@@ -58,12 +52,13 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extension
      * PHPUnit_Extensions_Database_DataSet_CsvDataSet constructor. The options
      * are determined by the given $dataSetSpec.
      *
-     * @param string $dataSetSpec
+     * @param  string $dataSetSpec
      * @return array
      */
     protected function getCsvOptions($dataSetSpec)
     {
-        list($csvOptStr, ) = explode('|', $dataSetSpec, 2);
+        list($csvOptStr) = explode('|', $dataSetSpec, 2);
+
         return str_split($csvOptStr);
     }
 
@@ -74,7 +69,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extension
      * to files (the values.) The tables and files are determined by the given
      * $dataSetSpec
      *
-     * @param string $dataSetSpec
+     * @param  string $dataSetSpec
      * @return array
      */
     protected function getTableFileMap($dataSetSpec)

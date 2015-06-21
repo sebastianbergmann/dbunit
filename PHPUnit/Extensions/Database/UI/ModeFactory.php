@@ -11,12 +11,6 @@
 /**
  * The default factory for db extension modes.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de//**
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_UI_ModeFactory implements PHPUnit_Extensions_Database_UI_IModeFactory
@@ -24,7 +18,7 @@ class PHPUnit_Extensions_Database_UI_ModeFactory implements PHPUnit_Extensions_D
     /**
      * Generates a new mode based on a given name.
      *
-     * @param string $mode
+     * @param  string                               $mode
      * @return PHPUnit_Extensions_Database_UI_IMode
      */
     public function getMode($mode)
@@ -67,14 +61,14 @@ class PHPUnit_Extensions_Database_UI_ModeFactory implements PHPUnit_Extensions_D
      * Given a $mode label and a $mode_name class part attempts to return the
      * class name necessary to instantiate the mode.
      *
-     * @param string $mode
-     * @param string $mode_name
+     * @param  string $mode
+     * @param  string $mode_name
      * @return string
      */
     protected function getModeClass($mode, $mode_name)
     {
         $modeClass = 'PHPUnit_Extensions_Database_UI_Modes_' . $mode_name;
-        $modeFile = dirname(__FILE__) . '/Modes/' . $mode_name . '.php';
+        $modeFile  = dirname(__FILE__) . '/Modes/' . $mode_name . '.php';
 
         if (class_exists($modeClass)) {
             return $modeClass;

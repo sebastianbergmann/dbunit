@@ -11,17 +11,10 @@
 /**
  * Provides a basic interface for creating and reading data from data sets.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
 {
-
     /**
      * Returns an array of table names contained in the dataset.
      *
@@ -32,7 +25,7 @@ interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
     /**
      * Returns a table meta data object for the given table.
      *
-     * @param string $tableName
+     * @param  string                                             $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
      */
     public function getTableMetaData($tableName);
@@ -40,7 +33,7 @@ interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
     /**
      * Returns a table object for the given table.
      *
-     * @param string $tableName
+     * @param  string                                     $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITable
      */
     public function getTable($tableName);

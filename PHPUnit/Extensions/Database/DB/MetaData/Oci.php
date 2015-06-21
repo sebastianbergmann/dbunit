@@ -11,12 +11,6 @@
 /**
  * Provides functionality to retrieve meta data from an Oracle database.
  *
- * @package    DbUnit
- * @author     Trond Hansen <trond@xait.no>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 3.2.3
  */
 class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Database_DB_MetaData
@@ -70,7 +64,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Dat
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTableColumns($tableName)
@@ -86,7 +80,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Dat
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTablePrimaryKeys($tableName)
@@ -120,7 +114,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Dat
 
         $query = "SELECT DISTINCT COLUMN_NAME
                     FROM USER_TAB_COLUMNS
-                   WHERE TABLE_NAME='".$tableParts['table']."'
+                   WHERE TABLE_NAME='" . $tableParts['table'] . "'
                     $ownerQuery
                    ORDER BY COLUMN_NAME";
 
@@ -135,7 +129,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Dat
                       WHERE a.constraint_type='P'
                         AND a.constraint_name=b.constraint_name
                         $conOwnerQuery
-                        AND a.table_name = '".$tableParts['table']."' ";
+                        AND a.table_name = '" . $tableParts['table'] . "' ";
 
         $result = $this->pdo->query($keyQuery);
 

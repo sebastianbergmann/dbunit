@@ -11,12 +11,6 @@
 /**
  * Represents arguments received from a medium.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet_Arguments
@@ -47,7 +41,7 @@ class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet_Arguments
     /**
      * Returns an array of arguments matching the given $argName
      *
-     * @param string $argName
+     * @param  string $argName
      * @return array
      */
     public function getArgumentArray($argName)
@@ -64,7 +58,7 @@ class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet_Arguments
      *
      * If $argName points to an array the first argument will be returned.
      *
-     * @param string $argName
+     * @param  string $argName
      * @return mixed
      */
     public function getSingleArgument($argName)
@@ -79,7 +73,7 @@ class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet_Arguments
     /**
      * Returns whether an argument is set.
      *
-     * @param string $argName
+     * @param  string $argName
      * @return bool
      */
     public function argumentIsSet($argName)
@@ -110,7 +104,7 @@ class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet_Arguments
         $retDb = array();
         foreach ($databases as $db) {
             list($name, $arg) = explode(':', $db, 2);
-            $retDb[$name] = $arg;
+            $retDb[$name]     = $arg;
         }
 
         return $retDb;

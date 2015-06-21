@@ -12,25 +12,19 @@
  * Provides a basic constructor for all meta data classes and a factory for
  * generating the appropriate meta data class.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extensions_Database_DB_IMetaData
 {
     protected static $metaDataClassMap = array(
-        'pgsql'  => 'PHPUnit_Extensions_Database_DB_MetaData_PgSQL',
-        'mysql'  => 'PHPUnit_Extensions_Database_DB_MetaData_MySQL',
-        'oci'    => 'PHPUnit_Extensions_Database_DB_MetaData_Oci',
-        'sqlite' => 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
-        'sqlite2'=> 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
-        'sqlsrv' => 'PHPUnit_Extensions_Database_DB_MetaData_SqlSrv',
+        'pgsql'    => 'PHPUnit_Extensions_Database_DB_MetaData_PgSQL',
+        'mysql'    => 'PHPUnit_Extensions_Database_DB_MetaData_MySQL',
+        'oci'      => 'PHPUnit_Extensions_Database_DB_MetaData_Oci',
+        'sqlite'   => 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
+        'sqlite2'  => 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
+        'sqlsrv'   => 'PHPUnit_Extensions_Database_DB_MetaData_SqlSrv',
         'firebird' => 'PHPUnit_Extensions_Database_DB_MetaData_Firebird',
-        'dblib'  => 'PHPUnit_Extensions_Database_DB_MetaData_Dblib'
+        'dblib'    => 'PHPUnit_Extensions_Database_DB_MetaData_Dblib'
     );
 
     /**
@@ -61,7 +55,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
      * Creates a new database meta data object using the given pdo connection
      * and schema name.
      *
-     * @param PDO $pdo
+     * @param PDO    $pdo
      * @param string $schema
      */
     public final function __construct(PDO $pdo, $schema = '')
@@ -74,8 +68,8 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
      * Creates a meta data object based on the driver of given $pdo object and
      * $schema name.
      *
-     * @param PDO $pdo
-     * @param string $schema
+     * @param  PDO                                     $pdo
+     * @param  string                                  $schema
      * @return PHPUnit_Extensions_Database_DB_MetaData
      */
     public static function createMetaData(PDO $pdo, $schema = '')
@@ -102,8 +96,8 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
      *
      * A reflection of the $className is returned.
      *
-     * @param string $className
-     * @param string $pdoDriver
+     * @param  string          $className
+     * @param  string          $pdoDriver
      * @return ReflectionClass
      */
     public static function registerClassWithDriver($className, $pdoDriver)
@@ -133,7 +127,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param string $object
+     * @param  string $object
      * @return string
      */
     public function quoteSchemaObject($object)
@@ -143,7 +137,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
 
         foreach ($parts as $part) {
             $quotedParts[] = $this->schemaObjectQuoteChar .
-                str_replace($this->schemaObjectQuoteChar, $this->schemaObjectQuoteChar.$this->schemaObjectQuoteChar, $part).
+                str_replace($this->schemaObjectQuoteChar, $this->schemaObjectQuoteChar . $this->schemaObjectQuoteChar, $part) .
                 $this->schemaObjectQuoteChar;
         }
 
@@ -155,7 +149,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
      *
      * Returns an associative array containing the 'schema' and the 'table'.
      *
-     * @param string $fullTableName
+     * @param  string $fullTableName
      * @return array
      */
     public function splitTableName($fullTableName)
@@ -163,12 +157,12 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
         if (($dot = strpos($fullTableName, '.')) !== FALSE) {
             return array(
                 'schema' => substr($fullTableName, 0, $dot),
-                'table' => substr($fullTableName, $dot + 1)
+                'table'  => substr($fullTableName, $dot + 1)
             );
         } else {
             return array(
                 'schema' => NULL,
-                'table' => $fullTableName
+                'table'  => $fullTableName
             );
         }
     }

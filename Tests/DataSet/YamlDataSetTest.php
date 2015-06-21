@@ -9,11 +9,6 @@
  */
 
 /**
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @link       http://www.phpunit.de/
  * @since      File available since Release 1.0.0
  */
 class Extensions_Database_DataSet_YamlDataSetTest extends PHPUnit_Framework_TestCase
@@ -112,11 +107,6 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
 /**
  * A trivial YAML parser that always returns the same array.
  *
- * @package    DbUnit
- * @author     Yash Parghi <yash@yashparghi.com>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.3.1
  */
 class Extensions_Database_DataSet_YamlDataSetTest_PiOver2Parser implements PHPUnit_Extensions_Database_DataSet_IYamlParser {

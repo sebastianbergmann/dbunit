@@ -11,12 +11,6 @@
 /**
  * Allows for replacing arbitrary strings in your data sets with other values.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  * @todo When setTableMetaData() is taken out of the AbstractTable this class should extend AbstractTable.
  */
@@ -41,8 +35,8 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
      * Creates a new replacement table
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITable $table
-     * @param array $fullReplacements
-     * @param array $subStrReplacements
+     * @param array                                      $fullReplacements
+     * @param array                                      $subStrReplacements
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $table, Array $fullReplacements = array(), Array $subStrReplacements = array())
     {
@@ -111,7 +105,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param int $row
+     * @param  int   $row
      * @return array
      */
     public function getRow($row)
@@ -141,7 +135,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                $thisValue = $this->getValue($i, $columnName);
+                $thisValue  = $this->getValue($i, $columnName);
                 $otherValue = $other->getValue($i, $columnName);
                 if (is_numeric($thisValue) && is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
@@ -202,7 +196,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
 
     protected function getReplacedValue($value)
     {
-        if (is_scalar($value) && array_key_exists((string)$value, $this->fullReplacements)) {
+        if (is_scalar($value) && array_key_exists((string) $value, $this->fullReplacements)) {
             return $this->fullReplacements[$value];
         }
 

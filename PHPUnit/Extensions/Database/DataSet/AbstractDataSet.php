@@ -11,22 +11,15 @@
 /**
  * Implements the basic functionality of data sets.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PHPUnit_Extensions_Database_DataSet_IDataSet
 {
-
     /**
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param bool $reverse
+     * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected abstract function createIterator($reverse = FALSE);
@@ -51,7 +44,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
     /**
      * Returns a table meta data object for the given table.
      *
-     * @param string $tableName
+     * @param  string                                             $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
      */
     public function getTableMetaData($tableName)
@@ -62,7 +55,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
     /**
      * Returns a table object for the given table.
      *
-     * @param string $tableName
+     * @param  string                                     $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITable
      */
     public function getTable($tableName)

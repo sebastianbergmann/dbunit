@@ -11,11 +11,6 @@
 /**
  * Implements the basic functionality of data sets using a PHP array.
  *
- * @package    DbUnit
- * @author     Richard Brinkman <richardbrinkman@hotmail.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.3.2
  */
 class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
@@ -50,7 +45,7 @@ class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends PHPUnit_Extension
             }
 
             $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
-            $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
+            $table    = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
 
             foreach ($rows AS $row) {
                 $table->addRow($row);

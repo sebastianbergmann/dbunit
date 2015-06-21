@@ -12,17 +12,10 @@
  * A dataset decorator that allows filtering out tables and table columns from
  * results.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {
-
     /**
      * The dataset being decorated.
      * @var PHPUnit_Extensions_Database_DataSet_IDataSet
@@ -62,7 +55,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
      * to the special string '*'.
      *
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet
-     * @param Array $excludeTables @deprecated use set* methods instead.
+     * @param Array                                        $excludeTables   @deprecated use set* methods instead.
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet, array $excludeTables = array())
     {
@@ -75,7 +68,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
             } elseif ($values == '*') {
                 $tables[] = $tableName;
             } else {
-                $this->setExcludeColumnsForTable($tableName, (array)$values);
+                $this->setExcludeColumnsForTable($tableName, (array) $values);
             }
         }
 
@@ -86,7 +79,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param bool $reverse
+     * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected function createIterator($reverse = FALSE)
@@ -143,7 +136,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
     /**
      * Adds columns to include in the data set for the given table.
      * @param string $table
-     * @param Array $columns
+     * @param Array  $columns
      */
     public function setIncludeColumnsForTable($table, Array $columns)
     {
@@ -153,7 +146,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
     /**
      * Adds columns to include in the data set for the given table.
      * @param string $table
-     * @param Array $columns
+     * @param Array  $columns
      */
     public function setExcludeColumnsForTable($table, Array $columns)
     {

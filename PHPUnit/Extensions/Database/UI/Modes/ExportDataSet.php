@@ -14,12 +14,6 @@
  * This command is used to convert existing data sets or data in the database
  * into a valid data set format.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet implements PHPUnit_Extensions_Database_UI_IMode
@@ -27,7 +21,7 @@ class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet implements PHPUnit_Exte
     /**
      * Executes the export dataset command.
      *
-     * @param array $modeArguments
+     * @param array                                         $modeArguments
      * @param PHPUnit_Extensions_Database_UI_IMediumPrinter $medium
      */
     public function execute(array $modeArguments, PHPUnit_Extensions_Database_UI_IMediumPrinter $medium)
@@ -35,7 +29,7 @@ class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet implements PHPUnit_Exte
         $arguments = new PHPUnit_Extensions_Database_UI_Modes_ExportDataSet_Arguments($modeArguments);
 
         if (FALSE && !$arguments->areValid()) {
-            throw new InvalidArgumentException("The arguments for this command are incorrect.");
+            throw new InvalidArgumentException('The arguments for this command are incorrect.');
         }
 
         $datasets = array();
@@ -52,15 +46,15 @@ class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet implements PHPUnit_Exte
     /**
      * Returns the correct dataset given an argument containing a dataset spec.
      *
-     * @param string $argString
-     * @param array $databaseList
+     * @param  string                                       $argString
+     * @param  array                                        $databaseList
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      */
     protected function getDataSetFromArgument($argString, $databaseList)
     {
-        $dataSetSpecFactory = new PHPUnit_Extensions_Database_DataSet_Specs_Factory();
+        $dataSetSpecFactory          = new PHPUnit_Extensions_Database_DataSet_Specs_Factory();
         list($type, $dataSetSpecStr) = explode(':', $argString, 2);
-        $dataSetSpec = $dataSetSpecFactory->getDataSetSpecByType($type);
+        $dataSetSpec                 = $dataSetSpecFactory->getDataSetSpecByType($type);
 
         if ($dataSetSpec instanceof PHPUnit_Extensions_Database_IDatabaseListConsumer) {
             $dataSetSpec->setDatabases($databaseList);
@@ -72,13 +66,14 @@ class PHPUnit_Extensions_Database_UI_Modes_ExportDataSet implements PHPUnit_Exte
     /**
      * Returns the correct persistor given an argument containing a persistor spec.
      *
-     * @param string $argString
+     * @param  string                                           $argString
      * @return PHPUnit_Extensions_Database_DataSet_IPersistable
      */
     protected function getPersistorFromArgument($argString)
     {
-        $persistorFactory = new PHPUnit_Extensions_Database_DataSet_Persistors_Factory();
+        $persistorFactory  = new PHPUnit_Extensions_Database_DataSet_Persistors_Factory();
         list($type, $spec) = explode(':', $argString, 2);
+
         return $persistorFactory->getPersistorBySpec($type, $spec);
     }
 }

@@ -11,17 +11,10 @@
 /**
  * Provides a basic functionality for dbunit tables
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Extensions_Database_DataSet_ITable
 {
-
     /**
      * @var PHPUnit_Extensions_Database_DataSet_ITableMetaData
      */
@@ -81,6 +74,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
     {
         if (isset($this->data[$row][$column])) {
             $value = $this->data[$row][$column];
+
             return ($value instanceof SimpleXMLElement) ? (string) $value : $value;
         } else {
             if (!in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
@@ -94,7 +88,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param int $row
+     * @param  int   $row
      * @return array
      */
     public function getRow($row)
@@ -130,19 +124,22 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                $thisValue = $this->getValue($i, $columnName);
+                $thisValue  = $this->getValue($i, $columnName);
                 $otherValue = $other->getValue($i, $columnName);
                 if (is_numeric($thisValue) && is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
                         $this->other = $other;
+
                         return FALSE;
                     }
                 } elseif ($thisValue !== $otherValue) {
                     $this->other = $other;
+
                     return FALSE;
                 }
             }
         }
+
         return TRUE;
     }
 

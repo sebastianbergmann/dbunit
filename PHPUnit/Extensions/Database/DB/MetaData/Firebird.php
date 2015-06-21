@@ -11,12 +11,7 @@
 /**
  * Provides functionality to retrieve meta data from a Firebird database.
  *
- * @package    DbUnit
- * @author     Matheus Degiovani (matheus@gigatron.com.br)
- * @copyright  2002-2014 Matheus Degiovani (matheus@gigatron.com.br)
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @version    Release: 1.1.2
- * @link       http://www.phpunit.de/
  * @since
  */
 class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extensions_Database_DB_MetaData
@@ -55,7 +50,6 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extension
             order by (RDB$RELATION_NAME)
         ";
 
-
         $statement = $this->pdo->prepare($query);
         $statement->execute(array($this->getSchema()));
 
@@ -71,7 +65,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extension
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTableColumns($tableName)
@@ -87,7 +81,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extension
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTablePrimaryKeys($tableName)
@@ -109,7 +103,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extension
         $this->columns[$tableName] = array();
         $this->keys[$tableName]    = array();
 
-        $columnQuery = "
+        $columnQuery = '
             SELECT DISTINCT
                 COLUMN_NAME, ORDINAL_POSITION
             FROM INFORMATION_SCHEMA.COLUMNS
@@ -117,8 +111,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extension
                 TABLE_NAME = ? AND
                 TABLE_SCHEMA = ?
             ORDER BY ORDINAL_POSITION
-        ";
-
+        ';
 
         $columnQuery = "
             select
@@ -131,7 +124,6 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extension
               ORDINAL_POSITION
 
         ";
-
 
         $columnStatement = $this->pdo->prepare($columnQuery);
         $columnStatement->execute(array($tableName));
@@ -209,7 +201,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extension
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param string $object
+     * @param  string $object
      * @return string
      */
     public function quoteSchemaObject($object) {

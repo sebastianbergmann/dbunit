@@ -11,17 +11,10 @@
 /**
  * A table decorator that allows filtering out table columns from results.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions_Database_DataSet_AbstractTable
 {
-
     /**
      * The table meta data being decorated.
      * @var PHPUnit_Extensions_Database_DataSet_ITable
@@ -100,7 +93,7 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions
         $this->tableMetaData->clearExcludeColumns();
     }
 
-	/**
+    /**
      * Checks if a given row is in the table
      *
      * @param array $row
@@ -110,11 +103,12 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions
     public function assertContainsRow(Array $row)
     {
         $this->loadData();
+
         return parent::assertContainsRow($row);
     }
 
-	/**
-	 * Loads data into local data table if it's not already loaded
+    /**
+     * Loads data into local data table if it's not already loaded
      */
     protected function loadData()
     {

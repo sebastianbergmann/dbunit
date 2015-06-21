@@ -11,17 +11,10 @@
 /**
  * Provides a basic interface for communicating with a database.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
 {
-
     /**
      * Close this connection.
      */
@@ -32,7 +25,7 @@ interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
      * names are specified then it will created a dataset over the entire
      * database.
      *
-     * @param array $tableNames
+     * @param  array                                        $tableNames
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      */
     public function createDataSet(Array $tableNames = NULL);
@@ -40,8 +33,8 @@ interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
     /**
      * Creates a table with the result of the specified SQL statement.
      *
-     * @param string $resultName
-     * @param string $sql
+     * @param  string                                     $resultName
+     * @param  string                                     $sql
      * @return PHPUnit_Extensions_Database_DataSet_ITable
      */
     public function createQueryTable($resultName, $sql);
@@ -81,7 +74,7 @@ interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param string $object
+     * @param  string $object
      * @return string
      */
     public function quoteSchemaObject($object);
@@ -101,16 +94,16 @@ interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
     public function allowsCascading();
 
     /**
-    * Disables primary keys if connection does not allow setting them otherwise
-    *
-    * @param string $tableName
-    */
+     * Disables primary keys if connection does not allow setting them otherwise
+     *
+     * @param string $tableName
+     */
     public function disablePrimaryKeys($tableName);
 
     /**
-    * Reenables primary keys after they have been disabled
-    *
-    * @param string $tableName
-    */
+     * Reenables primary keys after they have been disabled
+     *
+     * @param string $tableName
+     */
     public function enablePrimaryKeys($tableName);
 }

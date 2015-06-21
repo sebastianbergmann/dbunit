@@ -11,21 +11,14 @@
 /**
  * The default implementation of a data set.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
 {
-
     protected function getTableInfo(Array &$tableColumns, Array &$tableValues)
     {
         if ($this->xmlFileContents->getName() != 'dataset') {
-            throw new PHPUnit_Extensions_Database_Exception("The root element of a flat xml data set file must be called <dataset>");
+            throw new PHPUnit_Extensions_Database_Exception('The root element of a flat xml data set file must be called <dataset>');
         }
 
         foreach ($this->xmlFileContents->children() as $row) {

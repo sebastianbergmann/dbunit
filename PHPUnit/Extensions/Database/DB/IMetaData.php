@@ -11,12 +11,6 @@
 /**
  * Provides a basic interface for retreiving metadata from a database.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_DB_IMetaData
@@ -32,7 +26,7 @@ interface PHPUnit_Extensions_Database_DB_IMetaData
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTableColumns($tableName);
@@ -41,7 +35,7 @@ interface PHPUnit_Extensions_Database_DB_IMetaData
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTablePrimaryKeys($tableName);
@@ -56,7 +50,7 @@ interface PHPUnit_Extensions_Database_DB_IMetaData
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param string $object
+     * @param  string $object
      * @return string
      */
     public function quoteSchemaObject($object);

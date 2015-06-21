@@ -13,12 +13,6 @@
  *
  * You can incrementally add YAML files as tables to your datasets
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
@@ -36,7 +30,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
     /**
      * Creates a new YAML dataset
      *
-     * @param string $yamlFile
+     * @param string                                          $yamlFile
      * @param PHPUnit_Extensions_Database_DataSet_IYamlParser $parser
      */
     public function __construct($yamlFile, $parser = NULL)
@@ -107,7 +101,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param bool $reverse
+     * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected function createIterator($reverse = FALSE)
@@ -120,7 +114,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
     /**
      * Saves a given $dataset to $filename in YAML format
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $dataset
-     * @param string $filename
+     * @param string                                       $filename
      */
     public static function write(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset, $filename)
     {

@@ -11,17 +11,10 @@
 /**
  * A class factory to easily return database operations.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Factory
 {
-
     /**
      * Returns a null database operation
      *
@@ -36,7 +29,7 @@ class PHPUnit_Extensions_Database_Operation_Factory
      * Returns a clean insert database operation. It will remove all contents
      * from the table prior to re-inserting rows.
      *
-     * @param bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     * @param  bool                                                     $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
      * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      */
     public static function CLEAN_INSERT($cascadeTruncates = FALSE)
@@ -60,7 +53,7 @@ class PHPUnit_Extensions_Database_Operation_Factory
     /**
      * Returns a truncate database operation.
      *
-     * @param bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     * @param  bool                                                     $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
      * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      */
     public static function TRUNCATE($cascadeTruncates = FALSE)

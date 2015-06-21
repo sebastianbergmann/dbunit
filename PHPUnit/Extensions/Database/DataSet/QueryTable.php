@@ -11,12 +11,6 @@
 /**
  * Provides the functionality to represent a database table.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_Database_DataSet_AbstractTable
@@ -39,8 +33,8 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     /**
      * Creates a new database query table object.
      *
-     * @param string $table_name
-     * @param string $query
+     * @param string                                             $table_name
+     * @param string                                             $query
      * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection
      */
     public function __construct($tableName, $query, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection)
@@ -58,9 +52,9 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     public function getTableMetaData()
     {
         $this->createTableMetaData();
+
         return parent::getTableMetaData();
     }
-
 
     /**
      * Checks if a given row is in the table
@@ -72,9 +66,9 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     public function assertContainsRow(Array $row)
     {
         $this->loadData();
+
         return parent::assertContainsRow($row);
     }
-
 
     /**
      * Returns the number of rows in this table.
@@ -84,6 +78,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     public function getRowCount()
     {
         $this->loadData();
+
         return parent::getRowCount();
     }
 
@@ -96,18 +91,20 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     public function getValue($row, $column)
     {
         $this->loadData();
+
         return parent::getValue($row, $column);
     }
 
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param int $row
+     * @param  int   $row
      * @return array
      */
     public function getRow($row)
     {
         $this->loadData();
+
         return parent::getRow($row);
     }
 
@@ -119,6 +116,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     public function matches(PHPUnit_Extensions_Database_DataSet_ITable $other)
     {
         $this->loadData();
+
         return parent::matches($other);
     }
 
@@ -143,10 +141,10 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
                 $columns = array_keys($this->data[0]);
             else {
                 // if no rows found, get column names from database
-                $pdoStatement = $this->databaseConnection->getConnection()->prepare("SELECT column_name FROM information_schema.COLUMNS WHERE table_schema=:schema AND table_name=:table");
+                $pdoStatement = $this->databaseConnection->getConnection()->prepare('SELECT column_name FROM information_schema.COLUMNS WHERE table_schema=:schema AND table_name=:table');
                 $pdoStatement->execute(array(
-                    "table"        => $this->tableName,
-                    "schema"    => $this->databaseConnection->getSchema()
+                    'table'        => $this->tableName,
+                    'schema'       => $this->databaseConnection->getSchema()
                 ));
 
                 $columns = $pdoStatement->fetchAll(PDO::FETCH_COLUMN, 0);

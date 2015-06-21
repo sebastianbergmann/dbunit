@@ -11,17 +11,10 @@
 /**
  * Deletes the rows in a given dataset using primary key columns.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Delete extends PHPUnit_Extensions_Database_Operation_RowBased
 {
-
     protected $operationName = 'DELETE';
 
     protected $iteratorDirection = self::ITERATOR_TYPE_REVERSE;

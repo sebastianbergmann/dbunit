@@ -1,12 +1,6 @@
 <?php
 /**
  * Provides functionality to retrieve meta data from an Dblib (SQL Server) database.
- *
- * @package    DbUnit
- * @author     Tom Ford <tom@switchsystems.co.uk>
- * @copyright  Sebastian Bergmann <sb@sebastian-bergmann.de>
- * @license    http://www.opensource.org/licenses/bsd-license.php  BSD License
- * @link       http://www.phpunit.de/
  */
 class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends PHPUnit_Extensions_Database_DB_MetaData
 {
@@ -41,9 +35,9 @@ class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends PHPUnit_Extensions_D
     {
         $tableNames = array();
 
-        $query = "SELECT name
+        $query = 'SELECT name
                     FROM sys.tables
-                   ORDER BY name";
+                   ORDER BY name';
 
         $result = $this->pdo->query($query);
 
@@ -58,7 +52,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends PHPUnit_Extensions_D
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTableColumns($tableName)
@@ -74,7 +68,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends PHPUnit_Extensions_D
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTablePrimaryKeys($tableName)
@@ -95,7 +89,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends PHPUnit_Extensions_D
     {
         $query = "SELECT name
 			FROM sys.columns
-		   WHERE object_id = OBJECT_ID('".$tableName."')
+		   WHERE object_id = OBJECT_ID('" . $tableName . "')
 		   ORDER BY column_id";
 
         $result = $this->pdo->query($query);
@@ -108,7 +102,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends PHPUnit_Extensions_D
 			FROM    sys.indexes AS i INNER JOIN 
 				sys.index_columns AS ic ON  i.OBJECT_ID = ic.OBJECT_ID
 						        AND i.index_id = ic.index_id
-			WHERE   i.is_primary_key = 1 AND OBJECT_NAME(ic.OBJECT_ID) = '".$tableName."'";
+			WHERE   i.is_primary_key = 1 AND OBJECT_NAME(ic.OBJECT_ID) = '" . $tableName . "'";
 
         $result = $this->pdo->query($keyQuery);
 

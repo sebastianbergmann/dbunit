@@ -14,12 +14,6 @@
  * This class builds the call context based on command line parameters and
  * prints output to stdout and stderr as appropriate.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  2010-2014 Mike Lively <m@digitalsandwich.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_UI_Mediums_Text implements PHPUnit_Extensions_Database_UI_IMedium
@@ -49,7 +43,7 @@ class PHPUnit_Extensions_Database_UI_Mediums_Text implements PHPUnit_Extensions_
      */
     public function buildContext(PHPUnit_Extensions_Database_UI_Context $context)
     {
-        $arguments = $this->arguments;
+        $arguments     = $this->arguments;
         $this->command = array_shift($arguments);
 
         $context->setMode(array_shift($arguments));

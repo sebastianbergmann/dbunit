@@ -11,12 +11,6 @@
 /**
  * Data set implementation for the output of mysqldump --xml.
  *
- * @package    DbUnit
- * @author     Matthew Turland <tobias382@gmail.com>
- * @copyright  2010-2014 Matthew Turland <tobias382@gmail.com>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
@@ -32,7 +26,7 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
                 throw new PHPUnit_Extensions_Database_Exception('<table_data> elements must include a name attribute');
             }
 
-            $tableName = (string)$tableElement['name'];
+            $tableName = (string) $tableElement['name'];
 
             if (!isset($tableColumns[$tableName])) {
                 $tableColumns[$tableName] = array();
@@ -50,7 +44,7 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
                         throw new PHPUnit_Extensions_Database_Exception('<field> element name attributes cannot be empty');
                     }
 
-                    $columnName = (string)$columnElement['name'];
+                    $columnName = (string) $columnElement['name'];
 
                     if (!in_array($columnName, $tableColumns[$tableName])) {
                         $tableColumns[$tableName][] = $columnName;
@@ -63,10 +57,10 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
                     $attr            = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
 
                     if (isset($attr['type']) && (string) $attr['type'] === 'xs:hexBinary') {
-                        $columnValue = pack('H*',(string)$column);
+                        $columnValue = pack('H*',(string) $column);
                     } else {
                         $null        = isset($column['nil']) || isset($attr[0]);
-                        $columnValue = $null ? NULL : (string)$column;
+                        $columnValue = $null ? NULL : (string) $column;
                     }
 
                     $rowValues[$columnName] = $columnValue;

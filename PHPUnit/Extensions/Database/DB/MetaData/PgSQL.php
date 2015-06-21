@@ -11,17 +11,10 @@
 /**
  * Provides functionality to retrieve meta data from a PostgreSQL database.
  *
- * @package    DbUnit
- * @author     Mike Lively <m@digitalsandwich.com>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
- * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
- * @version    Release: @package_version@
- * @link       http://www.phpunit.de/
  * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_Database_DB_MetaData
 {
-
     /**
      * Returns an array containing the names of all the tables in the database.
      *
@@ -54,7 +47,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTableColumns($tableName)
@@ -70,7 +63,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param string $tableName
+     * @param  string $tableName
      * @return array
      */
     public function getTablePrimaryKeys($tableName)
@@ -92,7 +85,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
         $this->columns[$tableName] = array();
         $this->keys[$tableName]    = array();
 
-        $columnQuery = "
+        $columnQuery = '
             SELECT DISTINCT
                 COLUMN_NAME, ORDINAL_POSITION
             FROM INFORMATION_SCHEMA.COLUMNS
@@ -100,7 +93,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_D
                 TABLE_NAME = ? AND
                 TABLE_SCHEMA = ?
             ORDER BY ORDINAL_POSITION
-        ";
+        ';
 
         $columnStatement = $this->pdo->prepare($columnQuery);
         $columnStatement->execute(array($tableName, $this->getSchema()));
