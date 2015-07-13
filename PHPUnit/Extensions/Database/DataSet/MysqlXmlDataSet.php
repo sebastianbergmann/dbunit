@@ -15,13 +15,136 @@
  */
 class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
 {
-    protected function getTableInfo(array &$tableColumns, array &$tableValues)
+
+    /**
+     * Creates a new data set using the given tables.
+     *
+     * @param string $xmlFile
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public function __construct($xmlFile)
     {
-        if ($this->xmlFileContents->getName() != 'mysqldump') {
-            throw new PHPUnit_Extensions_Database_Exception('The root element of a MySQL XML data set file must be called <mysqldump>');
+        if (!is_file($xmlFile)) {
+            throw new InvalidArgumentException(
+                "Could not find xml file: {$xmlFile}"
+            );
         }
 
-        foreach ($this->xmlFileContents->xpath('./database/table_data') as $tableElement) {
+        $libxmlErrorReporting  = libxml_use_internal_errors(TRUE);
+        try{
+            $this->readDocument($xmlFile);
+        } catch (Exception $e) {
+            $this->unRegisterXMLSequenceStream();
+        }
+
+        $errors = libxml_get_errors();
+        if (count($errors)) {
+            $message = '';
+
+            foreach ($errors as $error) {
+                $message .= print_r($error, true);
+            }
+
+            throw new RuntimeException($message);
+        }
+
+        libxml_clear_errors();
+        libxml_use_internal_errors($libxmlErrorReporting);
+
+        $tableColumns = array();
+        $tableValues  = array();
+
+        $this->getTableInfo($tableColumns, $tableValues);
+        $this->createTables($tableColumns, $tableValues);
+    }
+
+
+    protected function getTableInfo(array &$tableColumns, array &$tableValues)
+    {
+        foreach($this->xmlFileContents as $dump) {
+
+            if ($dump->getName() != 'mysqldump') {
+                throw new PHPUnit_Extensions_Database_Exception('The root element of a MySQL XML data set file must be called <mysqldump>');
+            }
+
+            $this->getTableData($dump, $tableColumns, $tableValues);
+
+            $this->getTableStructure($dump, $tableColumns);
+        }
+
+    }
+
+    public static function write(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset, $filename)
+    {
+        $pers = new PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml;
+        $pers->setFileName($filename);
+
+        try {
+            $pers->write($dataset);
+        }
+
+        catch (RuntimeException $e) {
+            throw new PHPUnit_Framework_Exception(__METHOD__ . ' called with an unwritable file.');
+        }
+    }
+
+
+    /**
+     * Loading file that could contain several xml documents concatenated
+     *
+     * @param string $xmlFile
+     * @return SimpleXMLElement
+     */
+    protected function readDocument($xmlFile)
+    {
+        $this->registerXMLSequenceStream();
+        $path = "xmlseq://" . $xmlFile;
+
+        $this->xmlFileContents = array();
+        while (XMLSequenceStream::notAtEndOfSequence($path)) {
+            $reader = new XMLReader();
+            $reader->open($path);
+            /** @var XMLElementIterator|XMLReaderNode $elements */
+            $elements = new XMLElementIterator($reader);
+            $this->xmlFileContents[] = new SimpleXMLElement(
+                $elements->current()->readOuterXml()
+            );
+        }
+
+        XMLSequenceStream::clean();
+        $this->unRegisterXMLSequenceStream();
+    }
+
+    /**
+     * Register the wrapper for the stream
+     */
+    protected function registerXMLSequenceStream() {
+        if(!in_array('xmlseq', stream_get_wrappers())) {
+            stream_wrapper_register('xmlseq', 'XMLSequenceStream');
+        }
+    }
+
+    /**
+     * De-register the wrapper for the stream
+     */
+    protected function unRegisterXMLSequenceStream() {
+        if(in_array('xmlseq', stream_get_wrappers())) {
+            stream_wrapper_unregister('xmlseq');
+        }
+    }
+
+    /**
+     * Extract table_data elements from xml dump
+     *
+     * @param SimpleXmlElement $xmlDump
+     * @param array $tableColumns
+     * @param array $tableValues
+     * @throws PHPUnit_Extensions_Database_Exception
+     */
+    protected function getTableData(SimpleXmlElement $xmlDump, array &$tableColumns, array &$tableValues) {
+
+        foreach ($xmlDump->xpath('./database/table_data') as $tableElement) {
             if (empty($tableElement['name'])) {
                 throw new PHPUnit_Extensions_Database_Exception('<table_data> elements must include a name attribute');
             }
@@ -70,8 +193,18 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
                 $tableValues[$tableName][] = $rowValues;
             }
         }
+    }
 
-        foreach ($this->xmlFileContents->xpath('./database/table_structure') as $tableElement) {
+    /**
+     * Extract table_data elements from xml dump
+     *
+     * @param SimpleXmlElement $xmlDump
+     * @param array $tableColumns
+     * @throws PHPUnit_Extensions_Database_Exception
+     */
+    protected function getTableStructure(SimpleXmlElement $xmlDump, array &$tableColumns) {
+
+        foreach ($xmlDump->xpath('./database/table_structure') as $tableElement) {
             if (empty($tableElement['name'])) {
                 throw new PHPUnit_Extensions_Database_Exception('<table_structure> elements must include a name attribute');
             }
@@ -85,24 +218,10 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
 
                 $columnName = (string) $fieldElement['Field'];
 
-                if (!in_array($columnName, $tableColumns[$tableName])) {
+                if (array_key_exists($tableName, $tableColumns) && !in_array($columnName, $tableColumns[$tableName])) {
                     $tableColumns[$tableName][] = $columnName;
                 }
             }
-        }
-    }
-
-    public static function write(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset, $filename)
-    {
-        $pers = new PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml;
-        $pers->setFileName($filename);
-
-        try {
-            $pers->write($dataset);
-        }
-
-        catch (RuntimeException $e) {
-            throw new PHPUnit_Framework_Exception(__METHOD__ . ' called with an unwritable file.');
         }
     }
 }
