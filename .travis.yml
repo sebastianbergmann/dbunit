@@ -3,14 +3,11 @@ language: php
 before_script: ./build/travis-ci.sh
 
 php:
-  - 5.3.3
-  - 5.3
-  - 5.4
-  - 5.5
   - 5.6
+  - 7.0
   - hhvm
 
-script: bin/phpunit --configuration ./build/travis-ci.xml
+script: ./vendor/bin/phpunit --configuration ./build/phpunit.xml
 
 notifications:
   email: false
