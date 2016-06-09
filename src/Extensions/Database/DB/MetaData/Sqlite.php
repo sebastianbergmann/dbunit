@@ -96,7 +96,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Sqlite extends PHPUnit_Extensions_
         while ($columnData = $statement->fetch(PDO::FETCH_NUM)) {
             $this->columns[$tableName][] = $columnData[1];
 
-            if ($columnData[5] == 1) {
+            if ((int)$columnData[5] !== 0) {
                 $this->keys[$tableName][] = $columnData[1];
             }
         }
