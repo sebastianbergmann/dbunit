@@ -30,7 +30,7 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
      */
     public function __construct(Array $dataSets = [])
     {
-        $this->motherDataset = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet();
+        $this->motherDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet();
 
         foreach ($dataSets as $dataSet)
         {
@@ -50,7 +50,7 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
         foreach ($dataSet->getTableNames() as $tableName)
         {
             if (!in_array($tableName, $this->getTableNames())) {
-                $this->motherDataset->addTable($dataSet->getTable($tableName));
+                $this->motherDataSet->addTable($dataSet->getTable($tableName));
             } else {
                 $other = $dataSet->getTable($tableName);
                 $table = $this->getTable($tableName);
@@ -75,9 +75,9 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Exten
     protected function createIterator($reverse = FALSE)
     {
         if ($reverse) {
-            return $this->motherDataset->getReverseIterator();
+            return $this->motherDataSet->getReverseIterator();
         } else {
-            return $this->motherDataset->getIterator();
+            return $this->motherDataSet->getIterator();
         }
     }
 }
