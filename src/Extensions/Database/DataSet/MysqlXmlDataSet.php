@@ -79,11 +79,11 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
             $tableName = (string) $tableElement['name'];
 
             foreach ($tableElement->xpath('./field') as $fieldElement) {
-                if (empty($fieldElement['Field'])) {
+                if (empty($fieldElement['Field']) && empty($fieldElement['field'])) {
                     throw new PHPUnit_Extensions_Database_Exception('<field> elements must include a Field attribute');
                 }
 
-                $columnName = (string) $fieldElement['Field'];
+                $columnName = (string) (empty($fieldElement['Field']) ? $fieldElement['field'] : $fieldElement['Field']);
 
                 if (!in_array($columnName, $tableColumns[$tableName])) {
                     $tableColumns[$tableName][] = $columnName;
