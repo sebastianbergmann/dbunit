@@ -76,6 +76,7 @@ class CsvDataSet extends AbstractDataSet
 
         $fh      = \fopen($csvFile, 'r');
         $columns = $this->getCsvRow($fh);
+        $columnsCount = count($columns);
 
         if ($columns === false) {
             throw new InvalidArgumentException("Could not determine the headers from the given file {$csvFile}");
@@ -84,8 +85,13 @@ class CsvDataSet extends AbstractDataSet
         $metaData = new DefaultTableMetadata($tableName, $columns);
         $table    = new DefaultTable($metaData);
 
+        $rowNumber = 1;
         while (($row = $this->getCsvRow($fh)) !== false) {
+            if ($columnsCount !== count($row)) {
+                throw new InvalidArgumentException("Row no. {$rowNumber} in csv file {$csvFile} should have an equal number of elements as table {$tableName}");
+            }
             $table->addRow(\array_combine($columns, $row));
+            $rowNumber++;
         }
 
         $this->tables[$tableName] = $table;
