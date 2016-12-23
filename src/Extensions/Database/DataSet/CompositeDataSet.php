@@ -17,7 +17,7 @@
  */
 class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {
-    protected $motherDataSet;
+    protected $motherDataset;
 
     /**
      * Creates a new Composite dataset
