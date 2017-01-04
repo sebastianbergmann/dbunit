@@ -53,10 +53,10 @@ class Extensions_Database_DataSet_AbstractTableTest extends PHPUnit_Framework_Te
 
     public function testMatchesWithNonMatchingMetaData()
     {
-        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
-        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
 
-        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $otherTable = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
         $otherTable->expects($this->once())
             ->method('getTableMetaData')
             ->will($this->returnValue($otherMetaData));
@@ -72,10 +72,15 @@ class Extensions_Database_DataSet_AbstractTableTest extends PHPUnit_Framework_Te
 
     public function testMatchesWithNonMatchingRowCount()
     {
-        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
-        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
 
-        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $table = $this->getMockBuilder(PHPUnit_Extensions_Database_DataSet_DefaultTable::class)
+                      ->setConstructorArgs([$tableMetaData])
+                      ->setMethods(['getRowCount'])
+                      ->getMock();
+
         $otherTable->expects($this->once())
             ->method('getTableMetaData')
             ->will($this->returnValue($otherMetaData));
@@ -88,7 +93,6 @@ class Extensions_Database_DataSet_AbstractTableTest extends PHPUnit_Framework_Te
             ->with($otherMetaData)
             ->will($this->returnValue(true));
 
-        $table = $this->getMock('PHPUnit_Extensions_Database_DataSet_DefaultTable', ['getRowCount'], [$tableMetaData]);
         $table->expects($this->once())
             ->method('getRowCount')
             ->will($this->returnValue(1));
@@ -103,10 +107,15 @@ class Extensions_Database_DataSet_AbstractTableTest extends PHPUnit_Framework_Te
      */
     public function testMatchesWithColumnValueComparisons($tableColumnValues, $otherColumnValues, $matches)
     {
-        $tableMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
-        $otherMetaData = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITableMetaData');
+        $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
 
-        $otherTable = $this->getMock('PHPUnit_Extensions_Database_DataSet_ITable');
+        $table = $this->getMockBuilder(PHPUnit_Extensions_Database_DataSet_DefaultTable::class)
+                      ->setConstructorArgs([$tableMetaData])
+                      ->setMethods(['getRowCount', 'getValue'])
+                      ->getMock();
+
         $otherTable->expects($this->once())
             ->method('getTableMetaData')
             ->will($this->returnValue($otherMetaData));
@@ -122,7 +131,6 @@ class Extensions_Database_DataSet_AbstractTableTest extends PHPUnit_Framework_Te
             ->with($otherMetaData)
             ->will($this->returnValue(true));
 
-        $table = $this->getMock('PHPUnit_Extensions_Database_DataSet_DefaultTable', ['getRowCount', 'getValue'], [$tableMetaData]);
         $table->expects($this->any())
             ->method('getRowCount')
             ->will($this->returnValue(count($tableColumnValues)));
