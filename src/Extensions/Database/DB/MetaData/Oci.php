@@ -25,7 +25,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Dat
      * The command used to perform a TRUNCATE operation.
      * @var string
      */
-    protected $truncateCommand = 'TRUNCATE TABLE';
+    protected $truncateCommand = 'DELETE FROM';
 
     /**
      * @var array
@@ -113,7 +113,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Dat
         }
 
         $query = "SELECT DISTINCT COLUMN_NAME
-                    FROM USER_TAB_COLUMNS
+                    FROM ALL_TAB_COLUMNS
                    WHERE TABLE_NAME='" . $tableParts['table'] . "'
                     $ownerQuery
                    ORDER BY COLUMN_NAME";
