@@ -27,9 +27,6 @@
         "ext-pdo": "*",
         "ext-simplexml": "*"
     },
-    "bin": [
-        "dbunit"
-    ],
     "autoload": {
         "classmap": [
             "src/"

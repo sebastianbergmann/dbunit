@@ -110,25 +110,4 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
           $this->tables, $reverse
         );
     }
-
-    /**
-     * Saves a given $dataset to $filename in YAML format
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet $dataset
-     * @param string                                       $filename
-     */
-    public static function write(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset, $filename)
-    {
-        $pers = new PHPUnit_Extensions_Database_DataSet_Persistors_Yaml();
-        $pers->setFileName($filename);
-
-        try {
-            $pers->write($dataset);
-        }
-
-        catch (RuntimeException $e) {
-            throw new PHPUnit_Framework_Exception(
-              __METHOD__ . ' called with an unwritable file.'
-            );
-        }
-    }
 }

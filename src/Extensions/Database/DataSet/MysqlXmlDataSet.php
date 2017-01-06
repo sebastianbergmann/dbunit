@@ -91,18 +91,4 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
             }
         }
     }
-
-    public static function write(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset, $filename)
-    {
-        $pers = new PHPUnit_Extensions_Database_DataSet_Persistors_MysqlXml;
-        $pers->setFileName($filename);
-
-        try {
-            $pers->write($dataset);
-        }
-
-        catch (RuntimeException $e) {
-            throw new PHPUnit_Framework_Exception(__METHOD__ . ' called with an unwritable file.');
-        }
-    }
 }

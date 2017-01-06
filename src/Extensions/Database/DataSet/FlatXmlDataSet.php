@@ -43,16 +43,4 @@ class PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet extends PHPUnit_Extensi
             }
         }
     }
-
-    public static function write(PHPUnit_Extensions_Database_DataSet_IDataSet $dataset, $filename)
-    {
-        $pers = new PHPUnit_Extensions_Database_DataSet_Persistors_FlatXml();
-        $pers->setFileName($filename);
-
-        try {
-            $pers->write($dataset);
-        } catch (RuntimeException $e) {
-            throw new PHPUnit_Framework_Exception(__METHOD__ . ' called with an unwritable file.');
-        }
-    }
 }
