@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="dbunit" default="setup">
-    <target name="setup" depends="clean,composer"/>
+    <target name="setup" depends="clean,install-dependencies"/>
 
-    <target name="clean" description="Cleanup build artifacts">
+    <target name="clean" unless="clean.done" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build"/>
+        <delete dir="${basedir}/tools"/>
         <delete dir="${basedir}/vendor"/>
         <delete file="${basedir}/composer.lock"/>
+
+        <property name="clean.done" value="true"/>
     </target>
 
-    <target name="composer" depends="clean" description="Install dependencies with Composer">
+    <target name="prepare" unless="prepare.done" depends="clean,install-dependencies,install-tools" description="Prepare for build">
+        <mkdir dir="${basedir}/build"/>
+
+        <property name="prepare.done" value="true"/>
+    </target>
+
+    <target name="install-dependencies" depends="clean" description="Install dependencies with Composer">
         <exec executable="composer" taskname="composer">
             <arg value="update"/>
             <arg value="--no-interaction"/>
@@ -17,5 +27,58 @@
             <arg value="--optimize-autoloader"/>
             <arg value="--prefer-stable"/>
         </exec>
+    </target>
+
+    <target name="install-tools" unless="tools-installed" depends="-tools-installed" description="Install tools using phive">
+        <exec executable="phive" taskname="phive">
+            <arg value="install"/>
+        </exec>
+    </target>
+
+    <target name="package" depends="prepare,-get-version-number-from-git" description="Package as PHAR">
+        <copy todir="${basedir}/build/phar" file="${basedir}/LICENSE" />
+        <copy todir="${basedir}/build/phar" file="${basedir}/manifest.xml" />
+        <copy todir="${basedir}/build/phar/dbunit">
+            <fileset dir="${basedir}/src">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+
+        <copy file="${basedir}/vendor/symfony/yaml/LICENSE" tofile="${basedir}/build/phar/symfony/LICENSE"/>
+        <copy todir="${basedir}/build/phar/symfony">
+            <fileset dir="${basedir}/vendor/symfony">
+                <include name="**/*.php" />
+                <exclude name="**/Tests/**" />
+            </fileset>
+        </copy>
+
+        <exec executable="${basedir}/tools/phpab" taskname="phpab">
+            <arg value="--all" />
+            <arg value="--phar" />
+            <arg value="--output" />
+            <arg path="${basedir}/build/dbunit-${version}.phar" />
+            <arg path="${basedir}/build/phar" />
+        </exec>
+
+        <delete dir="${basedir}/build/phar"/>
+
+        <exec executable="gpg" failonerror="true">
+            <arg value="--local-user"/>
+            <arg value="sb@sebastian-bergmann.de"/>
+            <arg value="--armor"/>
+            <arg value="--detach-sign"/>
+            <arg path="${basedir}/build/dbunit-${version}.phar"/>
+        </exec>
+    </target>
+
+    <target name="-get-version-number-from-git">
+        <exec executable="bash" outputproperty="version" failonerror="true" dir="${basedir}">
+            <arg value="-c" />
+            <arg value="/usr/bin/git describe --abbrev=0" />
+        </exec>
+    </target>
+
+    <target name="-tools-installed">
+        <available file="${basedir}/tools" property="tools-installed" type="dir"/>
     </target>
 </project>
