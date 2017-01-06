@@ -1,5 +1,7 @@
 <?php
-class DefaultDatabaseConnectionTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class DefaultDatabaseConnectionTest extends TestCase
 {
     protected $db;
 

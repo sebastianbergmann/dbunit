@@ -8,9 +8,6 @@
  * file that was distributed with this source code.
  */
 
-/**
- * @since      File available since Release 1.0.0
- */
 class Extensions_Database_DataSet_QueryDataSetTest extends PHPUnit_Extensions_Database_TestCase
 {
     /**

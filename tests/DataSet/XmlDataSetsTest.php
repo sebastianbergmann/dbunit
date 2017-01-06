@@ -8,10 +8,9 @@
  * file that was distributed with this source code.
  */
 
-/**
- * @since      File available since Release 1.0.0
- */
-class Extensions_Database_DataSet_XmlDataSetsTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
 {
     protected $expectedDataSet;
 

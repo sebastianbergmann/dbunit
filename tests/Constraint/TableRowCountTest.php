@@ -8,10 +8,10 @@
  * file that was distributed with this source code.
  */
 
-/**
- * @since      File available since Release 1.0.0
- */
-class Extensions_Database_Constraint_TableRowCountTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\ExpectationFailedException;
+
+class Extensions_Database_Constraint_TableRowCountTest extends TestCase
 {
     public function testConstraint()
     {
@@ -23,7 +23,7 @@ class Extensions_Database_Constraint_TableRowCountTest extends PHPUnit_Framework
 
         try {
             $this->assertThat(24, $constraint, '');
-        } catch (PHPUnit_Framework_ExpectationFailedException $e) {
+        } catch (ExpectationFailedException $e) {
             $this->assertEquals(
                 'Failed asserting that 24 is equal to expected row count 42.',
                 $e->getMessage()

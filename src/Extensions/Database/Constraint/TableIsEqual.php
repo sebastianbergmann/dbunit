@@ -8,12 +8,14 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\Framework\Constraint\Constraint;
+
 /**
  * Asserts whether or not two dbunit tables are equal.
  *
  * @since      Class available since Release 1.0.0
  */
-class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends PHPUnit_Framework_Constraint
+class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends Constraint
 {
     /**
      * @var PHPUnit_Extensions_Database_DataSet_ITable

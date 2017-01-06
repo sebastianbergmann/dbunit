@@ -1,6 +1,4 @@
 /.idea
-/.vagrant
 /composer.lock
-/composer.phar
 /vendor
 
