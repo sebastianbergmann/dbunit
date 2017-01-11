@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\DataSet\Specification\Csv;
+use PHPUnit\DbUnit\DataSet\Specification\Table;
 use PHPUnit\DbUnit\DataSet\Specification\Query;
 use PHPUnit\DbUnit\RuntimeException;
 
@@ -39,7 +40,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Factory implements PHPUnit_Exten
                 return new PHPUnit_Extensions_Database_DataSet_Specs_Yaml();
 
             case 'dbtable':
-                return new PHPUnit_Extensions_Database_DataSet_Specs_DbTable();
+                return new Table();
 
             case 'dbquery':
                 return new Query();

@@ -7,8 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\DataSet\Specification;
+
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\IDatabaseListConsumer;
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DataSet_ISpec;
+use ReflectionClass;
 
 /**
  * Creates a database dataset based off of a spec string.
@@ -32,7 +38,7 @@ use PHPUnit\DbUnit\IDatabaseListConsumer;
  * The column names in the table will be identical to the column aliases in the
  * query.
  */
-class PHPUnit_Extensions_Database_DataSet_Specs_DbTable implements PHPUnit_Extensions_Database_DataSet_ISpec, IDatabaseListConsumer
+class Table implements PHPUnit_Extensions_Database_DataSet_ISpec, IDatabaseListConsumer
 {
     /**
      * @var array
@@ -52,16 +58,16 @@ class PHPUnit_Extensions_Database_DataSet_Specs_DbTable implements PHPUnit_Exten
     /**
      * Creates a DB Data Set from a data set spec.
      *
-     * @param  string                                       $dataSetSpec
+     * @param  string $dataSetSpec
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      */
     public function getDataSet($dataSetSpec)
     {
         list($dbLabel, $schema, $tables) = explode(':', $dataSetSpec, 3);
-        $databaseInfo                    = $this->databases[$dbLabel];
+        $databaseInfo = $this->databases[$dbLabel];
 
-        $pdoRflc      = new ReflectionClass('PDO');
-        $pdo          = $pdoRflc->newInstanceArgs(explode('|', $databaseInfo));
+        $pdoRflc = new ReflectionClass('PDO');
+        $pdo = $pdoRflc->newInstanceArgs(explode('|', $databaseInfo));
         $dbConnection = new DefaultConnection($pdo, $schema);
 
         return !empty($tables) ? $dbConnection->createDataSet(explode(',', $tables)) : $dbConnection->createDataSet();
