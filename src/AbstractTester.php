@@ -8,10 +8,18 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit;
+
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
+use PHPUnit_Extensions_Database_ITester;
+use PHPUnit_Extensions_Database_Operation_Factory;
+use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
+
 /**
  * Can be used as a foundation for new DatabaseTesters.
  */
-abstract class PHPUnit_Extensions_Database_AbstractTester implements PHPUnit_Extensions_Database_ITester
+abstract class AbstractTester implements PHPUnit_Extensions_Database_ITester
 {
     /**
      * @var PHPUnit_Extensions_Database_Operation_IDatabaseOperation
@@ -38,7 +46,7 @@ abstract class PHPUnit_Extensions_Database_AbstractTester implements PHPUnit_Ext
      */
     public function __construct()
     {
-        $this->setUpOperation    = PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT();
+        $this->setUpOperation = PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT();
         $this->tearDownOperation = PHPUnit_Extensions_Database_Operation_Factory::NONE();
     }
 

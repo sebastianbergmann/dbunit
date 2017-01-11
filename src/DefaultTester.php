@@ -8,11 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\AbstractTester;
+
 /**
  * This is the default implementation of the database tester. It receives its
  * connection object from the constructor.
  */
-class PHPUnit_Extensions_Database_DefaultTester extends PHPUnit_Extensions_Database_AbstractTester
+class PHPUnit_Extensions_Database_DefaultTester extends AbstractTester
 {
     /**
      * @var PHPUnit_Extensions_Database_DB_IDatabaseConnection
