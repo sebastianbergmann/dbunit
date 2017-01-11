@@ -12,7 +12,6 @@ namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit_Extensions_Database_DataSet_ISpec;
-use PHPUnit_Extensions_Database_DataSet_Specs_Yaml;
 
 /**
  * Creates the appropriate DataSet Spec based on a given type.
@@ -38,7 +37,7 @@ class Factory implements IFactory
                 return new Csv();
 
             case 'yaml':
-                return new PHPUnit_Extensions_Database_DataSet_Specs_Yaml();
+                return new Yaml();
 
             case 'dbtable':
                 return new Table();
