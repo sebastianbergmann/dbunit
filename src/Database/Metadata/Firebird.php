@@ -7,12 +7,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
+
+namespace PHPUnit\DbUnit\Database\Metadata;
 
 /**
  * Provides functionality to retrieve meta data from a Firebird database.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends Metadata
+class Firebird extends Metadata
 {
     /**
      * The command used to perform a TRUNCATE operation.
@@ -37,7 +38,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends Metadata
             ORDER BY TABLE_NAME
         ";
 
-        $query =  "
+        $query = "
             select
               RDB$RELATION_NAME as TABLE_NAME
             from RDB$RELATIONS
@@ -99,7 +100,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends Metadata
     protected function loadColumnInfo($tableName)
     {
         $this->columns[$tableName] = [];
-        $this->keys[$tableName]    = [];
+        $this->keys[$tableName] = [];
 
         $columnQuery = '
             SELECT DISTINCT
@@ -202,7 +203,8 @@ class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends Metadata
      * @param  string $object
      * @return string
      */
-    public function quoteSchemaObject($object) {
+    public function quoteSchemaObject($object)
+    {
         return $object; //firebird does not allow object quoting
     }
 }
