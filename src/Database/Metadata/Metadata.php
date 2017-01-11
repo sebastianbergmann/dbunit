@@ -12,7 +12,6 @@ namespace PHPUnit\DbUnit\Database\Metadata;
 
 use PDO;
 use PHPUnit\DbUnit\RuntimeException;
-use PHPUnit_Extensions_Database_DB_MetaData_Oci;
 use PHPUnit_Extensions_Database_DB_MetaData_PgSQL;
 use PHPUnit_Extensions_Database_DB_MetaData_Sqlite;
 use PHPUnit_Extensions_Database_DB_MetaData_SqlSrv;
@@ -27,7 +26,7 @@ abstract class Metadata implements IMetadata
     protected static $metaDataClassMap = [
         'pgsql' => PHPUnit_Extensions_Database_DB_MetaData_PgSQL::class,
         'mysql' => MySQL::class,
-        'oci' => PHPUnit_Extensions_Database_DB_MetaData_Oci::class,
+        'oci' => Oci::class,
         'sqlite' => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
         'sqlite2' => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
         'sqlsrv' => PHPUnit_Extensions_Database_DB_MetaData_SqlSrv::class,
