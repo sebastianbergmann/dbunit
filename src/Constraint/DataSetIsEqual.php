@@ -8,12 +8,16 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\Constraint;
+
+use InvalidArgumentException;
 use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
 
 /**
  * Asserts whether or not two dbunit datasets are equal.
  */
-class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends Constraint
+class DataSetIsEqual extends Constraint
 {
     /**
      * @var PHPUnit_Extensions_Database_DataSet_IDataSet
@@ -49,7 +53,7 @@ class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends Constraint
     {
         if (!$other instanceof PHPUnit_Extensions_Database_DataSet_IDataSet) {
             throw new InvalidArgumentException(
-              'PHPUnit_Extensions_Database_DataSet_IDataSet expected'
+                'PHPUnit_Extensions_Database_DataSet_IDataSet expected'
             );
         }
 
@@ -62,7 +66,7 @@ class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends Constraint
      * The beginning of failure messages is "Failed asserting that" in most
      * cases. This method should return the second part of that sentence.
      *
-     * @param  mixed  $other Evaluated value or object.
+     * @param  mixed $other Evaluated value or object.
      * @return string
      */
     protected function failureDescription($other)
@@ -78,7 +82,7 @@ class PHPUnit_Extensions_Database_Constraint_DataSetIsEqual extends Constraint
     public function toString()
     {
         return sprintf(
-          'is equal to expected %s', $this->value->__toString()
+            'is equal to expected %s', $this->value->__toString()
         );
     }
 }

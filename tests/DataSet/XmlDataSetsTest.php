@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
@@ -75,7 +76,7 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
 
     public function testFlatXmlDataSet()
     {
-        $constraint     = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedDataSet);
+        $constraint     = new DataSetIsEqual($this->expectedDataSet);
         $xmlFlatDataSet = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/FlatXmlDataSet.xml');
 
         self::assertThat($xmlFlatDataSet, $constraint);
@@ -83,7 +84,7 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
 
     public function testXmlDataSet()
     {
-        $constraint = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedDataSet);
+        $constraint = new DataSetIsEqual($this->expectedDataSet);
         $xmlDataSet = new PHPUnit_Extensions_Database_DataSet_XmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/XmlDataSet.xml');
 
         self::assertThat($xmlDataSet, $constraint);
@@ -91,7 +92,7 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
 
     public function testMysqlXmlDataSet()
     {
-        $constraint      = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedDataSet);
+        $constraint      = new DataSetIsEqual($this->expectedDataSet);
         $mysqlXmlDataSet = new PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/MysqlXmlDataSet.xml');
 
         self::assertThat($mysqlXmlDataSet, $constraint);

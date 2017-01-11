@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_FilterTest extends TestCase
@@ -23,7 +24,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
 
     public function testDeprecatedFilteredDataSetConstructor()
     {
-        $constraint = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedDataSet);
+        $constraint = new DataSetIsEqual($this->expectedDataSet);
         $dataSet    = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
@@ -39,7 +40,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
 
     public function testExcludeFilteredDataSet()
     {
-        $constraint = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedDataSet);
+        $constraint = new DataSetIsEqual($this->expectedDataSet);
         $dataSet    = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
@@ -55,7 +56,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
 
     public function testIncludeFilteredDataSet()
     {
-        $constraint = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedDataSet);
+        $constraint = new DataSetIsEqual($this->expectedDataSet);
         $dataSet    = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
@@ -71,7 +72,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
 
     public function testIncludeExcludeMixedDataSet()
     {
-        $constraint = new PHPUnit_Extensions_Database_Constraint_DataSetIsEqual($this->expectedDataSet);
+        $constraint = new DataSetIsEqual($this->expectedDataSet);
         $dataSet    = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
