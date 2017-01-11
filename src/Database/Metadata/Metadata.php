@@ -12,7 +12,6 @@ namespace PHPUnit\DbUnit\Database\Metadata;
 
 use PDO;
 use PHPUnit\DbUnit\RuntimeException;
-use PHPUnit_Extensions_Database_DB_MetaData_SqlSrv;
 use ReflectionClass;
 
 /**
@@ -27,7 +26,7 @@ abstract class Metadata implements IMetadata
         'oci' => Oci::class,
         'sqlite' => Sqlite::class,
         'sqlite2' => Sqlite::class,
-        'sqlsrv' => PHPUnit_Extensions_Database_DB_MetaData_SqlSrv::class,
+        'sqlsrv' => SqlSrv::class,
         'firebird' => Firebird::class,
         'dblib' => Dblib::class
     ];

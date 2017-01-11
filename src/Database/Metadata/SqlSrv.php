@@ -7,12 +7,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
+
+namespace PHPUnit\DbUnit\Database\Metadata;
+
+use PDO;
+use PDOException;
 
 /**
  * Provides functionality to retrieve meta data from a Microsoft SQL Server database.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends Metadata
+class SqlSrv extends Metadata
 {
     /**
      * No character used to quote schema objects.
@@ -82,7 +86,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends Metadata
      */
     public function getTablePrimaryKeys($tableName)
     {
-        $query     = "EXEC sp_statistics '$tableName'";
+        $query = "EXEC sp_statistics '$tableName'";
         $statement = $this->pdo->prepare($query);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_ASSOC);
@@ -107,8 +111,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends Metadata
         try {
             $query = "SET IDENTITY_INSERT $tableName ON";
             $this->pdo->exec($query);
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             // ignore the error here - can happen if primary key is not an identity
         }
     }
@@ -123,8 +126,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_SqlSrv extends Metadata
         try {
             $query = "SET IDENTITY_INSERT $tableName OFF";
             $this->pdo->exec($query);
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             // ignore the error here - can happen if primary key is not an identity
         }
     }
