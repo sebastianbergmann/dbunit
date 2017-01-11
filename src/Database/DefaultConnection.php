@@ -13,7 +13,6 @@ namespace PHPUnit\DbUnit\Database;
 use PDO;
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_QueryTable;
-use PHPUnit_Extensions_Database_DB_FilteredDataSet;
 use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 use PHPUnit_Extensions_Database_DB_IMetaData;
 use PHPUnit_Extensions_Database_DB_MetaData;
@@ -92,7 +91,7 @@ class DefaultConnection implements PHPUnit_Extensions_Database_DB_IDatabaseConne
         if (empty($tableNames)) {
             return new DataSet($this);
         } else {
-            return new PHPUnit_Extensions_Database_DB_FilteredDataSet($this, $tableNames);
+            return new FilteredDataSet($this, $tableNames);
         }
     }
 
