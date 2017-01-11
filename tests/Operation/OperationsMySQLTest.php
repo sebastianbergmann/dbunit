@@ -10,10 +10,6 @@
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
 
-/**
- * @version    SVN: $Id$
- * @since      File available since Release 1.0.0
- */
 class Extensions_Database_Operation_OperationsMySQLTest extends PHPUnit_Extensions_Database_TestCase
 {
     protected function setUp()

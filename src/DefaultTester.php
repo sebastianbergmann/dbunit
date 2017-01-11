@@ -11,8 +11,6 @@
 /**
  * This is the default implementation of the database tester. It receives its
  * connection object from the constructor.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DefaultTester extends PHPUnit_Extensions_Database_AbstractTester
 {

@@ -12,8 +12,6 @@
  * Creates Composite Datasets
  *
  * Allows for creating datasets from multiple sources (csv, query, xml, etc.)
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {

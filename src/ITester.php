@@ -12,8 +12,6 @@
  * This is the interface for DatabaseTester objects. These objects are used to
  * add database testing to existing test cases using composition instead of
  * extension.
- *
- * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_ITester
 {

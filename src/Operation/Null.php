@@ -10,8 +10,6 @@
 
 /**
  * This class represents a null database operation.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Null implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {

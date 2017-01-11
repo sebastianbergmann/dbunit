@@ -12,8 +12,6 @@
  * Allows for replacing arbitrary values or portions of values with new data.
  *
  * A usage for this is replacing all values == '[NULL'] with a true NULL value
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {

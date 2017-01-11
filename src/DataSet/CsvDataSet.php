@@ -12,8 +12,6 @@
  * Creates CsvDataSets.
  *
  * You can incrementally add CSV files as tables to your datasets
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {

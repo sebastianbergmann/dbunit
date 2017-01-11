@@ -10,8 +10,6 @@
 
 /**
  * An interface for data set spec factories.
- *
- * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_DataSet_Specs_IFactory
 {

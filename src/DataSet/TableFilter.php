@@ -10,8 +10,6 @@
 
 /**
  * A table decorator that allows filtering out table columns from results.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions_Database_DataSet_AbstractTable
 {

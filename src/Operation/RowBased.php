@@ -15,8 +15,6 @@
  * one, buildOperationQuery(), must return a query that will be used to create
  * a prepared statement. The second one, buildOperationArguments(), should
  * return an array containing arguments for each row.
- *
- * @since      Class available since Release 1.0.0
  */
 abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {

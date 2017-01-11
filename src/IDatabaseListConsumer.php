@@ -10,8 +10,6 @@
 
 /**
  * An interface for classes that require a list of databases to operate.
- *
- * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_IDatabaseListConsumer
 {

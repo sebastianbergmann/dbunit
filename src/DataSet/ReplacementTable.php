@@ -11,7 +11,6 @@
 /**
  * Allows for replacing arbitrary strings in your data sets with other values.
  *
- * @since      Class available since Release 1.0.0
  * @todo When setTableMetaData() is taken out of the AbstractTable this class should extend AbstractTable.
  */
 class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Extensions_Database_DataSet_ITable

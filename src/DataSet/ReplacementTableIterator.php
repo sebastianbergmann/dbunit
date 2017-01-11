@@ -10,8 +10,6 @@
 
 /**
  * The default table iterator
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements OuterIterator, PHPUnit_Extensions_Database_DataSet_ITableIterator
 {

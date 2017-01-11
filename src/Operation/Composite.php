@@ -13,8 +13,6 @@
  * operation pass an array of classes that implement
  * PHPUnit_Extensions_Database_Operation_IDatabaseOperation and they will be
  * executed in that order against all data sets.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Composite implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {

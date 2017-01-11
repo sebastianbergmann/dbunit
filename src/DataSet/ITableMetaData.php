@@ -10,8 +10,6 @@
 
 /**
  * Provides a basic interface for returning table meta data.
- *
- * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_DataSet_ITableMetaData
 {

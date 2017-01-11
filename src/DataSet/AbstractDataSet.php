@@ -10,8 +10,6 @@
 
 /**
  * Implements the basic functionality of data sets.
- *
- * @since      Class available since Release 1.0.0
  */
 abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PHPUnit_Extensions_Database_DataSet_IDataSet
 {

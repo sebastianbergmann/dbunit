@@ -10,8 +10,6 @@
 
 /**
  * Creates the appropriate DataSet Spec based on a given type.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_Specs_Factory implements PHPUnit_Extensions_Database_DataSet_Specs_IFactory
 {

@@ -10,9 +10,6 @@
 
 /**
  * Provides functionality to retrieve meta data from a Firebird database.
- *
- * @version    Release: 1.1.2
- * @since
  */
 class PHPUnit_Extensions_Database_DB_MetaData_Firebird extends PHPUnit_Extensions_Database_DB_MetaData
 {

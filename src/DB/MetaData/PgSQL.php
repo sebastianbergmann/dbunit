@@ -10,8 +10,6 @@
 
 /**
  * Provides functionality to retrieve meta data from a PostgreSQL database.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_Database_DB_MetaData
 {

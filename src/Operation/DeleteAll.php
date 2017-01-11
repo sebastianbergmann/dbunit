@@ -10,8 +10,6 @@
 
 /**
  * Deletes all rows from all tables in a dataset.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_DeleteAll implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {

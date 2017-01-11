@@ -10,8 +10,6 @@
 
 /**
  * Provides iterative access to tables from a database instance.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_TableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterator
 {

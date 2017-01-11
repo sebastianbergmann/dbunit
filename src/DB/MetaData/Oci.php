@@ -10,8 +10,6 @@
 
 /**
  * Provides functionality to retrieve meta data from an Oracle database.
- *
- * @since      Class available since Release 3.2.3
  */
 class PHPUnit_Extensions_Database_DB_MetaData_Oci extends PHPUnit_Extensions_Database_DB_MetaData
 {

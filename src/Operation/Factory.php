@@ -10,8 +10,6 @@
 
 /**
  * A class factory to easily return database operations.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Factory
 {

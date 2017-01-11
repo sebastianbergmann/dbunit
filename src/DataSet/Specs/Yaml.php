@@ -17,8 +17,6 @@
  *
  * The filename should be the location of a yaml file relative to the
  * current working directory.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_Specs_Yaml implements PHPUnit_Extensions_Database_DataSet_ISpec
 {

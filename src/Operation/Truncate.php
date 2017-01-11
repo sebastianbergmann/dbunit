@@ -10,8 +10,6 @@
 
 /**
  * Executes a truncate against all tables in a dataset.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Truncate implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {

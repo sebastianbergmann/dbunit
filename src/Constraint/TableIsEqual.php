@@ -12,8 +12,6 @@ use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * Asserts whether or not two dbunit tables are equal.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Constraint_TableIsEqual extends Constraint
 {

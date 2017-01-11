@@ -10,8 +10,6 @@
 
 /**
  * The default implementation of table meta data
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData extends PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData
 {

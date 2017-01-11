@@ -10,8 +10,6 @@
 
 /**
  * This class provides functionality for inserting rows from a dataset into a database.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Insert extends PHPUnit_Extensions_Database_Operation_RowBased
 {

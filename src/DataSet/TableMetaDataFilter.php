@@ -14,8 +14,6 @@
  *
  * The if a whitelist (include) filter is specified, then only those columns
  * will be included.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData
 {

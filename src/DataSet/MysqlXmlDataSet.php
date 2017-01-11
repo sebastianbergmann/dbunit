@@ -10,8 +10,6 @@
 
 /**
  * Data set implementation for the output of mysqldump --xml.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
 {

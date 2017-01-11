@@ -10,8 +10,6 @@
 
 /**
  * Provides a basic interface for creating and reading data from data sets.
- *
- * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_DataSet_ITable
 {

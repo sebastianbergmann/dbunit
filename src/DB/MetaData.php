@@ -11,8 +11,6 @@
 /**
  * Provides a basic constructor for all meta data classes and a factory for
  * generating the appropriate meta data class.
- *
- * @since      Class available since Release 1.0.0
  */
 abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extensions_Database_DB_IMetaData
 {

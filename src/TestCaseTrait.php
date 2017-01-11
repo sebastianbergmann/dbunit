@@ -147,7 +147,6 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
      *
      * @param  string                                              $xmlFile
      * @return PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet
-     * @since  Method available since Release 1.0.0
      */
     protected function createMySQLXMLDataSet($xmlFile)
     {

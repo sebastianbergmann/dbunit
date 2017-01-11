@@ -10,8 +10,6 @@
 
 /**
  * Provides a basic functionality for dbunit tables
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Extensions_Database_DataSet_ITable
 {

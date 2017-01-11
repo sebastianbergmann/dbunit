@@ -10,8 +10,6 @@
 
 /**
  * Provides an interface for creating data sets from data set spec strings.
- *
- * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_DataSet_ISpec
 {

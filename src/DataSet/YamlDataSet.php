@@ -12,8 +12,6 @@
  * Creates YamlDataSets.
  *
  * You can incrementally add YAML files as tables to your datasets
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {

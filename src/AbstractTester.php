@@ -10,8 +10,6 @@
 
 /**
  * Can be used as a foundation for new DatabaseTesters.
- *
- * @since      Class available since Release 1.0.0
  */
 abstract class PHPUnit_Extensions_Database_AbstractTester implements PHPUnit_Extensions_Database_ITester
 {

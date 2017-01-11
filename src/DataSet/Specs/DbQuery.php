@@ -30,8 +30,6 @@
  * The sql is the query you want to use to generate the table columns and data.
  * The column names in the table will be identical to the column aliases in the
  * query.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_Specs_DbQuery implements PHPUnit_Extensions_Database_DataSet_ISpec, PHPUnit_Extensions_Database_IDatabaseListConsumer
 {

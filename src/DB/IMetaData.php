@@ -10,8 +10,6 @@
 
 /**
  * Provides a basic interface for retreiving metadata from a database.
- *
- * @since      Class available since Release 1.0.0
  */
 interface PHPUnit_Extensions_Database_DB_IMetaData
 {

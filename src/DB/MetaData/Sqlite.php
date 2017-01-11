@@ -10,8 +10,6 @@
 
 /**
  * Provides functionality to retrieve meta data from an Sqlite database.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_MetaData_Sqlite extends PHPUnit_Extensions_Database_DB_MetaData
 {

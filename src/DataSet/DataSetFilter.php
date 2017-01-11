@@ -11,8 +11,6 @@
 /**
  * A dataset decorator that allows filtering out tables and table columns from
  * results.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {

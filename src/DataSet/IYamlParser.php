@@ -10,8 +10,6 @@
 
 /**
  * An interface for parsing YAML files.
- *
- * @since      Class available since Release 1.3.1
  */
 interface PHPUnit_Extensions_Database_DataSet_IYamlParser {
     /**

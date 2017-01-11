@@ -10,8 +10,6 @@
 
 /**
  * Implements the basic functionality of data sets using a PHP array.
- *
- * @since      Class available since Release 1.3.2
  */
 class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {

@@ -13,8 +13,6 @@ use PHPUnit\Framework\TestCase;
 /**
  * A TestCase extension that provides functionality for testing and asserting
  * against a real database.
- *
- * @since      Class available since Release 1.0.0
  */
 abstract class PHPUnit_Extensions_Database_TestCase extends TestCase
 {

@@ -15,7 +15,6 @@
  * @deprecated The PHPUnit_Extension_Database_DataSet_QueryTable should be used instead
  * @see        PHPUnit_Extension_Database_DataSet_QueryTable
  * @see        PHPUnit_Extension_Database_DataSet_QueryDataSet
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_ResultSetTable extends PHPUnit_Extensions_Database_DataSet_AbstractTable
 {

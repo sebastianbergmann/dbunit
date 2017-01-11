@@ -21,8 +21,6 @@
  * delimiter (defaults to ',',) enclosure (defaults to '"',) escape (defaults to '"',).
  *
  * Any additional characters in the csv options will be discarded.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extensions_Database_DataSet_ISpec
 {

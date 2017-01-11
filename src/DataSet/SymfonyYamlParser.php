@@ -10,8 +10,6 @@
 
 /**
  * The default YAML parser, using Symfony/Yaml.
- *
- * @since      Class available since Release 1.3.1
  */
 class PHPUnit_Extensions_Database_DataSet_SymfonyYamlParser implements PHPUnit_Extensions_Database_DataSet_IYamlParser {
     public function parseYaml($yamlFile) {

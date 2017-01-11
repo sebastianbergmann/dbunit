@@ -10,8 +10,6 @@
 
 /**
  * Provides functionality to retrieve meta data from a database with information_schema support.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_MetaData_InformationSchema extends PHPUnit_Extensions_Database_DB_MetaData
 {

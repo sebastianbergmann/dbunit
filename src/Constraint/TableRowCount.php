@@ -12,8 +12,6 @@ use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * Asserts the row count in a table
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Constraint_TableRowCount extends Constraint
 {

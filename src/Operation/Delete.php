@@ -10,8 +10,6 @@
 
 /**
  * Deletes the rows in a given dataset using primary key columns.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_Operation_Delete extends PHPUnit_Extensions_Database_Operation_RowBased
 {

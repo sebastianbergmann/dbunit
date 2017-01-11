@@ -10,8 +10,6 @@
 
 /**
  * Provides the functionality to represent a database table.
- *
- * @since      Class available since Release 1.0.0
  */
 class PHPUnit_Extensions_Database_DB_Table extends PHPUnit_Extensions_Database_DataSet_AbstractTable
 {
