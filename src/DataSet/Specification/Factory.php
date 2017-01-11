@@ -12,7 +12,6 @@ namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit_Extensions_Database_DataSet_ISpec;
-use PHPUnit_Extensions_Database_DataSet_Specs_FlatXml;
 use PHPUnit_Extensions_Database_DataSet_Specs_IFactory;
 use PHPUnit_Extensions_Database_DataSet_Specs_Xml;
 use PHPUnit_Extensions_Database_DataSet_Specs_Yaml;
@@ -35,7 +34,7 @@ class Factory implements PHPUnit_Extensions_Database_DataSet_Specs_IFactory
                 return new PHPUnit_Extensions_Database_DataSet_Specs_Xml();
 
             case 'flatxml':
-                return new PHPUnit_Extensions_Database_DataSet_Specs_FlatXml();
+                return new FlatXml();
 
             case 'csv':
                 return new Csv();

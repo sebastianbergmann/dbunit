@@ -8,6 +8,11 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet\Specification;
+
+use PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet;
+use PHPUnit_Extensions_Database_DataSet_ISpec;
+
 /**
  * Creates a FlatXML dataset based off of a spec string.
  *
@@ -18,12 +23,12 @@
  * The filename should be the location of a flat xml file relative to the
  * current working directory.
  */
-class PHPUnit_Extensions_Database_DataSet_Specs_FlatXml implements PHPUnit_Extensions_Database_DataSet_ISpec
+class FlatXml implements PHPUnit_Extensions_Database_DataSet_ISpec
 {
     /**
      * Creates Flat XML Data Set from a data set spec.
      *
-     * @param  string                                             $dataSetSpec
+     * @param  string $dataSetSpec
      * @return PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet
      */
     public function getDataSet($dataSetSpec)
