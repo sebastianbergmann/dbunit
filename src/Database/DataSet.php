@@ -43,7 +43,7 @@ class PHPUnit_Extensions_Database_DB_DataSet extends PHPUnit_Extensions_Database
      * Creates the query necessary to pull all of the data from a table.
      *
      * @param  PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData
-     * @return unknown
+     * @return string
      */
     public static function buildTableSelect(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection = NULL)
     {
