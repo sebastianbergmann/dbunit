@@ -8,10 +8,17 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\Database;
+
+use PDO;
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DB_IMetaData;
+
 /**
  * Provides a basic interface for communicating with a database.
  */
-interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
+interface IConnection
 {
     /**
      * Close this connection.
@@ -23,7 +30,7 @@ interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
      * names are specified then it will created a dataset over the entire
      * database.
      *
-     * @param  array                                        $tableNames
+     * @param  array $tableNames
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      */
     public function createDataSet(array $tableNames = null);
@@ -31,8 +38,8 @@ interface PHPUnit_Extensions_Database_DB_IDatabaseConnection
     /**
      * Creates a table with the result of the specified SQL statement.
      *
-     * @param  string                                     $resultName
-     * @param  string                                     $sql
+     * @param  string $resultName
+     * @param  string $sql
      * @return PHPUnit_Extensions_Database_DataSet_ITable
      */
     public function createQueryTable($resultName, $sql);

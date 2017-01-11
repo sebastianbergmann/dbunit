@@ -15,7 +15,6 @@ use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit_Extensions_Database_DataSet_AbstractDataSet;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
-use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 use PHPUnit_Extensions_Database_DB_Table;
 use PHPUnit_Extensions_Database_DB_TableIterator;
 
@@ -34,16 +33,16 @@ class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
     /**
      * The database connection this dataset is using.
      *
-     * @var PHPUnit_Extensions_Database_DB_IDatabaseConnection
+     * @var IConnection
      */
     protected $databaseConnection;
 
     /**
      * Creates a new dataset using the given database connection.
      *
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection
+     * @param IConnection $databaseConnection
      */
-    public function __construct(PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection)
+    public function __construct(IConnection $databaseConnection)
     {
         $this->databaseConnection = $databaseConnection;
     }
@@ -54,7 +53,7 @@ class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
      * @param  PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData
      * @return string
      */
-    public static function buildTableSelect(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection = null)
+    public static function buildTableSelect(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, IConnection $databaseConnection = null)
     {
         if ($tableMetaData->getTableName() == '') {
             $e = new RuntimeException('Empty Table Name');

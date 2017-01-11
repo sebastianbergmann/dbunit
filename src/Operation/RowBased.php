@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\IConnection;
 
 /**
  * Provides basic functionality for row based operations.
@@ -28,7 +29,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
     /**
      * @return string|bool String containing the query or FALSE if a valid query cannot be constructed
      */
-    protected abstract function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection);
+    protected abstract function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection);
 
     protected abstract function buildOperationArguments(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, $row);
 
@@ -37,18 +38,18 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData
      * @param PHPUnit_Extensions_Database_DataSet_ITable         $table
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection
+     * @param IConnection $connection
      */
-    protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection)
     {
         return false;
     }
 
     /**
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection
+     * @param IConnection $connection
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet       $dataSet
      */
-    public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function execute(IConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
         $databaseDataSet = $connection->createDataSet();
 
@@ -97,7 +98,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
         }
     }
 
-    protected function buildPreparedColumnArray($columns, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    protected function buildPreparedColumnArray($columns, IConnection $connection)
     {
         $columnArray = [];
 

@@ -21,7 +21,7 @@ use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet;
 use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
 use PHPUnit\DbUnit\Database\DefaultConnection;
-use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
+use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit_Extensions_Database_Operation_Factory;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
@@ -35,9 +35,9 @@ trait TestCaseTrait
     /**
      * Closes the specified connection.
      *
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection
+     * @param IConnection $connection
      */
-    protected function closeConnection(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    protected function closeConnection(IConnection $connection)
     {
         $this->getDatabaseTester()->closeConnection($connection);
     }
@@ -45,7 +45,7 @@ trait TestCaseTrait
     /**
      * Returns the test database connection.
      *
-     * @return PHPUnit_Extensions_Database_DB_IDatabaseConnection
+     * @return IConnection
      */
     protected abstract function getConnection();
 

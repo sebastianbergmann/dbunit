@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\Database\DataSet;
+use PHPUnit\DbUnit\Database\IConnection;
 
 /**
  * Provides the functionality to represent a database table.
@@ -18,9 +19,9 @@ class PHPUnit_Extensions_Database_DB_Table extends PHPUnit_Extensions_Database_D
      * Creates a new database table object.
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection
+     * @param IConnection $databaseConnection
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection)
+    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, IConnection $databaseConnection)
     {
         $this->setTableMetaData($tableMetaData);
 

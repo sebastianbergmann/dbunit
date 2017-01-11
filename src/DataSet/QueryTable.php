@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\IConnection;
 
 /**
  * Provides the functionality to represent a database table.
@@ -19,7 +20,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
     protected $query;
 
     /**
-     * @var PHPUnit_Extensions_Database_DB_IDatabaseConnection
+     * @var IConnection
      */
     protected $databaseConnection;
 
@@ -33,9 +34,9 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
      *
      * @param string                                             $table_name
      * @param string                                             $query
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection
+     * @param IConnection $databaseConnection
      */
-    public function __construct($tableName, $query, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection)
+    public function __construct($tableName, $query, IConnection $databaseConnection)
     {
         $this->query              = $query;
         $this->databaseConnection = $databaseConnection;

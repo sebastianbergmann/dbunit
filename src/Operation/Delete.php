@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\IConnection;
 
 /**
  * Deletes the rows in a given dataset using primary key columns.
@@ -17,7 +18,7 @@ class PHPUnit_Extensions_Database_Operation_Delete extends PHPUnit_Extensions_Da
 
     protected $iteratorDirection = self::ITERATOR_TYPE_REVERSE;
 
-    protected function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    protected function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection)
     {
         $keys = $databaseTableMetaData->getPrimaryKeys();
 

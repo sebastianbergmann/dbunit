@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit;
 
-use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
+use PHPUnit\DbUnit\Database\IConnection;
 
 /**
  * This is the default implementation of the database tester. It receives its
@@ -19,16 +19,16 @@ use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 class DefaultTester extends AbstractTester
 {
     /**
-     * @var PHPUnit_Extensions_Database_DB_IDatabaseConnection
+     * @var IConnection
      */
     protected $connection;
 
     /**
      * Creates a new default database tester using the given connection.
      *
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection
+     * @param IConnection $connection
      */
-    public function __construct(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    public function __construct(IConnection $connection)
     {
         parent::__construct();
 
@@ -38,7 +38,7 @@ class DefaultTester extends AbstractTester
     /**
      * Returns the test database connection.
      *
-     * @return PHPUnit_Extensions_Database_DB_IDatabaseConnection
+     * @return IConnection
      */
     public function getConnection()
     {

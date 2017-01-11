@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -39,7 +40,7 @@ class PHPUnit_Extensions_Database_Operation_Composite implements PHPUnit_Extensi
         }
     }
 
-    public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function execute(IConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
         try {
             foreach ($this->operations as $operation) {

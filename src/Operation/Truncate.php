@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\IConnection;
 
 /**
  * Executes a truncate against all tables in a dataset.
@@ -20,7 +21,7 @@ class PHPUnit_Extensions_Database_Operation_Truncate implements PHPUnit_Extensio
         $this->useCascade = $cascade;
     }
 
-    public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function execute(IConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
         foreach ($dataSet->getReverseIterator() as $table) {
             /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
@@ -48,21 +49,21 @@ class PHPUnit_Extensions_Database_Operation_Truncate implements PHPUnit_Extensio
         }
     }
 
-    private function disableForeignKeyChecksForMysql(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    private function disableForeignKeyChecksForMysql(IConnection $connection)
     {
         if ($this->isMysql($connection)) {
             $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS = 0');
         }
     }
 
-    private function enableForeignKeyChecksForMysql(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    private function enableForeignKeyChecksForMysql(IConnection $connection)
     {
         if ($this->isMysql($connection)) {
             $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS = 1');
         }
     }
 
-    private function isMysql(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    private function isMysql(IConnection $connection)
     {
         return $connection->getConnection()->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql';
     }

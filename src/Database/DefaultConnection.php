@@ -13,7 +13,6 @@ namespace PHPUnit\DbUnit\Database;
 use PDO;
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_QueryTable;
-use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 use PHPUnit_Extensions_Database_DB_IMetaData;
 use PHPUnit_Extensions_Database_DB_MetaData;
 use PHPUnit_Extensions_Database_DB_Table;
@@ -21,7 +20,7 @@ use PHPUnit_Extensions_Database_DB_Table;
 /**
  * Provides a basic interface for communicating with a database.
  */
-class DefaultConnection implements PHPUnit_Extensions_Database_DB_IDatabaseConnection
+class DefaultConnection implements IConnection
 {
     /**
      * @var PDO

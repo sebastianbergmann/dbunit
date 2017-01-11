@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -25,16 +26,16 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends PHPUnit_Extension
     /**
      * The database connection this dataset is using.
      *
-     * @var PHPUnit_Extensions_Database_DB_IDatabaseConnection
+     * @var IConnection
      */
     protected $databaseConnection;
 
     /**
      * Creates a new dataset using the given database connection.
      *
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection
+     * @param IConnection $databaseConnection
      */
-    public function __construct(PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection)
+    public function __construct(IConnection $databaseConnection)
     {
         $this->databaseConnection = $databaseConnection;
     }

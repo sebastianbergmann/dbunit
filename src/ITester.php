@@ -11,7 +11,7 @@
 namespace PHPUnit\DbUnit;
 
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
-use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
+use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
@@ -24,14 +24,14 @@ interface ITester
     /**
      * Closes the specified connection.
      *
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection
+     * @param IConnection $connection
      */
-    public function closeConnection(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection);
+    public function closeConnection(IConnection $connection);
 
     /**
      * Returns the test database connection.
      *
-     * @return PHPUnit_Extensions_Database_DB_IDatabaseConnection
+     * @return IConnection
      */
     public function getConnection();
 

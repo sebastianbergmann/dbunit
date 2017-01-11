@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
+use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -139,7 +140,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
         $mockDatabaseDataSet = $this->createMock(PHPUnit_Extensions_Database_DataSet_DefaultDataSet::class);
         $mockDatabaseDataSet->expects($this->never())->method('getTableMetaData');
 
-        $mockConnection = $this->createMock(PHPUnit_Extensions_Database_DB_IDatabaseConnection::class);
+        $mockConnection = $this->createMock(IConnection::class);
         $mockConnection->expects($this->once())->method('createDataSet')->will($this->returnValue($mockDatabaseDataSet));
         foreach (['getConnection', 'disablePrimaryKeys', 'enablePrimaryKeys'] as $method) {
             $mockConnection->expects($this->never())->method($method);

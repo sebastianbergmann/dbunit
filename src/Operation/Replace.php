@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\IConnection;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
@@ -15,7 +16,7 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
 {
     protected $operationName = 'REPLACE';
 
-    protected function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
+    protected function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection)
     {
         $keys = $databaseTableMetaData->getPrimaryKeys();
 
@@ -42,10 +43,10 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
     }
 
     /**
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection
+     * @param IConnection $connection
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet       $dataSet
      */
-    public function execute(PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function execute(IConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
         $insertOperation = new PHPUnit_Extensions_Database_Operation_Insert;
         $updateOperation = new PHPUnit_Extensions_Database_Operation_Update;

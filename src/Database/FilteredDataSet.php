@@ -10,8 +10,6 @@
 
 namespace PHPUnit\DbUnit\Database;
 
-use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
-
 /**
  * Provides access to a database instance as a data set.
  */
@@ -25,9 +23,9 @@ class FilteredDataSet extends DataSet
     /**
      * Creates a new dataset using the given database connection.
      *
-     * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection
+     * @param IConnection $databaseConnection
      */
-    public function __construct(PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection, array $tableNames)
+    public function __construct(IConnection $databaseConnection, array $tableNames)
     {
         parent::__construct($databaseConnection);
         $this->tableNames = $tableNames;
