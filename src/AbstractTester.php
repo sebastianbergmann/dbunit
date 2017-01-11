@@ -103,7 +103,7 @@ abstract class PHPUnit_Extensions_Database_AbstractTester implements PHPUnit_Ext
     /**
      * Sets the DatabaseOperation to call when starting the test.
      *
-     * @param PHPUnit_Extensions_Database_Operation_DatabaseOperation $setUpOperation
+     * @param PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation
      */
     public function setSetUpOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation)
     {
@@ -113,7 +113,7 @@ abstract class PHPUnit_Extensions_Database_AbstractTester implements PHPUnit_Ext
     /**
      * Sets the DatabaseOperation to call when ending the test.
      *
-     * @param PHPUnit_Extensions_Database_Operation_DatabaseOperation $tearDownOperation
+     * @param PHPUnit_Extensions_Database_Operation_IDatabaseOperation $tearDownOperation
      */
     public function setTearDownOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $tearDownOperation)
     {
@@ -133,7 +133,7 @@ abstract class PHPUnit_Extensions_Database_AbstractTester implements PHPUnit_Ext
     /**
      * Returns the database operation that will be called when starting the test.
      *
-     * @return PHPUnit_Extensions_Database_Operation_DatabaseOperation
+     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      */
     protected function getSetUpOperation()
     {
@@ -143,7 +143,7 @@ abstract class PHPUnit_Extensions_Database_AbstractTester implements PHPUnit_Ext
     /**
      * Returns the database operation that will be called when ending the test.
      *
-     * @return PHPUnit_Extensions_Database_Operation_DatabaseOperation
+     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      */
     protected function getTearDownOperation()
     {

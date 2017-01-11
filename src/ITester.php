@@ -65,14 +65,14 @@ interface PHPUnit_Extensions_Database_ITester
     /**
      * Sets the DatabaseOperation to call when starting the test.
      *
-     * @param PHPUnit_Extensions_Database_Operation_DatabaseOperation $setUpOperation
+     * @param PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation
      */
     public function setSetUpOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation);
 
     /**
      * Sets the DatabaseOperation to call when stopping the test.
      *
-     * @param PHPUnit_Extensions_Database_Operation_DatabaseOperation $tearDownOperation
+     * @param PHPUnit_Extensions_Database_Operation_IDatabaseOperation $tearDownOperation
      */
     public function setTearDownOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $tearDownOperation);
 }

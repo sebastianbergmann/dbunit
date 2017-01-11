@@ -58,7 +58,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
     /**
      * Returns the database operation executed in test setup.
      *
-     * @return PHPUnit_Extensions_Database_Operation_DatabaseOperation
+     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      */
     protected function getSetUpOperation()
     {
@@ -68,7 +68,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
     /**
      * Returns the database operation executed in test cleanup.
      *
-     * @return PHPUnit_Extensions_Database_Operation_DatabaseOperation
+     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      */
     protected function getTearDownOperation()
     {
