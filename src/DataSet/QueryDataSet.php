@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\TableIterator;
 use PHPUnit\DbUnit\Database\Table;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
@@ -55,7 +56,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends PHPUnit_Extension
      * true a reverse iterator will be returned.
      *
      * @param  bool                                         $reverse
-     * @return PHPUnit_Extensions_Database_DB_TableIterator
+     * @return TableIterator
      */
     protected function createIterator($reverse = false)
     {

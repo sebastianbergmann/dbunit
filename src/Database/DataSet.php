@@ -15,7 +15,6 @@ use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit_Extensions_Database_DataSet_AbstractDataSet;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
-use PHPUnit_Extensions_Database_DB_TableIterator;
 
 /**
  * Provides access to a database instance as a data set.
@@ -90,11 +89,11 @@ class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
      * true a reverse iterator will be returned.
      *
      * @param  bool $reverse
-     * @return PHPUnit_Extensions_Database_DB_TableIterator
+     * @return TableIterator
      */
     protected function createIterator($reverse = false)
     {
-        return new PHPUnit_Extensions_Database_DB_TableIterator($this->getTableNames(), $this, $reverse);
+        return new TableIterator($this->getTableNames(), $this, $reverse);
     }
 
     /**

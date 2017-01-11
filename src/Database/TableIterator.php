@@ -7,12 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Database\DataSet;
+
+namespace PHPUnit\DbUnit\Database;
+
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides iterative access to tables from a database instance.
  */
-class PHPUnit_Extensions_Database_DB_TableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterator
+class TableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterator
 {
     /**
      * An array of tablenames.
@@ -39,8 +44,8 @@ class PHPUnit_Extensions_Database_DB_TableIterator implements PHPUnit_Extensions
     public function __construct($tableNames, DataSet $dataSet, $reverse = false)
     {
         $this->tableNames = $tableNames;
-        $this->dataSet    = $dataSet;
-        $this->reverse    = $reverse;
+        $this->dataSet = $dataSet;
+        $this->reverse = $reverse;
 
         $this->rewind();
     }
