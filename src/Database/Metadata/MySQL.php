@@ -7,12 +7,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
+
+namespace PHPUnit\DbUnit\Database\Metadata;
+
+use PDO;
 
 /**
  * Provides functionality to retrieve meta data from a MySQL database.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_MySQL extends Metadata
+class MySQL extends Metadata
 {
     protected $schemaObjectQuoteChar = '`';
 
@@ -23,7 +26,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_MySQL extends Metadata
      */
     public function getTableNames()
     {
-        $query     = 'SHOW TABLES';
+        $query = 'SHOW TABLES';
         $statement = $this->pdo->prepare($query);
         $statement->execute();
 
@@ -44,7 +47,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_MySQL extends Metadata
      */
     public function getTableColumns($tableName)
     {
-        $query     = 'SHOW COLUMNS FROM ' . $this->quoteSchemaObject($tableName);
+        $query = 'SHOW COLUMNS FROM ' . $this->quoteSchemaObject($tableName);
         $statement = $this->pdo->prepare($query);
         $statement->execute();
 
@@ -65,7 +68,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_MySQL extends Metadata
      */
     public function getTablePrimaryKeys($tableName)
     {
-        $query     = 'SHOW INDEX FROM ' . $this->quoteSchemaObject($tableName);
+        $query = 'SHOW INDEX FROM ' . $this->quoteSchemaObject($tableName);
         $statement = $this->pdo->prepare($query);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_ASSOC);

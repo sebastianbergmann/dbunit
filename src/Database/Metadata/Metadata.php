@@ -14,7 +14,6 @@ use PDO;
 use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit_Extensions_Database_DB_MetaData_Dblib;
 use PHPUnit_Extensions_Database_DB_MetaData_Firebird;
-use PHPUnit_Extensions_Database_DB_MetaData_MySQL;
 use PHPUnit_Extensions_Database_DB_MetaData_Oci;
 use PHPUnit_Extensions_Database_DB_MetaData_PgSQL;
 use PHPUnit_Extensions_Database_DB_MetaData_Sqlite;
@@ -29,7 +28,7 @@ abstract class Metadata implements IMetadata
 {
     protected static $metaDataClassMap = [
         'pgsql' => PHPUnit_Extensions_Database_DB_MetaData_PgSQL::class,
-        'mysql' => PHPUnit_Extensions_Database_DB_MetaData_MySQL::class,
+        'mysql' => MySQL::class,
         'oci' => PHPUnit_Extensions_Database_DB_MetaData_Oci::class,
         'sqlite' => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
         'sqlite2' => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
