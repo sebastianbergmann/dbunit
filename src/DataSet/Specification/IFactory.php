@@ -8,15 +8,19 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet\Specification;
+
+use PHPUnit_Extensions_Database_DataSet_ISpec;
+
 /**
  * An interface for data set spec factories.
  */
-interface PHPUnit_Extensions_Database_DataSet_Specs_IFactory
+interface IFactory
 {
     /**
      * Returns the data set
      *
-     * @param  string                                    $type
+     * @param  string $type
      * @return PHPUnit_Extensions_Database_DataSet_ISpec
      */
     public function getDataSetSpecByType($type);

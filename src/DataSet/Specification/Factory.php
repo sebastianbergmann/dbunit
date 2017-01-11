@@ -12,14 +12,13 @@ namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit_Extensions_Database_DataSet_ISpec;
-use PHPUnit_Extensions_Database_DataSet_Specs_IFactory;
 use PHPUnit_Extensions_Database_DataSet_Specs_Xml;
 use PHPUnit_Extensions_Database_DataSet_Specs_Yaml;
 
 /**
  * Creates the appropriate DataSet Spec based on a given type.
  */
-class Factory implements PHPUnit_Extensions_Database_DataSet_Specs_IFactory
+class Factory implements IFactory
 {
     /**
      * Returns the data set
