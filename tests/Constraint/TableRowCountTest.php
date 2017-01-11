@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Constraint\TableRowCount;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\ExpectationFailedException;
 
@@ -15,7 +16,7 @@ class Extensions_Database_Constraint_TableRowCountTest extends TestCase
 {
     public function testConstraint()
     {
-        $constraint = new PHPUnit_Extensions_Database_Constraint_TableRowCount('name', 42);
+        $constraint = new TableRowCount('name', 42);
 
         $this->assertTrue($constraint->evaluate(42, '', true));
         $this->assertFalse($constraint->evaluate(24, '', true));

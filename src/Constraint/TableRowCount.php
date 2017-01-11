@@ -8,12 +8,14 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\Constraint;
+
 use PHPUnit\Framework\Constraint\Constraint;
 
 /**
  * Asserts the row count in a table
  */
-class PHPUnit_Extensions_Database_Constraint_TableRowCount extends Constraint
+class TableRowCount extends Constraint
 {
     /**
      * @var int
@@ -35,7 +37,7 @@ class PHPUnit_Extensions_Database_Constraint_TableRowCount extends Constraint
     {
         parent::__construct();
         $this->tableName = $tableName;
-        $this->value     = $value;
+        $this->value = $value;
     }
 
     /**
