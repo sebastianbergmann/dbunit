@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\IDatabaseListConsumer;
 
 /**
  * Creates a database dataset based off of a spec string.
@@ -30,7 +31,7 @@
  * The column names in the table will be identical to the column aliases in the
  * query.
  */
-class PHPUnit_Extensions_Database_DataSet_Specs_DbTable implements PHPUnit_Extensions_Database_DataSet_ISpec, PHPUnit_Extensions_Database_IDatabaseListConsumer
+class PHPUnit_Extensions_Database_DataSet_Specs_DbTable implements PHPUnit_Extensions_Database_DataSet_ISpec, IDatabaseListConsumer
 {
     /**
      * @var array

@@ -8,10 +8,12 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit;
+
 /**
  * An interface for classes that require a list of databases to operate.
  */
-interface PHPUnit_Extensions_Database_IDatabaseListConsumer
+interface IDatabaseListConsumer
 {
     /**
      * Sets the database for the spec
