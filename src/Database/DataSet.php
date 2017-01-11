@@ -8,12 +8,21 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\Database;
+
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit\DbUnit\RuntimeException;
+use PHPUnit_Extensions_Database_DataSet_AbstractDataSet;
+use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
+use PHPUnit_Extensions_Database_DB_Table;
+use PHPUnit_Extensions_Database_DB_TableIterator;
 
 /**
  * Provides access to a database instance as a data set.
  */
-class PHPUnit_Extensions_Database_DB_DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
 {
     /**
      * An array of ITable objects.
@@ -48,7 +57,7 @@ class PHPUnit_Extensions_Database_DB_DataSet extends PHPUnit_Extensions_Database
     public static function buildTableSelect(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection = NULL)
     {
         if ($tableMetaData->getTableName() == '') {
-            $e = new Exception('Empty Table Name');
+            $e = new RuntimeException('Empty Table Name');
             echo $e->getTraceAsString();
             throw $e;
         }
@@ -82,7 +91,7 @@ class PHPUnit_Extensions_Database_DB_DataSet extends PHPUnit_Extensions_Database
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                         $reverse
+     * @param  bool $reverse
      * @return PHPUnit_Extensions_Database_DB_TableIterator
      */
     protected function createIterator($reverse = FALSE)
@@ -93,7 +102,7 @@ class PHPUnit_Extensions_Database_DB_DataSet extends PHPUnit_Extensions_Database
     /**
      * Returns a table object for the given table.
      *
-     * @param  string                               $tableName
+     * @param  string $tableName
      * @return PHPUnit_Extensions_Database_DB_Table
      */
     public function getTable($tableName)
@@ -112,7 +121,7 @@ class PHPUnit_Extensions_Database_DB_DataSet extends PHPUnit_Extensions_Database
     /**
      * Returns a table meta data object for the given table.
      *
-     * @param  string                                                   $tableName
+     * @param  string $tableName
      * @return PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData
      */
     public function getTableMetaData($tableName)

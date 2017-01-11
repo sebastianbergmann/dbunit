@@ -7,11 +7,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\DataSet;
 
 /**
  * Provides access to a database instance as a data set.
  */
-class PHPUnit_Extensions_Database_DB_FilteredDataSet extends PHPUnit_Extensions_Database_DB_DataSet
+class PHPUnit_Extensions_Database_DB_FilteredDataSet extends DataSet
 {
     /**
      * @var Array

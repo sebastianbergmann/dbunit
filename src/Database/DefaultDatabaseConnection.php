@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\DataSet;
 
 /**
  * Provides a basic interface for communicating with a database.
@@ -79,7 +80,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
     public function createDataSet(array $tableNames = NULL)
     {
         if (empty($tableNames)) {
-            return new PHPUnit_Extensions_Database_DB_DataSet($this);
+            return new DataSet($this);
         } else {
             return new PHPUnit_Extensions_Database_DB_FilteredDataSet($this, $tableNames);
         }
