@@ -8,20 +8,24 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\Specification\Csv;
-use PHPUnit\DbUnit\DataSet\Specification\Table;
-use PHPUnit\DbUnit\DataSet\Specification\Query;
+namespace PHPUnit\DbUnit\DataSet\Specification;
+
 use PHPUnit\DbUnit\RuntimeException;
+use PHPUnit_Extensions_Database_DataSet_ISpec;
+use PHPUnit_Extensions_Database_DataSet_Specs_FlatXml;
+use PHPUnit_Extensions_Database_DataSet_Specs_IFactory;
+use PHPUnit_Extensions_Database_DataSet_Specs_Xml;
+use PHPUnit_Extensions_Database_DataSet_Specs_Yaml;
 
 /**
  * Creates the appropriate DataSet Spec based on a given type.
  */
-class PHPUnit_Extensions_Database_DataSet_Specs_Factory implements PHPUnit_Extensions_Database_DataSet_Specs_IFactory
+class Factory implements PHPUnit_Extensions_Database_DataSet_Specs_IFactory
 {
     /**
      * Returns the data set
      *
-     * @param  string                                    $type
+     * @param  string $type
      * @return PHPUnit_Extensions_Database_DataSet_ISpec
      */
     public function getDataSetSpecByType($type)
