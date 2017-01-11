@@ -7,12 +7,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
+
+namespace PHPUnit\DbUnit\Database\Metadata;
 
 /**
  * Provides functionality to retrieve meta data from a database with information_schema support.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_InformationSchema extends Metadata
+class InformationSchema extends Metadata
 {
     protected $columns = [];
 
@@ -86,7 +87,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_InformationSchema extends Metadata
     protected function loadColumnInfo($tableName)
     {
         $this->columns[$tableName] = [];
-        $this->keys[$tableName]    = [];
+        $this->keys[$tableName] = [];
 
         $columnQuery = '
             SELECT DISTINCT
