@@ -7,18 +7,23 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
+
+namespace PHPUnit\DbUnit\Database\Metadata;
+
+use PDO;
+use PDOStatement;
 
 /**
  * Provides functionality to retrieve meta data from an Sqlite database.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_Sqlite extends Metadata
+class Sqlite extends Metadata
 {
     protected $columns = [];
 
     protected $keys = [];
 
     protected $truncateCommand = 'DELETE FROM';
+
     /**
      * Returns an array containing the names of all the tables in the database.
      *
@@ -85,12 +90,12 @@ class PHPUnit_Extensions_Database_DB_MetaData_Sqlite extends Metadata
      */
     protected function loadColumnInfo($tableName)
     {
-        $query     = "PRAGMA table_info('{$tableName}')";
+        $query = "PRAGMA table_info('{$tableName}')";
         $statement = $this->pdo->query($query);
 
         /* @var $statement PDOStatement */
         $this->columns[$tableName] = [];
-        $this->keys[$tableName]    = [];
+        $this->keys[$tableName] = [];
 
         while ($columnData = $statement->fetch(PDO::FETCH_NUM)) {
             $this->columns[$tableName][] = $columnData[1];
