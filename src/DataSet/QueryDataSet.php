@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Table;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -65,7 +66,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends PHPUnit_Extension
      * Returns a table object for the given table.
      *
      * @param  string                               $tableName
-     * @return PHPUnit_Extensions_Database_DB_Table
+     * @return Table
      */
     public function getTable($tableName)
     {

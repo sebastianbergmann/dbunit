@@ -15,7 +15,6 @@ use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_QueryTable;
 use PHPUnit\DbUnit\Database\Metadata\IMetadata;
 use PHPUnit\DbUnit\Database\Metadata\Metadata;
-use PHPUnit_Extensions_Database_DB_Table;
 
 /**
  * Provides a basic interface for communicating with a database.
@@ -99,7 +98,7 @@ class DefaultConnection implements IConnection
      *
      * @param  string $resultName
      * @param  string $sql
-     * @return PHPUnit_Extensions_Database_DB_Table
+     * @return Table
      */
     public function createQueryTable($resultName, $sql)
     {

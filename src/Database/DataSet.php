@@ -15,7 +15,6 @@ use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit_Extensions_Database_DataSet_AbstractDataSet;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
-use PHPUnit_Extensions_Database_DB_Table;
 use PHPUnit_Extensions_Database_DB_TableIterator;
 
 /**
@@ -102,7 +101,7 @@ class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
      * Returns a table object for the given table.
      *
      * @param  string $tableName
-     * @return PHPUnit_Extensions_Database_DB_Table
+     * @return Table
      */
     public function getTable($tableName)
     {
@@ -111,7 +110,7 @@ class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
         }
 
         if (empty($this->tables[$tableName])) {
-            $this->tables[$tableName] = new PHPUnit_Extensions_Database_DB_Table($this->getTableMetaData($tableName), $this->databaseConnection);
+            $this->tables[$tableName] = new Table($this->getTableMetaData($tableName), $this->databaseConnection);
         }
 
         return $this->tables[$tableName];

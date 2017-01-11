@@ -7,13 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Database\DataSet;
-use PHPUnit\DbUnit\Database\IConnection;
+
+namespace PHPUnit\DbUnit\Database;
+
+use PDO;
+use PHPUnit_Extensions_Database_DataSet_AbstractTable;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides the functionality to represent a database table.
  */
-class PHPUnit_Extensions_Database_DB_Table extends PHPUnit_Extensions_Database_DataSet_AbstractTable
+class Table extends PHPUnit_Extensions_Database_DataSet_AbstractTable
 {
     /**
      * Creates a new database table object.
