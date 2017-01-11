@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit;
 
 use PDO;
 use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
-use PHPUnit_Extensions_Database_Constraint_TableIsEqual;
+use PHPUnit\DbUnit\Constraint\TableIsEqual;
 use PHPUnit_Extensions_Database_Constraint_TableRowCount;
 use PHPUnit_Extensions_Database_DataSet_ArrayDataSet;
 use PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet;
@@ -220,7 +220,7 @@ trait TestCaseTrait
      */
     public static function assertTablesEqual(PHPUnit_Extensions_Database_DataSet_ITable $expected, PHPUnit_Extensions_Database_DataSet_ITable $actual, $message = '')
     {
-        $constraint = new PHPUnit_Extensions_Database_Constraint_TableIsEqual($expected);
+        $constraint = new TableIsEqual($expected);
 
         self::assertThat($actual, $constraint, $message);
     }
