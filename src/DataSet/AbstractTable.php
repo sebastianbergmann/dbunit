@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\InvalidArgumentException;
+
 /**
  * Provides a basic functionality for dbunit tables
  */

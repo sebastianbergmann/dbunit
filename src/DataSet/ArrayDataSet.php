@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\InvalidArgumentException;
+
 /**
  * Implements the basic functionality of data sets using a PHP array.
  */

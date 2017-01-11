@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\InvalidArgumentException;
+
 /**
  * A table decorator that allows filtering out table columns from results.
  */

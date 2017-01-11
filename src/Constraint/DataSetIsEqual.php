@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\Constraint;
 
-use InvalidArgumentException;
+use PHPUnit\DbUnit\InvalidArgumentException;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 

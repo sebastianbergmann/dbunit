@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\InvalidArgumentException;
+
 /**
  * This class facilitates combining database operations. To create a composite
  * operation pass an array of classes that implement
