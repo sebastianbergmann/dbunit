@@ -35,7 +35,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements Ou
      * @param array                                              $fullReplacements
      * @param array                                              $subStrReplacements
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableIterator $innerIterator, Array $fullReplacements = [], Array $subStrReplacements = [])
+    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableIterator $innerIterator, array $fullReplacements = [], array $subStrReplacements = [])
     {
         $this->innerIterator      = $innerIterator;
         $this->fullReplacements   = $fullReplacements;

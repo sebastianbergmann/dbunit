@@ -39,9 +39,9 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends PHPUnit_Extension
         $this->databaseConnection = $databaseConnection;
     }
 
-    public function addTable($tableName, $query = NULL)
+    public function addTable($tableName, $query = null)
     {
-        if ($query === NULL) {
+        if ($query === null) {
             $query = 'SELECT * FROM ' . $tableName;
         }
 
@@ -55,7 +55,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends PHPUnit_Extension
      * @param  bool                                         $reverse
      * @return PHPUnit_Extensions_Database_DB_TableIterator
      */
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
     }
@@ -78,7 +78,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends PHPUnit_Extension
     /**
      * Returns a list of table names for the database
      *
-     * @return Array
+     * @return array
      */
     public function getTableNames()
     {

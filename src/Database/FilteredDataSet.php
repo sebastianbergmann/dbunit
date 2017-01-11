@@ -15,7 +15,7 @@ use PHPUnit\DbUnit\Database\DataSet;
 class PHPUnit_Extensions_Database_DB_FilteredDataSet extends DataSet
 {
     /**
-     * @var Array
+     * @var array
      */
     protected $tableNames;
 
@@ -24,7 +24,7 @@ class PHPUnit_Extensions_Database_DB_FilteredDataSet extends DataSet
      *
      * @param PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection
      */
-    public function __construct(PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection, Array $tableNames)
+    public function __construct(PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection, array $tableNames)
     {
         parent::__construct($databaseConnection);
         $this->tableNames = $tableNames;
@@ -33,7 +33,7 @@ class PHPUnit_Extensions_Database_DB_FilteredDataSet extends DataSet
     /**
      * Returns a list of table names for the database
      *
-     * @return Array
+     * @return array
      */
     public function getTableNames()
     {

@@ -38,7 +38,7 @@ class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends PHPUnit_Extension
      */
     public function __construct(array $data)
     {
-        foreach ($data AS $tableName => $rows) {
+        foreach ($data as $tableName => $rows) {
             $columns = [];
             if (isset($rows[0])) {
                 $columns = array_keys($rows[0]);
@@ -47,14 +47,14 @@ class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends PHPUnit_Extension
             $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
             $table    = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
 
-            foreach ($rows AS $row) {
+            foreach ($rows as $row) {
                 $table->addRow($row);
             }
             $this->tables[$tableName] = $table;
         }
     }
 
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
     }

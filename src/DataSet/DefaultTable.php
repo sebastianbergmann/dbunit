@@ -34,7 +34,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTable extends PHPUnit_Extension
     public function addRow($values = [])
     {
         $this->data[] = array_replace(
-          array_fill_keys($this->getTableMetaData()->getColumns(), NULL),
+          array_fill_keys($this->getTableMetaData()->getColumns(), null),
           $values
         );
     }

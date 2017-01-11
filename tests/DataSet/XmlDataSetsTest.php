@@ -60,15 +60,15 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
             'table2_id' => 2,
             'column5'   => 'asdhfoih',
             'column6'   => 654,
-            'column7'   => NULL,
+            'column7'   => null,
             'column8'   => '43asdfhgj'
         ]);
         $table2->addRow([
             'table2_id' => 3,
             'column5'   => 'ajsdlkfguitah',
             'column6'   => 654,
-            'column7'   => NULL,
-            'column8'   => NULL
+            'column7'   => null,
+            'column8'   => null
         ]);
 
         $this->expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);

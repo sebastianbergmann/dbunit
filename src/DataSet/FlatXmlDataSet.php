@@ -15,7 +15,7 @@ use PHPUnit\DbUnit\RuntimeException;
  */
 class PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
 {
-    protected function getTableInfo(Array &$tableColumns, Array &$tableValues)
+    protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {
         if ($this->xmlFileContents->getName() != 'dataset') {
             throw new RuntimeException('The root element of a flat xml data set file must be called <dataset>');

@@ -31,9 +31,9 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
      * @param string                                          $yamlFile
      * @param PHPUnit_Extensions_Database_DataSet_IYamlParser $parser
      */
-    public function __construct($yamlFile, $parser = NULL)
+    public function __construct($yamlFile, $parser = null)
     {
-        if ($parser == NULL) {
+        if ($parser == null) {
             $parser = new PHPUnit_Extensions_Database_DataSet_SymfonyYamlParser();
         }
         $this->parser = $parser;
@@ -102,7 +102,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions
      * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator(
           $this->tables, $reverse

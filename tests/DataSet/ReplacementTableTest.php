@@ -85,11 +85,11 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'column1'   => 'ha;gyt',
             'column2'   => 462,
             'column3'   => '[NULL] not really',
-            'column4'   => NULL
+            'column4'   => null
         ]);
 
         $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable($this->startingTable);
-        $actual->addFullReplacement('[NULL]', NULL);
+        $actual->addFullReplacement('[NULL]', null);
 
         TestCase::assertTablesEqual($table, $actual);
     }
@@ -157,12 +157,12 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'column1'   => 'ha;gyt',
             'column2'   => 462,
             'column3'   => '[NULL] not really',
-            'column4'   => NULL
+            'column4'   => null
         ]);
 
         $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable(
             $this->startingTable,
-            ['[NULL]'     => NULL],
+            ['[NULL]'     => null],
             ['%%%name%%%' => 'Mike Lively']
         );
 
@@ -173,7 +173,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable(
             $this->startingTable,
-            ['[NULL]'     => NULL],
+            ['[NULL]'     => null],
             ['%%%name%%%' => 'Mike Lively']
         );
 
@@ -194,7 +194,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
                 'column1'   => 'ha;gyt',
                 'column2'   => 462,
                 'column3'   => '[NULL] not really',
-                'column4'   => NULL
+                'column4'   => null
             ],
             $actual->getRow(2)
         );
@@ -204,7 +204,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable(
             $this->startingTable,
-            ['[NULL]'     => NULL],
+            ['[NULL]'     => null],
             ['%%%name%%%' => 'Mike Lively']
         );
 

@@ -15,7 +15,7 @@ class DBUnitTestUtility
 
     public static function getSQLiteMemoryDB()
     {
-        if (self::$connection === NULL) {
+        if (self::$connection === null) {
             self::$connection = new PDO('sqlite::memory:');
             self::setUpDatabase(self::$connection);
         }
@@ -34,7 +34,7 @@ class DBUnitTestUtility
      */
     public static function getMySQLDB()
     {
-        if (self::$mySQLConnection === NULL) {
+        if (self::$mySQLConnection === null) {
 
             self::$mySQLConnection = new PDO(PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_DSN, PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_USERNAME, PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_PASSWORD);
 

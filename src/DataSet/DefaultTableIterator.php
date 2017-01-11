@@ -16,7 +16,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUni
     /**
      * An array of tables in the iterator.
      *
-     * @var Array
+     * @var array
      */
     protected $tables;
 
@@ -34,7 +34,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUni
      * @param array $tables
      * @param bool  $reverse
      */
-    public function __construct(Array $tables, $reverse = FALSE)
+    public function __construct(array $tables, $reverse = false)
     {
         $this->tables  = $tables;
         $this->reverse = $reverse;
@@ -113,6 +113,6 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUni
      */
     public function valid()
     {
-        return ($this->current() !== FALSE);
+        return ($this->current() !== false);
     }
 }

@@ -28,7 +28,7 @@ class PHPUnit_Extensions_Database_Operation_Composite implements PHPUnit_Extensi
      *
      * @param array $operations
      */
-    public function __construct(Array $operations)
+    public function __construct(array $operations)
     {
         foreach ($operations as $operation) {
             if ($operation instanceof PHPUnit_Extensions_Database_Operation_IDatabaseOperation) {

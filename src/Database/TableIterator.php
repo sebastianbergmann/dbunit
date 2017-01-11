@@ -17,7 +17,7 @@ class PHPUnit_Extensions_Database_DB_TableIterator implements PHPUnit_Extensions
     /**
      * An array of tablenames.
      *
-     * @var Array
+     * @var array
      */
     protected $tableNames;
 
@@ -36,7 +36,7 @@ class PHPUnit_Extensions_Database_DB_TableIterator implements PHPUnit_Extensions
      */
     protected $dataSet;
 
-    public function __construct($tableNames, DataSet $dataSet, $reverse = FALSE)
+    public function __construct($tableNames, DataSet $dataSet, $reverse = false)
     {
         $this->tableNames = $tableNames;
         $this->dataSet    = $dataSet;
@@ -118,6 +118,6 @@ class PHPUnit_Extensions_Database_DB_TableIterator implements PHPUnit_Extensions
      */
     public function valid()
     {
-        return (current($this->tableNames) !== FALSE);
+        return (current($this->tableNames) !== false);
     }
 }

@@ -27,7 +27,7 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions
      * @param $originalTable PHPUnit_Extensions_Database_DataSet_ITable
      * @param $excludeColumns Array @deprecated, use the set* methods instead.
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $originalTable, Array $excludeColumns = [])
+    public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $originalTable, array $excludeColumns = [])
     {
         $this->originalTable = $originalTable;
         $this->setTableMetaData(new PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter($originalTable->getTableMetaData()));
@@ -61,9 +61,9 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions
 
     /**
      * Sets the columns to include in the table.
-     * @param Array $includeColumns
+     * @param array $includeColumns
      */
-    public function addIncludeColumns(Array $includeColumns)
+    public function addIncludeColumns(array $includeColumns)
     {
         $this->tableMetaData->addIncludeColumns($includeColumns);
     }
@@ -78,9 +78,9 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions
 
     /**
      * Sets the columns to exclude from the table.
-     * @param Array $excludeColumns
+     * @param array $excludeColumns
      */
-    public function addExcludeColumns(Array $excludeColumns)
+    public function addExcludeColumns(array $excludeColumns)
     {
         $this->tableMetaData->addExcludeColumns($excludeColumns);
     }
@@ -100,7 +100,7 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions
      *
      * @return bool
      */
-    public function assertContainsRow(Array $row)
+    public function assertContainsRow(array $row)
     {
         $this->loadData();
 
@@ -112,7 +112,7 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions
      */
     protected function loadData()
     {
-        if ($this->data === NULL) {
+        if ($this->data === null) {
             $data = [];
             for($row = 0;$row < $this->originalTable->getRowCount();$row++) {
                 $tRow = [];

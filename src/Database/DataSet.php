@@ -54,7 +54,7 @@ class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
      * @param  PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData
      * @return string
      */
-    public static function buildTableSelect(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection = NULL)
+    public static function buildTableSelect(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, PHPUnit_Extensions_Database_DB_IDatabaseConnection $databaseConnection = null)
     {
         if ($tableMetaData->getTableName() == '') {
             $e = new RuntimeException('Empty Table Name');
@@ -94,7 +94,7 @@ class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
      * @param  bool $reverse
      * @return PHPUnit_Extensions_Database_DB_TableIterator
      */
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         return new PHPUnit_Extensions_Database_DB_TableIterator($this->getTableNames(), $this, $reverse);
     }
@@ -132,7 +132,7 @@ class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
     /**
      * Returns a list of table names for the database
      *
-     * @return Array
+     * @return array
      */
     public function getTableNames()
     {

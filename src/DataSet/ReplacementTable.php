@@ -37,7 +37,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
      * @param array                                      $fullReplacements
      * @param array                                      $subStrReplacements
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $table, Array $fullReplacements = [], Array $subStrReplacements = [])
+    public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $table, array $fullReplacements = [], array $subStrReplacements = [])
     {
         $this->table              = $table;
         $this->fullReplacements   = $fullReplacements;
@@ -126,7 +126,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
 
         if (!$thisMetaData->matches($otherMetaData) ||
             $this->getRowCount() != $other->getRowCount()) {
-            return FALSE;
+            return false;
         }
 
         $columns  = $thisMetaData->getColumns();
@@ -138,15 +138,15 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
                 $otherValue = $other->getValue($i, $columnName);
                 if (is_numeric($thisValue) && is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
-                        return FALSE;
+                        return false;
                     }
                 } elseif ($thisValue !== $otherValue) {
-                    return FALSE;
+                    return false;
                 }
             }
         }
 
-        return TRUE;
+        return true;
     }
 
     public function __toString()
@@ -178,7 +178,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
         return "\n" . $tableString . "\n";
     }
 
-    protected function rowToString(Array $row)
+    protected function rowToString(array $row)
     {
         $rowString = '';
 

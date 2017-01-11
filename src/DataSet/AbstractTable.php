@@ -80,7 +80,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
             if (!in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
             } else {
-                return NULL;
+                return null;
             }
         }
     }
@@ -99,7 +99,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
             if ($this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) does not exist in table {$this->getTableMetaData()->getTableName()}");
             } else {
-                return NULL;
+                return null;
             }
         }
     }
@@ -116,7 +116,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
 
         if (!$thisMetaData->matches($otherMetaData) ||
             $this->getRowCount() != $other->getRowCount()) {
-            return FALSE;
+            return false;
         }
 
         $columns  = $thisMetaData->getColumns();
@@ -130,17 +130,17 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
                     if ($thisValue != $otherValue) {
                         $this->other = $other;
 
-                        return FALSE;
+                        return false;
                     }
                 } elseif ($thisValue !== $otherValue) {
                     $this->other = $other;
 
-                    return FALSE;
+                    return false;
                 }
             }
         }
 
-        return TRUE;
+        return true;
     }
 
     /**
@@ -178,8 +178,8 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
                         if ($this->getValue($i, $columnName) != $this->other->getValue($i, $columnName)) {
                             $values[] = sprintf(
                                 '%s != actual %s',
-                                var_export($this->getValue($i, $columnName), TRUE),
-                                var_export($this->other->getValue($i, $columnName), TRUE)
+                                var_export($this->getValue($i, $columnName), true),
+                                var_export($this->other->getValue($i, $columnName), true)
                             );
                         } else {
                             $values[] = $this->getValue($i, $columnName);
@@ -198,7 +198,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
         return ($this->other ? '(table diff enabled)' : '') . "\n" . $tableString . "\n";
     }
 
-    protected function rowToString(Array $row)
+    protected function rowToString(array $row)
     {
         $rowString = '';
 

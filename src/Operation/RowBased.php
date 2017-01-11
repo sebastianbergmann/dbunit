@@ -41,7 +41,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
      */
     protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, PHPUnit_Extensions_Database_DB_IDatabaseConnection $connection)
     {
-        return FALSE;
+        return false;
     }
 
     /**
@@ -64,7 +64,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
             $query                 = $this->buildOperationQuery($databaseTableMetaData, $table, $connection);
             $disablePrimaryKeys    = $this->disablePrimaryKeys($databaseTableMetaData, $table, $connection);
 
-            if ($query === FALSE) {
+            if ($query === false) {
                 if ($table->getRowCount() > 0) {
                     throw new PHPUnit_Extensions_Database_Operation_Exception($this->operationName, '', [], $table, 'Rows requested for insert, but no columns provided!');
                 }

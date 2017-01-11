@@ -60,7 +60,7 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
                         $columnValue = pack('H*',(string) $column);
                     } else {
                         $null        = isset($column['nil']) || isset($attr[0]);
-                        $columnValue = $null ? NULL : (string) $column;
+                        $columnValue = $null ? null : (string) $column;
                     }
 
                     $rowValues[$columnName] = $columnValue;

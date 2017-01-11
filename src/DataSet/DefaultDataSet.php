@@ -25,7 +25,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultDataSet extends PHPUnit_Extensi
      *
      * @param array $tables
      */
-    public function __construct(Array $tables = [])
+    public function __construct(array $tables = [])
     {
         $this->tables = $tables;
     }
@@ -47,7 +47,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultDataSet extends PHPUnit_Extensi
      * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
     }

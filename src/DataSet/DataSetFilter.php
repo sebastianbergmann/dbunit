@@ -22,25 +22,25 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
 
     /**
      * The tables to exclude from the data set.
-     * @var Array
+     * @var array
      */
     protected $excludeTables = [];
 
     /**
      * The tables to exclude from the data set.
-     * @var Array
+     * @var array
      */
     protected $includeTables = [];
 
     /**
      * The columns to exclude from the data set.
-     * @var Array
+     * @var array
      */
     protected $excludeColumns = [];
 
     /**
      * The columns to exclude from the data set.
-     * @var Array
+     * @var array
      */
     protected $includeColumns = [];
 
@@ -53,7 +53,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
      * to the special string '*'.
      *
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet
-     * @param Array                                        $excludeTables   @deprecated use set* methods instead.
+     * @param array                                        $excludeTables   @deprecated use set* methods instead.
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet, array $excludeTables = [])
     {
@@ -80,7 +80,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
      * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         $original_tables = $this->originalDataSet->getIterator($reverse);
         $new_tables      = [];
@@ -117,7 +117,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
      * Adds tables to be included in the data set.
      * @param array $tables
      */
-    public function addIncludeTables(Array $tables)
+    public function addIncludeTables(array $tables)
     {
         $this->includeTables = array_unique(array_merge($this->includeTables, $tables));
     }
@@ -126,7 +126,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
      * Adds tables to be included in the data set.
      * @param array $tables
      */
-    public function addExcludeTables(Array $tables)
+    public function addExcludeTables(array $tables)
     {
         $this->excludeTables = array_unique(array_merge($this->excludeTables, $tables));
     }
@@ -134,9 +134,9 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
     /**
      * Adds columns to include in the data set for the given table.
      * @param string $table
-     * @param Array  $columns
+     * @param array  $columns
      */
-    public function setIncludeColumnsForTable($table, Array $columns)
+    public function setIncludeColumnsForTable($table, array $columns)
     {
         $this->includeColumns[$table] = $columns;
     }
@@ -144,9 +144,9 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensio
     /**
      * Adds columns to include in the data set for the given table.
      * @param string $table
-     * @param Array  $columns
+     * @param array  $columns
      */
-    public function setExcludeColumnsForTable($table, Array $columns)
+    public function setExcludeColumnsForTable($table, array $columns)
     {
         $this->excludeColumns[$table] = $columns;
     }

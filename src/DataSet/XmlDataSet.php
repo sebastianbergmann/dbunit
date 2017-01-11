@@ -15,7 +15,7 @@ use PHPUnit\DbUnit\RuntimeException;
  */
 class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
 {
-    protected function getTableInfo(Array &$tableColumns, Array &$tableValues)
+    protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {
         if ($this->xmlFileContents->getName() != 'dataset') {
             throw new RuntimeException('The root element of an xml data set file must be called <dataset>');
@@ -67,7 +67,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_
                             $index++;
                             break;
                         case 'null':
-                            $rowValues[$tableInstanceColumns[$index]] = NULL;
+                            $rowValues[$tableInstanceColumns[$index]] = null;
                             $index++;
                             break;
                         default:

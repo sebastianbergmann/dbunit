@@ -22,7 +22,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData extends PHPUnit_E
      * @param array  $columns
      * @param array  $primaryKeys
      */
-    public function __construct($tableName, Array $columns, Array $primaryKeys = [])
+    public function __construct($tableName, array $columns, array $primaryKeys = [])
     {
         $this->tableName   = $tableName;
         $this->columns     = $columns;

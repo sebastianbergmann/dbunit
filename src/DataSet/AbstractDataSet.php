@@ -20,7 +20,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
      * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
-    protected abstract function createIterator($reverse = FALSE);
+    protected abstract function createIterator($reverse = false);
 
     /**
      * Returns an array of table names contained in the dataset.
@@ -83,7 +83,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
      */
     public function getReverseIterator()
     {
-        return $this->createIterator(TRUE);
+        return $this->createIterator(true);
     }
 
     /**
@@ -100,18 +100,18 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
         sort($otherTableNames);
 
         if ($thisTableNames != $otherTableNames) {
-            return FALSE;
+            return false;
         }
 
         foreach ($thisTableNames as $tableName) {
             $table = $this->getTable($tableName);
 
             if (!$table->matches($other->getTable($tableName))) {
-                return FALSE;
+                return false;
             }
         }
 
-        return TRUE;
+        return true;
     }
 
     public function __toString()

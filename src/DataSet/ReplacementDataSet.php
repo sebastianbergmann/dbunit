@@ -39,7 +39,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends PHPUnit_Ext
      * @param string $enclosure
      * @param string $escape
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet, Array $fullReplacements = [], Array $subStrReplacements = [])
+    public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet, array $fullReplacements = [], array $subStrReplacements = [])
     {
         $this->dataSet            = $dataSet;
         $this->fullReplacements   = $fullReplacements;
@@ -79,7 +79,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends PHPUnit_Ext
      * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         $innerIterator = $reverse ? $this->dataSet->getReverseIterator() : $this->dataSet->getIterator();
 

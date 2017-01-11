@@ -38,7 +38,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
             );
         }
 
-        $libxmlErrorReporting  = libxml_use_internal_errors(TRUE);
+        $libxmlErrorReporting  = libxml_use_internal_errors(true);
         $this->xmlFileContents = simplexml_load_file($xmlFile, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE);
 
         if (!$this->xmlFileContents) {
@@ -65,9 +65,9 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
      * Reads the simple xml object and creates the appropriate tables and meta
      * data for this dataset.
      */
-    protected abstract function getTableInfo(Array &$tableColumns, Array &$tableValues);
+    protected abstract function getTableInfo(array &$tableColumns, array &$tableValues);
 
-    protected function createTables(Array &$tableColumns, Array &$tableValues)
+    protected function createTables(array &$tableColumns, array &$tableValues)
     {
         foreach ($tableValues as $tableName => $values) {
             $table = $this->getOrCreateTable($tableName, $tableColumns[$tableName]);
@@ -101,7 +101,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PH
      * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
     }

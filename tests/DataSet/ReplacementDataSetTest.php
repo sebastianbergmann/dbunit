@@ -115,7 +115,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'column1'   => 'ha;gyt',
             'column2'   => 462,
             'column3'   => 1654.4,
-            'column4'   => NULL
+            'column4'   => null
         ]);
 
         $table2->addRow([
@@ -129,20 +129,20 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'table2_id' => 2,
             'column5'   => 'asdhfoih',
             'column6'   => 654,
-            'column7'   => NULL,
+            'column7'   => null,
             'column8'   => '43asdfhgj'
         ]);
         $table2->addRow([
             'table2_id' => 3,
             'column5'   => 'ajsdlkfguitah',
             'column6'   => 654,
-            'column7'   => NULL,
+            'column7'   => null,
             'column8'   => '[NULL] not really'
         ]);
 
         $expected = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
         $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet);
-        $actual->addFullReplacement('[NULL]', NULL);
+        $actual->addFullReplacement('[NULL]', null);
 
         TestCase::assertDataSetsEqual($expected, $actual);
     }
@@ -241,7 +241,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'column1'   => 'ha;gyt',
             'column2'   => 462,
             'column3'   => 1654.4,
-            'column4'   => NULL
+            'column4'   => null
         ]);
 
         $table2->addRow([
@@ -255,21 +255,21 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'table2_id' => 2,
             'column5'   => 'asdhfoih',
             'column6'   => 654,
-            'column7'   => NULL,
+            'column7'   => null,
             'column8'   => '43asdfhgj'
         ]);
         $table2->addRow([
             'table2_id' => 3,
             'column5'   => 'ajsdlkfguitah',
             'column6'   => 654,
-            'column7'   => NULL,
+            'column7'   => null,
             'column8'   => '[NULL] not really'
         ]);
 
         $expected = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
         $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet(
             $this->startingDataSet,
-            ['[NULL]'     => NULL],
+            ['[NULL]'     => null],
             ['%%%name%%%' => 'Mike Lively']
         );
 

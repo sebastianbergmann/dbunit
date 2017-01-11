@@ -16,14 +16,14 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData impleme
     /**
      * The names of all columns in the table.
      *
-     * @var Array
+     * @var array
      */
     protected $columns;
 
     /**
      * The names of all the primary keys in the table.
      *
-     * @var Array
+     * @var array
      */
     protected $primaryKeys;
 
@@ -71,9 +71,9 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData impleme
     {
         if ($this->getTableName() != $other->getTableName() ||
             $this->getColumns() != $other->getColumns()) {
-            return FALSE;
+            return false;
         }
 
-        return TRUE;
+        return true;
     }
 }

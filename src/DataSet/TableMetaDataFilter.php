@@ -25,13 +25,13 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends PHPUnit_Ex
 
     /**
      * The columns to exclude from the meta data.
-     * @var Array
+     * @var array
      */
     protected $excludeColumns = [];
 
     /**
      * The columns to include from the meta data.
-     * @var Array
+     * @var array
      */
     protected $includeColumns = [];
 
@@ -42,7 +42,7 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends PHPUnit_Ex
      * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $originalMetaData
      * @param array                                              $excludeColumns   - Deprecated. Use the set* methods instead.
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableMetaData $originalMetaData, Array $excludeColumns = [])
+    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableMetaData $originalMetaData, array $excludeColumns = [])
     {
         $this->originalMetaData = $originalMetaData;
         $this->addExcludeColumns($excludeColumns);
@@ -88,9 +88,9 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends PHPUnit_Ex
 
     /**
      * Sets the columns to include in the table.
-     * @param Array $includeColumns
+     * @param array $includeColumns
      */
-    public function addIncludeColumns(Array $includeColumns)
+    public function addIncludeColumns(array $includeColumns)
     {
         $this->includeColumns = array_unique(array_merge($this->includeColumns, $includeColumns));
     }
@@ -105,9 +105,9 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends PHPUnit_Ex
 
     /**
      * Sets the columns to exclude from the table.
-     * @param Array $excludeColumns
+     * @param array $excludeColumns
      */
-    public function addExcludeColumns(Array $excludeColumns)
+    public function addExcludeColumns(array $excludeColumns)
     {
         $this->excludeColumns = array_unique(array_merge($this->excludeColumns, $excludeColumns));
     }

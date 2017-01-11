@@ -154,14 +154,14 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
      */
     public function splitTableName($fullTableName)
     {
-        if (($dot = strpos($fullTableName, '.')) !== FALSE) {
+        if (($dot = strpos($fullTableName, '.')) !== false) {
             return [
                 'schema' => substr($fullTableName, 0, $dot),
                 'table'  => substr($fullTableName, $dot + 1)
             ];
         } else {
             return [
-                'schema' => NULL,
+                'schema' => null,
                 'table'  => $fullTableName
             ];
         }
@@ -184,7 +184,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
      */
     public function allowsCascading()
     {
-        return FALSE;
+        return false;
     }
 
     /**

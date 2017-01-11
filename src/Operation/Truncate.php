@@ -13,9 +13,9 @@
  */
 class PHPUnit_Extensions_Database_Operation_Truncate implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {
-    protected $useCascade = FALSE;
+    protected $useCascade = false;
 
-    public function setCascade($cascade = TRUE)
+    public function setCascade($cascade = true)
     {
         $this->useCascade = $cascade;
     }

@@ -61,7 +61,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
      *
      * @return bool
      */
-    public function assertContainsRow(Array $row)
+    public function assertContainsRow(array $row)
     {
         $this->loadData();
 
@@ -120,7 +120,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
 
     protected function loadData()
     {
-        if ($this->data === NULL) {
+        if ($this->data === null) {
             $pdoStatement = $this->databaseConnection->getConnection()->query($this->query);
             $this->data   = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -128,7 +128,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_
 
     protected function createTableMetaData()
     {
-        if ($this->tableMetaData === NULL)
+        if ($this->tableMetaData === null)
         {
             $this->loadData();
 

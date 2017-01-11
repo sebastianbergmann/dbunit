@@ -188,7 +188,7 @@ trait TestCaseTrait
     {
         parent::setUp();
 
-        $this->databaseTester = NULL;
+        $this->databaseTester = null;
 
         $this->getDatabaseTester()->setSetUpOperation($this->getSetUpOperation());
         $this->getDatabaseTester()->setDataSet($this->getDataSet());
@@ -208,7 +208,7 @@ trait TestCaseTrait
          * Destroy the tester after the test is run to keep DB connections
          * from piling up.
          */
-        $this->databaseTester = NULL;
+        $this->databaseTester = null;
     }
 
     /**

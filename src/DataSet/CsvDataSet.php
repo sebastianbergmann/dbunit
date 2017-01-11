@@ -75,7 +75,7 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_
         $fh      = fopen($csvFile, 'r');
         $columns = $this->getCsvRow($fh);
 
-        if ($columns === FALSE)
+        if ($columns === false)
         {
             throw new InvalidArgumentException("Could not determine the headers from the given file {$csvFile}");
         }
@@ -83,7 +83,7 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_
         $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
         $table    = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
 
-        while (($row = $this->getCsvRow($fh)) !== FALSE)
+        while (($row = $this->getCsvRow($fh)) !== false)
         {
             $table->addRow(array_combine($columns, $row));
         }
@@ -98,7 +98,7 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_
      * @param  bool                                               $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
-    protected function createIterator($reverse = FALSE)
+    protected function createIterator($reverse = false)
     {
         return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
     }
@@ -112,9 +112,9 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_
     protected function getCsvRow($fh)
     {
         if (version_compare(PHP_VERSION, '5.3.0', '>')) {
-            return fgetcsv($fh, NULL, $this->delimiter, $this->enclosure, $this->escape);
+            return fgetcsv($fh, null, $this->delimiter, $this->enclosure, $this->escape);
         } else {
-            return fgetcsv($fh, NULL, $this->delimiter, $this->enclosure);
+            return fgetcsv($fh, null, $this->delimiter, $this->enclosure);
         }
     }
 }

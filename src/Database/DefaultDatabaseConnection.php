@@ -77,7 +77,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      * @todo Implement the filtered data set.
      */
-    public function createDataSet(array $tableNames = NULL)
+    public function createDataSet(array $tableNames = null)
     {
         if (empty($tableNames)) {
             return new DataSet($this);
@@ -125,7 +125,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
      * @param  string $whereClause
      * @return int
      */
-    public function getRowCount($tableName, $whereClause = NULL)
+    public function getRowCount($tableName, $whereClause = null)
     {
         $query = 'SELECT COUNT(*) FROM ' . $this->quoteSchemaObject($tableName);
 
