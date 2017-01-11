@@ -8,11 +8,8 @@
  * file that was distributed with this source code.
  */
 
-/**
- * Thrown for exceptions encountered with database operations. Provides
- * information regarding which operations failed and the query (if any) it
- * failed on.
- */
-class PHPUnit_Extensions_Database_Exception extends Exception
+namespace PHPUnit\DbUnit;
+
+interface Exception
 {
 }

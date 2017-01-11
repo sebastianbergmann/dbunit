@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\RuntimeException;
+
 /**
  * Provides a basic constructor for all meta data classes and a factory for
  * generating the appropriate meta data class.
@@ -82,7 +84,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
                 return self::registerClassWithDriver($className, $driverName)->newInstance($pdo, $schema);
             }
         } else {
-            throw new PHPUnit_Extensions_Database_Exception("Could not find a meta data driver for {$driverName} pdo driver.");
+            throw new RuntimeException("Could not find a meta data driver for {$driverName} pdo driver.");
         }
     }
 
@@ -101,14 +103,14 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extens
     public static function registerClassWithDriver($className, $pdoDriver)
     {
         if (!class_exists($className)) {
-            throw new PHPUnit_Extensions_Database_Exception("Specified class for {$pdoDriver} driver ({$className}) does not exist.");
+            throw new RuntimeException("Specified class for {$pdoDriver} driver ({$className}) does not exist.");
         }
 
         $reflection = new ReflectionClass($className);
         if ($reflection->isSubclassOf('PHPUnit_Extensions_Database_DB_MetaData')) {
             return self::$metaDataClassMap[$pdoDriver] = $reflection;
         } else {
-            throw new PHPUnit_Extensions_Database_Exception("Specified class for {$pdoDriver} driver ({$className}) does not extend PHPUnit_Extensions_Database_DB_MetaData.");
+            throw new RuntimeException("Specified class for {$pdoDriver} driver ({$className}) does not extend PHPUnit_Extensions_Database_DB_MetaData.");
         }
     }
 

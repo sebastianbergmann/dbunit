@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\RuntimeException;
+
 /**
  * Data set implementation for the output of mysqldump --xml.
  */
@@ -16,12 +18,12 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
     protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {
         if ($this->xmlFileContents->getName() != 'mysqldump') {
-            throw new PHPUnit_Extensions_Database_Exception('The root element of a MySQL XML data set file must be called <mysqldump>');
+            throw new RuntimeException('The root element of a MySQL XML data set file must be called <mysqldump>');
         }
 
         foreach ($this->xmlFileContents->xpath('./database/table_data') as $tableElement) {
             if (empty($tableElement['name'])) {
-                throw new PHPUnit_Extensions_Database_Exception('<table_data> elements must include a name attribute');
+                throw new RuntimeException('<table_data> elements must include a name attribute');
             }
 
             $tableName = (string) $tableElement['name'];
@@ -39,7 +41,7 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
 
                 foreach ($rowElement->xpath('./field') as $columnElement) {
                     if (empty($columnElement['name'])) {
-                        throw new PHPUnit_Extensions_Database_Exception('<field> element name attributes cannot be empty');
+                        throw new RuntimeException('<field> element name attributes cannot be empty');
                     }
 
                     $columnName = (string) $columnElement['name'];
@@ -71,14 +73,14 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extens
 
         foreach ($this->xmlFileContents->xpath('./database/table_structure') as $tableElement) {
             if (empty($tableElement['name'])) {
-                throw new PHPUnit_Extensions_Database_Exception('<table_structure> elements must include a name attribute');
+                throw new RuntimeException('<table_structure> elements must include a name attribute');
             }
 
             $tableName = (string) $tableElement['name'];
 
             foreach ($tableElement->xpath('./field') as $fieldElement) {
                 if (empty($fieldElement['Field']) && empty($fieldElement['field'])) {
-                    throw new PHPUnit_Extensions_Database_Exception('<field> elements must include a Field attribute');
+                    throw new RuntimeException('<field> elements must include a Field attribute');
                 }
 
                 $columnName = (string) (empty($fieldElement['Field']) ? $fieldElement['field'] : $fieldElement['Field']);
