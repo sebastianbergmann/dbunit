@@ -15,14 +15,14 @@
 abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extensions_Database_DB_IMetaData
 {
     protected static $metaDataClassMap = [
-        'pgsql'    => 'PHPUnit_Extensions_Database_DB_MetaData_PgSQL',
-        'mysql'    => 'PHPUnit_Extensions_Database_DB_MetaData_MySQL',
-        'oci'      => 'PHPUnit_Extensions_Database_DB_MetaData_Oci',
-        'sqlite'   => 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
-        'sqlite2'  => 'PHPUnit_Extensions_Database_DB_MetaData_Sqlite',
-        'sqlsrv'   => 'PHPUnit_Extensions_Database_DB_MetaData_SqlSrv',
-        'firebird' => 'PHPUnit_Extensions_Database_DB_MetaData_Firebird',
-        'dblib'    => 'PHPUnit_Extensions_Database_DB_MetaData_Dblib'
+        'pgsql'    => PHPUnit_Extensions_Database_DB_MetaData_PgSQL::class,
+        'mysql'    => PHPUnit_Extensions_Database_DB_MetaData_MySQL::class,
+        'oci'      => PHPUnit_Extensions_Database_DB_MetaData_Oci::class,
+        'sqlite'   => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
+        'sqlite2'  => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
+        'sqlsrv'   => PHPUnit_Extensions_Database_DB_MetaData_SqlSrv::class,
+        'firebird' => PHPUnit_Extensions_Database_DB_MetaData_Firebird::class,
+        'dblib'    => PHPUnit_Extensions_Database_DB_MetaData_Dblib::class
     ];
 
     /**

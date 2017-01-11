@@ -33,7 +33,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extension
     public function getDataSet($dataSetSpec)
     {
         $csvDataSetArgs = $this->getCsvOptions($dataSetSpec);
-        $csvDataSetRfl  = new ReflectionClass('PHPUnit_Extensions_Database_DataSet_CsvDataSet');
+        $csvDataSetRfl  = new ReflectionClass(PHPUnit_Extensions_Database_DataSet_CsvDataSet::class);
         $csvDataSet     = $csvDataSetRfl->newInstanceArgs($csvDataSetArgs);
 
         foreach ($this->getTableFileMap($dataSetSpec) as $tableName => $file) {
