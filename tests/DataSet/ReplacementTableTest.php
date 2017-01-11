@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\DbUnit\TestCase;
 
-class Extensions_Database_DataSet_ReplacementTableTest extends TestCase
+class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var PHPUnit_Extensions_Database_DataSet_DefaultTable
@@ -52,7 +52,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends TestCase
 
     public function testNoReplacement()
     {
-        PHPUnit_Extensions_Database_TestCase::assertTablesEqual(
+        TestCase::assertTablesEqual(
             $this->startingTable,
             new PHPUnit_Extensions_Database_DataSet_ReplacementTable($this->startingTable)
         );
@@ -91,7 +91,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends TestCase
         $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable($this->startingTable);
         $actual->addFullReplacement('[NULL]', NULL);
 
-        PHPUnit_Extensions_Database_TestCase::assertTablesEqual($table, $actual);
+        TestCase::assertTablesEqual($table, $actual);
     }
 
     public function testSubStrReplacement()
@@ -127,7 +127,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends TestCase
         $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable($this->startingTable);
         $actual->addSubStrReplacement('%%%name%%%', 'Mike Lively');
 
-        PHPUnit_Extensions_Database_TestCase::assertTablesEqual($table, $actual);
+        TestCase::assertTablesEqual($table, $actual);
     }
 
     public function testConstructorReplacements()
@@ -166,7 +166,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends TestCase
             ['%%%name%%%' => 'Mike Lively']
         );
 
-        PHPUnit_Extensions_Database_TestCase::assertTablesEqual($table, $actual);
+        TestCase::assertTablesEqual($table, $actual);
     }
 
     public function testGetRow()

@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\DbUnit\TestCase;
 
-class Extensions_Database_DataSet_ReplacementDataSetTest extends TestCase
+class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var PHPUnit_Extensions_Database_DataSet_DefaultDataSet
@@ -78,7 +78,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends TestCase
 
     public function testNoReplacement()
     {
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual(
+        TestCase::assertDataSetsEqual(
             $this->startingDataSet,
             new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet)
         );
@@ -144,7 +144,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends TestCase
         $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet);
         $actual->addFullReplacement('[NULL]', NULL);
 
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($expected, $actual);
+        TestCase::assertDataSetsEqual($expected, $actual);
     }
 
     public function testSubStrReplacement()
@@ -207,7 +207,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends TestCase
         $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet);
         $actual->addSubStrReplacement('%%%name%%%', 'Mike Lively');
 
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($expected, $actual);
+        TestCase::assertDataSetsEqual($expected, $actual);
     }
 
     public function testConstructorReplacements()
@@ -273,6 +273,6 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends TestCase
             ['%%%name%%%' => 'Mike Lively']
         );
 
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($expected, $actual);
+        TestCase::assertDataSetsEqual($expected, $actual);
     }
 }

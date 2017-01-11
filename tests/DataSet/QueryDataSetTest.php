@@ -8,7 +8,9 @@
  * file that was distributed with this source code.
  */
 
-class Extensions_Database_DataSet_QueryDataSetTest extends PHPUnit_Extensions_Database_TestCase
+use PHPUnit\DbUnit\TestCase;
+
+class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
 {
     /**
      * @var PHPUnit_Extensions_Database_DataSet_QueryDataSet

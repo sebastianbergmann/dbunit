@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\DbUnit\TestCase;
 
-class Extensions_Database_DataSet_CsvDataSetTest extends TestCase
+class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\TestCase
 {
     protected $expectedDataSet;
 
@@ -77,6 +77,6 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         $csvDataSet->addTable('table1', dirname(__FILE__) . '/../_files/CsvDataSets/table1.csv');
         $csvDataSet->addTable('table2', dirname(__FILE__) . '/../_files/CsvDataSets/table2.csv');
 
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($expectedDataSet, $csvDataSet);
+        TestCase::assertDataSetsEqual($expectedDataSet, $csvDataSet);
     }
 }

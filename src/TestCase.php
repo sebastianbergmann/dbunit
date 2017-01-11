@@ -8,13 +8,15 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\Framework\TestCase;
+namespace PHPUnit\DbUnit;
+
+use PHPUnit_Extensions_Database_TestCase_Trait;
 
 /**
  * A TestCase extension that provides functionality for testing and asserting
  * against a real database.
  */
-abstract class PHPUnit_Extensions_Database_TestCase extends TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     use PHPUnit_Extensions_Database_TestCase_Trait;
 }

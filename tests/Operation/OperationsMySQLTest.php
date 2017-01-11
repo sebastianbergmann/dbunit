@@ -8,9 +8,11 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\TestCase;
+
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
 
-class Extensions_Database_Operation_OperationsMySQLTest extends PHPUnit_Extensions_Database_TestCase
+class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 {
     protected function setUp()
     {

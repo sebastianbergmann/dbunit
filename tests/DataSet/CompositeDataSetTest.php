@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\Framework\TestCase;
+use PHPUnit\DbUnit\TestCase;
 
-class Extensions_Database_DataSet_CompositeDataSetTest extends TestCase
+class Extensions_Database_DataSet_CompositeDataSetTest extends \PHPUnit\Framework\TestCase
 {
     protected $expectedDataSet1;
     protected $expectedDataSet2;
@@ -109,7 +109,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
     {
         $actual = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet([$this->expectedDataSet1, $this->expectedDataSet2]);
 
-        PHPUnit_Extensions_Database_TestCase::assertDataSetsEqual($this->expectedDataSet3, $actual);
+        TestCase::assertDataSetsEqual($this->expectedDataSet3, $actual);
     }
 
     public function testCompatibleTablesInDifferentDataSetsNonDuplicateRows()
