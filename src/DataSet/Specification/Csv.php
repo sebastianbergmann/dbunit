@@ -8,6 +8,12 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet\Specification;
+
+use PHPUnit_Extensions_Database_DataSet_CsvDataSet;
+use PHPUnit_Extensions_Database_DataSet_ISpec;
+use ReflectionClass;
+
 /**
  * Creates CsvDataSets based off of a spec string.
  *
@@ -22,19 +28,19 @@
  *
  * Any additional characters in the csv options will be discarded.
  */
-class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extensions_Database_DataSet_ISpec
+class Csv implements PHPUnit_Extensions_Database_DataSet_ISpec
 {
     /**
      * Creates CSV Data Set from a data set spec.
      *
-     * @param  string                                         $dataSetSpec
+     * @param  string $dataSetSpec
      * @return PHPUnit_Extensions_Database_DataSet_CsvDataSet
      */
     public function getDataSet($dataSetSpec)
     {
         $csvDataSetArgs = $this->getCsvOptions($dataSetSpec);
-        $csvDataSetRfl  = new ReflectionClass(PHPUnit_Extensions_Database_DataSet_CsvDataSet::class);
-        $csvDataSet     = $csvDataSetRfl->newInstanceArgs($csvDataSetArgs);
+        $csvDataSetRfl = new ReflectionClass(PHPUnit_Extensions_Database_DataSet_CsvDataSet::class);
+        $csvDataSet = $csvDataSetRfl->newInstanceArgs($csvDataSetArgs);
 
         foreach ($this->getTableFileMap($dataSetSpec) as $tableName => $file) {
             $csvDataSet->addTable($tableName, $file);
@@ -76,7 +82,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Csv implements PHPUnit_Extension
 
         foreach (explode(',', $dataSetSpec) as $csvfile) {
             list($tableName, $file) = explode(':', $csvfile, 2);
-            $tables[$tableName]     = $file;
+            $tables[$tableName] = $file;
         }
 
         return $tables;

@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\Specification\Csv;
 use PHPUnit\DbUnit\RuntimeException;
 
 /**
@@ -31,7 +32,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_Factory implements PHPUnit_Exten
                 return new PHPUnit_Extensions_Database_DataSet_Specs_FlatXml();
 
             case 'csv':
-                return new PHPUnit_Extensions_Database_DataSet_Specs_Csv();
+                return new Csv();
 
             case 'yaml':
                 return new PHPUnit_Extensions_Database_DataSet_Specs_Yaml();
