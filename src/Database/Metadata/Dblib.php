@@ -1,10 +1,10 @@
 <?php
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
+namespace PHPUnit\DbUnit\Database\Metadata;
 
 /**
  * Provides functionality to retrieve meta data from an Dblib (SQL Server) database.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends Metadata
+class Dblib extends Metadata
 {
     /**
      * No character used to quote schema objects.
@@ -64,7 +64,7 @@ class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends Metadata
         }
 
         return $this->columns[$tableName];
-   }
+    }
 
     /**
      * Returns an array containing the names of all the primary key columns in
