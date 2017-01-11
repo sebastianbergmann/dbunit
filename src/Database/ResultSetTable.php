@@ -8,6 +8,13 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\Database;
+
+use PDO;
+use PDOStatement;
+use PHPUnit_Extensions_Database_DataSet_AbstractTable;
+use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
+
 /**
  * Provides the functionality to represent a database result set as a DBUnit
  * table.
@@ -16,12 +23,12 @@
  * @see        PHPUnit_Extension_Database_DataSet_QueryTable
  * @see        PHPUnit_Extension_Database_DataSet_QueryDataSet
  */
-class PHPUnit_Extensions_Database_DB_ResultSetTable extends PHPUnit_Extensions_Database_DataSet_AbstractTable
+class ResultSetTable extends PHPUnit_Extensions_Database_DataSet_AbstractTable
 {
     /**
      * Creates a new result set table.
      *
-     * @param string       $tableName
+     * @param string $tableName
      * @param PDOStatement $pdoStatement
      */
     public function __construct($tableName, PDOStatement $pdoStatement)
