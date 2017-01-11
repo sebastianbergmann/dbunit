@@ -8,10 +8,24 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DefaultTester;
-use PHPUnit\DbUnit\ITester;
+namespace PHPUnit\DbUnit;
 
-trait PHPUnit_Extensions_Database_TestCase_Trait
+use PDO;
+use PHPUnit_Extensions_Database_Constraint_DataSetIsEqual;
+use PHPUnit_Extensions_Database_Constraint_TableIsEqual;
+use PHPUnit_Extensions_Database_Constraint_TableRowCount;
+use PHPUnit_Extensions_Database_DataSet_ArrayDataSet;
+use PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet;
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet;
+use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
+use PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection;
+use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
+use PHPUnit_Extensions_Database_Operation_Factory;
+use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
+
+trait TestCaseTrait
 {
     /**
      * @var ITester
@@ -92,8 +106,8 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
      * Creates a new DefaultDatabaseConnection using the given PDO connection
      * and database schema name.
      *
-     * @param  PDO                                                      $connection
-     * @param  string                                                   $schema
+     * @param  PDO $connection
+     * @param  string $schema
      * @return PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
      */
     protected function createDefaultDBConnection(PDO $connection, $schema = '')
@@ -115,7 +129,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
      *     )
      * )
      *
-     * @param  array                                            $data
+     * @param  array $data
      * @return PHPUnit_Extensions_Database_DataSet_ArrayDataSet
      */
     protected function createArrayDataSet(array $data)
@@ -126,7 +140,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
     /**
      * Creates a new FlatXmlDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param  string                                             $xmlFile
+     * @param  string $xmlFile
      * @return PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet
      */
     protected function createFlatXMLDataSet($xmlFile)
@@ -137,7 +151,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
     /**
      * Creates a new XMLDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param  string                                         $xmlFile
+     * @param  string $xmlFile
      * @return PHPUnit_Extensions_Database_DataSet_XmlDataSet
      */
     protected function createXMLDataSet($xmlFile)
@@ -148,7 +162,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
     /**
      * Create a a new MysqlXmlDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param  string                                              $xmlFile
+     * @param  string $xmlFile
      * @return PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet
      */
     protected function createMySQLXMLDataSet($xmlFile)
@@ -202,7 +216,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITable $expected
      * @param PHPUnit_Extensions_Database_DataSet_ITable $actual
-     * @param string                                     $message
+     * @param string $message
      */
     public static function assertTablesEqual(PHPUnit_Extensions_Database_DataSet_ITable $expected, PHPUnit_Extensions_Database_DataSet_ITable $actual, $message = '')
     {
@@ -216,7 +230,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITable $expected
      * @param PHPUnit_Extensions_Database_DataSet_ITable $actual
-     * @param string                                     $message
+     * @param string $message
      */
     public static function assertDataSetsEqual(PHPUnit_Extensions_Database_DataSet_IDataSet $expected, PHPUnit_Extensions_Database_DataSet_IDataSet $actual, $message = '')
     {
@@ -229,13 +243,13 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
      * Assert that a given table has a given amount of rows
      *
      * @param string $tableName Name of the table
-     * @param int    $expected  Expected amount of rows in the table
-     * @param string $message   Optional message
+     * @param int $expected Expected amount of rows in the table
+     * @param string $message Optional message
      */
     public function assertTableRowCount($tableName, $expected, $message = '')
     {
         $constraint = new PHPUnit_Extensions_Database_Constraint_TableRowCount($tableName, $expected);
-        $actual     = $this->getConnection()->getRowCount($tableName);
+        $actual = $this->getConnection()->getRowCount($tableName);
 
         self::assertThat($actual, $constraint, $message);
     }
@@ -243,9 +257,9 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
     /**
      * Asserts that a given table contains a given row
      *
-     * @param array                                      $expectedRow Row expected to find
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $table       Table to look into
-     * @param string                                     $message     Optional message
+     * @param array $expectedRow Row expected to find
+     * @param PHPUnit_Extensions_Database_DataSet_ITable $table Table to look into
+     * @param string $message Optional message
      */
     public function assertTableContains(array $expectedRow, PHPUnit_Extensions_Database_DataSet_ITable $table, $message = '')
     {
