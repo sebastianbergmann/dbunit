@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DefaultTester;
+
 trait PHPUnit_Extensions_Database_TestCase_Trait
 {
     /**
@@ -82,7 +84,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
      */
     protected function newDatabaseTester()
     {
-        return new PHPUnit_Extensions_Database_DefaultTester($this->getConnection());
+        return new DefaultTester($this->getConnection());
     }
 
     /**
