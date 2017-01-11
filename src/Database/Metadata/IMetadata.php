@@ -8,10 +8,12 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\Database\Metadata;
+
 /**
  * Provides a basic interface for retreiving metadata from a database.
  */
-interface PHPUnit_Extensions_Database_DB_IMetaData
+interface IMetadata
 {
     /**
      * Returns an array containing the names of all the tables in the database.

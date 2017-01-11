@@ -8,13 +8,14 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Database\Metadata\IMetadata;
 use PHPUnit\DbUnit\RuntimeException;
 
 /**
  * Provides a basic constructor for all meta data classes and a factory for
  * generating the appropriate meta data class.
  */
-abstract class PHPUnit_Extensions_Database_DB_MetaData implements PHPUnit_Extensions_Database_DB_IMetaData
+abstract class PHPUnit_Extensions_Database_DB_MetaData implements IMetadata
 {
     protected static $metaDataClassMap = [
         'pgsql'    => PHPUnit_Extensions_Database_DB_MetaData_PgSQL::class,
