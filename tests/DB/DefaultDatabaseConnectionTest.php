@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\Framework\TestCase;
 
 class DefaultDatabaseConnectionTest extends TestCase
@@ -14,7 +15,7 @@ class DefaultDatabaseConnectionTest extends TestCase
 
     public function testRowCountForEmptyTableReturnsZero()
     {
-        $conn = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($this->db);
+        $conn = new DefaultConnection($this->db);
         $this->assertEquals(0, $conn->getRowCount('test'));
     }
 
@@ -23,7 +24,7 @@ class DefaultDatabaseConnectionTest extends TestCase
         $this->db->exec('INSERT INTO test (field1) VALUES (\'foobar\')');
         $this->db->exec('INSERT INTO test (field1) VALUES (\'foobarbaz\')');
 
-        $conn = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($this->db);
+        $conn = new DefaultConnection($this->db);
         $this->assertEquals(2, $conn->getRowCount('test'));
     }
 }

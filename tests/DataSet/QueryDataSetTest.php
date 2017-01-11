@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
@@ -20,7 +21,7 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
     protected $pdo;
 
     /**
-     * @return PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
+     * @return DefaultConnection
      */
     protected function getConnection()
     {

@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\IDatabaseListConsumer;
 
 /**
@@ -63,7 +64,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_DbQuery implements PHPUnit_Exten
 
         $pdoRflc      = new ReflectionClass('PDO');
         $pdo          = $pdoRflc->newInstanceArgs(explode('|', $databaseInfo));
-        $dbConnection = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($pdo, $schema);
+        $dbConnection = new DefaultConnection($pdo, $schema);
         $table        = $dbConnection->createQueryTable($table, $sql);
 
         return new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table]);

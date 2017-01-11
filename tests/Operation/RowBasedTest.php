@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -25,7 +26,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
 
     public function getConnection()
     {
-        return new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection(DBUnitTestUtility::getSQLiteMemoryDB(), 'sqlite');
+        return new DefaultConnection(DBUnitTestUtility::getSQLiteMemoryDB(), 'sqlite');
     }
 
     public function getDataSet()
@@ -51,7 +52,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
     public function testExecute()
     {
         $connection = $this->getConnection();
-        /* @var $connection PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection */
+        /* @var $connection DefaultConnection */
         $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable(
             new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1', ['table1_id', 'column1', 'column2', 'column3', 'column4'])
         );

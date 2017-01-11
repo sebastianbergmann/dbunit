@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_QueryTableTest extends TestCase
@@ -32,7 +33,7 @@ class Extensions_Database_DataSet_QueryTableTest extends TestCase
         $this->table = new PHPUnit_Extensions_Database_DataSet_QueryTable(
             'table1',
             $query,
-            new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection(new PDO('sqlite::memory:'), 'test')
+            new DefaultConnection(new PDO('sqlite::memory:'), 'test')
         );
     }
 

@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -29,7 +30,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 
     public function getConnection()
     {
-        return new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection(DBUnitTestUtility::getMySQLDB(), 'mysql');
+        return new DefaultConnection(DBUnitTestUtility::getMySQLDB(), 'mysql');
     }
 
     public function getDataSet()

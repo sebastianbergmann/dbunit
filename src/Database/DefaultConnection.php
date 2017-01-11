@@ -7,12 +7,22 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Database\DataSet;
+
+namespace PHPUnit\DbUnit\Database;
+
+use PDO;
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DataSet_QueryTable;
+use PHPUnit_Extensions_Database_DB_FilteredDataSet;
+use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
+use PHPUnit_Extensions_Database_DB_IMetaData;
+use PHPUnit_Extensions_Database_DB_MetaData;
+use PHPUnit_Extensions_Database_DB_Table;
 
 /**
  * Provides a basic interface for communicating with a database.
  */
-class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUnit_Extensions_Database_DB_IDatabaseConnection
+class DefaultConnection implements PHPUnit_Extensions_Database_DB_IDatabaseConnection
 {
     /**
      * @var PDO
@@ -29,13 +39,13 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
     /**
      * Creates a new database connection
      *
-     * @param PDO    $connection
-     * @param string $schema     - The name of the database schema you will be testing against.
+     * @param PDO $connection
+     * @param string $schema - The name of the database schema you will be testing against.
      */
     public function __construct(PDO $connection, $schema = '')
     {
         $this->connection = $connection;
-        $this->metaData   = PHPUnit_Extensions_Database_DB_MetaData::createMetaData($connection, $schema);
+        $this->metaData = PHPUnit_Extensions_Database_DB_MetaData::createMetaData($connection, $schema);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -73,7 +83,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
      * names are specified then it will created a dataset over the entire
      * database.
      *
-     * @param  array                                        $tableNames
+     * @param  array $tableNames
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      * @todo Implement the filtered data set.
      */
@@ -89,8 +99,8 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
     /**
      * Creates a table with the result of the specified SQL statement.
      *
-     * @param  string                               $resultName
-     * @param  string                               $sql
+     * @param  string $resultName
+     * @param  string $sql
      * @return PHPUnit_Extensions_Database_DB_Table
      */
     public function createQueryTable($resultName, $sql)
@@ -100,8 +110,6 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
 
     /**
      * Returns this connection database configuration
-     *
-     * @return PHPUnit_Extensions_Database_Database_DatabaseConfig
      */
     public function getConfig()
     {
@@ -133,7 +141,7 @@ class PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection implements PHPUni
             $query .= " WHERE {$whereClause}";
         }
 
-        return (int) $this->connection->query($query)->fetchColumn();
+        return (int)$this->connection->query($query)->fetchColumn();
     }
 
     /**

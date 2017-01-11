@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\IDatabaseListConsumer;
 
 /**
@@ -61,7 +62,7 @@ class PHPUnit_Extensions_Database_DataSet_Specs_DbTable implements PHPUnit_Exten
 
         $pdoRflc      = new ReflectionClass('PDO');
         $pdo          = $pdoRflc->newInstanceArgs(explode('|', $databaseInfo));
-        $dbConnection = new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($pdo, $schema);
+        $dbConnection = new DefaultConnection($pdo, $schema);
 
         return !empty($tables) ? $dbConnection->createDataSet(explode(',', $tables)) : $dbConnection->createDataSet();
     }

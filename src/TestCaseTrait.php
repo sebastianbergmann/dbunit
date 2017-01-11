@@ -20,7 +20,7 @@ use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet;
 use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
-use PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection;
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
 use PHPUnit_Extensions_Database_Operation_Factory;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
@@ -108,11 +108,11 @@ trait TestCaseTrait
      *
      * @param  PDO $connection
      * @param  string $schema
-     * @return PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
+     * @return DefaultConnection
      */
     protected function createDefaultDBConnection(PDO $connection, $schema = '')
     {
-        return new PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection($connection, $schema);
+        return new DefaultConnection($connection, $schema);
     }
 
     /**
