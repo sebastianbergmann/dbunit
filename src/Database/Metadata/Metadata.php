@@ -8,24 +8,34 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\Database\Metadata\IMetadata;
+namespace PHPUnit\DbUnit\Database\Metadata;
+
+use PDO;
 use PHPUnit\DbUnit\RuntimeException;
+use PHPUnit_Extensions_Database_DB_MetaData_Dblib;
+use PHPUnit_Extensions_Database_DB_MetaData_Firebird;
+use PHPUnit_Extensions_Database_DB_MetaData_MySQL;
+use PHPUnit_Extensions_Database_DB_MetaData_Oci;
+use PHPUnit_Extensions_Database_DB_MetaData_PgSQL;
+use PHPUnit_Extensions_Database_DB_MetaData_Sqlite;
+use PHPUnit_Extensions_Database_DB_MetaData_SqlSrv;
+use ReflectionClass;
 
 /**
  * Provides a basic constructor for all meta data classes and a factory for
  * generating the appropriate meta data class.
  */
-abstract class PHPUnit_Extensions_Database_DB_MetaData implements IMetadata
+abstract class Metadata implements IMetadata
 {
     protected static $metaDataClassMap = [
-        'pgsql'    => PHPUnit_Extensions_Database_DB_MetaData_PgSQL::class,
-        'mysql'    => PHPUnit_Extensions_Database_DB_MetaData_MySQL::class,
-        'oci'      => PHPUnit_Extensions_Database_DB_MetaData_Oci::class,
-        'sqlite'   => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
-        'sqlite2'  => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
-        'sqlsrv'   => PHPUnit_Extensions_Database_DB_MetaData_SqlSrv::class,
+        'pgsql' => PHPUnit_Extensions_Database_DB_MetaData_PgSQL::class,
+        'mysql' => PHPUnit_Extensions_Database_DB_MetaData_MySQL::class,
+        'oci' => PHPUnit_Extensions_Database_DB_MetaData_Oci::class,
+        'sqlite' => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
+        'sqlite2' => PHPUnit_Extensions_Database_DB_MetaData_Sqlite::class,
+        'sqlsrv' => PHPUnit_Extensions_Database_DB_MetaData_SqlSrv::class,
         'firebird' => PHPUnit_Extensions_Database_DB_MetaData_Firebird::class,
-        'dblib'    => PHPUnit_Extensions_Database_DB_MetaData_Dblib::class
+        'dblib' => PHPUnit_Extensions_Database_DB_MetaData_Dblib::class
     ];
 
     /**
@@ -56,12 +66,12 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements IMetadata
      * Creates a new database meta data object using the given pdo connection
      * and schema name.
      *
-     * @param PDO    $pdo
+     * @param PDO $pdo
      * @param string $schema
      */
     public final function __construct(PDO $pdo, $schema = '')
     {
-        $this->pdo    = $pdo;
+        $this->pdo = $pdo;
         $this->schema = $schema;
     }
 
@@ -69,9 +79,9 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements IMetadata
      * Creates a meta data object based on the driver of given $pdo object and
      * $schema name.
      *
-     * @param  PDO                                     $pdo
-     * @param  string                                  $schema
-     * @return PHPUnit_Extensions_Database_DB_MetaData
+     * @param  PDO $pdo
+     * @param  string $schema
+     * @return Metadata
      */
     public static function createMetaData(PDO $pdo, $schema = '')
     {
@@ -97,8 +107,8 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements IMetadata
      *
      * A reflection of the $className is returned.
      *
-     * @param  string          $className
-     * @param  string          $pdoDriver
+     * @param  string $className
+     * @param  string $pdoDriver
      * @return ReflectionClass
      */
     public static function registerClassWithDriver($className, $pdoDriver)
@@ -108,7 +118,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements IMetadata
         }
 
         $reflection = new ReflectionClass($className);
-        if ($reflection->isSubclassOf('PHPUnit_Extensions_Database_DB_MetaData')) {
+        if ($reflection->isSubclassOf(self::class)) {
             return self::$metaDataClassMap[$pdoDriver] = $reflection;
         } else {
             throw new RuntimeException("Specified class for {$pdoDriver} driver ({$className}) does not extend PHPUnit_Extensions_Database_DB_MetaData.");
@@ -133,7 +143,7 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements IMetadata
      */
     public function quoteSchemaObject($object)
     {
-        $parts       = explode('.', $object);
+        $parts = explode('.', $object);
         $quotedParts = [];
 
         foreach ($parts as $part) {
@@ -158,12 +168,12 @@ abstract class PHPUnit_Extensions_Database_DB_MetaData implements IMetadata
         if (($dot = strpos($fullTableName, '.')) !== false) {
             return [
                 'schema' => substr($fullTableName, 0, $dot),
-                'table'  => substr($fullTableName, $dot + 1)
+                'table' => substr($fullTableName, $dot + 1)
             ];
         } else {
             return [
                 'schema' => null,
-                'table'  => $fullTableName
+                'table' => $fullTableName
             ];
         }
     }

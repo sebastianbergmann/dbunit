@@ -7,11 +7,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\Metadata\Metadata;
 
 /**
  * Provides functionality to retrieve meta data from a PostgreSQL database.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends PHPUnit_Extensions_Database_DB_MetaData
+class PHPUnit_Extensions_Database_DB_MetaData_PgSQL extends Metadata
 {
     /**
      * Returns an array containing the names of all the tables in the database.

@@ -14,7 +14,7 @@ use PDO;
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_QueryTable;
 use PHPUnit\DbUnit\Database\Metadata\IMetadata;
-use PHPUnit_Extensions_Database_DB_MetaData;
+use PHPUnit\DbUnit\Database\Metadata\Metadata;
 use PHPUnit_Extensions_Database_DB_Table;
 
 /**
@@ -43,7 +43,7 @@ class DefaultConnection implements IConnection
     public function __construct(PDO $connection, $schema = '')
     {
         $this->connection = $connection;
-        $this->metaData = PHPUnit_Extensions_Database_DB_MetaData::createMetaData($connection, $schema);
+        $this->metaData = Metadata::createMetaData($connection, $schema);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

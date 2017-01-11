@@ -7,11 +7,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Database\Metadata\Metadata;
 
 /**
  * Provides functionality to retrieve meta data from a MySQL database.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_MySQL extends PHPUnit_Extensions_Database_DB_MetaData
+class PHPUnit_Extensions_Database_DB_MetaData_MySQL extends Metadata
 {
     protected $schemaObjectQuoteChar = '`';
 

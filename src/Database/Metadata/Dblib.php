@@ -1,8 +1,10 @@
 <?php
+use PHPUnit\DbUnit\Database\Metadata\Metadata;
+
 /**
  * Provides functionality to retrieve meta data from an Dblib (SQL Server) database.
  */
-class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends PHPUnit_Extensions_Database_DB_MetaData
+class PHPUnit_Extensions_Database_DB_MetaData_Dblib extends Metadata
 {
     /**
      * No character used to quote schema objects.
