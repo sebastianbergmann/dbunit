@@ -9,11 +9,12 @@
  */
 
 use PHPUnit\DbUnit\DefaultTester;
+use PHPUnit\DbUnit\ITester;
 
 trait PHPUnit_Extensions_Database_TestCase_Trait
 {
     /**
-     * @var PHPUnit_Extensions_Database_ITester
+     * @var ITester
      */
     protected $databaseTester;
 
@@ -39,7 +40,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
      * not set yet, this method calls newDatabaseTester() to obtain a new
      * instance.
      *
-     * @return PHPUnit_Extensions_Database_ITester
+     * @return ITester
      */
     protected function getDatabaseTester()
     {
@@ -80,7 +81,7 @@ trait PHPUnit_Extensions_Database_TestCase_Trait
     /**
      * Creates a IDatabaseTester for this testCase.
      *
-     * @return PHPUnit_Extensions_Database_ITester
+     * @return ITester
      */
     protected function newDatabaseTester()
     {

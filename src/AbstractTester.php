@@ -12,14 +12,13 @@ namespace PHPUnit\DbUnit;
 
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
-use PHPUnit_Extensions_Database_ITester;
 use PHPUnit_Extensions_Database_Operation_Factory;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
  * Can be used as a foundation for new DatabaseTesters.
  */
-abstract class AbstractTester implements PHPUnit_Extensions_Database_ITester
+abstract class AbstractTester implements ITester
 {
     /**
      * @var PHPUnit_Extensions_Database_Operation_IDatabaseOperation

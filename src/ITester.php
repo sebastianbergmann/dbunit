@@ -8,12 +8,18 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit;
+
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DB_IDatabaseConnection;
+use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
+
 /**
  * This is the interface for DatabaseTester objects. These objects are used to
  * add database testing to existing test cases using composition instead of
  * extension.
  */
-interface PHPUnit_Extensions_Database_ITester
+interface ITester
 {
     /**
      * Closes the specified connection.
