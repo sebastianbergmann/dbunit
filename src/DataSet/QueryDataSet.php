@@ -12,6 +12,7 @@ use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\Database\TableIterator;
 use PHPUnit\DbUnit\Database\Table;
 use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultTableIterator;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -61,7 +62,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends AbstractDataSet
      */
     protected function createIterator($reverse = false)
     {
-        return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
+        return new DefaultTableIterator($this->tables, $reverse);
     }
 
     /**

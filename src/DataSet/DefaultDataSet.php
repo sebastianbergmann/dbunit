@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
@@ -55,6 +54,6 @@ class DefaultDataSet extends AbstractDataSet
      */
     protected function createIterator($reverse = false)
     {
-        return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
+        return new DefaultTableIterator($this->tables, $reverse);
     }
 }

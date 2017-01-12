@@ -8,10 +8,16 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet;
+
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+
 /**
  * The default table iterator
  */
-class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterator
+class DefaultTableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterator
 {
     /**
      * An array of tables in the iterator.
@@ -32,11 +38,11 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTableIterator implements PHPUni
      * Creates a new default table iterator object.
      *
      * @param array $tables
-     * @param bool  $reverse
+     * @param bool $reverse
      */
     public function __construct(array $tables, $reverse = false)
     {
-        $this->tables  = $tables;
+        $this->tables = $tables;
         $this->reverse = $reverse;
 
         $this->rewind();

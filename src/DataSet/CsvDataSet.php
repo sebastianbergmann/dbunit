@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
@@ -103,7 +102,7 @@ class CsvDataSet extends AbstractDataSet
      */
     protected function createIterator($reverse = false)
     {
-        return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($this->tables, $reverse);
+        return new DefaultTableIterator($this->tables, $reverse);
     }
 
     /**

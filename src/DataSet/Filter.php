@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
@@ -118,7 +117,7 @@ class Filter extends AbstractDataSet
             }
         }
 
-        return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator($new_tables);
+        return new DefaultTableIterator($new_tables);
     }
 
     /**

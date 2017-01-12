@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
+use PHPUnit\DbUnit\DataSet\DefaultTableIterator;
 
 /**
  * Creates YamlDataSets.
@@ -106,7 +107,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
      */
     protected function createIterator($reverse = false)
     {
-        return new PHPUnit_Extensions_Database_DataSet_DefaultTableIterator(
+        return new DefaultTableIterator(
           $this->tables, $reverse
         );
     }
