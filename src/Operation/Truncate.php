@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * Executes a truncate against all tables in a dataset.
@@ -25,7 +26,7 @@ class PHPUnit_Extensions_Database_Operation_Truncate implements PHPUnit_Extensio
     public function execute(IConnection $connection, IDataSet $dataSet)
     {
         foreach ($dataSet->getReverseIterator() as $table) {
-            /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
+            /* @var $table ITable */
             $query = "
                 {$connection->getTruncateCommand()} {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}
             ";

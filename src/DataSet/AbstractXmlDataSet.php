@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use RuntimeException;
 use SimpleXmlElement;
@@ -88,7 +87,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
      * an empty one is created.
      *
      * @param  string $tableName
-     * @return PHPUnit_Extensions_Database_DataSet_ITable
+     * @return ITable
      */
     protected function getOrCreateTable($tableName, $tableColumns)
     {

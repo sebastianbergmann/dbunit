@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
@@ -46,9 +45,9 @@ class DefaultTable extends AbstractTable
     /**
      * Adds the rows in the passed table to the current table.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $table
+     * @param ITable $table
      */
-    public function addTableRows(PHPUnit_Extensions_Database_DataSet_ITable $table)
+    public function addTableRows(ITable $table)
     {
         $tableColumns = $this->getTableMetaData()->getColumns();
         $rowCount = $table->getRowCount();

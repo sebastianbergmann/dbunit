@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * The default table iterator
@@ -71,7 +72,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements Ou
     /**
      * Returns the current table.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITable
+     * @return ITable
      */
     public function getTable()
     {
@@ -91,7 +92,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements Ou
     /**
      * Returns the current table.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITable
+     * @return ITable
      */
     public function current()
     {

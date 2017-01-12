@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use IteratorAggregate;
-use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
@@ -39,7 +38,7 @@ interface IDataSet extends IteratorAggregate
      * Returns a table object for the given table.
      *
      * @param  string $tableName
-     * @return PHPUnit_Extensions_Database_DataSet_ITable
+     * @return ITable
      */
     public function getTable($tableName);
 

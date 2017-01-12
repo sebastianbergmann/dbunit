@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\Constraint;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
 use PHPUnit\Framework\Constraint\Constraint;
-use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * Asserts whether or not two dbunit tables are equal.
@@ -20,7 +20,7 @@ use PHPUnit_Extensions_Database_DataSet_ITable;
 class TableIsEqual extends Constraint
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_ITable
+     * @var ITable
      */
     protected $value;
 
@@ -32,9 +32,9 @@ class TableIsEqual extends Constraint
     /**
      * Creates a new constraint.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $value
+     * @param ITable $value
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $value)
+    public function __construct(ITable $value)
     {
         parent::__construct();
         $this->value = $value;
@@ -51,7 +51,7 @@ class TableIsEqual extends Constraint
      */
     protected function matches($other)
     {
-        if (!$other instanceof PHPUnit_Extensions_Database_DataSet_ITable) {
+        if (!$other instanceof ITable) {
             throw new InvalidArgumentException(
                 'PHPUnit_Extensions_Database_DataSet_ITable expected'
             );

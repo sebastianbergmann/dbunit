@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
 /**
@@ -38,9 +37,9 @@ class DefaultDataSet extends AbstractDataSet
     /**
      * Adds a table to the dataset.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $table
+     * @param ITable $table
      */
-    public function addTable(PHPUnit_Extensions_Database_DataSet_ITable $table)
+    public function addTable(ITable $table)
     {
         $this->tables[] = $table;
     }

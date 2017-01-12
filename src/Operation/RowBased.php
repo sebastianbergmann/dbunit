@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * Provides basic functionality for row based operations.
@@ -30,18 +31,18 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
     /**
      * @return string|bool String containing the query or FALSE if a valid query cannot be constructed
      */
-    protected abstract function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection);
+    protected abstract function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, ITable $table, IConnection $connection);
 
-    protected abstract function buildOperationArguments(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, $row);
+    protected abstract function buildOperationArguments(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, ITable $table, $row);
 
     /**
      * Allows an operation to disable primary keys if necessary.
      *
      * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData
-     * @param PHPUnit_Extensions_Database_DataSet_ITable         $table
+     * @param ITable         $table
      * @param IConnection $connection
      */
-    protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection)
+    protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, ITable $table, IConnection $connection)
     {
         return false;
     }
@@ -61,7 +62,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
 
             if($rowCount == 0) continue;
 
-            /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
+            /* @var $table ITable */
             $databaseTableMetaData = $databaseDataSet->getTableMetaData($table->getTableMetaData()->getTableName());
             $query                 = $this->buildOperationQuery($databaseTableMetaData, $table, $connection);
             $disablePrimaryKeys    = $this->disablePrimaryKeys($databaseTableMetaData, $table, $connection);

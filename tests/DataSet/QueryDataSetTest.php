@@ -11,6 +11,7 @@
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
@@ -80,7 +81,7 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
         $expectedTable2->addRow(['tc1' => 'bar', 'tc2' => 'blah']);
 
         foreach ($this->dataSet as $i => $table) {
-            /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
+            /* @var $table ITable */
             switch ($table->getTableMetaData()->getTableName()) {
                 case 'table1':
                     $this->assertTablesEqual($expectedTable1, $table);

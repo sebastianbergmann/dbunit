@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
@@ -17,7 +18,7 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
 {
     protected $operationName = 'REPLACE';
 
-    protected function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection)
+    protected function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, ITable $table, IConnection $connection)
     {
         $keys = $databaseTableMetaData->getPrimaryKeys();
 
@@ -32,7 +33,7 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
         return $query;
     }
 
-    protected function buildOperationArguments(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, $row)
+    protected function buildOperationArguments(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, ITable $table, $row)
     {
         $args = [];
 
@@ -54,7 +55,7 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
         $databaseDataSet = $connection->createDataSet();
 
         foreach ($dataSet as $table) {
-            /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
+            /* @var $table ITable */
             $databaseTableMetaData = $databaseDataSet->getTableMetaData($table->getTableMetaData()->getTableName());
 
             $insertQuery = $insertOperation->buildOperationQuery($databaseTableMetaData, $table, $connection);

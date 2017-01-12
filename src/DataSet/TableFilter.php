@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\DataSet\AbstractTable;
+use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -18,17 +19,17 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends AbstractTable
 {
     /**
      * The table meta data being decorated.
-     * @var PHPUnit_Extensions_Database_DataSet_ITable
+     * @var ITable
      */
     protected $originalTable;
 
     /**
      * Creates a new table filter using the original table
      *
-     * @param $originalTable PHPUnit_Extensions_Database_DataSet_ITable
+     * @param $originalTable ITable
      * @param $excludeColumns Array @deprecated, use the set* methods instead.
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $originalTable, array $excludeColumns = [])
+    public function __construct(ITable $originalTable, array $excludeColumns = [])
     {
         $this->originalTable = $originalTable;
         $this->setTableMetaData(new PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter($originalTable->getTableMetaData()));

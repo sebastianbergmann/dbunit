@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_TableFilter;
 
@@ -92,7 +91,7 @@ class Filter extends AbstractDataSet
         $new_tables = [];
 
         foreach ($original_tables as $table) {
-            /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
+            /* @var $table ITable */
             $tableName = $table->getTableMetaData()->getTableName();
 
             if ((!in_array($tableName, $this->includeTables) && !empty($this->includeTables)) ||

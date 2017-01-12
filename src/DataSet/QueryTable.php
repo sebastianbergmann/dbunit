@@ -10,6 +10,7 @@
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\AbstractTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * Provides the functionality to represent a database table.
@@ -112,9 +113,9 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
     /**
      * Asserts that the given table matches this table.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $other
+     * @param ITable $other
      */
-    public function matches(PHPUnit_Extensions_Database_DataSet_ITable $other)
+    public function matches(ITable $other)
     {
         $this->loadData();
 

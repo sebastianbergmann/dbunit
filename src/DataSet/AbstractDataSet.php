@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
@@ -38,7 +37,7 @@ abstract class AbstractDataSet implements IDataSet
         $tableNames = [];
 
         foreach ($this->getIterator() as $table) {
-            /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
+            /* @var $table ITable */
             $tableNames[] = $table->getTableMetaData()->getTableName();
         }
 
@@ -60,12 +59,12 @@ abstract class AbstractDataSet implements IDataSet
      * Returns a table object for the given table.
      *
      * @param  string $tableName
-     * @return PHPUnit_Extensions_Database_DataSet_ITable
+     * @return ITable
      */
     public function getTable($tableName)
     {
         foreach ($this->getIterator() as $table) {
-            /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
+            /* @var $table ITable */
             if ($table->getTableMetaData()->getTableName() == $tableName) {
                 return $table;
             }

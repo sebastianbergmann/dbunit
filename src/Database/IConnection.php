@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\Database;
 
 use PDO;
 use PHPUnit\DbUnit\DataSet\IDataSet;
-use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\Database\Metadata\IMetadata;
 
 /**
@@ -40,7 +40,7 @@ interface IConnection
      *
      * @param  string $resultName
      * @param  string $sql
-     * @return PHPUnit_Extensions_Database_DataSet_ITable
+     * @return ITable
      */
     public function createQueryTable($resultName, $sql);
 

@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * Deletes all rows from all tables in a dataset.
@@ -18,7 +19,7 @@ class PHPUnit_Extensions_Database_Operation_DeleteAll implements PHPUnit_Extensi
     public function execute(IConnection $connection, IDataSet $dataSet)
     {
         foreach ($dataSet->getReverseIterator() as $table) {
-            /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
+            /* @var $table ITable */
 
             $query = "
                 DELETE FROM {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}

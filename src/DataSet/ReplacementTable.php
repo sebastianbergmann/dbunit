@@ -7,16 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * Allows for replacing arbitrary strings in your data sets with other values.
  *
  * @todo When setTableMetaData() is taken out of the AbstractTable this class should extend AbstractTable.
  */
-class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Extensions_Database_DataSet_ITable
+class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements ITable
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_ITable
+     * @var ITable
      */
     protected $table;
 
@@ -33,11 +34,11 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
     /**
      * Creates a new replacement table
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $table
+     * @param ITable $table
      * @param array                                      $fullReplacements
      * @param array                                      $subStrReplacements
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITable $table, array $fullReplacements = [], array $subStrReplacements = [])
+    public function __construct(ITable $table, array $fullReplacements = [], array $subStrReplacements = [])
     {
         $this->table              = $table;
         $this->fullReplacements   = $fullReplacements;
@@ -117,9 +118,9 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements PHPUnit_Ex
     /**
      * Asserts that the given table matches this table.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $other
+     * @param ITable $other
      */
-    public function matches(PHPUnit_Extensions_Database_DataSet_ITable $other)
+    public function matches(ITable $other)
     {
         $thisMetaData  = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();

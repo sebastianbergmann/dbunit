@@ -10,6 +10,7 @@
 
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_AbstractTableTest extends TestCase
@@ -57,7 +58,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
         $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
         $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
 
-        $otherTable = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
+        $otherTable = $this->createMock(ITable::class);
         $otherTable->expects($this->once())
             ->method('getTableMetaData')
             ->will($this->returnValue($otherMetaData));
@@ -75,7 +76,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
     {
         $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
         $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
-        $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
+        $otherTable    = $this->createMock(ITable::class);
 
         $table = $this->getMockBuilder(DefaultTable::class)
                       ->setConstructorArgs([$tableMetaData])
@@ -110,7 +111,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
     {
         $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
         $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
-        $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
+        $otherTable    = $this->createMock(ITable::class);
 
         $table = $this->getMockBuilder(DefaultTable::class)
                       ->setConstructorArgs([$tableMetaData])

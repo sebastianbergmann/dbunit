@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\Database;
 
-use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
@@ -53,7 +53,7 @@ class TableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterato
     /**
      * Returns the current table.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITable
+     * @return ITable
      */
     public function getTable()
     {
@@ -73,7 +73,7 @@ class TableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterato
     /**
      * Returns the current table.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITable
+     * @return ITable
      */
     public function current()
     {

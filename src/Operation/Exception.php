@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * Thrown for exceptions encountered with database operations. Provides
@@ -31,7 +32,7 @@ class PHPUnit_Extensions_Database_Operation_Exception extends RuntimeException
     protected $preparedArgs;
 
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_ITable
+     * @var ITable
      */
     protected $table;
 
@@ -45,7 +46,7 @@ class PHPUnit_Extensions_Database_Operation_Exception extends RuntimeException
      *
      * @param string                                     $operation
      * @param string                                     $current_query
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $current_table
+     * @param ITable $current_table
      * @param string                                     $error
      */
     public function __construct($operation, $current_query, $current_args, $current_table, $error)

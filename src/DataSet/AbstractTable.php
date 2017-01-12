@@ -11,14 +11,13 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 use SimpleXMLElement;
 
 /**
  * Provides a basic functionality for dbunit tables
  */
-class AbstractTable implements PHPUnit_Extensions_Database_DataSet_ITable
+class AbstractTable implements ITable
 {
     /**
      * @var PHPUnit_Extensions_Database_DataSet_ITableMetaData
@@ -33,7 +32,7 @@ class AbstractTable implements PHPUnit_Extensions_Database_DataSet_ITable
     protected $data;
 
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_ITable|null
+     * @var ITable|null
      */
     private $other;
 
@@ -112,9 +111,9 @@ class AbstractTable implements PHPUnit_Extensions_Database_DataSet_ITable
     /**
      * Asserts that the given table matches this table.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $other
+     * @param ITable $other
      */
-    public function matches(PHPUnit_Extensions_Database_DataSet_ITable $other)
+    public function matches(ITable $other)
     {
         $thisMetaData = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();

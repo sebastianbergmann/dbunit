@@ -17,7 +17,7 @@ use PHPUnit\DbUnit\Constraint\TableRowCount;
 use PHPUnit\DbUnit\DataSet\ArrayDataSet;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\DataSet\IDataSet;
-use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet;
 use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
 use PHPUnit\DbUnit\Database\DefaultConnection;
@@ -214,11 +214,11 @@ trait TestCaseTrait
     /**
      * Asserts that two given tables are equal.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $expected
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $actual
+     * @param ITable $expected
+     * @param ITable $actual
      * @param string $message
      */
-    public static function assertTablesEqual(PHPUnit_Extensions_Database_DataSet_ITable $expected, PHPUnit_Extensions_Database_DataSet_ITable $actual, $message = '')
+    public static function assertTablesEqual(ITable $expected, ITable $actual, $message = '')
     {
         $constraint = new TableIsEqual($expected);
 
@@ -228,8 +228,8 @@ trait TestCaseTrait
     /**
      * Asserts that two given datasets are equal.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $expected
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $actual
+     * @param ITable $expected
+     * @param ITable $actual
      * @param string $message
      */
     public static function assertDataSetsEqual(IDataSet $expected, IDataSet $actual, $message = '')
@@ -258,10 +258,10 @@ trait TestCaseTrait
      * Asserts that a given table contains a given row
      *
      * @param array $expectedRow Row expected to find
-     * @param PHPUnit_Extensions_Database_DataSet_ITable $table Table to look into
+     * @param ITable $table Table to look into
      * @param string $message Optional message
      */
-    public function assertTableContains(array $expectedRow, PHPUnit_Extensions_Database_DataSet_ITable $table, $message = '')
+    public function assertTableContains(array $expectedRow, ITable $table, $message = '')
     {
         self::assertThat($table->assertContainsRow($expectedRow), self::isTrue(), $message);
     }

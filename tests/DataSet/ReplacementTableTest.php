@@ -10,6 +10,7 @@
 
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framework\TestCase
@@ -218,8 +219,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
         $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
-        $table         = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
-        $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
+        $table         = $this->createMock(ITable::class);
+        $otherTable    = $this->createMock(ITable::class);
 
         $table->expects($this->once())
             ->method('getTableMetaData')
@@ -242,8 +243,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
         $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
-        $table         = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
-        $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
+        $table         = $this->createMock(ITable::class);
+        $otherTable    = $this->createMock(ITable::class);
 
         $replacementTable = $this->getMockBuilder(PHPUnit_Extensions_Database_DataSet_ReplacementTable::class)
                                  ->setConstructorArgs([$table])
@@ -282,8 +283,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
         $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
-        $table         = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
-        $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
+        $table         = $this->createMock(ITable::class);
+        $otherTable    = $this->createMock(ITable::class);
 
         $table->expects($this->once())
             ->method('getTableMetaData')

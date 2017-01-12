@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\DataSet\ITable;
 
 /**
  * This class provides functionality for inserting rows from a dataset into a database.
@@ -16,7 +17,7 @@ class PHPUnit_Extensions_Database_Operation_Insert extends PHPUnit_Extensions_Da
 {
     protected $operationName = 'INSERT';
 
-    protected function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection)
+    protected function buildOperationQuery(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, ITable $table, IConnection $connection)
     {
         $columnCount = count($table->getTableMetaData()->getColumns());
 
@@ -43,7 +44,7 @@ class PHPUnit_Extensions_Database_Operation_Insert extends PHPUnit_Extensions_Da
         }
     }
 
-    protected function buildOperationArguments(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, $row)
+    protected function buildOperationArguments(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, ITable $table, $row)
     {
         $args = [];
         foreach ($table->getTableMetaData()->getColumns() as $columnName) {
@@ -53,7 +54,7 @@ class PHPUnit_Extensions_Database_Operation_Insert extends PHPUnit_Extensions_Da
         return $args;
     }
 
-    protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, PHPUnit_Extensions_Database_DataSet_ITable $table, IConnection $connection)
+    protected function disablePrimaryKeys(PHPUnit_Extensions_Database_DataSet_ITableMetaData $databaseTableMetaData, ITable $table, IConnection $connection)
     {
         if (count($databaseTableMetaData->getPrimaryKeys())) {
             return true;
