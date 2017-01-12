@@ -7,12 +7,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\Operation;
+
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
-use PHPUnit\DbUnit\Operation\Exception;
-use PHPUnit\DbUnit\Operation\Operation;
 
 /**
  * Provides basic functionality for row based operations.
@@ -22,7 +23,7 @@ use PHPUnit\DbUnit\Operation\Operation;
  * a prepared statement. The second one, buildOperationArguments(), should
  * return an array containing arguments for each row.
  */
-abstract class PHPUnit_Extensions_Database_Operation_RowBased implements Operation
+abstract class RowBased implements Operation
 {
     const ITERATOR_TYPE_FORWARD = 0;
     const ITERATOR_TYPE_REVERSE = 1;
@@ -42,7 +43,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements Operati
      * Allows an operation to disable primary keys if necessary.
      *
      * @param ITableMetadata $databaseTableMetaData
-     * @param ITable         $table
+     * @param ITable $table
      * @param IConnection $connection
      */
     protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, IConnection $connection)
@@ -52,7 +53,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements Operati
 
     /**
      * @param IConnection $connection
-     * @param IDataSet       $dataSet
+     * @param IDataSet $dataSet
      */
     public function execute(IConnection $connection, IDataSet $dataSet)
     {
@@ -63,12 +64,12 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements Operati
         foreach ($dsIterator as $table) {
             $rowCount = $table->getRowCount();
 
-            if($rowCount == 0) continue;
+            if ($rowCount == 0) continue;
 
             /* @var $table ITable */
             $databaseTableMetaData = $databaseDataSet->getTableMetaData($table->getTableMetaData()->getTableName());
-            $query                 = $this->buildOperationQuery($databaseTableMetaData, $table, $connection);
-            $disablePrimaryKeys    = $this->disablePrimaryKeys($databaseTableMetaData, $table, $connection);
+            $query = $this->buildOperationQuery($databaseTableMetaData, $table, $connection);
+            $disablePrimaryKeys = $this->disablePrimaryKeys($databaseTableMetaData, $table, $connection);
 
             if ($query === false) {
                 if ($table->getRowCount() > 0) {
@@ -88,11 +89,9 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements Operati
 
                 try {
                     $statement->execute($args);
-                }
-
-                catch (Exception $e) {
+                } catch (Exception $e) {
                     throw new Exception(
-                      $this->operationName, $query, $args, $table, $e->getMessage()
+                        $this->operationName, $query, $args, $table, $e->getMessage()
                     );
                 }
             }

@@ -15,13 +15,12 @@ use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
 use PHPUnit_Extensions_Database_Operation_Insert;
-use PHPUnit_Extensions_Database_Operation_RowBased;
 use PHPUnit_Extensions_Database_Operation_Update;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
  */
-class Replace extends PHPUnit_Extensions_Database_Operation_RowBased
+class Replace extends RowBased
 {
     protected $operationName = 'REPLACE';
 

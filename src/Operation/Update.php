@@ -10,11 +10,12 @@
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit\DbUnit\Operation\RowBased;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
  */
-class PHPUnit_Extensions_Database_Operation_Update extends PHPUnit_Extensions_Database_Operation_RowBased
+class PHPUnit_Extensions_Database_Operation_Update extends RowBased
 {
     protected $operationName = 'UPDATE';
 

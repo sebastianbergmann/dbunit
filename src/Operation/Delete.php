@@ -13,12 +13,11 @@ namespace PHPUnit\DbUnit\Operation;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
-use PHPUnit_Extensions_Database_Operation_RowBased;
 
 /**
  * Deletes the rows in a given dataset using primary key columns.
  */
-class Delete extends PHPUnit_Extensions_Database_Operation_RowBased
+class Delete extends RowBased
 {
     protected $operationName = 'DELETE';
 

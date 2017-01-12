@@ -16,6 +16,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit\DbUnit\Operation\RowBased;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -95,7 +96,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
         $dataSet = new DefaultDataSet([$table1, $table2]);
 
         $mockOperation = $this->createPartialMock(
-            PHPUnit_Extensions_Database_Operation_RowBased::class,
+            RowBased::class,
                 ['buildOperationQuery', 'buildOperationArguments']
         );
 
@@ -135,7 +136,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
                     $this->returnValue([1, 'fdyhkn', 64, 4568.64, 'hkladfg'])
                 );
 
-        /* @var $mockOperation PHPUnit_Extensions_Database_Operation_RowBased */
+        /* @var $mockOperation RowBased */
         $mockOperation->execute($connection, $dataSet);
 
         $this->assertDataSetsEqual(new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/RowBasedExecute.xml'), $connection->createDataSet(['table1', 'table2']));
@@ -162,7 +163,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
         $mockDataSet->expects($this->once())->method('getIterator')->will($this->returnValue(new ArrayIterator([$mockTable])));
 
         $mockOperation = $this->createPartialMock(
-            PHPUnit_Extensions_Database_Operation_RowBased::class,
+            RowBased::class,
             ['buildOperationQuery', 'buildOperationArguments']
         );
         $mockOperation->expects($this->never())->method('buildOperationArguments');

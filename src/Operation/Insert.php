@@ -10,11 +10,12 @@
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit\DbUnit\Operation\RowBased;
 
 /**
  * This class provides functionality for inserting rows from a dataset into a database.
  */
-class PHPUnit_Extensions_Database_Operation_Insert extends PHPUnit_Extensions_Database_Operation_RowBased
+class PHPUnit_Extensions_Database_Operation_Insert extends RowBased
 {
     protected $operationName = 'INSERT';
 
