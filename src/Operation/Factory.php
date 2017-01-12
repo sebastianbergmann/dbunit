@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\Operation\Composite;
 
 /**
  * A class factory to easily return database operations.
@@ -32,7 +33,7 @@ class PHPUnit_Extensions_Database_Operation_Factory
      */
     public static function CLEAN_INSERT($cascadeTruncates = false)
     {
-        return new PHPUnit_Extensions_Database_Operation_Composite([
+        return new Composite([
             self::TRUNCATE($cascadeTruncates),
             self::INSERT()
         ]);

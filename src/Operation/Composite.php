@@ -8,9 +8,13 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\Operation;
+
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_Operation_Exception;
+use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
  * This class facilitates combining database operations. To create a composite
@@ -18,7 +22,7 @@ use PHPUnit\DbUnit\InvalidArgumentException;
  * PHPUnit_Extensions_Database_Operation_IDatabaseOperation and they will be
  * executed in that order against all data sets.
  */
-class PHPUnit_Extensions_Database_Operation_Composite implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+class Composite implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {
     /**
      * @var array
