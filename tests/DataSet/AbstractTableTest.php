@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\DataSet\DefaultTable;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_AbstractTableTest extends TestCase
@@ -20,7 +21,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
 
     public function setUp()
     {
-        $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $tableMetaData = new DefaultTableMetadata(
             'table', ['id', 'column1']
         );
 

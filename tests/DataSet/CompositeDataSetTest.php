@@ -11,6 +11,7 @@
 use PHPUnit\DbUnit\DataSet\CompositeDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_CompositeDataSetTest extends \PHPUnit\Framework\TestCase
@@ -21,14 +22,14 @@ class Extensions_Database_DataSet_CompositeDataSetTest extends \PHPUnit\Framewor
 
     public function setUp()
     {
-        $table1MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $table1MetaData = new DefaultTableMetadata(
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
-        $table2MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $table2MetaData = new DefaultTableMetadata(
             'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
-        $table3MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $table3MetaData = new DefaultTableMetadata(
             'table3', ['table3_id', 'column9', 'column10', 'column11', 'column12']
         );
 
@@ -143,7 +144,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
      */
     public function testExceptionOnIncompatibleTablesSameTableNames()
     {
-        $inCompatibleTableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $inCompatibleTableMetaData = new DefaultTableMetadata(
             'table3', ['table3_id', 'column13', 'column14', 'column15', 'column16']
         );
 
@@ -167,7 +168,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
      */
     public function testExceptionOnIncompatibleTablesSameTableNames2()
     {
-        $inCompatibleTableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $inCompatibleTableMetaData = new DefaultTableMetadata(
             'table3', ['table3_id', 'column13', 'column14', 'column15', 'column16']
         );
 

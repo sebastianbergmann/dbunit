@@ -10,6 +10,7 @@
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
@@ -54,7 +55,7 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
         $expectedTable1 = $this->getConnection()->createDataSet(['table1'])->getTable('table1');
 
         $expectedTable2 = new DefaultTable(
-            new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('query1', ['tc1', 'tc2'])
+            new DefaultTableMetadata('query1', ['tc1', 'tc2'])
         );
 
         $expectedTable2->addRow(['tc1' => 'bar', 'tc2' => 'blah']);
@@ -73,7 +74,7 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
         $expectedTable1 = $this->getConnection()->createDataSet(['table1'])->getTable('table1');
 
         $expectedTable2 = new DefaultTable(
-            new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('query1', ['tc1', 'tc2'])
+            new DefaultTableMetadata('query1', ['tc1', 'tc2'])
         );
 
         $expectedTable2->addRow(['tc1' => 'bar', 'tc2' => 'blah']);

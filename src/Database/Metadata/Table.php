@@ -10,12 +10,12 @@
 
 namespace PHPUnit\DbUnit\Database\Metadata;
 
-use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 
 /**
  * This class loads a table metadata object with database metadata.
  */
-class Table extends PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData
+class Table extends DefaultTableMetadata
 {
     public function __construct($tableName, IMetadata $databaseMetaData)
     {

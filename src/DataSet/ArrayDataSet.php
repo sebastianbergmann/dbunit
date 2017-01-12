@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 
 /**
  * Implements the basic functionality of data sets using a PHP array.
@@ -47,7 +46,7 @@ class ArrayDataSet extends AbstractDataSet
                 $columns = array_keys($rows[0]);
             }
 
-            $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
+            $metaData = new DefaultTableMetadata($tableName, $columns);
             $table = new DefaultTable($metaData);
 
             foreach ($rows as $row) {

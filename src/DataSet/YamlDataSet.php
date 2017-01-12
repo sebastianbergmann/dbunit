@@ -10,6 +10,7 @@
 use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableIterator;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 
 /**
  * Creates YamlDataSets.
@@ -63,7 +64,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
             if (!array_key_exists($tableName, $this->tables)) {
                 $columns = $this->getColumns($rows);
 
-                $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+                $tableMetaData = new DefaultTableMetadata(
                   $tableName, $columns
                 );
 

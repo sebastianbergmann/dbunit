@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\DataSet\DefaultTable;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framework\TestCase
@@ -20,7 +21,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
     public function setUp()
     {
-        $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $tableMetaData = new DefaultTableMetadata(
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
@@ -61,7 +62,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
     public function testFullReplacement()
     {
-        $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $tableMetaData = new DefaultTableMetadata(
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
@@ -97,7 +98,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
     public function testSubStrReplacement()
     {
-        $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $tableMetaData = new DefaultTableMetadata(
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
@@ -133,7 +134,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
     public function testConstructorReplacements()
     {
-        $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $tableMetaData = new DefaultTableMetadata(
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 

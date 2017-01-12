@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
 /**
@@ -83,7 +82,7 @@ class CsvDataSet extends AbstractDataSet
             throw new InvalidArgumentException("Could not determine the headers from the given file {$csvFile}");
         }
 
-        $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
+        $metaData = new DefaultTableMetadata($tableName, $columns);
         $table = new DefaultTable($metaData);
 
         while (($row = $this->getCsvRow($fh)) !== false) {

@@ -11,6 +11,7 @@
 use PHPUnit\DbUnit\DataSet\CsvDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\TestCase
@@ -19,10 +20,10 @@ class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\Test
 
     public function testCSVDataSet()
     {
-        $table1MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $table1MetaData = new DefaultTableMetadata(
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
-        $table2MetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData(
+        $table2MetaData = new DefaultTableMetadata(
             'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 

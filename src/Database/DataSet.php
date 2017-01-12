@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database;
 use PHPUnit\DbUnit\InvalidArgumentException;
 use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit\DbUnit\DataSet\AbstractDataSet;
-use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
@@ -119,11 +119,11 @@ class DataSet extends AbstractDataSet
      * Returns a table meta data object for the given table.
      *
      * @param  string $tableName
-     * @return PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData
+     * @return DefaultTableMetadata
      */
     public function getTableMetaData($tableName)
     {
-        return new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $this->databaseConnection->getMetaData()->getTableColumns($tableName), $this->databaseConnection->getMetaData()->getTablePrimaryKeys($tableName));
+        return new DefaultTableMetadata($tableName, $this->databaseConnection->getMetaData()->getTableColumns($tableName), $this->databaseConnection->getMetaData()->getTablePrimaryKeys($tableName));
     }
 
     /**

@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database;
 use PDO;
 use PDOStatement;
 use PHPUnit\DbUnit\DataSet\AbstractTable;
-use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 
 /**
  * Provides the functionality to represent a database result set as a DBUnit
@@ -41,6 +41,6 @@ class ResultSetTable extends AbstractTable
             $columns = [];
         }
 
-        $this->setTableMetaData(new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns));
+        $this->setTableMetaData(new DefaultTableMetadata($tableName, $columns));
     }
 }

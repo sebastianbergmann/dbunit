@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\AbstractTable;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 
 /**
  * Provides the functionality to represent a database table.
@@ -150,7 +151,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
                 $columns = $pdoStatement->fetchAll(PDO::FETCH_COLUMN, 0);
             }
             // create metadata
-            $this->tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($this->tableName, $columns);
+            $this->tableMetaData = new DefaultTableMetadata($this->tableName, $columns);
         }
     }
 }

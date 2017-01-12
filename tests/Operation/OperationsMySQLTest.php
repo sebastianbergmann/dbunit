@@ -12,6 +12,7 @@ use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\DataSet\CompositeDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
+use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -51,15 +52,15 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 
         $expectedDataSet = new DefaultDataSet([
             new DefaultTable(
-                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1',
+                new DefaultTableMetadata('table1',
                     ['table1_id', 'column1', 'column2', 'column3', 'column4'])
             ),
             new DefaultTable(
-                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table2',
+                new DefaultTableMetadata('table2',
                     ['table2_id', 'table1_id', 'column5', 'column6', 'column7', 'column8'])
             ),
             new DefaultTable(
-                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table3',
+                new DefaultTableMetadata('table3',
                     ['table3_id', 'table2_id', 'column9', 'column10', 'column11', 'column12'])
             ),
         ]);
@@ -84,15 +85,15 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 
         $expectedDataSet = new DefaultDataSet([
             new DefaultTable(
-                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1',
+                new DefaultTableMetadata('table1',
                     ['table1_id', 'column1', 'column2', 'column3', 'column4'])
             ),
             new DefaultTable(
-                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table2',
+                new DefaultTableMetadata('table2',
                     ['table2_id', 'table1_id', 'column5', 'column6', 'column7', 'column8'])
             ),
             new DefaultTable(
-                new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table3',
+                new DefaultTableMetadata('table3',
                     ['table3_id', 'table2_id', 'column9', 'column10', 'column11', 'column12'])
             ),
         ]);
