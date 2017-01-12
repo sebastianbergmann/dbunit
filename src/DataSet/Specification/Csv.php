@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
-use PHPUnit_Extensions_Database_DataSet_CsvDataSet;
+use PHPUnit\DbUnit\DataSet\CsvDataSet;
 use PHPUnit_Extensions_Database_DataSet_ISpec;
 use ReflectionClass;
 
@@ -34,12 +34,12 @@ class Csv implements PHPUnit_Extensions_Database_DataSet_ISpec
      * Creates CSV Data Set from a data set spec.
      *
      * @param  string $dataSetSpec
-     * @return PHPUnit_Extensions_Database_DataSet_CsvDataSet
+     * @return CsvDataSet
      */
     public function getDataSet($dataSetSpec)
     {
         $csvDataSetArgs = $this->getCsvOptions($dataSetSpec);
-        $csvDataSetRfl = new ReflectionClass(PHPUnit_Extensions_Database_DataSet_CsvDataSet::class);
+        $csvDataSetRfl = new ReflectionClass(CsvDataSet::class);
         $csvDataSet = $csvDataSetRfl->newInstanceArgs($csvDataSetArgs);
 
         foreach ($this->getTableFileMap($dataSetSpec) as $tableName => $file) {

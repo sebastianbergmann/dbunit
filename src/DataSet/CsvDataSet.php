@@ -8,15 +8,20 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_DataSet_DefaultTable;
+use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
+use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
 /**
  * Creates CsvDataSets.
  *
  * You can incrementally add CSV files as tables to your datasets
  */
-class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends AbstractDataSet
+class CsvDataSet extends AbstractDataSet
 {
     /**
      * @var array
@@ -51,7 +56,7 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends AbstractDataSet
     {
         $this->delimiter = $delimiter;
         $this->enclosure = $enclosure;
-        $this->escape    = $escape;
+        $this->escape = $escape;
     }
 
     /**
@@ -73,19 +78,17 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends AbstractDataSet
             throw new InvalidArgumentException("Could not read csv file: {$csvFile}");
         }
 
-        $fh      = fopen($csvFile, 'r');
+        $fh = fopen($csvFile, 'r');
         $columns = $this->getCsvRow($fh);
 
-        if ($columns === false)
-        {
+        if ($columns === false) {
             throw new InvalidArgumentException("Could not determine the headers from the given file {$csvFile}");
         }
 
         $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
-        $table    = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
+        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
 
-        while (($row = $this->getCsvRow($fh)) !== false)
-        {
+        while (($row = $this->getCsvRow($fh)) !== false) {
             $table->addRow(array_combine($columns, $row));
         }
 
@@ -96,7 +99,7 @@ class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                               $reverse
+     * @param  bool $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected function createIterator($reverse = false)
