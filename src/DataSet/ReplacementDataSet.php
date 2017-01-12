@@ -7,16 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
-use PHPUnit\DbUnit\DataSet\IDataSet;
-use PHPUnit\DbUnit\DataSet\ITableIterator;
+
+namespace PHPUnit\DbUnit\DataSet;
+
+use PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator;
 
 /**
  * Allows for replacing arbitrary values or portions of values with new data.
  *
  * A usage for this is replacing all values == '[NULL'] with a true NULL value
  */
-class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends AbstractDataSet
+class ReplacementDataSet extends AbstractDataSet
 {
     /**
      * @var IDataSet
@@ -44,8 +45,8 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends AbstractDat
      */
     public function __construct(IDataSet $dataSet, array $fullReplacements = [], array $subStrReplacements = [])
     {
-        $this->dataSet            = $dataSet;
-        $this->fullReplacements   = $fullReplacements;
+        $this->dataSet = $dataSet;
+        $this->fullReplacements = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 
@@ -79,7 +80,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends AbstractDat
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                               $reverse
+     * @param  bool $reverse
      * @return ITableIterator
      */
     protected function createIterator($reverse = false)

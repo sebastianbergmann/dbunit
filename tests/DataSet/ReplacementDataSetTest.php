@@ -11,6 +11,7 @@
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\ReplacementDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framework\TestCase
@@ -83,7 +84,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
     {
         TestCase::assertDataSetsEqual(
             $this->startingDataSet,
-            new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet)
+            new ReplacementDataSet($this->startingDataSet)
         );
     }
 
@@ -144,7 +145,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
         ]);
 
         $expected = new DefaultDataSet([$table1, $table2]);
-        $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet);
+        $actual   = new ReplacementDataSet($this->startingDataSet);
         $actual->addFullReplacement('[NULL]', null);
 
         TestCase::assertDataSetsEqual($expected, $actual);
@@ -207,7 +208,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
         ]);
 
         $expected = new DefaultDataSet([$table1, $table2]);
-        $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet);
+        $actual   = new ReplacementDataSet($this->startingDataSet);
         $actual->addSubStrReplacement('%%%name%%%', 'Mike Lively');
 
         TestCase::assertDataSetsEqual($expected, $actual);
@@ -270,7 +271,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
         ]);
 
         $expected = new DefaultDataSet([$table1, $table2]);
-        $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet(
+        $actual   = new ReplacementDataSet(
             $this->startingDataSet,
             ['[NULL]'     => null],
             ['%%%name%%%' => 'Mike Lively']
