@@ -8,17 +8,18 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\Database\TableIterator;
 use PHPUnit\DbUnit\Database\Table;
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
-use PHPUnit\DbUnit\DataSet\DefaultTableIterator;
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_DataSet_QueryTable;
 
 /**
  * Provides access to a database instance as a data set.
  */
-class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends AbstractDataSet
+class QueryDataSet extends AbstractDataSet
 {
     /**
      * An array of ITable objects.
@@ -57,7 +58,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                         $reverse
+     * @param  bool $reverse
      * @return TableIterator
      */
     protected function createIterator($reverse = false)
@@ -68,7 +69,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends AbstractDataSet
     /**
      * Returns a table object for the given table.
      *
-     * @param  string                               $tableName
+     * @param  string $tableName
      * @return Table
      */
     public function getTable($tableName)

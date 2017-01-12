@@ -12,12 +12,13 @@ use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\ITable;
+use PHPUnit\DbUnit\DataSet\QueryDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_QueryDataSet
+     * @var QueryDataSet
      */
     protected $dataSet;
 
@@ -40,7 +41,7 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
     {
         $this->pdo = DBUnitTestUtility::getSQLiteMemoryDB();
         parent::setUp();
-        $this->dataSet = new PHPUnit_Extensions_Database_DataSet_QueryDataSet($this->getConnection());
+        $this->dataSet = new QueryDataSet($this->getConnection());
         $this->dataSet->addTable('table1');
         $this->dataSet->addTable('query1', '
             SELECT
