@@ -13,7 +13,6 @@ namespace PHPUnit\DbUnit\Operation;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
  * This class facilitates combining database operations. To create a composite
@@ -21,7 +20,7 @@ use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
  * PHPUnit_Extensions_Database_Operation_IDatabaseOperation and they will be
  * executed in that order against all data sets.
  */
-class Composite implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+class Composite implements Operation
 {
     /**
      * @var array
@@ -36,7 +35,7 @@ class Composite implements PHPUnit_Extensions_Database_Operation_IDatabaseOperat
     public function __construct(array $operations)
     {
         foreach ($operations as $operation) {
-            if ($operation instanceof PHPUnit_Extensions_Database_Operation_IDatabaseOperation) {
+            if ($operation instanceof Operation) {
                 $this->operations[] = $operation;
             } else {
                 throw new InvalidArgumentException('Only database operation instances can be passed to a composite database operation.');
@@ -48,7 +47,7 @@ class Composite implements PHPUnit_Extensions_Database_Operation_IDatabaseOperat
     {
         try {
             foreach ($this->operations as $operation) {
-                /* @var $operation PHPUnit_Extensions_Database_Operation_IDatabaseOperation */
+                /* @var $operation Operation */
                 $operation->execute($connection, $dataSet);
             }
         } catch (Exception $e) {

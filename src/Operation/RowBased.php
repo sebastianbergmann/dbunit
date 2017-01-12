@@ -12,6 +12,7 @@ use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
 use PHPUnit\DbUnit\Operation\Exception;
+use PHPUnit\DbUnit\Operation\Operation;
 
 /**
  * Provides basic functionality for row based operations.
@@ -21,7 +22,7 @@ use PHPUnit\DbUnit\Operation\Exception;
  * a prepared statement. The second one, buildOperationArguments(), should
  * return an array containing arguments for each row.
  */
-abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+abstract class PHPUnit_Extensions_Database_Operation_RowBased implements Operation
 {
     const ITERATOR_TYPE_FORWARD = 0;
     const ITERATOR_TYPE_REVERSE = 1;

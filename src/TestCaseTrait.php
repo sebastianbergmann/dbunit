@@ -23,7 +23,7 @@ use PHPUnit\DbUnit\DataSet\XmlDataSet;
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\Operation\Factory;
-use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
+use PHPUnit\DbUnit\Operation\Operation;
 
 trait TestCaseTrait
 {
@@ -75,7 +75,7 @@ trait TestCaseTrait
     /**
      * Returns the database operation executed in test setup.
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     protected function getSetUpOperation()
     {
@@ -85,7 +85,7 @@ trait TestCaseTrait
     /**
      * Returns the database operation executed in test cleanup.
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     protected function getTearDownOperation()
     {

@@ -7,22 +7,24 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\Operation;
+
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
-use PHPUnit\DbUnit\Operation\Exception;
 
 /**
  * Provides a basic interface and functionality for executing database
  * operations against a connection using a specific dataSet.
  */
-interface PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+interface Operation
 {
     /**
      * Executes the database operation against the given $connection for the
      * given $dataSet.
      *
      * @param  IConnection $connection
-     * @param  IDataSet       $dataSet
+     * @param  IDataSet $dataSet
      * @throws Exception
      */
     public function execute(IConnection $connection, IDataSet $dataSet);

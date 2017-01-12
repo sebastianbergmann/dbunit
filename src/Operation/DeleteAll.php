@@ -14,12 +14,11 @@ use PDOException;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
  * Deletes all rows from all tables in a dataset.
  */
-class DeleteAll implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+class DeleteAll implements Operation
 {
     public function execute(IConnection $connection, IDataSet $dataSet)
     {

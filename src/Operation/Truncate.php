@@ -11,11 +11,12 @@ use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\Operation\Exception;
+use PHPUnit\DbUnit\Operation\Operation;
 
 /**
  * Executes a truncate against all tables in a dataset.
  */
-class PHPUnit_Extensions_Database_Operation_Truncate implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+class PHPUnit_Extensions_Database_Operation_Truncate implements Operation
 {
     protected $useCascade = false;
 

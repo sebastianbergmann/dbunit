@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\Operation\Factory;
-use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
+use PHPUnit\DbUnit\Operation\Operation;
 
 /**
  * Can be used as a foundation for new DatabaseTesters.
@@ -21,12 +21,12 @@ use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 abstract class AbstractTester implements ITester
 {
     /**
-     * @var PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @var Operation
      */
     protected $setUpOperation;
 
     /**
-     * @var PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @var Operation
      */
     protected $tearDownOperation;
 
@@ -108,9 +108,9 @@ abstract class AbstractTester implements ITester
     /**
      * Sets the DatabaseOperation to call when starting the test.
      *
-     * @param PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation
+     * @param Operation $setUpOperation
      */
-    public function setSetUpOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation)
+    public function setSetUpOperation(Operation $setUpOperation)
     {
         $this->setUpOperation = $setUpOperation;
     }
@@ -118,9 +118,9 @@ abstract class AbstractTester implements ITester
     /**
      * Sets the DatabaseOperation to call when ending the test.
      *
-     * @param PHPUnit_Extensions_Database_Operation_IDatabaseOperation $tearDownOperation
+     * @param Operation $tearDownOperation
      */
-    public function setTearDownOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $tearDownOperation)
+    public function setTearDownOperation(Operation $tearDownOperation)
     {
         $this->tearDownOperation = $tearDownOperation;
     }
@@ -138,7 +138,7 @@ abstract class AbstractTester implements ITester
     /**
      * Returns the database operation that will be called when starting the test.
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     protected function getSetUpOperation()
     {
@@ -148,7 +148,7 @@ abstract class AbstractTester implements ITester
     /**
      * Returns the database operation that will be called when ending the test.
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     protected function getTearDownOperation()
     {

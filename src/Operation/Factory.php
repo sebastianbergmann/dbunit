@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 use PHPUnit_Extensions_Database_Operation_Insert;
 use PHPUnit_Extensions_Database_Operation_Null;
 use PHPUnit_Extensions_Database_Operation_Truncate;
@@ -24,7 +23,7 @@ class Factory
     /**
      * Returns a null database operation
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     public static function NONE()
     {
@@ -36,7 +35,7 @@ class Factory
      * from the table prior to re-inserting rows.
      *
      * @param  bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     public static function CLEAN_INSERT($cascadeTruncates = false)
     {
@@ -49,7 +48,7 @@ class Factory
     /**
      * Returns an insert database operation.
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     public static function INSERT()
     {
@@ -60,7 +59,7 @@ class Factory
      * Returns a truncate database operation.
      *
      * @param  bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     public static function TRUNCATE($cascadeTruncates = false)
     {
@@ -73,7 +72,7 @@ class Factory
     /**
      * Returns a delete database operation.
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     public static function DELETE()
     {
@@ -83,7 +82,7 @@ class Factory
     /**
      * Returns a delete_all database operation.
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     public static function DELETE_ALL()
     {
@@ -93,7 +92,7 @@ class Factory
     /**
      * Returns an update database operation.
      *
-     * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+     * @return Operation
      */
     public static function UPDATE()
     {

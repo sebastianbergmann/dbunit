@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit;
 
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\Database\IConnection;
-use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
+use PHPUnit\DbUnit\Operation\Operation;
 
 /**
  * This is the interface for DatabaseTester objects. These objects are used to
@@ -69,14 +69,14 @@ interface ITester
     /**
      * Sets the DatabaseOperation to call when starting the test.
      *
-     * @param PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation
+     * @param Operation $setUpOperation
      */
-    public function setSetUpOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $setUpOperation);
+    public function setSetUpOperation(Operation $setUpOperation);
 
     /**
      * Sets the DatabaseOperation to call when stopping the test.
      *
-     * @param PHPUnit_Extensions_Database_Operation_IDatabaseOperation $tearDownOperation
+     * @param Operation $tearDownOperation
      */
-    public function setTearDownOperation(PHPUnit_Extensions_Database_Operation_IDatabaseOperation $tearDownOperation);
+    public function setTearDownOperation(Operation $tearDownOperation);
 }
