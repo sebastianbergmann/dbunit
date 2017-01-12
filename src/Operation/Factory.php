@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\Operation\Composite;
 use PHPUnit\DbUnit\Operation\Delete;
+use PHPUnit\DbUnit\Operation\DeleteAll;
 
 /**
  * A class factory to easily return database operations.
@@ -81,7 +82,7 @@ class PHPUnit_Extensions_Database_Operation_Factory
      */
     public static function DELETE_ALL()
     {
-        return new PHPUnit_Extensions_Database_Operation_DeleteAll();
+        return new DeleteAll();
     }
 
     /**

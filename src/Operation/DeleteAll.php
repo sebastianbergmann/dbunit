@@ -7,14 +7,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\Operation;
+
+use PDOException;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
+use PHPUnit_Extensions_Database_Operation_Exception;
+use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
  * Deletes all rows from all tables in a dataset.
  */
-class PHPUnit_Extensions_Database_Operation_DeleteAll implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
+class DeleteAll implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {
     public function execute(IConnection $connection, IDataSet $dataSet)
     {

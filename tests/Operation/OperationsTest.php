@@ -14,6 +14,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\Operation\Delete;
+use PHPUnit\DbUnit\Operation\DeleteAll;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -50,7 +51,7 @@ class Extensions_Database_Operation_OperationsTest extends TestCase
 
     public function testDeleteAll()
     {
-        $deleteAllOperation = new PHPUnit_Extensions_Database_Operation_DeleteAll();
+        $deleteAllOperation = new DeleteAll();
 
         $deleteAllOperation->execute($this->getConnection(), new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/DeleteAllOperationTest.xml'));
 
