@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
-use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
+use PHPUnit\DbUnit\DataSet\XmlDataSet;
 
 /**
  * Creates a XML dataset based off of a spec string.
@@ -28,10 +28,10 @@ class Xml implements Specification
      * Creates XML Data Set from a data set spec.
      *
      * @param  string $dataSetSpec
-     * @return PHPUnit_Extensions_Database_DataSet_XmlDataSet
+     * @return XmlDataSet
      */
     public function getDataSet($dataSetSpec)
     {
-        return new PHPUnit_Extensions_Database_DataSet_XmlDataSet($dataSetSpec);
+        return new XmlDataSet($dataSetSpec);
     }
 }

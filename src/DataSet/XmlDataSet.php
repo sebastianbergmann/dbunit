@@ -8,13 +8,14 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractXmlDataSet;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\RuntimeException;
 
 /**
  * The default implementation of a data set.
  */
-class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends AbstractXmlDataSet
+class XmlDataSet extends AbstractXmlDataSet
 {
     protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {
@@ -27,7 +28,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends AbstractXmlDataSet
                 throw new RuntimeException('Table elements must include a name attribute specifying the table name.');
             }
 
-            $tableName = (string) $tableElement['name'];
+            $tableName = (string)$tableElement['name'];
 
             if (!isset($tableColumns[$tableName])) {
                 $tableColumns[$tableName] = [];
@@ -40,7 +41,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends AbstractXmlDataSet
             $tableInstanceColumns = [];
 
             foreach ($tableElement->xpath('./column') as $columnElement) {
-                $columnName = (string) $columnElement;
+                $columnName = (string)$columnElement;
                 if (empty($columnName)) {
                     throw new RuntimeException("Missing <column> elements for table $tableName. Add one or more <column> elements to the <table> element.");
                 }
@@ -53,8 +54,8 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends AbstractXmlDataSet
             }
 
             foreach ($tableElement->xpath('./row') as $rowElement) {
-                $rowValues                 = [];
-                $index                     = 0;
+                $rowValues = [];
+                $index = 0;
                 $numOfTableInstanceColumns = count($tableInstanceColumns);
 
                 foreach ($rowElement->children() as $columnValue) {
@@ -64,7 +65,7 @@ class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends AbstractXmlDataSet
                     }
                     switch ($columnValue->getName()) {
                         case 'value':
-                            $rowValues[$tableInstanceColumns[$index]] = (string) $columnValue;
+                            $rowValues[$tableInstanceColumns[$index]] = (string)$columnValue;
                             $index++;
                             break;
                         case 'null':
