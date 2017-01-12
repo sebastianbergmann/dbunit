@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
-use PHPUnit_Extensions_Database_DataSet_ISpec;
 use PHPUnit_Extensions_Database_DataSet_YamlDataSet;
 
 /**
@@ -23,7 +22,7 @@ use PHPUnit_Extensions_Database_DataSet_YamlDataSet;
  * The filename should be the location of a yaml file relative to the
  * current working directory.
  */
-class Yaml implements PHPUnit_Extensions_Database_DataSet_ISpec
+class Yaml implements Specification
 {
     /**
      * Creates YAML Data Set from a data set spec.

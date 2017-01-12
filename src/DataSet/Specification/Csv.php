@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\DataSet\CsvDataSet;
-use PHPUnit_Extensions_Database_DataSet_ISpec;
 use ReflectionClass;
 
 /**
@@ -28,7 +27,7 @@ use ReflectionClass;
  *
  * Any additional characters in the csv options will be discarded.
  */
-class Csv implements PHPUnit_Extensions_Database_DataSet_ISpec
+class Csv implements Specification
 {
     /**
      * Creates CSV Data Set from a data set spec.

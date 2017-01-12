@@ -13,7 +13,6 @@ namespace PHPUnit\DbUnit\DataSet\Specification;
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\IDatabaseListConsumer;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
-use PHPUnit_Extensions_Database_DataSet_ISpec;
 use ReflectionClass;
 
 /**
@@ -39,7 +38,7 @@ use ReflectionClass;
  * The column names in the table will be identical to the column aliases in the
  * query.
  */
-class Query implements PHPUnit_Extensions_Database_DataSet_ISpec, IDatabaseListConsumer
+class Query implements Specification, IDatabaseListConsumer
 {
     /**
      * @var array

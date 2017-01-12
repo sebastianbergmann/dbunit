@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
-use PHPUnit_Extensions_Database_DataSet_ISpec;
 use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
 
 /**
@@ -23,7 +22,7 @@ use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
  * The filename should be the location of a xml file relative to the
  * current working directory.
  */
-class Xml implements PHPUnit_Extensions_Database_DataSet_ISpec
+class Xml implements Specification
 {
     /**
      * Creates XML Data Set from a data set spec.

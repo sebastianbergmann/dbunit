@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
-use PHPUnit_Extensions_Database_DataSet_ISpec;
 
 /**
  * Creates a FlatXML dataset based off of a spec string.
@@ -23,7 +22,7 @@ use PHPUnit_Extensions_Database_DataSet_ISpec;
  * The filename should be the location of a flat xml file relative to the
  * current working directory.
  */
-class FlatXml implements PHPUnit_Extensions_Database_DataSet_ISpec
+class FlatXml implements Specification
 {
     /**
      * Creates Flat XML Data Set from a data set spec.

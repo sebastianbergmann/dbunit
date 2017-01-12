@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\RuntimeException;
-use PHPUnit_Extensions_Database_DataSet_ISpec;
 
 /**
  * Creates the appropriate DataSet Spec based on a given type.
@@ -22,7 +21,7 @@ class Factory implements IFactory
      * Returns the data set
      *
      * @param  string $type
-     * @return PHPUnit_Extensions_Database_DataSet_ISpec
+     * @return Specification
      */
     public function getDataSetSpecByType($type)
     {

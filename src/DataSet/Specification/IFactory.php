@@ -10,8 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
-use PHPUnit_Extensions_Database_DataSet_ISpec;
-
 /**
  * An interface for data set spec factories.
  */
@@ -21,7 +19,7 @@ interface IFactory
      * Returns the data set
      *
      * @param  string $type
-     * @return PHPUnit_Extensions_Database_DataSet_ISpec
+     * @return Specification
      */
     public function getDataSetSpecByType($type);
 }

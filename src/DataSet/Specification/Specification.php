@@ -8,15 +8,19 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet\Specification;
+
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+
 /**
  * Provides an interface for creating data sets from data set spec strings.
  */
-interface PHPUnit_Extensions_Database_DataSet_ISpec
+interface Specification
 {
     /**
      * Creates a data set from a data set spec string.
      *
-     * @param  string                                       $dataSetSpec
+     * @param  string $dataSetSpec
      * @return PHPUnit_Extensions_Database_DataSet_IDataSet
      */
     public function getDataSet($dataSetSpec);
