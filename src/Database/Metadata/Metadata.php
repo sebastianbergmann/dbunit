@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database\Metadata;
 /**
  * Provides a basic interface for retreiving metadata from a database.
  */
-interface IMetadata
+interface Metadata
 {
     /**
      * Returns an array containing the names of all the tables in the database.

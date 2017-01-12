@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database;
 use PDO;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit\DbUnit\Database\Metadata\IMetadata;
+use PHPUnit\DbUnit\Database\Metadata\Metadata;
 
 /**
  * Provides a basic interface for communicating with a database.
@@ -55,7 +55,7 @@ interface IConnection
      * Returns a database metadata object that can be used to retrieve table
      * meta data from the database.
      *
-     * @return IMetadata
+     * @return Metadata
      */
     public function getMetaData();
 

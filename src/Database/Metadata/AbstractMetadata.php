@@ -18,7 +18,7 @@ use ReflectionClass;
  * Provides a basic constructor for all meta data classes and a factory for
  * generating the appropriate meta data class.
  */
-abstract class AbstractMetadata implements IMetadata
+abstract class AbstractMetadata implements Metadata
 {
     protected static $metaDataClassMap = [
         'pgsql' => PgSQL::class,

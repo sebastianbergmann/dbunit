@@ -17,7 +17,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
  */
 class Table extends DefaultTableMetadata
 {
-    public function __construct($tableName, IMetadata $databaseMetaData)
+    public function __construct($tableName, Metadata $databaseMetaData)
     {
         $this->tableName = $tableName;
         $this->columns = $databaseMetaData->getTableColumns($tableName);

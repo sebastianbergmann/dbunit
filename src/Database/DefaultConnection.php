@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database;
 use PDO;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\QueryTable;
-use PHPUnit\DbUnit\Database\Metadata\IMetadata;
+use PHPUnit\DbUnit\Database\Metadata\Metadata;
 use PHPUnit\DbUnit\Database\Metadata\AbstractMetadata;
 
 /**
@@ -29,7 +29,7 @@ class DefaultConnection implements IConnection
     /**
      * The metadata object used to retrieve table meta data from the database.
      *
-     * @var IMetadata
+     * @var Metadata
      */
     protected $metaData;
 
@@ -58,7 +58,7 @@ class DefaultConnection implements IConnection
      * Returns a database metadata object that can be used to retrieve table
      * meta data from the database.
      *
-     * @return IMetadata
+     * @return Metadata
      */
     public function getMetaData()
     {
