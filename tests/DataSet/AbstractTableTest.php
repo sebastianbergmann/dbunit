@@ -12,12 +12,13 @@ use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit\DbUnit\DataSet\QueryTable;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_AbstractTableTest extends TestCase
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_QueryTable
+     * @var QueryTable
      */
     protected $table;
 

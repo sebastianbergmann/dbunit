@@ -14,7 +14,6 @@ use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\Database\TableIterator;
 use PHPUnit\DbUnit\Database\Table;
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_QueryTable;
 
 /**
  * Provides access to a database instance as a data set.
@@ -51,7 +50,7 @@ class QueryDataSet extends AbstractDataSet
             $query = 'SELECT * FROM ' . $tableName;
         }
 
-        $this->tables[$tableName] = new PHPUnit_Extensions_Database_DataSet_QueryTable($tableName, $query, $this->databaseConnection);
+        $this->tables[$tableName] = new QueryTable($tableName, $query, $this->databaseConnection);
     }
 
     /**

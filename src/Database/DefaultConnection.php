@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\Database;
 
 use PDO;
 use PHPUnit\DbUnit\DataSet\IDataSet;
-use PHPUnit_Extensions_Database_DataSet_QueryTable;
+use PHPUnit\DbUnit\DataSet\QueryTable;
 use PHPUnit\DbUnit\Database\Metadata\IMetadata;
 use PHPUnit\DbUnit\Database\Metadata\Metadata;
 
@@ -102,7 +102,7 @@ class DefaultConnection implements IConnection
      */
     public function createQueryTable($resultName, $sql)
     {
-        return new PHPUnit_Extensions_Database_DataSet_QueryTable($resultName, $sql, $this);
+        return new QueryTable($resultName, $sql, $this);
     }
 
     /**

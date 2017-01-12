@@ -7,16 +7,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\DataSet;
+
+use PDO;
 use PHPUnit\DbUnit\Database\IConnection;
-use PHPUnit\DbUnit\DataSet\AbstractTable;
-use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
-use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
 /**
  * Provides the functionality to represent a database table.
  */
-class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
+class QueryTable extends AbstractTable
 {
     /**
      * @var string
@@ -36,15 +36,15 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
     /**
      * Creates a new database query table object.
      *
-     * @param string                                             $table_name
-     * @param string                                             $query
+     * @param string $table_name
+     * @param string $query
      * @param IConnection $databaseConnection
      */
     public function __construct($tableName, $query, IConnection $databaseConnection)
     {
-        $this->query              = $query;
+        $this->query = $query;
         $this->databaseConnection = $databaseConnection;
-        $this->tableName          = $tableName;
+        $this->tableName = $tableName;
     }
 
     /**
@@ -101,7 +101,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param  int   $row
+     * @param  int $row
      * @return array
      */
     public function getRow($row)
@@ -127,14 +127,13 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
     {
         if ($this->data === null) {
             $pdoStatement = $this->databaseConnection->getConnection()->query($this->query);
-            $this->data   = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+            $this->data = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 
     protected function createTableMetaData()
     {
-        if ($this->tableMetaData === null)
-        {
+        if ($this->tableMetaData === null) {
             $this->loadData();
 
             // if some rows are in the table
@@ -146,8 +145,8 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
                 // if no rows found, get column names from database
                 $pdoStatement = $this->databaseConnection->getConnection()->prepare('SELECT column_name FROM information_schema.COLUMNS WHERE table_schema=:schema AND table_name=:table');
                 $pdoStatement->execute([
-                    'table'        => $this->tableName,
-                    'schema'       => $this->databaseConnection->getSchema()
+                    'table' => $this->tableName,
+                    'schema' => $this->databaseConnection->getSchema()
                 ]);
 
                 $columns = $pdoStatement->fetchAll(PDO::FETCH_COLUMN, 0);

@@ -11,12 +11,13 @@
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\QueryTable;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_QueryTableTest extends TestCase
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_QueryTable
+     * @var QueryTable
      */
     protected $table;
 
@@ -32,7 +33,7 @@ class Extensions_Database_DataSet_QueryTableTest extends TestCase
                 'value5' as col2,
                 'value6' as col3
         ";
-        $this->table = new PHPUnit_Extensions_Database_DataSet_QueryTable(
+        $this->table = new QueryTable(
             'table1',
             $query,
             new DefaultConnection(new PDO('sqlite::memory:'), 'test')
