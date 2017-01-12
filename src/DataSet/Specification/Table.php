@@ -11,7 +11,7 @@
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
-use PHPUnit\DbUnit\IDatabaseListConsumer;
+use PHPUnit\DbUnit\DatabaseListConsumer;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use ReflectionClass;
 
@@ -37,7 +37,7 @@ use ReflectionClass;
  * The column names in the table will be identical to the column aliases in the
  * query.
  */
-class Table implements Specification, IDatabaseListConsumer
+class Table implements Specification, DatabaseListConsumer
 {
     /**
      * @var array

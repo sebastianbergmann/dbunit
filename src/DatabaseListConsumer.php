@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit;
 /**
  * An interface for classes that require a list of databases to operate.
  */
-interface IDatabaseListConsumer
+interface DatabaseListConsumer
 {
     /**
      * Sets the database for the spec
