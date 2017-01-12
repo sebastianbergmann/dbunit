@@ -23,7 +23,7 @@ use PHPUnit_Extensions_Database_DataSet_YamlDataSet;
  * The filename should be the location of a yaml file relative to the
  * current working directory.
  */
-class PHPUnit_Extensions_Database_DataSet_Specs_Yaml implements PHPUnit_Extensions_Database_DataSet_ISpec
+class Yaml implements PHPUnit_Extensions_Database_DataSet_ISpec
 {
     /**
      * Creates YAML Data Set from a data set spec.
