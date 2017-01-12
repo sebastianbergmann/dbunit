@@ -12,6 +12,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableIterator;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\ITableIterator;
+use PHPUnit\DbUnit\DataSet\IYamlParser;
 
 /**
  * Creates YamlDataSets.
@@ -26,7 +27,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
     protected $tables = [];
 
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_IYamlParser
+     * @var IYamlParser
      */
     protected $parser;
 
@@ -34,7 +35,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
      * Creates a new YAML dataset
      *
      * @param string                                          $yamlFile
-     * @param PHPUnit_Extensions_Database_DataSet_IYamlParser $parser
+     * @param IYamlParser $parser
      */
     public function __construct($yamlFile, $parser = null)
     {

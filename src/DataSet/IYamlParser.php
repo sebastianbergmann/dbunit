@@ -8,10 +8,13 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet;
+
 /**
  * An interface for parsing YAML files.
  */
-interface PHPUnit_Extensions_Database_DataSet_IYamlParser {
+interface IYamlParser
+{
     /**
      * @param  string $yamlFile
      * @return array  parsed YAML
