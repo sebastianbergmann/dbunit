@@ -16,7 +16,7 @@ use PDOException;
 /**
  * Provides functionality to retrieve meta data from a Microsoft SQL Server database.
  */
-class SqlSrv extends Metadata
+class SqlSrv extends AbstractMetadata
 {
     /**
      * No character used to quote schema objects.

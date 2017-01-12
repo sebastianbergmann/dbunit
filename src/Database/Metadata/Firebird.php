@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database\Metadata;
 /**
  * Provides functionality to retrieve meta data from a Firebird database.
  */
-class Firebird extends Metadata
+class Firebird extends AbstractMetadata
 {
     /**
      * The command used to perform a TRUNCATE operation.

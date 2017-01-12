@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database\Metadata;
 /**
  * Provides functionality to retrieve meta data from an Oracle database.
  */
-class Oci extends Metadata
+class Oci extends AbstractMetadata
 {
     /**
      * No character used to quote schema objects.

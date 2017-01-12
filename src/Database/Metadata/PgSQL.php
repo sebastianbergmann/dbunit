@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database\Metadata;
 /**
  * Provides functionality to retrieve meta data from a PostgreSQL database.
  */
-class PgSQL extends Metadata
+class PgSQL extends AbstractMetadata
 {
     /**
      * Returns an array containing the names of all the tables in the database.

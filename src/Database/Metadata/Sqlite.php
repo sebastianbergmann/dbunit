@@ -16,7 +16,7 @@ use PDOStatement;
 /**
  * Provides functionality to retrieve meta data from an Sqlite database.
  */
-class Sqlite extends Metadata
+class Sqlite extends AbstractMetadata
 {
     protected $columns = [];
 

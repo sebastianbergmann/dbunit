@@ -15,7 +15,7 @@ use PDO;
 /**
  * Provides functionality to retrieve meta data from a MySQL database.
  */
-class MySQL extends Metadata
+class MySQL extends AbstractMetadata
 {
     protected $schemaObjectQuoteChar = '`';
 

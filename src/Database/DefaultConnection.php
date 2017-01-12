@@ -14,7 +14,7 @@ use PDO;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\QueryTable;
 use PHPUnit\DbUnit\Database\Metadata\IMetadata;
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
+use PHPUnit\DbUnit\Database\Metadata\AbstractMetadata;
 
 /**
  * Provides a basic interface for communicating with a database.
@@ -42,7 +42,7 @@ class DefaultConnection implements IConnection
     public function __construct(PDO $connection, $schema = '')
     {
         $this->connection = $connection;
-        $this->metaData = Metadata::createMetaData($connection, $schema);
+        $this->metaData = AbstractMetadata::createMetaData($connection, $schema);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

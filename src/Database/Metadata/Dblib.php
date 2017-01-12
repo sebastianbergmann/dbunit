@@ -4,7 +4,7 @@ namespace PHPUnit\DbUnit\Database\Metadata;
 /**
  * Provides functionality to retrieve meta data from an Dblib (SQL Server) database.
  */
-class Dblib extends Metadata
+class Dblib extends AbstractMetadata
 {
     /**
      * No character used to quote schema objects.

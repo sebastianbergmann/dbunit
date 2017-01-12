@@ -13,7 +13,7 @@ namespace PHPUnit\DbUnit\Database\Metadata;
 /**
  * Provides functionality to retrieve meta data from a database with information_schema support.
  */
-class InformationSchema extends Metadata
+class InformationSchema extends AbstractMetadata
 {
     protected $columns = [];
 
