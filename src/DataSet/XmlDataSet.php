@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractXmlDataSet;
 use PHPUnit\DbUnit\RuntimeException;
 
 /**
  * The default implementation of a data set.
  */
-class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
+class PHPUnit_Extensions_Database_DataSet_XmlDataSet extends AbstractXmlDataSet
 {
     protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {

@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractXmlDataSet;
 use PHPUnit\DbUnit\RuntimeException;
 
 /**
  * Data set implementation for the output of mysqldump --xml.
  */
-class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet
+class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends AbstractXmlDataSet
 {
     protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {

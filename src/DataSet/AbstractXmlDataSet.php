@@ -8,13 +8,21 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_DataSet_DefaultTable;
+use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
+use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
+use RuntimeException;
+use SimpleXmlElement;
 
 /**
  * The default implementation of a data set.
  */
-abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends AbstractDataSet
+abstract class AbstractXmlDataSet extends AbstractDataSet
 {
     /**
      * @var array
@@ -35,11 +43,11 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends Ab
     {
         if (!is_file($xmlFile)) {
             throw new InvalidArgumentException(
-              "Could not find xml file: {$xmlFile}"
+                "Could not find xml file: {$xmlFile}"
             );
         }
 
-        $libxmlErrorReporting  = libxml_use_internal_errors(true);
+        $libxmlErrorReporting = libxml_use_internal_errors(true);
         $this->xmlFileContents = simplexml_load_file($xmlFile, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE);
 
         if (!$this->xmlFileContents) {
@@ -56,7 +64,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends Ab
         libxml_use_internal_errors($libxmlErrorReporting);
 
         $tableColumns = [];
-        $tableValues  = [];
+        $tableValues = [];
 
         $this->getTableInfo($tableColumns, $tableValues);
         $this->createTables($tableColumns, $tableValues);
@@ -82,13 +90,13 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends Ab
      * Returns the table with the matching name. If the table does not exist
      * an empty one is created.
      *
-     * @param  string                                     $tableName
+     * @param  string $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITable
      */
     protected function getOrCreateTable($tableName, $tableColumns)
     {
         if (empty($this->tables[$tableName])) {
-            $tableMetaData            = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $tableColumns);
+            $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $tableColumns);
             $this->tables[$tableName] = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
         }
 
@@ -99,7 +107,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends Ab
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                               $reverse
+     * @param  bool $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected function createIterator($reverse = false)
