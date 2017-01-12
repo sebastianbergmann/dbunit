@@ -11,6 +11,7 @@ use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\AbstractTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\ITable;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
 /**
  * Provides the functionality to represent a database table.
@@ -49,7 +50,7 @@ class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
     /**
      * Returns the table's meta data.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @return ITableMetadata
      */
     public function getTableMetaData()
     {

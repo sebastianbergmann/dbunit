@@ -15,6 +15,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -151,7 +152,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
             $mockConnection->expects($this->never())->method($method);
         }
 
-        $mockTableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $mockTableMetaData = $this->createMock(ITableMetadata::class);
         $mockTableMetaData->expects($this->any())->method('getTableName')->will($this->returnValue('table'));
         $mockTable = $this->createMock(ITable::class);
         $mockTable->expects($this->any())->method('getTableMetaData')->will($this->returnValue($mockTableMetaData));

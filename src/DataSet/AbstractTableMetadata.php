@@ -10,12 +10,10 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
-
 /**
  * Provides basic functionality for table meta data.
  */
-abstract class AbstractTableMetadata implements PHPUnit_Extensions_Database_DataSet_ITableMetaData
+abstract class AbstractTableMetadata implements ITableMetadata
 {
     /**
      * The names of all columns in the table.
@@ -69,9 +67,9 @@ abstract class AbstractTableMetadata implements PHPUnit_Extensions_Database_Data
     /**
      * Asserts that the given tableMetaData matches this tableMetaData.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $other
+     * @param ITableMetadata $other
      */
-    public function matches(PHPUnit_Extensions_Database_DataSet_ITableMetaData $other)
+    public function matches(ITableMetadata $other)
     {
         if ($this->getTableName() != $other->getTableName() ||
             $this->getColumns() != $other->getColumns()

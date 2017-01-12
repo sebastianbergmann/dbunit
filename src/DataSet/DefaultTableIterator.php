@@ -10,8 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
-
 /**
  * The default table iterator
  */
@@ -59,7 +57,7 @@ class DefaultTableIterator implements ITableIterator
     /**
      * Returns the current table's meta data.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @return ITableMetadata
      */
     public function getTableMetaData()
     {

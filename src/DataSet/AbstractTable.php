@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 use SimpleXMLElement;
 
 /**
@@ -20,7 +19,7 @@ use SimpleXMLElement;
 class AbstractTable implements ITable
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @var ITableMetadata
      */
     protected $tableMetaData;
 
@@ -39,10 +38,10 @@ class AbstractTable implements ITable
     /**
      * Sets the metadata for this table.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData
+     * @param ITableMetadata $tableMetaData
      * @deprecated
      */
-    protected function setTableMetaData(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData)
+    protected function setTableMetaData(ITableMetadata $tableMetaData)
     {
         $this->tableMetaData = $tableMetaData;
     }
@@ -50,7 +49,7 @@ class AbstractTable implements ITable
     /**
      * Returns the table's meta data.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @return ITableMetadata
      */
     public function getTableMetaData()
     {

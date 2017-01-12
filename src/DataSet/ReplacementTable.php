@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\DataSet\ITable;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
 /**
  * Allows for replacing arbitrary strings in your data sets with other values.
@@ -74,7 +75,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements ITable
     /**
      * Returns the table's meta data.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @return ITableMetadata
      */
     public function getTableMetaData()
     {

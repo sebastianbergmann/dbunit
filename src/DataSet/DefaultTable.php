@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides default table functionality.
@@ -21,9 +20,9 @@ class DefaultTable extends AbstractTable
     /**
      * Creates a new table object using the given $tableMetaData
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData
+     * @param ITableMetadata $tableMetaData
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData)
+    public function __construct(ITableMetadata $tableMetaData)
     {
         $this->setTableMetaData($tableMetaData);
         $this->data = [];

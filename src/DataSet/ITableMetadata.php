@@ -8,10 +8,12 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet;
+
 /**
  * Provides a basic interface for returning table meta data.
  */
-interface PHPUnit_Extensions_Database_DataSet_ITableMetaData
+interface ITableMetadata
 {
     /**
      * Returns the names of the columns in the table.
@@ -37,7 +39,7 @@ interface PHPUnit_Extensions_Database_DataSet_ITableMetaData
     /**
      * Asserts that the given tableMetaData matches this tableMetaData.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $other
+     * @param ITableMetadata $other
      */
-    public function matches(PHPUnit_Extensions_Database_DataSet_ITableMetaData $other);
+    public function matches(ITableMetadata $other);
 }

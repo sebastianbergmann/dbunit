@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use IteratorAggregate;
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides a basic interface for creating and reading data from data sets.
@@ -29,7 +28,7 @@ interface IDataSet extends IteratorAggregate
      * Returns a table meta data object for the given table.
      *
      * @param  string $tableName
-     * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @return ITableMetadata
      */
     public function getTableMetaData($tableName);
 

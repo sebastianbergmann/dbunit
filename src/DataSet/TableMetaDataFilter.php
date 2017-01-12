@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\DataSet\AbstractTableMetadata;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
 /**
  * A TableMetaData decorator that allows filtering columns from another
@@ -20,7 +21,7 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends AbstractTa
 {
     /**
      * The table meta data being decorated.
-     * @var PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @var ITableMetadata
      */
     protected $originalMetaData;
 
@@ -40,10 +41,10 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends AbstractTa
      * Creates a new filtered table meta data object filtering out
      * $excludeColumns.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $originalMetaData
+     * @param ITableMetadata $originalMetaData
      * @param array                                              $excludeColumns   - Deprecated. Use the set* methods instead.
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableMetaData $originalMetaData, array $excludeColumns = [])
+    public function __construct(ITableMetadata $originalMetaData, array $excludeColumns = [])
     {
         $this->originalMetaData = $originalMetaData;
         $this->addExcludeColumns($excludeColumns);

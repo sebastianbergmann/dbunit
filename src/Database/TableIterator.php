@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\Database;
 
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableIterator;
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
 /**
  * Provides iterative access to tables from a database instance.
@@ -63,7 +63,7 @@ class TableIterator implements ITableIterator
     /**
      * Returns the current table's meta data.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @return ITableMetadata
      */
     public function getTableMetaData()
     {

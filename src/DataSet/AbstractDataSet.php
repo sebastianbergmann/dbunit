@@ -10,8 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
-
 /**
  * Implements the basic functionality of data sets.
  */
@@ -47,7 +45,7 @@ abstract class AbstractDataSet implements IDataSet
      * Returns a table meta data object for the given table.
      *
      * @param  string $tableName
-     * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @return ITableMetadata
      */
     public function getTableMetaData($tableName)
     {

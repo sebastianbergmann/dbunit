@@ -11,6 +11,7 @@
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\ITable;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framework\TestCase
@@ -217,8 +218,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
     public function testMatchesWithNonMatchingMetaData()
     {
-        $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
-        $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $tableMetaData = $this->createMock(ITableMetadata::class);
+        $otherMetaData = $this->createMock(ITableMetadata::class);
         $table         = $this->createMock(ITable::class);
         $otherTable    = $this->createMock(ITable::class);
 
@@ -241,8 +242,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
     public function testMatchesWithNonMatchingRowCount()
     {
-        $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
-        $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $tableMetaData = $this->createMock(ITableMetadata::class);
+        $otherMetaData = $this->createMock(ITableMetadata::class);
         $table         = $this->createMock(ITable::class);
         $otherTable    = $this->createMock(ITable::class);
 
@@ -281,8 +282,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
      */
     public function testMatchesWithColumnValueComparisons($tableColumnValues, $otherColumnValues, $matches)
     {
-        $tableMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
-        $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
+        $tableMetaData = $this->createMock(ITableMetadata::class);
+        $otherMetaData = $this->createMock(ITableMetadata::class);
         $table         = $this->createMock(ITable::class);
         $otherTable    = $this->createMock(ITable::class);
 

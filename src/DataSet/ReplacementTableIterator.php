@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableIterator;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
 /**
  * The default table iterator
@@ -83,7 +84,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements Ou
     /**
      * Returns the current table's meta data.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
+     * @return ITableMetadata
      */
     public function getTableMetaData()
     {

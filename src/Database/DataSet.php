@@ -14,7 +14,7 @@ use PHPUnit\DbUnit\InvalidArgumentException;
 use PHPUnit\DbUnit\RuntimeException;
 use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
 /**
  * Provides access to a database instance as a data set.
@@ -48,10 +48,10 @@ class DataSet extends AbstractDataSet
     /**
      * Creates the query necessary to pull all of the data from a table.
      *
-     * @param  PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData
+     * @param  ITableMetadata $tableMetaData
      * @return string
      */
-    public static function buildTableSelect(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, IConnection $databaseConnection = null)
+    public static function buildTableSelect(ITableMetadata $tableMetaData, IConnection $databaseConnection = null)
     {
         if ($tableMetaData->getTableName() == '') {
             $e = new RuntimeException('Empty Table Name');

@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\Database;
 
 use PDO;
 use PHPUnit\DbUnit\DataSet\AbstractTable;
-use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
 /**
  * Provides the functionality to represent a database table.
@@ -22,10 +22,10 @@ class Table extends AbstractTable
     /**
      * Creates a new database table object.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData
+     * @param ITableMetadata $tableMetaData
      * @param IConnection $databaseConnection
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_ITableMetaData $tableMetaData, IConnection $databaseConnection)
+    public function __construct(ITableMetadata $tableMetaData, IConnection $databaseConnection)
     {
         $this->setTableMetaData($tableMetaData);
 
