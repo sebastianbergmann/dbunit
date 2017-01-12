@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\IDatabaseListConsumer;
-use PHPUnit_Extensions_Database_DataSet_DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit_Extensions_Database_DataSet_ISpec;
 use ReflectionClass;
 
@@ -60,7 +60,7 @@ class Query implements PHPUnit_Extensions_Database_DataSet_ISpec, IDatabaseListC
      * Creates a Default Data Set with a query table from a data set spec.
      *
      * @param  string $dataSetSpec
-     * @return PHPUnit_Extensions_Database_DataSet_DefaultDataSet
+     * @return DefaultDataSet
      */
     public function getDataSet($dataSetSpec)
     {
@@ -72,6 +72,6 @@ class Query implements PHPUnit_Extensions_Database_DataSet_ISpec, IDatabaseListC
         $dbConnection = new DefaultConnection($pdo, $schema);
         $table = $dbConnection->createQueryTable($table, $sql);
 
-        return new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table]);
+        return new DefaultDataSet([$table]);
     }
 }

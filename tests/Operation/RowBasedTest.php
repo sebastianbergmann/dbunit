@@ -10,6 +10,7 @@
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -47,7 +48,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
             ),
         ];
 
-        return new PHPUnit_Extensions_Database_DataSet_DefaultDataSet($tables);
+        return new DefaultDataSet($tables);
     }
 
     public function testExecute()
@@ -86,7 +87,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
             'column8'   => 'hkladfg'
         ]);
 
-        $dataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
+        $dataSet = new DefaultDataSet([$table1, $table2]);
 
         $mockOperation = $this->createPartialMock(
             PHPUnit_Extensions_Database_Operation_RowBased::class,
@@ -137,7 +138,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
 
     public function testExecuteWithBadQuery()
     {
-        $mockDatabaseDataSet = $this->createMock(PHPUnit_Extensions_Database_DataSet_DefaultDataSet::class);
+        $mockDatabaseDataSet = $this->createMock(DefaultDataSet::class);
         $mockDatabaseDataSet->expects($this->never())->method('getTableMetaData');
 
         $mockConnection = $this->createMock(IConnection::class);
@@ -152,7 +153,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
         $mockTable->expects($this->any())->method('getTableMetaData')->will($this->returnValue($mockTableMetaData));
         $mockTable->expects($this->once())->method('getRowCount')->will($this->returnValue(0));
 
-        $mockDataSet = $this->createMock(PHPUnit_Extensions_Database_DataSet_DefaultDataSet::class);
+        $mockDataSet = $this->createMock(DefaultDataSet::class);
         $mockDataSet->expects($this->once())->method('getIterator')->will($this->returnValue(new ArrayIterator([$mockTable])));
 
         $mockOperation = $this->createPartialMock(

@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_DefaultDataSet;
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
@@ -35,7 +34,7 @@ class CompositeDataSet extends AbstractDataSet
      */
     public function __construct(array $dataSets = [])
     {
-        $this->motherDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet();
+        $this->motherDataSet = new DefaultDataSet();
 
         foreach ($dataSets as $dataSet) {
             $this->addDataSet($dataSet);

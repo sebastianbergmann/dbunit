@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\DataSet\CsvDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\TestCase
@@ -72,7 +73,7 @@ class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\Test
 asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         ]);
 
-        $expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
+        $expectedDataSet = new DefaultDataSet([$table1, $table2]);
 
         $csvDataSet = new CsvDataSet();
         $csvDataSet->addTable('table1', dirname(__FILE__) . '/../_files/CsvDataSets/table1.csv');

@@ -7,12 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+
+namespace PHPUnit\DbUnit\DataSet;
+
+use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
 /**
  * The default implementation of a data set.
  */
-class PHPUnit_Extensions_Database_DataSet_DefaultDataSet extends AbstractDataSet
+class DefaultDataSet extends AbstractDataSet
 {
     /**
      * An array of ITable objects.
@@ -45,7 +50,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultDataSet extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                               $reverse
+     * @param  bool $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected function createIterator($reverse = false)

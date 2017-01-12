@@ -10,6 +10,7 @@
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\DataSet\CompositeDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -47,7 +48,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
         $truncateOperation = new PHPUnit_Extensions_Database_Operation_Truncate();
         $truncateOperation->execute($this->getConnection(), $this->getDataSet());
 
-        $expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([
+        $expectedDataSet = new DefaultDataSet([
             new PHPUnit_Extensions_Database_DataSet_DefaultTable(
                 new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1',
                     ['table1_id', 'column1', 'column2', 'column3', 'column4'])
@@ -80,7 +81,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
         $truncateOperation = new PHPUnit_Extensions_Database_Operation_Truncate();
         $truncateOperation->execute($this->getConnection(), $this->getCompositeDataSet());
 
-        $expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([
+        $expectedDataSet = new DefaultDataSet([
             new PHPUnit_Extensions_Database_DataSet_DefaultTable(
                 new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1',
                     ['table1_id', 'column1', 'column2', 'column3', 'column4'])

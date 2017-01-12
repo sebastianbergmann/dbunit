@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_DefaultDataSet
+     * @var DefaultDataSet
      */
     protected $startingDataSet;
 
@@ -73,7 +74,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'column8'   => '[NULL] not really'
         ]);
 
-        $this->startingDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
+        $this->startingDataSet = new DefaultDataSet([$table1, $table2]);
     }
 
     public function testNoReplacement()
@@ -140,7 +141,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'column8'   => '[NULL] not really'
         ]);
 
-        $expected = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
+        $expected = new DefaultDataSet([$table1, $table2]);
         $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet);
         $actual->addFullReplacement('[NULL]', null);
 
@@ -203,7 +204,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'column8'   => '[NULL] not really'
         ]);
 
-        $expected = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
+        $expected = new DefaultDataSet([$table1, $table2]);
         $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet($this->startingDataSet);
         $actual->addSubStrReplacement('%%%name%%%', 'Mike Lively');
 
@@ -266,7 +267,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'column8'   => '[NULL] not really'
         ]);
 
-        $expected = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
+        $expected = new DefaultDataSet([$table1, $table2]);
         $actual   = new PHPUnit_Extensions_Database_DataSet_ReplacementDataSet(
             $this->startingDataSet,
             ['[NULL]'     => null],

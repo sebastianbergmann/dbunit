@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
+use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
@@ -71,7 +72,7 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
             'column8'   => null
         ]);
 
-        $this->expectedDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$table1, $table2]);
+        $this->expectedDataSet = new DefaultDataSet([$table1, $table2]);
     }
 
     public function testFlatXmlDataSet()
