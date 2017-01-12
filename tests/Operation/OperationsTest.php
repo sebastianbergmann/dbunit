@@ -13,6 +13,7 @@ use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
+use PHPUnit\DbUnit\Operation\Delete;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -40,7 +41,7 @@ class Extensions_Database_Operation_OperationsTest extends TestCase
 
     public function testDelete()
     {
-        $deleteOperation = new PHPUnit_Extensions_Database_Operation_Delete();
+        $deleteOperation = new Delete();
 
         $deleteOperation->execute($this->getConnection(), new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/DeleteOperationTest.xml'));
 

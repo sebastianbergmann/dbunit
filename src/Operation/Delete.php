@@ -7,14 +7,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\Operation;
+
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit_Extensions_Database_Operation_RowBased;
 
 /**
  * Deletes the rows in a given dataset using primary key columns.
  */
-class PHPUnit_Extensions_Database_Operation_Delete extends PHPUnit_Extensions_Database_Operation_RowBased
+class Delete extends PHPUnit_Extensions_Database_Operation_RowBased
 {
     protected $operationName = 'DELETE';
 

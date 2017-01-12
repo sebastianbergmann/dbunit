@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\Operation\Composite;
+use PHPUnit\DbUnit\Operation\Delete;
 
 /**
  * A class factory to easily return database operations.
@@ -70,7 +71,7 @@ class PHPUnit_Extensions_Database_Operation_Factory
      */
     public static function DELETE()
     {
-        return new PHPUnit_Extensions_Database_Operation_Delete();
+        return new Delete();
     }
 
     /**
