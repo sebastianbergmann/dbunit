@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
-use PHPUnit_Extensions_Database_DataSet_YamlDataSet;
+use PHPUnit\DbUnit\DataSet\YamlDataSet;
 
 /**
  * Creates a YAML dataset based off of a spec string.
@@ -28,10 +28,10 @@ class Yaml implements Specification
      * Creates YAML Data Set from a data set spec.
      *
      * @param  string $dataSetSpec
-     * @return PHPUnit_Extensions_Database_DataSet_YamlDataSet
+     * @return YamlDataSet
      */
     public function getDataSet($dataSetSpec)
     {
-        return new PHPUnit_Extensions_Database_DataSet_YamlDataSet($dataSetSpec);
+        return new YamlDataSet($dataSetSpec);
     }
 }

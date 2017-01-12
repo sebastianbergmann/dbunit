@@ -7,20 +7,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
-use PHPUnit\DbUnit\DataSet\DefaultTable;
-use PHPUnit\DbUnit\DataSet\DefaultTableIterator;
-use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
-use PHPUnit\DbUnit\DataSet\ITableIterator;
-use PHPUnit\DbUnit\DataSet\IYamlParser;
-use PHPUnit\DbUnit\DataSet\SymfonyYamlParser;
+
+namespace PHPUnit\DbUnit\DataSet;
 
 /**
  * Creates YamlDataSets.
  *
  * You can incrementally add YAML files as tables to your datasets
  */
-class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
+class YamlDataSet extends AbstractDataSet
 {
     /**
      * @var array
@@ -35,7 +30,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
     /**
      * Creates a new YAML dataset
      *
-     * @param string                                          $yamlFile
+     * @param string $yamlFile
      * @param IYamlParser $parser
      */
     public function __construct($yamlFile, $parser = null)
@@ -68,11 +63,11 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
                 $columns = $this->getColumns($rows);
 
                 $tableMetaData = new DefaultTableMetadata(
-                  $tableName, $columns
+                    $tableName, $columns
                 );
 
                 $this->tables[$tableName] = new DefaultTable(
-                  $tableMetaData
+                    $tableMetaData
                 );
             }
 
@@ -92,7 +87,8 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
      *
      * @params all the rows in a table.
      */
-    private function getColumns($rows) {
+    private function getColumns($rows)
+    {
         $columns = [];
 
         foreach ($rows as $row) {
@@ -106,13 +102,13 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                               $reverse
+     * @param  bool $reverse
      * @return ITableIterator
      */
     protected function createIterator($reverse = false)
     {
         return new DefaultTableIterator(
-          $this->tables, $reverse
+            $this->tables, $reverse
         );
     }
 }
