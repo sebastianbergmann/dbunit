@@ -10,8 +10,6 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit_Extensions_Database_Operation_Null;
-
 /**
  * A class factory to easily return database operations.
  */
@@ -24,7 +22,7 @@ class Factory
      */
     public static function NONE()
     {
-        return new PHPUnit_Extensions_Database_Operation_Null();
+        return new None();
     }
 
     /**
