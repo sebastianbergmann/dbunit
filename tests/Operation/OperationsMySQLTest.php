@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
+use PHPUnit\DbUnit\DataSet\CompositeDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -66,7 +67,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 
     public function getCompositeDataSet()
     {
-        $compositeDataset = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet();
+        $compositeDataset = new CompositeDataSet();
 
         $dataset = $this->createXMLDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/TruncateCompositeTest.xml');
         $compositeDataset->addDataSet($dataset);

@@ -8,15 +8,19 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_DataSet_DefaultDataSet;
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
 /**
  * Creates Composite Datasets
  *
  * Allows for creating datasets from multiple sources (csv, query, xml, etc.)
  */
-class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends AbstractDataSet
+class CompositeDataSet extends AbstractDataSet
 {
     protected $motherDataSet;
 
@@ -33,8 +37,7 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends AbstractDataS
     {
         $this->motherDataSet = new PHPUnit_Extensions_Database_DataSet_DefaultDataSet();
 
-        foreach ($dataSets as $dataSet)
-        {
+        foreach ($dataSets as $dataSet) {
             $this->addDataSet($dataSet);
         }
     }
@@ -48,17 +51,15 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends AbstractDataS
      */
     public function addDataSet(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
     {
-        foreach ($dataSet->getTableNames() as $tableName)
-        {
+        foreach ($dataSet->getTableNames() as $tableName) {
             if (!in_array($tableName, $this->getTableNames())) {
                 $this->motherDataSet->addTable($dataSet->getTable($tableName));
             } else {
                 $other = $dataSet->getTable($tableName);
                 $table = $this->getTable($tableName);
 
-                if (!$table->getTableMetaData()->matches($other->getTableMetaData()))
-                {
-                   throw new InvalidArgumentException("There is already a table named $tableName with different table definition");
+                if (!$table->getTableMetaData()->matches($other->getTableMetaData())) {
+                    throw new InvalidArgumentException("There is already a table named $tableName with different table definition");
                 }
 
                 $table->addTableRows($dataSet->getTable($tableName));
@@ -70,7 +71,7 @@ class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends AbstractDataS
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                               $reverse
+     * @param  bool $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected function createIterator($reverse = false)

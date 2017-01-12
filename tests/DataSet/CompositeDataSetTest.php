@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\CompositeDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_CompositeDataSetTest extends \PHPUnit\Framework\TestCase
@@ -107,7 +108,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
 
     public function testCompositeDataSet()
     {
-        $actual = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet([$this->expectedDataSet1, $this->expectedDataSet2]);
+        $actual = new CompositeDataSet([$this->expectedDataSet1, $this->expectedDataSet2]);
 
         TestCase::assertDataSetsEqual($this->expectedDataSet3, $actual);
     }
@@ -126,7 +127,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'column12'  => 'askldja'
         ]);
 
-        $compositeDataSet = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet([
+        $compositeDataSet = new CompositeDataSet([
             new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$compatibleTable]),
             $this->expectedDataSet2
         ]);
@@ -152,7 +153,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'column16' => 2141
         ]);
 
-        $compositeDataSet = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet([
+        $compositeDataSet = new CompositeDataSet([
             $this->expectedDataSet2,
             new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$inCompatibleTable])
         ]);
@@ -176,7 +177,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'column16' => 2141
         ]);
 
-        $compositeDataSet = new PHPUnit_Extensions_Database_DataSet_CompositeDataSet([
+        $compositeDataSet = new CompositeDataSet([
             new PHPUnit_Extensions_Database_DataSet_DefaultDataSet([$inCompatibleTable]),
             $this->expectedDataSet2
         ]);
