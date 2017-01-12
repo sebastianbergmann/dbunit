@@ -7,13 +7,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+
+namespace PHPUnit\DbUnit\DataSet;
+
+use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
+use PHPUnit_Extensions_Database_DataSet_TableFilter;
 
 /**
  * A dataset decorator that allows filtering out tables and table columns from
  * results.
  */
-class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends AbstractDataSet
+class Filter extends AbstractDataSet
 {
     /**
      * The dataset being decorated.
@@ -54,7 +61,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends AbstractDataSet
      * to the special string '*'.
      *
      * @param PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet
-     * @param array                                        $excludeTables   @deprecated use set* methods instead.
+     * @param array $excludeTables @deprecated use set* methods instead.
      */
     public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet, array $excludeTables = [])
     {
@@ -67,7 +74,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends AbstractDataSet
             } elseif ($values == '*') {
                 $tables[] = $tableName;
             } else {
-                $this->setExcludeColumnsForTable($tableName, (array) $values);
+                $this->setExcludeColumnsForTable($tableName, (array)$values);
             }
         }
 
@@ -78,20 +85,20 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                               $reverse
+     * @param  bool $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected function createIterator($reverse = false)
     {
         $original_tables = $this->originalDataSet->getIterator($reverse);
-        $new_tables      = [];
+        $new_tables = [];
 
         foreach ($original_tables as $table) {
             /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */
             $tableName = $table->getTableMetaData()->getTableName();
 
             if ((!in_array($tableName, $this->includeTables) && !empty($this->includeTables)) ||
-                    in_array($tableName, $this->excludeTables)
+                in_array($tableName, $this->excludeTables)
             ) {
                 continue;
             } elseif (!empty($this->excludeColumns[$tableName]) || !empty($this->includeColumns[$tableName])) {
@@ -135,7 +142,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends AbstractDataSet
     /**
      * Adds columns to include in the data set for the given table.
      * @param string $table
-     * @param array  $columns
+     * @param array $columns
      */
     public function setIncludeColumnsForTable($table, array $columns)
     {
@@ -145,7 +152,7 @@ class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends AbstractDataSet
     /**
      * Adds columns to include in the data set for the given table.
      * @param string $table
-     * @param array  $columns
+     * @param array $columns
      */
     public function setExcludeColumnsForTable($table, array $columns)
     {

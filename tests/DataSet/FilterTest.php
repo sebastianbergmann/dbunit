@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
+use PHPUnit\DbUnit\DataSet\Filter;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_FilterTest extends TestCase
@@ -29,7 +30,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
-        $filteredDataSet = new PHPUnit_Extensions_Database_DataSet_DataSetFilter($dataSet, [
+        $filteredDataSet = new Filter($dataSet, [
             'table1' => ['table1_id'],
             'table2' => '*',
             'table3' => 'table3_id'
@@ -45,7 +46,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
-        $filteredDataSet = new PHPUnit_Extensions_Database_DataSet_DataSetFilter($dataSet);
+        $filteredDataSet = new Filter($dataSet);
 
         $filteredDataSet->addExcludeTables(['table2']);
         $filteredDataSet->setExcludeColumnsForTable('table1', ['table1_id']);
@@ -61,7 +62,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
-        $filteredDataSet = new PHPUnit_Extensions_Database_DataSet_DataSetFilter($dataSet);
+        $filteredDataSet = new Filter($dataSet);
 
         $filteredDataSet->addIncludeTables(['table1', 'table3']);
         $filteredDataSet->setIncludeColumnsForTable('table1', ['column1', 'column2', 'column3', 'column4']);
@@ -77,7 +78,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
-        $filteredDataSet = new PHPUnit_Extensions_Database_DataSet_DataSetFilter($dataSet);
+        $filteredDataSet = new Filter($dataSet);
 
         $filteredDataSet->addIncludeTables(['table1', 'table3']);
         $filteredDataSet->setExcludeColumnsForTable('table1', ['table1_id']);
