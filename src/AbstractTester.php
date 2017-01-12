@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit;
 
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\Database\IConnection;
-use PHPUnit_Extensions_Database_Operation_Factory;
+use PHPUnit\DbUnit\Operation\Factory;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
@@ -45,8 +45,8 @@ abstract class AbstractTester implements ITester
      */
     public function __construct()
     {
-        $this->setUpOperation = PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT();
-        $this->tearDownOperation = PHPUnit_Extensions_Database_Operation_Factory::NONE();
+        $this->setUpOperation = Factory::CLEAN_INSERT();
+        $this->tearDownOperation = Factory::NONE();
     }
 
     /**

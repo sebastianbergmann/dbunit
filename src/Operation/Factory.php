@@ -7,14 +7,19 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\Operation\Composite;
-use PHPUnit\DbUnit\Operation\Delete;
-use PHPUnit\DbUnit\Operation\DeleteAll;
+
+namespace PHPUnit\DbUnit\Operation;
+
+use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
+use PHPUnit_Extensions_Database_Operation_Insert;
+use PHPUnit_Extensions_Database_Operation_Null;
+use PHPUnit_Extensions_Database_Operation_Truncate;
+use PHPUnit_Extensions_Database_Operation_Update;
 
 /**
  * A class factory to easily return database operations.
  */
-class PHPUnit_Extensions_Database_Operation_Factory
+class Factory
 {
     /**
      * Returns a null database operation
@@ -30,7 +35,7 @@ class PHPUnit_Extensions_Database_Operation_Factory
      * Returns a clean insert database operation. It will remove all contents
      * from the table prior to re-inserting rows.
      *
-     * @param  bool                                                     $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     * @param  bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
      * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      */
     public static function CLEAN_INSERT($cascadeTruncates = false)
@@ -54,7 +59,7 @@ class PHPUnit_Extensions_Database_Operation_Factory
     /**
      * Returns a truncate database operation.
      *
-     * @param  bool                                                     $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     * @param  bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
      * @return PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      */
     public static function TRUNCATE($cascadeTruncates = false)

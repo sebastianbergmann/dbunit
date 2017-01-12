@@ -22,7 +22,7 @@ use PHPUnit\DbUnit\DataSet\MysqlXmlDataSet;
 use PHPUnit\DbUnit\DataSet\XmlDataSet;
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\Database\IConnection;
-use PHPUnit_Extensions_Database_Operation_Factory;
+use PHPUnit\DbUnit\Operation\Factory;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 trait TestCaseTrait
@@ -79,7 +79,7 @@ trait TestCaseTrait
      */
     protected function getSetUpOperation()
     {
-        return PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT();
+        return Factory::CLEAN_INSERT();
     }
 
     /**
@@ -89,7 +89,7 @@ trait TestCaseTrait
      */
     protected function getTearDownOperation()
     {
-        return PHPUnit_Extensions_Database_Operation_Factory::NONE();
+        return Factory::NONE();
     }
 
     /**
@@ -174,11 +174,11 @@ trait TestCaseTrait
      * Returns an operation factory instance that can be used to instantiate
      * new operations.
      *
-     * @return PHPUnit_Extensions_Database_Operation_Factory
+     * @return Factory
      */
     protected function getOperations()
     {
-        return new PHPUnit_Extensions_Database_Operation_Factory();
+        return new Factory();
     }
 
     /**
