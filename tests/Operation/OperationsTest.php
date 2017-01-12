@@ -15,6 +15,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\Operation\Delete;
 use PHPUnit\DbUnit\Operation\DeleteAll;
+use PHPUnit\DbUnit\Operation\Replace;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -117,7 +118,7 @@ class Extensions_Database_Operation_OperationsTest extends TestCase
 
     public function testReplace()
     {
-        $replaceOperation = new PHPUnit_Extensions_Database_Operation_Replace();
+        $replaceOperation = new Replace();
 
         $replaceOperation->execute($this->getConnection(), new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/ReplaceOperationTest.xml'));
 

@@ -7,16 +7,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\Operation;
+
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
-use PHPUnit\DbUnit\Operation\Exception;
+use PHPUnit_Extensions_Database_Operation_Insert;
+use PHPUnit_Extensions_Database_Operation_RowBased;
+use PHPUnit_Extensions_Database_Operation_Update;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
  */
-class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_Database_Operation_RowBased
+class Replace extends PHPUnit_Extensions_Database_Operation_RowBased
 {
     protected $operationName = 'REPLACE';
 
@@ -48,7 +53,7 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
 
     /**
      * @param IConnection $connection
-     * @param IDataSet       $dataSet
+     * @param IDataSet $dataSet
      */
     public function execute(IConnection $connection, IDataSet $dataSet)
     {
@@ -72,30 +77,28 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
 
             for ($i = 0; $i < $rowCount; $i++) {
                 $selectArgs = $this->buildOperationArguments($databaseTableMetaData, $table, $i);
-                $query      = $selectQuery;
-                $args       = $selectArgs;
+                $query = $selectQuery;
+                $args = $selectArgs;
 
                 try {
                     $selectStatement->execute($selectArgs);
 
                     if ($selectStatement->fetchColumn(0) > 0) {
                         $updateArgs = $updateOperation->buildOperationArguments($databaseTableMetaData, $table, $i);
-                        $query      = $updateQuery;
-                        $args       = $updateArgs;
+                        $query = $updateQuery;
+                        $args = $updateArgs;
 
                         $updateStatement->execute($updateArgs);
                     } else {
                         $insertArgs = $insertOperation->buildOperationArguments($databaseTableMetaData, $table, $i);
-                        $query      = $insertQuery;
-                        $args       = $insertArgs;
+                        $query = $insertQuery;
+                        $args = $insertArgs;
 
                         $insertStatement->execute($insertArgs);
                     }
-                }
-
-                catch (Exception $e) {
+                } catch (Exception $e) {
                     throw new Exception(
-                      $this->operationName, $query, $args, $table, $e->getMessage()
+                        $this->operationName, $query, $args, $table, $e->getMessage()
                     );
                 }
             }
