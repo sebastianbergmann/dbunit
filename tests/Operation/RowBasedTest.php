@@ -11,6 +11,7 @@
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -34,15 +35,15 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
     public function getDataSet()
     {
         $tables = [
-            new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+            new DefaultTable(
                 new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1',
                     ['table1_id', 'column1', 'column2', 'column3', 'column4'])
             ),
-            new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+            new DefaultTable(
                 new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table2',
                     ['table2_id', 'column5', 'column6', 'column7', 'column8'])
             ),
-            new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+            new DefaultTable(
                 new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table3',
                     ['table3_id', 'column9', 'column10', 'column11', 'column12'])
             ),
@@ -55,7 +56,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
     {
         $connection = $this->getConnection();
         /* @var $connection DefaultConnection */
-        $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+        $table1 = new DefaultTable(
             new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1', ['table1_id', 'column1', 'column2', 'column3', 'column4'])
         );
 
@@ -75,7 +76,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
             'column4'   => 'dvorak'
         ]);
 
-        $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+        $table2 = new DefaultTable(
             new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table2', ['table2_id', 'column5', 'column6', 'column7', 'column8'])
         );
 

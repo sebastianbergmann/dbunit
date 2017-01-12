@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultTable;
 
 /**
  * Creates YamlDataSets.
@@ -65,7 +66,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
                   $tableName, $columns
                 );
 
-                $this->tables[$tableName] = new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+                $this->tables[$tableName] = new DefaultTable(
                   $tableMetaData
                 );
             }

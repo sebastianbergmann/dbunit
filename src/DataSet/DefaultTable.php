@@ -8,13 +8,16 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractTable;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides default table functionality.
  */
-class PHPUnit_Extensions_Database_DataSet_DefaultTable extends AbstractTable
+class DefaultTable extends AbstractTable
 {
     /**
      * Creates a new table object using the given $tableMetaData
@@ -35,8 +38,8 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTable extends AbstractTable
     public function addRow($values = [])
     {
         $this->data[] = array_replace(
-          array_fill_keys($this->getTableMetaData()->getColumns(), null),
-          $values
+            array_fill_keys($this->getTableMetaData()->getColumns(), null),
+            $values
         );
     }
 
@@ -48,7 +51,7 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTable extends AbstractTable
     public function addTableRows(PHPUnit_Extensions_Database_DataSet_ITable $table)
     {
         $tableColumns = $this->getTableMetaData()->getColumns();
-        $rowCount     = $table->getRowCount();
+        $rowCount = $table->getRowCount();
 
         for ($i = 0; $i < $rowCount; $i++) {
             $newRow = [];
@@ -62,9 +65,9 @@ class PHPUnit_Extensions_Database_DataSet_DefaultTable extends AbstractTable
     /**
      * Sets the specified column of the specied row to the specified value.
      *
-     * @param int    $row
+     * @param int $row
      * @param string $column
-     * @param mixed  $value
+     * @param mixed $value
      */
     public function setValue($row, $column, $value)
     {

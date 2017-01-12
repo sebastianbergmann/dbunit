@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_DefaultTable
+     * @var DefaultTable
      */
     protected $startingTable;
 
@@ -23,7 +24,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
-        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+        $table = new DefaultTable($tableMetaData);
 
         $table->addRow([
             'table1_id' => 1,
@@ -64,7 +65,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
-        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+        $table = new DefaultTable($tableMetaData);
 
         $table->addRow([
             'table1_id' => 1,
@@ -100,7 +101,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
-        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+        $table = new DefaultTable($tableMetaData);
 
         $table->addRow([
             'table1_id' => 1,
@@ -136,7 +137,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
-        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+        $table = new DefaultTable($tableMetaData);
 
         $table->addRow([
             'table1_id' => 1,

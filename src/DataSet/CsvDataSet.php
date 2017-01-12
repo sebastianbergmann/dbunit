@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_DefaultTable;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
@@ -86,7 +85,7 @@ class CsvDataSet extends AbstractDataSet
         }
 
         $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
-        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
+        $table = new DefaultTable($metaData);
 
         while (($row = $this->getCsvRow($fh)) !== false) {
             $table->addRow(array_combine($columns, $row));

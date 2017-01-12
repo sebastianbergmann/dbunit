@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_DefaultTable;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 use PHPUnit_Extensions_Database_DataSet_ITable;
@@ -97,7 +96,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
     {
         if (empty($this->tables[$tableName])) {
             $tableMetaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $tableColumns);
-            $this->tables[$tableName] = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+            $this->tables[$tableName] = new DefaultTable($tableMetaData);
         }
 
         return $this->tables[$tableName];

@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_AbstractTableTest extends TestCase
@@ -23,7 +24,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
             'table', ['id', 'column1']
         );
 
-        $this->table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+        $this->table = new DefaultTable($tableMetaData);
 
         $this->table->addRow([
             'id'      => 1,
@@ -65,7 +66,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
             ->with($otherMetaData)
             ->will($this->returnValue(false));
 
-        $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($tableMetaData);
+        $table = new DefaultTable($tableMetaData);
         $this->assertFalse($table->matches($otherTable));
     }
 
@@ -75,7 +76,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
         $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
         $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
 
-        $table = $this->getMockBuilder(PHPUnit_Extensions_Database_DataSet_DefaultTable::class)
+        $table = $this->getMockBuilder(DefaultTable::class)
                       ->setConstructorArgs([$tableMetaData])
                       ->setMethods(['getRowCount'])
                       ->getMock();
@@ -110,7 +111,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
         $otherMetaData = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITableMetaData::class);
         $otherTable    = $this->createMock(PHPUnit_Extensions_Database_DataSet_ITable::class);
 
-        $table = $this->getMockBuilder(PHPUnit_Extensions_Database_DataSet_DefaultTable::class)
+        $table = $this->getMockBuilder(DefaultTable::class)
                       ->setConstructorArgs([$tableMetaData])
                       ->setMethods(['getRowCount', 'getValue'])
                       ->getMock();

@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
+use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_QueryTableTest extends TestCase
@@ -76,7 +77,7 @@ class Extensions_Database_DataSet_QueryTableTest extends TestCase
 
     public function testAssertEquals()
     {
-        $expected_table = new PHPUnit_Extensions_Database_DataSet_DefaultTable(new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1', ['col1', 'col2', 'col3']));
+        $expected_table = new DefaultTable(new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1', ['col1', 'col2', 'col3']));
         $expected_table->addRow(['col1' => 'value1', 'col2' => 'value2', 'col3' => 'value3']);
         $expected_table->addRow(['col1' => 'value4', 'col2' => 'value5', 'col3' => 'value6']);
         $this->assertTrue($this->table->matches($expected_table));
@@ -84,7 +85,7 @@ class Extensions_Database_DataSet_QueryTableTest extends TestCase
 
     public function testAssertEqualsFails()
     {
-        $expected_table = new PHPUnit_Extensions_Database_DataSet_DefaultTable(new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1', ['col1', 'col2', 'col3']));
+        $expected_table = new DefaultTable(new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData('table1', ['col1', 'col2', 'col3']));
         $expected_table->addRow(['col1' => 'value1', 'col2' => 'value2', 'col3' => 'value3']);
         $expected_table->addRow(['col1' => 'value4', 'col2' => 'value5', 'col3' => 'value6']);
         $expected_table->addRow(['col1' => 'value7', 'col2' => 'value8', 'col3' => 'value9']);

@@ -10,6 +10,7 @@
 
 use PHPUnit\DbUnit\DataSet\CompositeDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_CompositeDataSetTest extends \PHPUnit\Framework\TestCase
@@ -31,9 +32,9 @@ class Extensions_Database_DataSet_CompositeDataSetTest extends \PHPUnit\Framewor
             'table3', ['table3_id', 'column9', 'column10', 'column11', 'column12']
         );
 
-        $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
-        $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
-        $table3 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table3MetaData);
+        $table1 = new DefaultTable($table1MetaData);
+        $table2 = new DefaultTable($table2MetaData);
+        $table3 = new DefaultTable($table3MetaData);
 
         $table1->addRow([
             'table1_id' => 1,
@@ -116,7 +117,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
 
     public function testCompatibleTablesInDifferentDataSetsNonDuplicateRows()
     {
-        $compatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable(
+        $compatibleTable = new DefaultTable(
             $this->expectedDataSet3->getTable('table3')->getTableMetaData()
         );
 
@@ -146,7 +147,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'table3', ['table3_id', 'column13', 'column14', 'column15', 'column16']
         );
 
-        $inCompatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($inCompatibleTableMetaData);
+        $inCompatibleTable = new DefaultTable($inCompatibleTableMetaData);
         $inCompatibleTable->addRow([
             'column13' => 'asdasda asdasd',
             'column14' => 'aiafsjas asd',
@@ -170,7 +171,7 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
             'table3', ['table3_id', 'column13', 'column14', 'column15', 'column16']
         );
 
-        $inCompatibleTable = new PHPUnit_Extensions_Database_DataSet_DefaultTable($inCompatibleTableMetaData);
+        $inCompatibleTable = new DefaultTable($inCompatibleTableMetaData);
         $inCompatibleTable->addRow([
             'column13' => 'asdasda asdasd',
             'column14' => 'aiafsjas asd',

@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framework\TestCase
@@ -27,8 +28,8 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
-        $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
-        $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
+        $table1 = new DefaultTable($table1MetaData);
+        $table2 = new DefaultTable($table2MetaData);
 
         $table1->addRow([
             'table1_id' => 1,
@@ -94,8 +95,8 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
-        $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
-        $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
+        $table1 = new DefaultTable($table1MetaData);
+        $table2 = new DefaultTable($table2MetaData);
 
         $table1->addRow([
             'table1_id' => 1,
@@ -157,8 +158,8 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
-        $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
-        $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
+        $table1 = new DefaultTable($table1MetaData);
+        $table2 = new DefaultTable($table2MetaData);
 
         $table1->addRow([
             'table1_id' => 1,
@@ -220,8 +221,8 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
             'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
-        $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
-        $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
+        $table1 = new DefaultTable($table1MetaData);
+        $table2 = new DefaultTable($table2MetaData);
 
         $table1->addRow([
             'table1_id' => 1,

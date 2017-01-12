@@ -10,6 +10,7 @@
 
 use PHPUnit\DbUnit\DataSet\CsvDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
+use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\TestCase
@@ -25,8 +26,8 @@ class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\Test
             'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
-        $table1 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table1MetaData);
-        $table2 = new PHPUnit_Extensions_Database_DataSet_DefaultTable($table2MetaData);
+        $table1 = new DefaultTable($table1MetaData);
+        $table2 = new DefaultTable($table2MetaData);
 
         $table1->addRow([
             'table1_id' => 1,
