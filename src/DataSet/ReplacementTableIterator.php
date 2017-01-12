@@ -10,6 +10,7 @@
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableIterator;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit\DbUnit\DataSet\ReplacementTable;
 
 /**
  * The default table iterator
@@ -98,7 +99,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements Ou
      */
     public function current()
     {
-        return new PHPUnit_Extensions_Database_DataSet_ReplacementTable($this->innerIterator->current(), $this->fullReplacements, $this->subStrReplacements);
+        return new ReplacementTable($this->innerIterator->current(), $this->fullReplacements, $this->subStrReplacements);
     }
 
     /**

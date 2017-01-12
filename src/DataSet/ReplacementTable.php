@@ -7,15 +7,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit\DbUnit\DataSet\ITableMetadata;
+
+namespace PHPUnit\DbUnit\DataSet;
 
 /**
  * Allows for replacing arbitrary strings in your data sets with other values.
  *
  * @todo When setTableMetaData() is taken out of the AbstractTable this class should extend AbstractTable.
  */
-class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements ITable
+class ReplacementTable implements ITable
 {
     /**
      * @var ITable
@@ -36,13 +36,13 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements ITable
      * Creates a new replacement table
      *
      * @param ITable $table
-     * @param array                                      $fullReplacements
-     * @param array                                      $subStrReplacements
+     * @param array $fullReplacements
+     * @param array $subStrReplacements
      */
     public function __construct(ITable $table, array $fullReplacements = [], array $subStrReplacements = [])
     {
-        $this->table              = $table;
-        $this->fullReplacements   = $fullReplacements;
+        $this->table = $table;
+        $this->fullReplacements = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 
@@ -106,7 +106,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements ITable
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param  int   $row
+     * @param  int $row
      * @return array
      */
     public function getRow($row)
@@ -123,20 +123,21 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements ITable
      */
     public function matches(ITable $other)
     {
-        $thisMetaData  = $this->getTableMetaData();
+        $thisMetaData = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();
 
         if (!$thisMetaData->matches($otherMetaData) ||
-            $this->getRowCount() != $other->getRowCount()) {
+            $this->getRowCount() != $other->getRowCount()
+        ) {
             return false;
         }
 
-        $columns  = $thisMetaData->getColumns();
+        $columns = $thisMetaData->getColumns();
         $rowCount = $this->getRowCount();
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                $thisValue  = $this->getValue($i, $columnName);
+                $thisValue = $this->getValue($i, $columnName);
                 $otherValue = $other->getValue($i, $columnName);
                 if (is_numeric($thisValue) && is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
@@ -156,9 +157,9 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements ITable
         $columns = $this->getTableMetaData()->getColumns();
 
         $lineSeperator = str_repeat('+----------------------', count($columns)) . "+\n";
-        $lineLength    = strlen($lineSeperator) - 1;
+        $lineLength = strlen($lineSeperator) - 1;
 
-        $tableString  = $lineSeperator;
+        $tableString = $lineSeperator;
         $tableString .= '| ' . str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
         $tableString .= $lineSeperator;
         $tableString .= $this->rowToString($columns);
@@ -197,15 +198,11 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTable implements ITable
 
     protected function getReplacedValue($value)
     {
-        if (is_scalar($value) && array_key_exists((string) $value, $this->fullReplacements)) {
+        if (is_scalar($value) && array_key_exists((string)$value, $this->fullReplacements)) {
             return $this->fullReplacements[$value];
-        }
-
-        else if (count($this->subStrReplacements) && isset($value)) {
+        } else if (count($this->subStrReplacements) && isset($value)) {
             return str_replace(array_keys($this->subStrReplacements), array_values($this->subStrReplacements), $value);
-        }
-
-        else {
+        } else {
             return $value;
         }
     }

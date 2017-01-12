@@ -12,6 +12,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit\DbUnit\DataSet\ReplacementTable;
 use PHPUnit\DbUnit\TestCase;
 
 class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framework\TestCase
@@ -58,7 +59,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         TestCase::assertTablesEqual(
             $this->startingTable,
-            new PHPUnit_Extensions_Database_DataSet_ReplacementTable($this->startingTable)
+            new ReplacementTable($this->startingTable)
         );
     }
 
@@ -92,7 +93,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'column4'   => null
         ]);
 
-        $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable($this->startingTable);
+        $actual = new ReplacementTable($this->startingTable);
         $actual->addFullReplacement('[NULL]', null);
 
         TestCase::assertTablesEqual($table, $actual);
@@ -128,7 +129,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'column4'   => '[NULL]'
         ]);
 
-        $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable($this->startingTable);
+        $actual = new ReplacementTable($this->startingTable);
         $actual->addSubStrReplacement('%%%name%%%', 'Mike Lively');
 
         TestCase::assertTablesEqual($table, $actual);
@@ -164,7 +165,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             'column4'   => null
         ]);
 
-        $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable(
+        $actual = new ReplacementTable(
             $this->startingTable,
             ['[NULL]'     => null],
             ['%%%name%%%' => 'Mike Lively']
@@ -175,7 +176,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
     public function testGetRow()
     {
-        $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable(
+        $actual = new ReplacementTable(
             $this->startingTable,
             ['[NULL]'     => null],
             ['%%%name%%%' => 'Mike Lively']
@@ -206,7 +207,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
     public function testGetValue()
     {
-        $actual = new PHPUnit_Extensions_Database_DataSet_ReplacementTable(
+        $actual = new ReplacementTable(
             $this->startingTable,
             ['[NULL]'     => null],
             ['%%%name%%%' => 'Mike Lively']
@@ -236,7 +237,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             ->with($otherMetaData)
             ->will($this->returnValue(false));
 
-        $replacementTable = new PHPUnit_Extensions_Database_DataSet_ReplacementTable($table);
+        $replacementTable = new ReplacementTable($table);
         $this->assertFalse($replacementTable->matches($otherTable));
     }
 
@@ -247,7 +248,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         $table         = $this->createMock(ITable::class);
         $otherTable    = $this->createMock(ITable::class);
 
-        $replacementTable = $this->getMockBuilder(PHPUnit_Extensions_Database_DataSet_ReplacementTable::class)
+        $replacementTable = $this->getMockBuilder(ReplacementTable::class)
                                  ->setConstructorArgs([$table])
                                  ->setMethods(['getRowCount'])
                                  ->getMock();
@@ -306,7 +307,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             ->with($otherMetaData)
             ->will($this->returnValue(true));
 
-        $replacementTable = $this->getMockBuilder(PHPUnit_Extensions_Database_DataSet_ReplacementTable::class)
+        $replacementTable = $this->getMockBuilder(ReplacementTable::class)
                                  ->setConstructorArgs([$table])
                                  ->setMethods(['getRowCount', 'getValue'])
                                  ->getMock();
