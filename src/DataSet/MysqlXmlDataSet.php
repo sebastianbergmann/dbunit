@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -28,7 +28,7 @@ class MysqlXmlDataSet extends AbstractXmlDataSet
                 throw new RuntimeException('<table_data> elements must include a name attribute');
             }
 
-            $tableName = (string)$tableElement['name'];
+            $tableName = (string) $tableElement['name'];
 
             if (!isset($tableColumns[$tableName])) {
                 $tableColumns[$tableName] = [];
@@ -46,7 +46,7 @@ class MysqlXmlDataSet extends AbstractXmlDataSet
                         throw new RuntimeException('<field> element name attributes cannot be empty');
                     }
 
-                    $columnName = (string)$columnElement['name'];
+                    $columnName = (string) $columnElement['name'];
 
                     if (!in_array($columnName, $tableColumns[$tableName])) {
                         $tableColumns[$tableName][] = $columnName;
@@ -58,15 +58,14 @@ class MysqlXmlDataSet extends AbstractXmlDataSet
                     $column = $fields[0];
                     $attr = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
 
-                    if (isset($attr['type']) && (string)$attr['type'] === 'xs:hexBinary') {
-                        $columnValue = pack('H*', (string)$column);
+                    if (isset($attr['type']) && (string) $attr['type'] === 'xs:hexBinary') {
+                        $columnValue = pack('H*', (string) $column);
                     } else {
                         $null = isset($column['nil']) || isset($attr[0]);
-                        $columnValue = $null ? null : (string)$column;
+                        $columnValue = $null ? null : (string) $column;
                     }
 
                     $rowValues[$columnName] = $columnValue;
-
                 }
 
                 $tableValues[$tableName][] = $rowValues;
@@ -78,14 +77,14 @@ class MysqlXmlDataSet extends AbstractXmlDataSet
                 throw new RuntimeException('<table_structure> elements must include a name attribute');
             }
 
-            $tableName = (string)$tableElement['name'];
+            $tableName = (string) $tableElement['name'];
 
             foreach ($tableElement->xpath('./field') as $fieldElement) {
                 if (empty($fieldElement['Field']) && empty($fieldElement['field'])) {
                     throw new RuntimeException('<field> elements must include a Field attribute');
                 }
 
-                $columnName = (string)(empty($fieldElement['Field']) ? $fieldElement['field'] : $fieldElement['Field']);
+                $columnName = (string) (empty($fieldElement['Field']) ? $fieldElement['field'] : $fieldElement['Field']);
 
                 if (!in_array($columnName, $tableColumns[$tableName])) {
                     $tableColumns[$tableName][] = $columnName;

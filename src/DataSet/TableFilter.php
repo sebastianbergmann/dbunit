@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -19,6 +19,7 @@ class TableFilter extends AbstractTable
 {
     /**
      * The table meta data being decorated.
+     *
      * @var ITable
      */
     protected $originalTable;
@@ -63,6 +64,7 @@ class TableFilter extends AbstractTable
 
     /**
      * Sets the columns to include in the table.
+     *
      * @param array $includeColumns
      */
     public function addIncludeColumns(array $includeColumns)
@@ -80,6 +82,7 @@ class TableFilter extends AbstractTable
 
     /**
      * Sets the columns to exclude from the table.
+     *
      * @param array $excludeColumns
      */
     public function addExcludeColumns(array $excludeColumns)

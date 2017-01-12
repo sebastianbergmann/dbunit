@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -23,7 +23,7 @@ class Table extends AbstractTable
      * Creates a new database table object.
      *
      * @param ITableMetadata $tableMetaData
-     * @param Connection $databaseConnection
+     * @param Connection     $databaseConnection
      */
     public function __construct(ITableMetadata $tableMetaData, Connection $databaseConnection)
     {

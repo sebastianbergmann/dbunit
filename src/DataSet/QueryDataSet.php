@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -11,8 +11,8 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\Database\Connection;
-use PHPUnit\DbUnit\Database\TableIterator;
 use PHPUnit\DbUnit\Database\Table;
+use PHPUnit\DbUnit\Database\TableIterator;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -57,7 +57,8 @@ class QueryDataSet extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool $reverse
+     * @param bool $reverse
+     *
      * @return TableIterator
      */
     protected function createIterator($reverse = false)
@@ -68,7 +69,8 @@ class QueryDataSet extends AbstractDataSet
     /**
      * Returns a table object for the given table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return Table
      */
     public function getTable($tableName)

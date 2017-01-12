@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -20,12 +20,14 @@ class SqlSrv extends AbstractMetadata
 {
     /**
      * No character used to quote schema objects.
+     *
      * @var string
      */
     protected $schemaObjectQuoteChar = '';
 
     /**
      * The command used to perform a TRUNCATE operation.
+     *
      * @var string
      */
     protected $truncateCommand = 'TRUNCATE TABLE';
@@ -56,7 +58,8 @@ class SqlSrv extends AbstractMetadata
      * Returns an array containing the names of all the columns in the
      * $tableName table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getTableColumns($tableName)
@@ -81,7 +84,8 @@ class SqlSrv extends AbstractMetadata
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getTablePrimaryKeys($tableName)

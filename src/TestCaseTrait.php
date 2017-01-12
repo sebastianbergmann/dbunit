@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -14,14 +14,14 @@ use PDO;
 use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
 use PHPUnit\DbUnit\Constraint\TableIsEqual;
 use PHPUnit\DbUnit\Constraint\TableRowCount;
+use PHPUnit\DbUnit\Database\Connection;
+use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\DataSet\ArrayDataSet;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\MysqlXmlDataSet;
 use PHPUnit\DbUnit\DataSet\XmlDataSet;
-use PHPUnit\DbUnit\Database\DefaultConnection;
-use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\Operation\Factory;
 use PHPUnit\DbUnit\Operation\Operation;
 
@@ -47,7 +47,7 @@ trait TestCaseTrait
      *
      * @return Connection
      */
-    protected abstract function getConnection();
+    abstract protected function getConnection();
 
     /**
      * Gets the IDatabaseTester for this testCase. If the IDatabaseTester is
@@ -70,7 +70,7 @@ trait TestCaseTrait
      *
      * @return IDataSet
      */
-    protected abstract function getDataSet();
+    abstract protected function getDataSet();
 
     /**
      * Returns the database operation executed in test setup.
@@ -106,8 +106,9 @@ trait TestCaseTrait
      * Creates a new DefaultDatabaseConnection using the given PDO connection
      * and database schema name.
      *
-     * @param  PDO $connection
-     * @param  string $schema
+     * @param PDO    $connection
+     * @param string $schema
+     *
      * @return DefaultConnection
      */
     protected function createDefaultDBConnection(PDO $connection, $schema = '')
@@ -129,7 +130,8 @@ trait TestCaseTrait
      *     )
      * )
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return ArrayDataSet
      */
     protected function createArrayDataSet(array $data)
@@ -140,7 +142,8 @@ trait TestCaseTrait
     /**
      * Creates a new FlatXmlDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param  string $xmlFile
+     * @param string $xmlFile
+     *
      * @return FlatXmlDataSet
      */
     protected function createFlatXMLDataSet($xmlFile)
@@ -151,7 +154,8 @@ trait TestCaseTrait
     /**
      * Creates a new XMLDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param  string $xmlFile
+     * @param string $xmlFile
+     *
      * @return XmlDataSet
      */
     protected function createXMLDataSet($xmlFile)
@@ -162,7 +166,8 @@ trait TestCaseTrait
     /**
      * Create a a new MysqlXmlDataSet with the given $xmlFile. (absolute path.)
      *
-     * @param  string $xmlFile
+     * @param string $xmlFile
+     *
      * @return MysqlXmlDataSet
      */
     protected function createMySQLXMLDataSet($xmlFile)
@@ -243,8 +248,8 @@ trait TestCaseTrait
      * Assert that a given table has a given amount of rows
      *
      * @param string $tableName Name of the table
-     * @param int $expected Expected amount of rows in the table
-     * @param string $message Optional message
+     * @param int    $expected  Expected amount of rows in the table
+     * @param string $message   Optional message
      */
     public function assertTableRowCount($tableName, $expected, $message = '')
     {
@@ -257,9 +262,9 @@ trait TestCaseTrait
     /**
      * Asserts that a given table contains a given row
      *
-     * @param array $expectedRow Row expected to find
-     * @param ITable $table Table to look into
-     * @param string $message Optional message
+     * @param array  $expectedRow Row expected to find
+     * @param ITable $table       Table to look into
+     * @param string $message     Optional message
      */
     public function assertTableContains(array $expectedRow, ITable $table, $message = '')
     {

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -40,7 +40,8 @@ interface ITable
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param  int $row
+     * @param int $row
+     *
      * @return array
      */
     public function getRow($row);

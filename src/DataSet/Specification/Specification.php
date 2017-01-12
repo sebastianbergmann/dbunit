@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -20,7 +20,8 @@ interface Specification
     /**
      * Creates a data set from a data set spec string.
      *
-     * @param  string $dataSetSpec
+     * @param string $dataSetSpec
+     *
      * @return IDataSet
      */
     public function getDataSet($dataSetSpec);

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -19,10 +19,11 @@ abstract class AbstractDataSet implements IDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool $reverse
+     * @param bool $reverse
+     *
      * @return ITableIterator
      */
-    protected abstract function createIterator($reverse = false);
+    abstract protected function createIterator($reverse = false);
 
     /**
      * Returns an array of table names contained in the dataset.
@@ -44,7 +45,8 @@ abstract class AbstractDataSet implements IDataSet
     /**
      * Returns a table meta data object for the given table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return ITableMetadata
      */
     public function getTableMetaData($tableName)
@@ -55,7 +57,8 @@ abstract class AbstractDataSet implements IDataSet
     /**
      * Returns a table object for the given table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return ITable
      */
     public function getTable($tableName)

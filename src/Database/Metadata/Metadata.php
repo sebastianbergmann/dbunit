@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -26,7 +26,8 @@ interface Metadata
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getTableColumns($tableName);
@@ -35,7 +36,8 @@ interface Metadata
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getTablePrimaryKeys($tableName);
@@ -50,7 +52,8 @@ interface Metadata
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param  string $object
+     * @param string $object
+     *
      * @return string
      */
     public function quoteSchemaObject($object);

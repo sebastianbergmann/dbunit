@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -95,7 +95,8 @@ class CsvDataSet extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool $reverse
+     * @param bool $reverse
+     *
      * @return ITableIterator
      */
     protected function createIterator($reverse = false)
@@ -106,7 +107,8 @@ class CsvDataSet extends AbstractDataSet
     /**
      * Returns a row from the csv file in an indexed array.
      *
-     * @param  resource $fh
+     * @param resource $fh
+     *
      * @return array
      */
     protected function getCsvRow($fh)

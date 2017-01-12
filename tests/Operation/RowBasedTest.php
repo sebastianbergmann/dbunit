@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -67,18 +67,18 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
 
         $table1->addRow([
             'table1_id' => 1,
-            'column1'   => 'foo',
-            'column2'   => 42,
-            'column3'   => 4.2,
-            'column4'   => 'bar'
+            'column1' => 'foo',
+            'column2' => 42,
+            'column3' => 4.2,
+            'column4' => 'bar'
         ]);
 
         $table1->addRow([
             'table1_id' => 2,
-            'column1'   => 'qwerty',
-            'column2'   => 23,
-            'column3'   => 2.3,
-            'column4'   => 'dvorak'
+            'column1' => 'qwerty',
+            'column2' => 23,
+            'column3' => 2.3,
+            'column4' => 'dvorak'
         ]);
 
         $table2 = new DefaultTable(
@@ -87,10 +87,10 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
 
         $table2->addRow([
             'table2_id' => 1,
-            'column5'   => 'fdyhkn',
-            'column6'   => 64,
-            'column7'   => 4568.64,
-            'column8'   => 'hkladfg'
+            'column5' => 'fdyhkn',
+            'column6' => 64,
+            'column7' => 4568.64,
+            'column8' => 'hkladfg'
         ]);
 
         $dataSet = new DefaultDataSet([$table1, $table2]);

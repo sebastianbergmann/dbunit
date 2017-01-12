@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -16,8 +16,9 @@ namespace PHPUnit\DbUnit\DataSet;
 interface IYamlParser
 {
     /**
-     * @param  string $yamlFile
-     * @return array  parsed YAML
+     * @param string $yamlFile
+     *
+     * @return array parsed YAML
      */
     public function parseYaml($yamlFile);
 }

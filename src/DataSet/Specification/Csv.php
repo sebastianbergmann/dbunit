@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -32,7 +32,8 @@ class Csv implements Specification
     /**
      * Creates CSV Data Set from a data set spec.
      *
-     * @param  string $dataSetSpec
+     * @param string $dataSetSpec
+     *
      * @return CsvDataSet
      */
     public function getDataSet($dataSetSpec)
@@ -55,7 +56,8 @@ class Csv implements Specification
      * PHPUnit_Extensions_Database_DataSet_CsvDataSet constructor. The options
      * are determined by the given $dataSetSpec.
      *
-     * @param  string $dataSetSpec
+     * @param string $dataSetSpec
+     *
      * @return array
      */
     protected function getCsvOptions($dataSetSpec)
@@ -72,7 +74,8 @@ class Csv implements Specification
      * to files (the values.) The tables and files are determined by the given
      * $dataSetSpec
      *
-     * @param  string $dataSetSpec
+     * @param string $dataSetSpec
+     *
      * @return array
      */
     protected function getTableFileMap($dataSetSpec)

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -21,8 +21,8 @@ class DefaultTableMetadata extends AbstractTableMetadata
      * Creates a new default table meta data object.
      *
      * @param string $tableName
-     * @param array $columns
-     * @param array $primaryKeys
+     * @param array  $columns
+     * @param array  $primaryKeys
      */
     public function __construct($tableName, array $columns, array $primaryKeys = [])
     {

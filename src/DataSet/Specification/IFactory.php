@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -18,7 +18,8 @@ interface IFactory
     /**
      * Returns the data set
      *
-     * @param  string $type
+     * @param string $type
+     *
      * @return Specification
      */
     public function getDataSetSpecByType($type);

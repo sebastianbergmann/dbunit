@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -51,7 +51,8 @@ class InformationSchema extends AbstractMetadata
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getTableColumns($tableName)
@@ -67,7 +68,8 @@ class InformationSchema extends AbstractMetadata
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getTablePrimaryKeys($tableName)

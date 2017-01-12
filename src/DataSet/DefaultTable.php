@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -63,9 +63,9 @@ class DefaultTable extends AbstractTable
     /**
      * Sets the specified column of the specied row to the specified value.
      *
-     * @param int $row
+     * @param int    $row
      * @param string $column
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function setValue($row, $column, $value)
     {

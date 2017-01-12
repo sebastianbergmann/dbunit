@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -50,7 +50,7 @@ class Replace extends RowBased
 
     /**
      * @param Connection $connection
-     * @param IDataSet $dataSet
+     * @param IDataSet   $dataSet
      */
     public function execute(Connection $connection, IDataSet $dataSet)
     {

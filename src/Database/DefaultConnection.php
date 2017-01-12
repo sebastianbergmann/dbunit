@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -11,10 +11,10 @@
 namespace PHPUnit\DbUnit\Database;
 
 use PDO;
+use PHPUnit\DbUnit\Database\Metadata\AbstractMetadata;
+use PHPUnit\DbUnit\Database\Metadata\Metadata;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\QueryTable;
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
-use PHPUnit\DbUnit\Database\Metadata\AbstractMetadata;
 
 /**
  * Provides a basic interface for communicating with a database.
@@ -36,8 +36,8 @@ class DefaultConnection implements Connection
     /**
      * Creates a new database connection
      *
-     * @param PDO $connection
-     * @param string $schema - The name of the database schema you will be testing against.
+     * @param PDO    $connection
+     * @param string $schema     - The name of the database schema you will be testing against.
      */
     public function __construct(PDO $connection, $schema = '')
     {
@@ -80,8 +80,10 @@ class DefaultConnection implements Connection
      * names are specified then it will created a dataset over the entire
      * database.
      *
-     * @param  array $tableNames
+     * @param array $tableNames
+     *
      * @return IDataSet
+     *
      * @todo Implement the filtered data set.
      */
     public function createDataSet(array $tableNames = null)
@@ -96,8 +98,9 @@ class DefaultConnection implements Connection
     /**
      * Creates a table with the result of the specified SQL statement.
      *
-     * @param  string $resultName
-     * @param  string $sql
+     * @param string $resultName
+     * @param string $sql
+     *
      * @return Table
      */
     public function createQueryTable($resultName, $sql)
@@ -126,8 +129,9 @@ class DefaultConnection implements Connection
      * Returns the number of rows in the given table. You can specify an
      * optional where clause to return a subset of the table.
      *
-     * @param  string $tableName
-     * @param  string $whereClause
+     * @param string $tableName
+     * @param string $whereClause
+     *
      * @return int
      */
     public function getRowCount($tableName, $whereClause = null)
@@ -138,13 +142,14 @@ class DefaultConnection implements Connection
             $query .= " WHERE {$whereClause}";
         }
 
-        return (int)$this->connection->query($query)->fetchColumn();
+        return (int) $this->connection->query($query)->fetchColumn();
     }
 
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param  string $object
+     * @param string $object
+     *
      * @return string
      */
     public function quoteSchemaObject($object)

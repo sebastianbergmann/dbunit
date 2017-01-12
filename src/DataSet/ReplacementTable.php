@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -36,8 +36,8 @@ class ReplacementTable implements ITable
      * Creates a new replacement table
      *
      * @param ITable $table
-     * @param array $fullReplacements
-     * @param array $subStrReplacements
+     * @param array  $fullReplacements
+     * @param array  $subStrReplacements
      */
     public function __construct(ITable $table, array $fullReplacements = [], array $subStrReplacements = [])
     {
@@ -106,7 +106,8 @@ class ReplacementTable implements ITable
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param  int $row
+     * @param int $row
+     *
      * @return array
      */
     public function getRow($row)
@@ -198,9 +199,9 @@ class ReplacementTable implements ITable
 
     protected function getReplacedValue($value)
     {
-        if (is_scalar($value) && array_key_exists((string)$value, $this->fullReplacements)) {
+        if (is_scalar($value) && array_key_exists((string) $value, $this->fullReplacements)) {
             return $this->fullReplacements[$value];
-        } else if (count($this->subStrReplacements) && isset($value)) {
+        } elseif (count($this->subStrReplacements) && isset($value)) {
             return str_replace(array_keys($this->subStrReplacements), array_values($this->subStrReplacements), $value);
         } else {
             return $value;

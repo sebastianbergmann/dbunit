@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -36,8 +36,8 @@ class QueryTable extends AbstractTable
     /**
      * Creates a new database query table object.
      *
-     * @param string $table_name
-     * @param string $query
+     * @param string     $table_name
+     * @param string     $query
      * @param Connection $databaseConnection
      */
     public function __construct($tableName, $query, Connection $databaseConnection)
@@ -101,7 +101,8 @@ class QueryTable extends AbstractTable
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param  int $row
+     * @param int $row
+     *
      * @return array
      */
     public function getRow($row)
@@ -138,10 +139,10 @@ class QueryTable extends AbstractTable
 
             // if some rows are in the table
             $columns = [];
-            if (isset($this->data[0]))
+            if (isset($this->data[0])) {
                 // get column names from data
                 $columns = array_keys($this->data[0]);
-            else {
+            } else {
                 // if no rows found, get column names from database
                 $pdoStatement = $this->databaseConnection->getConnection()->prepare('SELECT column_name FROM information_schema.COLUMNS WHERE table_schema=:schema AND table_name=:table');
                 $pdoStatement->execute([

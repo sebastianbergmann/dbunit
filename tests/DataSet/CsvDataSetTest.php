@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -32,46 +32,46 @@ class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\Test
 
         $table1->addRow([
             'table1_id' => 1,
-            'column1'   => 'tgfahgasdf',
-            'column2'   => 200,
-            'column3'   => 34.64,
-            'column4'   => 'yghkf;a  hahfg8ja h;'
+            'column1' => 'tgfahgasdf',
+            'column2' => 200,
+            'column3' => 34.64,
+            'column4' => 'yghkf;a  hahfg8ja h;'
         ]);
         $table1->addRow([
             'table1_id' => 2,
-            'column1'   => 'hk;afg',
-            'column2'   => 654,
-            'column3'   => 46.54,
-            'column4'   => '24rwehhads'
+            'column1' => 'hk;afg',
+            'column2' => 654,
+            'column3' => 46.54,
+            'column4' => '24rwehhads'
         ]);
         $table1->addRow([
             'table1_id' => 3,
-            'column1'   => 'ha;gyt',
-            'column2'   => 462,
-            'column3'   => 1654.4,
-            'column4'   => 'asfgklg'
+            'column1' => 'ha;gyt',
+            'column2' => 462,
+            'column3' => 1654.4,
+            'column4' => 'asfgklg'
         ]);
 
         $table2->addRow([
             'table2_id' => 1,
-            'column5'   => 'fhah',
-            'column6'   => 456,
-            'column7'   => 46.5,
-            'column8'   => 'fsdb, ghfdas'
+            'column5' => 'fhah',
+            'column6' => 456,
+            'column7' => 46.5,
+            'column8' => 'fsdb, ghfdas'
         ]);
         $table2->addRow([
             'table2_id' => 2,
-            'column5'   => 'asdhfoih',
-            'column6'   => 654,
-            'column7'   => 'blah',
-            'column8'   => '43asd "fhgj" sfadh'
+            'column5' => 'asdhfoih',
+            'column6' => 654,
+            'column7' => 'blah',
+            'column8' => '43asd "fhgj" sfadh'
         ]);
         $table2->addRow([
             'table2_id' => 3,
-            'column5'   => 'ajsdlkfguitah',
-            'column6'   => 654,
-            'column7'   => 'blah',
-            'column8'   => 'thesethasdl
+            'column5' => 'ajsdlkfguitah',
+            'column6' => 654,
+            'column7' => 'blah',
+            'column8' => 'thesethasdl
 asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         ]);
 

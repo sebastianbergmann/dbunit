@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -31,7 +31,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
         $this->table = new DefaultTable($tableMetaData);
 
         $this->table->addRow([
-            'id'      => 1,
+            'id' => 1,
             'column1' => 'randomValue'
         ]);
     }
@@ -78,7 +78,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
-        $otherTable    = $this->createMock(ITable::class);
+        $otherTable = $this->createMock(ITable::class);
 
         $table = $this->getMockBuilder(DefaultTable::class)
                       ->setConstructorArgs([$tableMetaData])
@@ -113,7 +113,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
-        $otherTable    = $this->createMock(ITable::class);
+        $otherTable = $this->createMock(ITable::class);
 
         $table = $this->getMockBuilder(DefaultTable::class)
                       ->setConstructorArgs([$tableMetaData])
@@ -302,5 +302,4 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
             ],
         ];
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -10,9 +10,9 @@
 
 namespace PHPUnit\DbUnit\Constraint;
 
+use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
 use PHPUnit\Framework\Constraint\Constraint;
-use PHPUnit\DbUnit\DataSet\IDataSet;
 
 /**
  * Asserts whether or not two dbunit datasets are equal.
@@ -46,7 +46,8 @@ class DataSetIsEqual extends Constraint
      *
      * This method can be overridden to implement the evaluation algorithm.
      *
-     * @param  mixed $other Value or object to evaluate.
+     * @param mixed $other Value or object to evaluate.
+     *
      * @return bool
      */
     protected function matches($other)
@@ -66,7 +67,8 @@ class DataSetIsEqual extends Constraint
      * The beginning of failure messages is "Failed asserting that" in most
      * cases. This method should return the second part of that sentence.
      *
-     * @param  mixed $other Evaluated value or object.
+     * @param mixed $other Evaluated value or object.
+     *
      * @return string
      */
     protected function failureDescription($other)

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -36,8 +36,8 @@ class ReplacementTableIterator implements OuterIterator, ITableIterator
      * Creates a new replacement table iterator object.
      *
      * @param ITableIterator $innerIterator
-     * @param array $fullReplacements
-     * @param array $subStrReplacements
+     * @param array          $fullReplacements
+     * @param array          $subStrReplacements
      */
     public function __construct(ITableIterator $innerIterator, array $fullReplacements = [], array $subStrReplacements = [])
     {

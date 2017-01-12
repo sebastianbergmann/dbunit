@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -59,10 +59,10 @@ abstract class AbstractMetadata implements Metadata
      * Creates a new database meta data object using the given pdo connection
      * and schema name.
      *
-     * @param PDO $pdo
+     * @param PDO    $pdo
      * @param string $schema
      */
-    public final function __construct(PDO $pdo, $schema = '')
+    final public function __construct(PDO $pdo, $schema = '')
     {
         $this->pdo = $pdo;
         $this->schema = $schema;
@@ -72,8 +72,9 @@ abstract class AbstractMetadata implements Metadata
      * Creates a meta data object based on the driver of given $pdo object and
      * $schema name.
      *
-     * @param  PDO $pdo
-     * @param  string $schema
+     * @param PDO    $pdo
+     * @param string $schema
+     *
      * @return AbstractMetadata
      */
     public static function createMetaData(PDO $pdo, $schema = '')
@@ -100,8 +101,9 @@ abstract class AbstractMetadata implements Metadata
      *
      * A reflection of the $className is returned.
      *
-     * @param  string $className
-     * @param  string $pdoDriver
+     * @param string $className
+     * @param string $pdoDriver
+     *
      * @return ReflectionClass
      */
     public static function registerClassWithDriver($className, $pdoDriver)
@@ -131,7 +133,8 @@ abstract class AbstractMetadata implements Metadata
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param  string $object
+     * @param string $object
+     *
      * @return string
      */
     public function quoteSchemaObject($object)
@@ -153,7 +156,8 @@ abstract class AbstractMetadata implements Metadata
      *
      * Returns an associative array containing the 'schema' and the 'table'.
      *
-     * @param  string $fullTableName
+     * @param string $fullTableName
+     *
      * @return array
      */
     public function splitTableName($fullTableName)

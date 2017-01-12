@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -21,18 +21,21 @@ class TableMetadataFilter extends AbstractTableMetadata
 {
     /**
      * The table meta data being decorated.
+     *
      * @var ITableMetadata
      */
     protected $originalMetaData;
 
     /**
      * The columns to exclude from the meta data.
+     *
      * @var array
      */
     protected $excludeColumns = [];
 
     /**
      * The columns to include from the meta data.
+     *
      * @var array
      */
     protected $includeColumns = [];
@@ -42,7 +45,7 @@ class TableMetadataFilter extends AbstractTableMetadata
      * $excludeColumns.
      *
      * @param ITableMetadata $originalMetaData
-     * @param array $excludeColumns - Deprecated. Use the set* methods instead.
+     * @param array          $excludeColumns   - Deprecated. Use the set* methods instead.
      */
     public function __construct(ITableMetadata $originalMetaData, array $excludeColumns = [])
     {
@@ -88,6 +91,7 @@ class TableMetadataFilter extends AbstractTableMetadata
 
     /**
      * Sets the columns to include in the table.
+     *
      * @param array $includeColumns
      */
     public function addIncludeColumns(array $includeColumns)
@@ -105,6 +109,7 @@ class TableMetadataFilter extends AbstractTableMetadata
 
     /**
      * Sets the columns to exclude from the table.
+     *
      * @param array $excludeColumns
      */
     public function addExcludeColumns(array $excludeColumns)

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -17,6 +17,7 @@ class Firebird extends AbstractMetadata
 {
     /**
      * The command used to perform a TRUNCATE operation.
+     *
      * @var string
      */
     protected $truncateCommand = 'DELETE FROM';
@@ -64,7 +65,8 @@ class Firebird extends AbstractMetadata
      * Returns an array containing the names of all the columns in the
      * $tableName table,
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getTableColumns($tableName)
@@ -80,7 +82,8 @@ class Firebird extends AbstractMetadata
      * Returns an array containing the names of all the primary key columns in
      * the $tableName table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getTablePrimaryKeys($tableName)
@@ -112,17 +115,17 @@ class Firebird extends AbstractMetadata
             ORDER BY ORDINAL_POSITION
         ';
 
-        $columnQuery = "
+        $columnQuery = '
             select
-              rf.RDB\$FIELD_NAME as COLUMN_NAME,
-              rf.RDB\$FIELD_POSITION as ORDINAL_POSITION
-            from RDB\$RELATION_FIELDS as rf
+              rf.RDB$FIELD_NAME as COLUMN_NAME,
+              rf.RDB$FIELD_POSITION as ORDINAL_POSITION
+            from RDB$RELATION_FIELDS as rf
             where
-              upper(RDB\$RELATION_NAME) = upper(?)
+              upper(RDB$RELATION_NAME) = upper(?)
             order by
               ORDINAL_POSITION
 
-        ";
+        ';
 
         $columnStatement = $this->pdo->prepare($columnQuery);
         $columnStatement->execute([$tableName]);
@@ -200,7 +203,8 @@ class Firebird extends AbstractMetadata
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param  string $object
+     * @param string $object
+     *
      * @return string
      */
     public function quoteSchemaObject($object)

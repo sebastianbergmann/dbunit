@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -30,7 +30,7 @@ class YamlDataSet extends AbstractDataSet
     /**
      * Creates a new YAML dataset
      *
-     * @param string $yamlFile
+     * @param string      $yamlFile
      * @param IYamlParser $parser
      */
     public function __construct($yamlFile, $parser = null)
@@ -44,6 +44,7 @@ class YamlDataSet extends AbstractDataSet
 
     /**
      * Adds a new yaml file to the dataset.
+     *
      * @param string $yamlFile
      */
     public function addYamlFile($yamlFile)
@@ -102,7 +103,8 @@ class YamlDataSet extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool $reverse
+     * @param bool $reverse
+     *
      * @return ITableIterator
      */
     protected function createIterator($reverse = false)

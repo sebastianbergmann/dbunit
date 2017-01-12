@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -39,6 +39,7 @@ class AbstractTable implements ITable
      * Sets the metadata for this table.
      *
      * @param ITableMetadata $tableMetaData
+     *
      * @deprecated
      */
     protected function setTableMetaData(ITableMetadata $tableMetaData)
@@ -71,6 +72,7 @@ class AbstractTable implements ITable
      *
      * @param int $row
      * @param int $column
+     *
      * @todo reorganize this function to throw the exception first.
      */
     public function getValue($row, $column)
@@ -78,12 +80,12 @@ class AbstractTable implements ITable
         if (isset($this->data[$row][$column])) {
             $value = $this->data[$row][$column];
 
-            return ($value instanceof SimpleXMLElement) ? (string)$value : $value;
+            return ($value instanceof SimpleXMLElement) ? (string) $value : $value;
         } else {
             if (!in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
             } else {
-                return null;
+                return;
             }
         }
     }
@@ -91,7 +93,8 @@ class AbstractTable implements ITable
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param  int $row
+     * @param int $row
+     *
      * @return array
      */
     public function getRow($row)
@@ -102,7 +105,7 @@ class AbstractTable implements ITable
             if ($this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) does not exist in table {$this->getTableMetaData()->getTableName()}");
             } else {
-                return null;
+                return;
             }
         }
     }

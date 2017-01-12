@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -10,8 +10,8 @@
 
 namespace PHPUnit\DbUnit;
 
-use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\Database\Connection;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\Operation\Operation;
 
 /**

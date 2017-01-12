@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -57,7 +57,8 @@ class Table implements Specification, DatabaseListConsumer
     /**
      * Creates a DB Data Set from a data set spec.
      *
-     * @param  string $dataSetSpec
+     * @param string $dataSetSpec
+     *
      * @return IDataSet
      */
     public function getDataSet($dataSetSpec)

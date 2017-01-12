@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -11,9 +11,9 @@
 namespace PHPUnit\DbUnit\Database;
 
 use PDO;
+use PHPUnit\DbUnit\Database\Metadata\Metadata;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit\DbUnit\Database\Metadata\Metadata;
 
 /**
  * Provides a basic interface for communicating with a database.
@@ -30,7 +30,8 @@ interface Connection
      * names are specified then it will created a dataset over the entire
      * database.
      *
-     * @param  array $tableNames
+     * @param array $tableNames
+     *
      * @return IDataSet
      */
     public function createDataSet(array $tableNames = null);
@@ -38,8 +39,9 @@ interface Connection
     /**
      * Creates a table with the result of the specified SQL statement.
      *
-     * @param  string $resultName
-     * @param  string $sql
+     * @param string $resultName
+     * @param string $sql
+     *
      * @return ITable
      */
     public function createQueryTable($resultName, $sql);
@@ -79,7 +81,8 @@ interface Connection
     /**
      * Returns a quoted schema object. (table name, column name, etc)
      *
-     * @param  string $object
+     * @param string $object
+     *
      * @return string
      */
     public function quoteSchemaObject($object);

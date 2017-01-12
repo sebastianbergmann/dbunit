@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -28,7 +28,7 @@ class ResultSetTable extends AbstractTable
     /**
      * Creates a new result set table.
      *
-     * @param string $tableName
+     * @param string       $tableName
      * @param PDOStatement $pdoStatement
      */
     public function __construct($tableName, PDOStatement $pdoStatement)

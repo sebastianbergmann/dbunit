@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -27,7 +27,8 @@ interface IDataSet extends IteratorAggregate
     /**
      * Returns a table meta data object for the given table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return ITableMetadata
      */
     public function getTableMetaData($tableName);
@@ -35,7 +36,8 @@ interface IDataSet extends IteratorAggregate
     /**
      * Returns a table object for the given table.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return ITable
      */
     public function getTable($tableName);

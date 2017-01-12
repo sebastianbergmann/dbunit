@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -35,16 +35,16 @@ abstract class RowBased implements Operation
     /**
      * @return string|bool String containing the query or FALSE if a valid query cannot be constructed
      */
-    protected abstract function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection);
+    abstract protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection);
 
-    protected abstract function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row);
+    abstract protected function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row);
 
     /**
      * Allows an operation to disable primary keys if necessary.
      *
      * @param ITableMetadata $databaseTableMetaData
-     * @param ITable $table
-     * @param Connection $connection
+     * @param ITable         $table
+     * @param Connection     $connection
      */
     protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
@@ -53,7 +53,7 @@ abstract class RowBased implements Operation
 
     /**
      * @param Connection $connection
-     * @param IDataSet $dataSet
+     * @param IDataSet   $dataSet
      */
     public function execute(Connection $connection, IDataSet $dataSet)
     {
@@ -64,7 +64,9 @@ abstract class RowBased implements Operation
         foreach ($dsIterator as $table) {
             $rowCount = $table->getRowCount();
 
-            if ($rowCount == 0) continue;
+            if ($rowCount == 0) {
+                continue;
+            }
 
             /* @var $table ITable */
             $databaseTableMetaData = $databaseDataSet->getTableMetaData($table->getTableMetaData()->getTableName());

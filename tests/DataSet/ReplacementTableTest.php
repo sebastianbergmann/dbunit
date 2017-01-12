@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -32,24 +32,24 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
         $table->addRow([
             'table1_id' => 1,
-            'column1'   => 'My name is %%%name%%%',
-            'column2'   => 200,
-            'column3'   => 34.64,
-            'column4'   => 'yghkf;a  hahfg8ja h;'
+            'column1' => 'My name is %%%name%%%',
+            'column2' => 200,
+            'column3' => 34.64,
+            'column4' => 'yghkf;a  hahfg8ja h;'
         ]);
         $table->addRow([
             'table1_id' => 2,
-            'column1'   => 'hk;afg',
-            'column2'   => 654,
-            'column3'   => 46.54,
-            'column4'   => '24rwehhads'
+            'column1' => 'hk;afg',
+            'column2' => 654,
+            'column3' => 46.54,
+            'column4' => '24rwehhads'
         ]);
         $table->addRow([
             'table1_id' => 3,
-            'column1'   => 'ha;gyt',
-            'column2'   => 462,
-            'column3'   => '[NULL] not really',
-            'column4'   => '[NULL]'
+            'column1' => 'ha;gyt',
+            'column2' => 462,
+            'column3' => '[NULL] not really',
+            'column4' => '[NULL]'
         ]);
 
         $this->startingTable = $table;
@@ -73,24 +73,24 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
         $table->addRow([
             'table1_id' => 1,
-            'column1'   => 'My name is %%%name%%%',
-            'column2'   => 200,
-            'column3'   => 34.64,
-            'column4'   => 'yghkf;a  hahfg8ja h;'
+            'column1' => 'My name is %%%name%%%',
+            'column2' => 200,
+            'column3' => 34.64,
+            'column4' => 'yghkf;a  hahfg8ja h;'
         ]);
         $table->addRow([
             'table1_id' => 2,
-            'column1'   => 'hk;afg',
-            'column2'   => 654,
-            'column3'   => 46.54,
-            'column4'   => '24rwehhads'
+            'column1' => 'hk;afg',
+            'column2' => 654,
+            'column3' => 46.54,
+            'column4' => '24rwehhads'
         ]);
         $table->addRow([
             'table1_id' => 3,
-            'column1'   => 'ha;gyt',
-            'column2'   => 462,
-            'column3'   => '[NULL] not really',
-            'column4'   => null
+            'column1' => 'ha;gyt',
+            'column2' => 462,
+            'column3' => '[NULL] not really',
+            'column4' => null
         ]);
 
         $actual = new ReplacementTable($this->startingTable);
@@ -109,24 +109,24 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
         $table->addRow([
             'table1_id' => 1,
-            'column1'   => 'My name is Mike Lively',
-            'column2'   => 200,
-            'column3'   => 34.64,
-            'column4'   => 'yghkf;a  hahfg8ja h;'
+            'column1' => 'My name is Mike Lively',
+            'column2' => 200,
+            'column3' => 34.64,
+            'column4' => 'yghkf;a  hahfg8ja h;'
         ]);
         $table->addRow([
             'table1_id' => 2,
-            'column1'   => 'hk;afg',
-            'column2'   => 654,
-            'column3'   => 46.54,
-            'column4'   => '24rwehhads'
+            'column1' => 'hk;afg',
+            'column2' => 654,
+            'column3' => 46.54,
+            'column4' => '24rwehhads'
         ]);
         $table->addRow([
             'table1_id' => 3,
-            'column1'   => 'ha;gyt',
-            'column2'   => 462,
-            'column3'   => '[NULL] not really',
-            'column4'   => '[NULL]'
+            'column1' => 'ha;gyt',
+            'column2' => 462,
+            'column3' => '[NULL] not really',
+            'column4' => '[NULL]'
         ]);
 
         $actual = new ReplacementTable($this->startingTable);
@@ -145,29 +145,29 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
         $table->addRow([
             'table1_id' => 1,
-            'column1'   => 'My name is Mike Lively',
-            'column2'   => 200,
-            'column3'   => 34.64,
-            'column4'   => 'yghkf;a  hahfg8ja h;'
+            'column1' => 'My name is Mike Lively',
+            'column2' => 200,
+            'column3' => 34.64,
+            'column4' => 'yghkf;a  hahfg8ja h;'
         ]);
         $table->addRow([
             'table1_id' => 2,
-            'column1'   => 'hk;afg',
-            'column2'   => 654,
-            'column3'   => 46.54,
-            'column4'   => '24rwehhads'
+            'column1' => 'hk;afg',
+            'column2' => 654,
+            'column3' => 46.54,
+            'column4' => '24rwehhads'
         ]);
         $table->addRow([
             'table1_id' => 3,
-            'column1'   => 'ha;gyt',
-            'column2'   => 462,
-            'column3'   => '[NULL] not really',
-            'column4'   => null
+            'column1' => 'ha;gyt',
+            'column2' => 462,
+            'column3' => '[NULL] not really',
+            'column4' => null
         ]);
 
         $actual = new ReplacementTable(
             $this->startingTable,
-            ['[NULL]'     => null],
+            ['[NULL]' => null],
             ['%%%name%%%' => 'Mike Lively']
         );
 
@@ -178,17 +178,17 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $actual = new ReplacementTable(
             $this->startingTable,
-            ['[NULL]'     => null],
+            ['[NULL]' => null],
             ['%%%name%%%' => 'Mike Lively']
         );
 
         $this->assertEquals(
             [
                 'table1_id' => 1,
-                'column1'   => 'My name is Mike Lively',
-                'column2'   => 200,
-                'column3'   => 34.64,
-                'column4'   => 'yghkf;a  hahfg8ja h;'
+                'column1' => 'My name is Mike Lively',
+                'column2' => 200,
+                'column3' => 34.64,
+                'column4' => 'yghkf;a  hahfg8ja h;'
             ],
             $actual->getRow(0)
         );
@@ -196,10 +196,10 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         $this->assertEquals(
             [
                 'table1_id' => 3,
-                'column1'   => 'ha;gyt',
-                'column2'   => 462,
-                'column3'   => '[NULL] not really',
-                'column4'   => null
+                'column1' => 'ha;gyt',
+                'column2' => 462,
+                'column3' => '[NULL] not really',
+                'column4' => null
             ],
             $actual->getRow(2)
         );
@@ -209,7 +209,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $actual = new ReplacementTable(
             $this->startingTable,
-            ['[NULL]'     => null],
+            ['[NULL]' => null],
             ['%%%name%%%' => 'Mike Lively']
         );
 
@@ -221,8 +221,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
-        $table         = $this->createMock(ITable::class);
-        $otherTable    = $this->createMock(ITable::class);
+        $table = $this->createMock(ITable::class);
+        $otherTable = $this->createMock(ITable::class);
 
         $table->expects($this->once())
             ->method('getTableMetaData')
@@ -245,8 +245,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
-        $table         = $this->createMock(ITable::class);
-        $otherTable    = $this->createMock(ITable::class);
+        $table = $this->createMock(ITable::class);
+        $otherTable = $this->createMock(ITable::class);
 
         $replacementTable = $this->getMockBuilder(ReplacementTable::class)
                                  ->setConstructorArgs([$table])
@@ -285,8 +285,8 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
-        $table         = $this->createMock(ITable::class);
-        $otherTable    = $this->createMock(ITable::class);
+        $table = $this->createMock(ITable::class);
+        $otherTable = $this->createMock(ITable::class);
 
         $table->expects($this->once())
             ->method('getTableMetaData')
@@ -479,5 +479,4 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
             ],
         ];
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -29,7 +29,8 @@ class Factory
      * Returns a clean insert database operation. It will remove all contents
      * from the table prior to re-inserting rows.
      *
-     * @param  bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     * @param bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     *
      * @return Operation
      */
     public static function CLEAN_INSERT($cascadeTruncates = false)
@@ -53,7 +54,8 @@ class Factory
     /**
      * Returns a truncate database operation.
      *
-     * @param  bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     * @param bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     *
      * @return Operation
      */
     public static function TRUNCATE($cascadeTruncates = false)
@@ -93,5 +95,4 @@ class Factory
     {
         return new Update();
     }
-
 }

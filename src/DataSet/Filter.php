@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -18,30 +18,35 @@ class Filter extends AbstractDataSet
 {
     /**
      * The dataset being decorated.
+     *
      * @var IDataSet
      */
     protected $originalDataSet;
 
     /**
      * The tables to exclude from the data set.
+     *
      * @var array
      */
     protected $excludeTables = [];
 
     /**
      * The tables to exclude from the data set.
+     *
      * @var array
      */
     protected $includeTables = [];
 
     /**
      * The columns to exclude from the data set.
+     *
      * @var array
      */
     protected $excludeColumns = [];
 
     /**
      * The columns to exclude from the data set.
+     *
      * @var array
      */
     protected $includeColumns = [];
@@ -55,7 +60,7 @@ class Filter extends AbstractDataSet
      * to the special string '*'.
      *
      * @param IDataSet $originalDataSet
-     * @param array $excludeTables @deprecated use set* methods instead.
+     * @param array    $excludeTables   @deprecated use set* methods instead.
      */
     public function __construct(IDataSet $originalDataSet, array $excludeTables = [])
     {
@@ -68,7 +73,7 @@ class Filter extends AbstractDataSet
             } elseif ($values == '*') {
                 $tables[] = $tableName;
             } else {
-                $this->setExcludeColumnsForTable($tableName, (array)$values);
+                $this->setExcludeColumnsForTable($tableName, (array) $values);
             }
         }
 
@@ -79,7 +84,8 @@ class Filter extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool $reverse
+     * @param bool $reverse
+     *
      * @return ITableIterator
      */
     protected function createIterator($reverse = false)
@@ -117,6 +123,7 @@ class Filter extends AbstractDataSet
 
     /**
      * Adds tables to be included in the data set.
+     *
      * @param array $tables
      */
     public function addIncludeTables(array $tables)
@@ -126,6 +133,7 @@ class Filter extends AbstractDataSet
 
     /**
      * Adds tables to be included in the data set.
+     *
      * @param array $tables
      */
     public function addExcludeTables(array $tables)
@@ -135,8 +143,9 @@ class Filter extends AbstractDataSet
 
     /**
      * Adds columns to include in the data set for the given table.
+     *
      * @param string $table
-     * @param array $columns
+     * @param array  $columns
      */
     public function setIncludeColumnsForTable($table, array $columns)
     {
@@ -145,8 +154,9 @@ class Filter extends AbstractDataSet
 
     /**
      * Adds columns to include in the data set for the given table.
+     *
      * @param string $table
-     * @param array $columns
+     * @param array  $columns
      */
     public function setExcludeColumnsForTable($table, array $columns)
     {

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -27,7 +27,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testDeprecatedFilteredDataSetConstructor()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet    = new FlatXmlDataSet(
+        $dataSet = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
@@ -43,7 +43,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testExcludeFilteredDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet    = new FlatXmlDataSet(
+        $dataSet = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
@@ -59,7 +59,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testIncludeFilteredDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet    = new FlatXmlDataSet(
+        $dataSet = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
@@ -75,7 +75,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testIncludeExcludeMixedDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet    = new FlatXmlDataSet(
+        $dataSet = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 

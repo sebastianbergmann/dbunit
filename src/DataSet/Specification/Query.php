@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -58,7 +58,8 @@ class Query implements Specification, DatabaseListConsumer
     /**
      * Creates a Default Data Set with a query table from a data set spec.
      *
-     * @param  string $dataSetSpec
+     * @param string $dataSetSpec
+     *
      * @return DefaultDataSet
      */
     public function getDataSet($dataSetSpec)

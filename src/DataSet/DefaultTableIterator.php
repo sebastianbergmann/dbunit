@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -34,7 +34,7 @@ class DefaultTableIterator implements ITableIterator
      * Creates a new default table iterator object.
      *
      * @param array $tables
-     * @param bool $reverse
+     * @param bool  $reverse
      */
     public function __construct(array $tables, $reverse = false)
     {

@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -69,7 +69,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
      * Reads the simple xml object and creates the appropriate tables and meta
      * data for this dataset.
      */
-    protected abstract function getTableInfo(array &$tableColumns, array &$tableValues);
+    abstract protected function getTableInfo(array &$tableColumns, array &$tableValues);
 
     protected function createTables(array &$tableColumns, array &$tableValues)
     {
@@ -85,7 +85,8 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
      * Returns the table with the matching name. If the table does not exist
      * an empty one is created.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return ITable
      */
     protected function getOrCreateTable($tableName, $tableColumns)
@@ -102,7 +103,8 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool $reverse
+     * @param bool $reverse
+     *
      * @return ITableIterator
      */
     protected function createIterator($reverse = false)

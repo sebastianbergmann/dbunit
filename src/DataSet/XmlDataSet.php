@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of DBUnit.
+ * This file is part of DbUnit.
  *
  * (c) Sebastian Bergmann <sebastian@phpunit.de>
  *
@@ -28,7 +28,7 @@ class XmlDataSet extends AbstractXmlDataSet
                 throw new RuntimeException('Table elements must include a name attribute specifying the table name.');
             }
 
-            $tableName = (string)$tableElement['name'];
+            $tableName = (string) $tableElement['name'];
 
             if (!isset($tableColumns[$tableName])) {
                 $tableColumns[$tableName] = [];
@@ -41,7 +41,7 @@ class XmlDataSet extends AbstractXmlDataSet
             $tableInstanceColumns = [];
 
             foreach ($tableElement->xpath('./column') as $columnElement) {
-                $columnName = (string)$columnElement;
+                $columnName = (string) $columnElement;
                 if (empty($columnName)) {
                     throw new RuntimeException("Missing <column> elements for table $tableName. Add one or more <column> elements to the <table> element.");
                 }
@@ -59,13 +59,12 @@ class XmlDataSet extends AbstractXmlDataSet
                 $numOfTableInstanceColumns = count($tableInstanceColumns);
 
                 foreach ($rowElement->children() as $columnValue) {
-
                     if ($index >= $numOfTableInstanceColumns) {
                         throw new RuntimeException("Row contains more values than the number of columns defined for table $tableName.");
                     }
                     switch ($columnValue->getName()) {
                         case 'value':
-                            $rowValues[$tableInstanceColumns[$index]] = (string)$columnValue;
+                            $rowValues[$tableInstanceColumns[$index]] = (string) $columnValue;
                             $index++;
                             break;
                         case 'null':
