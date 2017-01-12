@@ -13,7 +13,6 @@ namespace PHPUnit\DbUnit\Operation;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_Operation_Exception;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
@@ -52,8 +51,8 @@ class Composite implements PHPUnit_Extensions_Database_Operation_IDatabaseOperat
                 /* @var $operation PHPUnit_Extensions_Database_Operation_IDatabaseOperation */
                 $operation->execute($connection, $dataSet);
             }
-        } catch (PHPUnit_Extensions_Database_Operation_Exception $e) {
-            throw new PHPUnit_Extensions_Database_Operation_Exception("COMPOSITE[{$e->getOperation()}]", $e->getQuery(), $e->getArgs(), $e->getTable(), $e->getError());
+        } catch (Exception $e) {
+            throw new Exception("COMPOSITE[{$e->getOperation()}]", $e->getQuery(), $e->getArgs(), $e->getTable(), $e->getError());
         }
     }
 }

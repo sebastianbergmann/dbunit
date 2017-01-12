@@ -14,7 +14,6 @@ use PDOException;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit_Extensions_Database_Operation_Exception;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
 /**
@@ -34,7 +33,7 @@ class DeleteAll implements PHPUnit_Extensions_Database_Operation_IDatabaseOperat
             try {
                 $connection->getConnection()->query($query);
             } catch (PDOException $e) {
-                throw new PHPUnit_Extensions_Database_Operation_Exception('DELETE_ALL', $query, [], $table, $e->getMessage());
+                throw new Exception('DELETE_ALL', $query, [], $table, $e->getMessage());
             }
         }
     }

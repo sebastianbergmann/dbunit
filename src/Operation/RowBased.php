@@ -11,6 +11,7 @@ use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit\DbUnit\Operation\Exception;
 
 /**
  * Provides basic functionality for row based operations.
@@ -70,7 +71,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
 
             if ($query === false) {
                 if ($table->getRowCount() > 0) {
-                    throw new PHPUnit_Extensions_Database_Operation_Exception($this->operationName, '', [], $table, 'Rows requested for insert, but no columns provided!');
+                    throw new Exception($this->operationName, '', [], $table, 'Rows requested for insert, but no columns provided!');
                 }
                 continue;
             }
@@ -89,7 +90,7 @@ abstract class PHPUnit_Extensions_Database_Operation_RowBased implements PHPUnit
                 }
 
                 catch (Exception $e) {
-                    throw new PHPUnit_Extensions_Database_Operation_Exception(
+                    throw new Exception(
                       $this->operationName, $query, $args, $table, $e->getMessage()
                     );
                 }

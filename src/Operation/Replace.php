@@ -11,6 +11,7 @@ use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
+use PHPUnit\DbUnit\Operation\Exception;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
@@ -93,7 +94,7 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
                 }
 
                 catch (Exception $e) {
-                    throw new PHPUnit_Extensions_Database_Operation_Exception(
+                    throw new Exception(
                       $this->operationName, $query, $args, $table, $e->getMessage()
                     );
                 }

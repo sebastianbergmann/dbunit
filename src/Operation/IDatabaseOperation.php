@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
+use PHPUnit\DbUnit\Operation\Exception;
 
 /**
  * Provides a basic interface and functionality for executing database
@@ -22,7 +23,7 @@ interface PHPUnit_Extensions_Database_Operation_IDatabaseOperation
      *
      * @param  IConnection $connection
      * @param  IDataSet       $dataSet
-     * @throws PHPUnit_Extensions_Database_Operation_Exception
+     * @throws Exception
      */
     public function execute(IConnection $connection, IDataSet $dataSet);
 }
