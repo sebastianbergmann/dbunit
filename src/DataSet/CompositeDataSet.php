@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
 /**
  * Creates Composite Datasets
@@ -70,7 +69,7 @@ class CompositeDataSet extends AbstractDataSet
      * true a reverse iterator will be returned.
      *
      * @param  bool $reverse
-     * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
+     * @return ITableIterator
      */
     protected function createIterator($reverse = false)
     {

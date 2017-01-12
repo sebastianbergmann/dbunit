@@ -7,12 +7,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\DataSet\ITable;
+
+namespace PHPUnit\DbUnit\DataSet;
+
+use Iterator;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides a basic interface for creating and reading data from data sets.
  */
-interface PHPUnit_Extensions_Database_DataSet_ITableIterator extends Iterator
+interface ITableIterator extends Iterator
 {
     /**
      * Returns the current table.

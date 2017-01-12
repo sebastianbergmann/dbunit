@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_TableFilter;
 
 /**
@@ -83,7 +82,7 @@ class Filter extends AbstractDataSet
      * true a reverse iterator will be returned.
      *
      * @param  bool $reverse
-     * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
+     * @return ITableIterator
      */
     protected function createIterator($reverse = false)
     {

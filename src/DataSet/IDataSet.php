@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use IteratorAggregate;
-use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
@@ -45,7 +44,7 @@ interface IDataSet extends IteratorAggregate
     /**
      * Returns a reverse iterator for all table objects in the given dataset.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
+     * @return ITableIterator
      */
     public function getReverseIterator();
 

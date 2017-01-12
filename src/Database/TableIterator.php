@@ -11,13 +11,13 @@
 namespace PHPUnit\DbUnit\Database;
 
 use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit_Extensions_Database_DataSet_ITableIterator;
+use PHPUnit\DbUnit\DataSet\ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides iterative access to tables from a database instance.
  */
-class TableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterator
+class TableIterator implements ITableIterator
 {
     /**
      * An array of tablenames.

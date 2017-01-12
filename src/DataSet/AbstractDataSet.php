@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
@@ -23,7 +22,7 @@ abstract class AbstractDataSet implements IDataSet
      * true a reverse iterator will be returned.
      *
      * @param  bool $reverse
-     * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
+     * @return ITableIterator
      */
     protected abstract function createIterator($reverse = false);
 
@@ -74,7 +73,7 @@ abstract class AbstractDataSet implements IDataSet
     /**
      * Returns an iterator for all table objects in the given dataset.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
+     * @return ITableIterator
      */
     public function getIterator()
     {
@@ -84,7 +83,7 @@ abstract class AbstractDataSet implements IDataSet
     /**
      * Returns a reverse iterator for all table objects in the given dataset.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
+     * @return ITableIterator
      */
     public function getReverseIterator()
     {

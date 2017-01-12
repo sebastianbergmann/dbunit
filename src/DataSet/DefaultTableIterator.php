@@ -10,13 +10,12 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * The default table iterator
  */
-class DefaultTableIterator implements PHPUnit_Extensions_Database_DataSet_ITableIterator
+class DefaultTableIterator implements ITableIterator
 {
     /**
      * An array of tables in the iterator.

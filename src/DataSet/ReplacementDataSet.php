@@ -9,6 +9,7 @@
  */
 use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\DataSet\IDataSet;
+use PHPUnit\DbUnit\DataSet\ITableIterator;
 
 /**
  * Allows for replacing arbitrary values or portions of values with new data.
@@ -79,7 +80,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends AbstractDat
      * true a reverse iterator will be returned.
      *
      * @param  bool                                               $reverse
-     * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
+     * @return ITableIterator
      */
     protected function createIterator($reverse = false)
     {
