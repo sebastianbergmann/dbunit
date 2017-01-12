@@ -13,6 +13,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTableIterator;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\ITableIterator;
 use PHPUnit\DbUnit\DataSet\IYamlParser;
+use PHPUnit\DbUnit\DataSet\SymfonyYamlParser;
 
 /**
  * Creates YamlDataSets.
@@ -40,7 +41,7 @@ class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
     public function __construct($yamlFile, $parser = null)
     {
         if ($parser == null) {
-            $parser = new PHPUnit_Extensions_Database_DataSet_SymfonyYamlParser();
+            $parser = new SymfonyYamlParser();
         }
         $this->parser = $parser;
         $this->addYamlFile($yamlFile);
