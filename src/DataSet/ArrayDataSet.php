@@ -8,13 +8,17 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_DataSet_DefaultTable;
+use PHPUnit_Extensions_Database_DataSet_DefaultTableIterator;
+use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 
 /**
  * Implements the basic functionality of data sets using a PHP array.
  */
-class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends AbstractDataSet
+class ArrayDataSet extends AbstractDataSet
 {
     /**
      * @var array
@@ -46,7 +50,7 @@ class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends AbstractDataSet
             }
 
             $metaData = new PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData($tableName, $columns);
-            $table    = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
+            $table = new PHPUnit_Extensions_Database_DataSet_DefaultTable($metaData);
 
             foreach ($rows as $row) {
                 $table->addRow($row);
@@ -69,4 +73,5 @@ class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends AbstractDataSet
         return $this->tables[$tableName];
     }
 }
+
 ?>

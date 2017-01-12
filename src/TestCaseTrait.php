@@ -14,7 +14,7 @@ use PDO;
 use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
 use PHPUnit\DbUnit\Constraint\TableIsEqual;
 use PHPUnit\DbUnit\Constraint\TableRowCount;
-use PHPUnit_Extensions_Database_DataSet_ArrayDataSet;
+use PHPUnit\DbUnit\DataSet\ArrayDataSet;
 use PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet;
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITable;
@@ -130,11 +130,11 @@ trait TestCaseTrait
      * )
      *
      * @param  array $data
-     * @return PHPUnit_Extensions_Database_DataSet_ArrayDataSet
+     * @return ArrayDataSet
      */
     protected function createArrayDataSet(array $data)
     {
-        return new PHPUnit_Extensions_Database_DataSet_ArrayDataSet($data);
+        return new ArrayDataSet($data);
     }
 
     /**
