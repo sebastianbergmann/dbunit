@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter;
 
 /**
  * A table decorator that allows filtering out table columns from results.
@@ -33,7 +32,7 @@ class TableFilter extends AbstractTable
     public function __construct(ITable $originalTable, array $excludeColumns = [])
     {
         $this->originalTable = $originalTable;
-        $this->setTableMetaData(new PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter($originalTable->getTableMetaData()));
+        $this->setTableMetaData(new TableMetadataFilter($originalTable->getTableMetaData()));
         $this->addExcludeColumns($excludeColumns);
     }
 

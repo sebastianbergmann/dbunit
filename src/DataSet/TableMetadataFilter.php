@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\DataSet\AbstractTableMetadata;
-use PHPUnit\DbUnit\DataSet\ITableMetadata;
+
+namespace PHPUnit\DbUnit\DataSet;
 
 /**
  * A TableMetaData decorator that allows filtering columns from another
@@ -17,7 +17,7 @@ use PHPUnit\DbUnit\DataSet\ITableMetadata;
  * The if a whitelist (include) filter is specified, then only those columns
  * will be included.
  */
-class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends AbstractTableMetadata
+class TableMetadataFilter extends AbstractTableMetadata
 {
     /**
      * The table meta data being decorated.
@@ -42,7 +42,7 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends AbstractTa
      * $excludeColumns.
      *
      * @param ITableMetadata $originalMetaData
-     * @param array                                              $excludeColumns   - Deprecated. Use the set* methods instead.
+     * @param array $excludeColumns - Deprecated. Use the set* methods instead.
      */
     public function __construct(ITableMetadata $originalMetaData, array $excludeColumns = [])
     {
@@ -59,11 +59,9 @@ class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends AbstractTa
     {
         if (!empty($this->includeColumns)) {
             return array_values(array_intersect($this->originalMetaData->getColumns(), $this->includeColumns));
-        }
-        elseif (!empty($this->excludeColumns)) {
+        } elseif (!empty($this->excludeColumns)) {
             return array_values(array_diff($this->originalMetaData->getColumns(), $this->excludeColumns));
-        }
-        else {
+        } else {
             return $this->originalMetaData->getColumns();
         }
     }
