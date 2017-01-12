@@ -7,15 +7,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit\DbUnit\DataSet\ITableIterator;
-use PHPUnit\DbUnit\DataSet\ITableMetadata;
-use PHPUnit\DbUnit\DataSet\ReplacementTable;
+
+namespace PHPUnit\DbUnit\DataSet;
+
+use OuterIterator;
 
 /**
  * The default table iterator
  */
-class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements OuterIterator, ITableIterator
+class ReplacementTableIterator implements OuterIterator, ITableIterator
 {
     /**
      * @var ITableIterator
@@ -36,13 +36,13 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator implements Ou
      * Creates a new replacement table iterator object.
      *
      * @param ITableIterator $innerIterator
-     * @param array                                              $fullReplacements
-     * @param array                                              $subStrReplacements
+     * @param array $fullReplacements
+     * @param array $subStrReplacements
      */
     public function __construct(ITableIterator $innerIterator, array $fullReplacements = [], array $subStrReplacements = [])
     {
-        $this->innerIterator      = $innerIterator;
-        $this->fullReplacements   = $fullReplacements;
+        $this->innerIterator = $innerIterator;
+        $this->fullReplacements = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 

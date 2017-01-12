@@ -10,8 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator;
-
 /**
  * Allows for replacing arbitrary values or portions of values with new data.
  *
@@ -87,6 +85,6 @@ class ReplacementDataSet extends AbstractDataSet
     {
         $innerIterator = $reverse ? $this->dataSet->getReverseIterator() : $this->dataSet->getIterator();
 
-        return new PHPUnit_Extensions_Database_DataSet_ReplacementTableIterator($innerIterator, $this->fullReplacements, $this->subStrReplacements);
+        return new ReplacementTableIterator($innerIterator, $this->fullReplacements, $this->subStrReplacements);
     }
 }
