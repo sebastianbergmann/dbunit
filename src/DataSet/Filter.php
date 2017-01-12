@@ -10,8 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_TableFilter;
-
 /**
  * A dataset decorator that allows filtering out tables and table columns from
  * results.
@@ -98,7 +96,7 @@ class Filter extends AbstractDataSet
             ) {
                 continue;
             } elseif (!empty($this->excludeColumns[$tableName]) || !empty($this->includeColumns[$tableName])) {
-                $new_table = new PHPUnit_Extensions_Database_DataSet_TableFilter($table);
+                $new_table = new TableFilter($table);
 
                 if (!empty($this->includeColumns[$tableName])) {
                     $new_table->addIncludeColumns($this->includeColumns[$tableName]);

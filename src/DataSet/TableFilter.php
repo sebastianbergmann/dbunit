@@ -8,14 +8,15 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractTable;
-use PHPUnit\DbUnit\DataSet\ITable;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter;
 
 /**
  * A table decorator that allows filtering out table columns from results.
  */
-class PHPUnit_Extensions_Database_DataSet_TableFilter extends AbstractTable
+class TableFilter extends AbstractTable
 {
     /**
      * The table meta data being decorated.
@@ -116,14 +117,14 @@ class PHPUnit_Extensions_Database_DataSet_TableFilter extends AbstractTable
     {
         if ($this->data === null) {
             $data = [];
-            for($row = 0;$row < $this->originalTable->getRowCount();$row++) {
+            for ($row = 0; $row < $this->originalTable->getRowCount(); $row++) {
                 $tRow = [];
-                foreach($this->getTableMetaData()->getColumns() as $col) {
+                foreach ($this->getTableMetaData()->getColumns() as $col) {
                     $tRow[$col] = $this->getValue($row, $col);
                 }
                 $data[$row] = $tRow;
             }
-            $this->data   = $data;
+            $this->data = $data;
         }
     }
 }
