@@ -11,7 +11,7 @@
 namespace PHPUnit\DbUnit\Operation;
 
 use PDOException;
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 
@@ -20,7 +20,7 @@ use PHPUnit\DbUnit\DataSet\ITable;
  */
 class DeleteAll implements Operation
 {
-    public function execute(IConnection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet)
     {
         foreach ($dataSet->getReverseIterator() as $table) {
             /* @var $table ITable */

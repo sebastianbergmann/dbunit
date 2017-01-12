@@ -11,7 +11,7 @@
 namespace PHPUnit\DbUnit;
 
 use PHPUnit\DbUnit\DataSet\IDataSet;
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\Operation\Operation;
 
 /**
@@ -24,14 +24,14 @@ interface Tester
     /**
      * Closes the specified connection.
      *
-     * @param IConnection $connection
+     * @param Connection $connection
      */
-    public function closeConnection(IConnection $connection);
+    public function closeConnection(Connection $connection);
 
     /**
      * Returns the test database connection.
      *
-     * @return IConnection
+     * @return Connection
      */
     public function getConnection();
 

@@ -11,7 +11,7 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PDO;
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 
 /**
  * Provides the functionality to represent a database table.
@@ -24,7 +24,7 @@ class QueryTable extends AbstractTable
     protected $query;
 
     /**
-     * @var IConnection
+     * @var Connection
      */
     protected $databaseConnection;
 
@@ -38,9 +38,9 @@ class QueryTable extends AbstractTable
      *
      * @param string $table_name
      * @param string $query
-     * @param IConnection $databaseConnection
+     * @param Connection $databaseConnection
      */
-    public function __construct($tableName, $query, IConnection $databaseConnection)
+    public function __construct($tableName, $query, Connection $databaseConnection)
     {
         $this->query = $query;
         $this->databaseConnection = $databaseConnection;

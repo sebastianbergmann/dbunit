@@ -23,9 +23,9 @@ class Table extends AbstractTable
      * Creates a new database table object.
      *
      * @param ITableMetadata $tableMetaData
-     * @param IConnection $databaseConnection
+     * @param Connection $databaseConnection
      */
-    public function __construct(ITableMetadata $tableMetaData, IConnection $databaseConnection)
+    public function __construct(ITableMetadata $tableMetaData, Connection $databaseConnection)
     {
         $this->setTableMetaData($tableMetaData);
 

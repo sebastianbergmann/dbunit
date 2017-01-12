@@ -23,9 +23,9 @@ class FilteredDataSet extends DataSet
     /**
      * Creates a new dataset using the given database connection.
      *
-     * @param IConnection $databaseConnection
+     * @param Connection $databaseConnection
      */
-    public function __construct(IConnection $databaseConnection, array $tableNames)
+    public function __construct(Connection $databaseConnection, array $tableNames)
     {
         parent::__construct($databaseConnection);
         $this->tableNames = $tableNames;

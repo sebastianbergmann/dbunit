@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
@@ -22,7 +22,7 @@ class Replace extends RowBased
 {
     protected $operationName = 'REPLACE';
 
-    protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, IConnection $connection)
+    protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
         $keys = $databaseTableMetaData->getPrimaryKeys();
 
@@ -49,10 +49,10 @@ class Replace extends RowBased
     }
 
     /**
-     * @param IConnection $connection
+     * @param Connection $connection
      * @param IDataSet $dataSet
      */
-    public function execute(IConnection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet)
     {
         $insertOperation = new Insert;
         $updateOperation = new Update;

@@ -18,7 +18,7 @@ use PHPUnit\DbUnit\Database\Metadata\Metadata;
 /**
  * Provides a basic interface for communicating with a database.
  */
-interface IConnection
+interface Connection
 {
     /**
      * Close this connection.

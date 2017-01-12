@@ -9,7 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
@@ -147,7 +147,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
         $mockDatabaseDataSet = $this->createMock(DefaultDataSet::class);
         $mockDatabaseDataSet->expects($this->never())->method('getTableMetaData');
 
-        $mockConnection = $this->createMock(IConnection::class);
+        $mockConnection = $this->createMock(Connection::class);
         $mockConnection->expects($this->once())->method('createDataSet')->will($this->returnValue($mockDatabaseDataSet));
         foreach (['getConnection', 'disablePrimaryKeys', 'enablePrimaryKeys'] as $method) {
             $mockConnection->expects($this->never())->method($method);

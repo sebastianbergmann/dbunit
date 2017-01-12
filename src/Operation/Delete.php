@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
@@ -23,7 +23,7 @@ class Delete extends RowBased
 
     protected $iteratorDirection = self::ITERATOR_TYPE_REVERSE;
 
-    protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, IConnection $connection)
+    protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
         $keys = $databaseTableMetaData->getPrimaryKeys();
 

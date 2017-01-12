@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
@@ -35,7 +35,7 @@ abstract class RowBased implements Operation
     /**
      * @return string|bool String containing the query or FALSE if a valid query cannot be constructed
      */
-    protected abstract function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, IConnection $connection);
+    protected abstract function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection);
 
     protected abstract function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row);
 
@@ -44,18 +44,18 @@ abstract class RowBased implements Operation
      *
      * @param ITableMetadata $databaseTableMetaData
      * @param ITable $table
-     * @param IConnection $connection
+     * @param Connection $connection
      */
-    protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, IConnection $connection)
+    protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
         return false;
     }
 
     /**
-     * @param IConnection $connection
+     * @param Connection $connection
      * @param IDataSet $dataSet
      */
-    public function execute(IConnection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet)
     {
         $databaseDataSet = $connection->createDataSet();
 
@@ -102,7 +102,7 @@ abstract class RowBased implements Operation
         }
     }
 
-    protected function buildPreparedColumnArray($columns, IConnection $connection)
+    protected function buildPreparedColumnArray($columns, Connection $connection)
     {
         $columnArray = [];
 

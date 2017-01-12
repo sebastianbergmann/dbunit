@@ -19,7 +19,7 @@ use PHPUnit\DbUnit\Database\Metadata\AbstractMetadata;
 /**
  * Provides a basic interface for communicating with a database.
  */
-class DefaultConnection implements IConnection
+class DefaultConnection implements Connection
 {
     /**
      * @var PDO

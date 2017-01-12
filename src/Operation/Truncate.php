@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\Operation;
 
 use PDO;
 use PDOException;
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 
@@ -28,7 +28,7 @@ class Truncate implements Operation
         $this->useCascade = $cascade;
     }
 
-    public function execute(IConnection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet)
     {
         foreach ($dataSet->getReverseIterator() as $table) {
             /* @var $table ITable */
@@ -56,21 +56,21 @@ class Truncate implements Operation
         }
     }
 
-    private function disableForeignKeyChecksForMysql(IConnection $connection)
+    private function disableForeignKeyChecksForMysql(Connection $connection)
     {
         if ($this->isMysql($connection)) {
             $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS = 0');
         }
     }
 
-    private function enableForeignKeyChecksForMysql(IConnection $connection)
+    private function enableForeignKeyChecksForMysql(Connection $connection)
     {
         if ($this->isMysql($connection)) {
             $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS = 1');
         }
     }
 
-    private function isMysql(IConnection $connection)
+    private function isMysql(Connection $connection)
     {
         return $connection->getConnection()->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql';
     }

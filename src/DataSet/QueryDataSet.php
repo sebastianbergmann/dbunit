@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\Database\TableIterator;
 use PHPUnit\DbUnit\Database\Table;
 use PHPUnit\DbUnit\InvalidArgumentException;
@@ -30,16 +30,16 @@ class QueryDataSet extends AbstractDataSet
     /**
      * The database connection this dataset is using.
      *
-     * @var IConnection
+     * @var Connection
      */
     protected $databaseConnection;
 
     /**
      * Creates a new dataset using the given database connection.
      *
-     * @param IConnection $databaseConnection
+     * @param Connection $databaseConnection
      */
-    public function __construct(IConnection $databaseConnection)
+    public function __construct(Connection $databaseConnection)
     {
         $this->databaseConnection = $databaseConnection;
     }

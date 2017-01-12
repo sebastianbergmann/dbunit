@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 
 /**
@@ -23,9 +23,9 @@ interface Operation
      * Executes the database operation against the given $connection for the
      * given $dataSet.
      *
-     * @param  IConnection $connection
+     * @param  Connection $connection
      * @param  IDataSet $dataSet
      * @throws Exception
      */
-    public function execute(IConnection $connection, IDataSet $dataSet);
+    public function execute(Connection $connection, IDataSet $dataSet);
 }

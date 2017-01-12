@@ -31,16 +31,16 @@ class DataSet extends AbstractDataSet
     /**
      * The database connection this dataset is using.
      *
-     * @var IConnection
+     * @var Connection
      */
     protected $databaseConnection;
 
     /**
      * Creates a new dataset using the given database connection.
      *
-     * @param IConnection $databaseConnection
+     * @param Connection $databaseConnection
      */
-    public function __construct(IConnection $databaseConnection)
+    public function __construct(Connection $databaseConnection)
     {
         $this->databaseConnection = $databaseConnection;
     }
@@ -51,7 +51,7 @@ class DataSet extends AbstractDataSet
      * @param  ITableMetadata $tableMetaData
      * @return string
      */
-    public static function buildTableSelect(ITableMetadata $tableMetaData, IConnection $databaseConnection = null)
+    public static function buildTableSelect(ITableMetadata $tableMetaData, Connection $databaseConnection = null)
     {
         if ($tableMetaData->getTableName() == '') {
             $e = new RuntimeException('Empty Table Name');

@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 
 /**
@@ -18,7 +18,7 @@ use PHPUnit\DbUnit\DataSet\IDataSet;
  */
 class None implements Operation
 {
-    public function execute(IConnection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet)
     {
         /* do nothing */
     }

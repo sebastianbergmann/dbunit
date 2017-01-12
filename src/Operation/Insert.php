@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
 
@@ -21,7 +21,7 @@ class Insert extends RowBased
 {
     protected $operationName = 'INSERT';
 
-    protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, IConnection $connection)
+    protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
         $columnCount = count($table->getTableMetaData()->getColumns());
 
@@ -58,7 +58,7 @@ class Insert extends RowBased
         return $args;
     }
 
-    protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, IConnection $connection)
+    protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
         if (count($databaseTableMetaData->getPrimaryKeys())) {
             return true;
