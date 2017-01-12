@@ -13,6 +13,7 @@ use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -135,7 +136,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
         /* @var $mockOperation PHPUnit_Extensions_Database_Operation_RowBased */
         $mockOperation->execute($connection, $dataSet);
 
-        $this->assertDataSetsEqual(new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/RowBasedExecute.xml'), $connection->createDataSet(['table1', 'table2']));
+        $this->assertDataSetsEqual(new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/RowBasedExecute.xml'), $connection->createDataSet(['table1', 'table2']));
     }
 
     public function testExecuteWithBadQuery()

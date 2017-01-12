@@ -12,6 +12,7 @@ use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
@@ -80,7 +81,7 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
     public function testFlatXmlDataSet()
     {
         $constraint     = new DataSetIsEqual($this->expectedDataSet);
-        $xmlFlatDataSet = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/FlatXmlDataSet.xml');
+        $xmlFlatDataSet = new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/FlatXmlDataSet.xml');
 
         self::assertThat($xmlFlatDataSet, $constraint);
     }

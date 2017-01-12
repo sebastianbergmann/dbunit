@@ -13,6 +13,7 @@ use PHPUnit\DbUnit\DataSet\CompositeDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
+use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -39,7 +40,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 
     public function getDataSet()
     {
-        return new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/OperationsMySQLTestFixture.xml');
+        return new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/OperationsMySQLTestFixture.xml');
     }
 
     /**

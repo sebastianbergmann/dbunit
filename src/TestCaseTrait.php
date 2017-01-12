@@ -15,7 +15,7 @@ use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
 use PHPUnit\DbUnit\Constraint\TableIsEqual;
 use PHPUnit\DbUnit\Constraint\TableRowCount;
 use PHPUnit\DbUnit\DataSet\ArrayDataSet;
-use PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet;
+use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet;
@@ -141,11 +141,11 @@ trait TestCaseTrait
      * Creates a new FlatXmlDataSet with the given $xmlFile. (absolute path.)
      *
      * @param  string $xmlFile
-     * @return PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet
+     * @return FlatXmlDataSet
      */
     protected function createFlatXMLDataSet($xmlFile)
     {
-        return new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet($xmlFile);
+        return new FlatXmlDataSet($xmlFile);
     }
 
     /**

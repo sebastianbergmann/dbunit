@@ -10,6 +10,7 @@
 
 use PHPUnit\DbUnit\Constraint\DataSetIsEqual;
 use PHPUnit\DbUnit\DataSet\Filter;
+use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_FilterTest extends TestCase
@@ -18,7 +19,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
 
     public function setUp()
     {
-        $this->expectedDataSet = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
+        $this->expectedDataSet = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestFixture.xml'
         );
     }
@@ -26,7 +27,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testDeprecatedFilteredDataSetConstructor()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet    = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
+        $dataSet    = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
@@ -42,7 +43,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testExcludeFilteredDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet    = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
+        $dataSet    = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
@@ -58,7 +59,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testIncludeFilteredDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet    = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
+        $dataSet    = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
@@ -74,7 +75,7 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testIncludeExcludeMixedDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet    = new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet(
+        $dataSet    = new FlatXmlDataSet(
             dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 

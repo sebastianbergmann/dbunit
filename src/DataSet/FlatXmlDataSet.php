@@ -8,13 +8,14 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractXmlDataSet;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\RuntimeException;
 
 /**
  * The default implementation of a data set.
  */
-class PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet extends AbstractXmlDataSet
+class FlatXmlDataSet extends AbstractXmlDataSet
 {
     protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {
@@ -27,7 +28,7 @@ class PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet extends AbstractXmlData
 
             if (!isset($tableColumns[$tableName])) {
                 $tableColumns[$tableName] = [];
-                $tableValues[$tableName]  = [];
+                $tableValues[$tableName] = [];
             }
 
             $values = [];

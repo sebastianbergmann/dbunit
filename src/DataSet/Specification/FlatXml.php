@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
-use PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet;
+use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit_Extensions_Database_DataSet_ISpec;
 
 /**
@@ -29,10 +29,10 @@ class FlatXml implements PHPUnit_Extensions_Database_DataSet_ISpec
      * Creates Flat XML Data Set from a data set spec.
      *
      * @param  string $dataSetSpec
-     * @return PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet
+     * @return FlatXmlDataSet
      */
     public function getDataSet($dataSetSpec)
     {
-        return new PHPUnit_Extensions_Database_DataSet_FlatXmlDataSet($dataSetSpec);
+        return new FlatXmlDataSet($dataSetSpec);
     }
 }
