@@ -18,7 +18,7 @@ use PHPUnit\DbUnit\Operation\Operation;
 /**
  * Can be used as a foundation for new DatabaseTesters.
  */
-abstract class AbstractTester implements ITester
+abstract class AbstractTester implements Tester
 {
     /**
      * @var Operation

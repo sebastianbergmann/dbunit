@@ -19,7 +19,7 @@ use PHPUnit\DbUnit\Operation\Operation;
  * add database testing to existing test cases using composition instead of
  * extension.
  */
-interface ITester
+interface Tester
 {
     /**
      * Closes the specified connection.

@@ -28,7 +28,7 @@ use PHPUnit\DbUnit\Operation\Operation;
 trait TestCaseTrait
 {
     /**
-     * @var ITester
+     * @var Tester
      */
     protected $databaseTester;
 
@@ -54,7 +54,7 @@ trait TestCaseTrait
      * not set yet, this method calls newDatabaseTester() to obtain a new
      * instance.
      *
-     * @return ITester
+     * @return Tester
      */
     protected function getDatabaseTester()
     {
@@ -95,7 +95,7 @@ trait TestCaseTrait
     /**
      * Creates a IDatabaseTester for this testCase.
      *
-     * @return ITester
+     * @return Tester
      */
     protected function newDatabaseTester()
     {
