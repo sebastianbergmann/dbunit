@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractTableMetadata;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
  * The default implementation of table meta data
  */
-class PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData extends PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData
+class PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData extends AbstractTableMetadata
 {
     /**
      * Creates a new default table meta data object.

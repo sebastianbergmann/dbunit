@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\DataSet\AbstractTableMetadata;
 
 /**
  * A TableMetaData decorator that allows filtering columns from another
@@ -15,7 +16,7 @@
  * The if a whitelist (include) filter is specified, then only those columns
  * will be included.
  */
-class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData
+class PHPUnit_Extensions_Database_DataSet_TableMetaDataFilter extends AbstractTableMetadata
 {
     /**
      * The table meta data being decorated.

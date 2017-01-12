@@ -8,10 +8,14 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet;
+
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+
 /**
  * Provides basic functionality for table meta data.
  */
-abstract class PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData implements PHPUnit_Extensions_Database_DataSet_ITableMetaData
+abstract class AbstractTableMetadata implements PHPUnit_Extensions_Database_DataSet_ITableMetaData
 {
     /**
      * The names of all columns in the table.
@@ -70,7 +74,8 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractTableMetaData impleme
     public function matches(PHPUnit_Extensions_Database_DataSet_ITableMetaData $other)
     {
         if ($this->getTableName() != $other->getTableName() ||
-            $this->getColumns() != $other->getColumns()) {
+            $this->getColumns() != $other->getColumns()
+        ) {
             return false;
         }
 
