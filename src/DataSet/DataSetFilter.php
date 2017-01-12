@@ -7,12 +7,13 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 
 /**
  * A dataset decorator that allows filtering out tables and table columns from
  * results.
  */
-class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class PHPUnit_Extensions_Database_DataSet_DataSetFilter extends AbstractDataSet
 {
     /**
      * The dataset being decorated.

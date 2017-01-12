@@ -7,13 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 
 /**
  * Creates YamlDataSets.
  *
  * You can incrementally add YAML files as tables to your datasets
  */
-class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class PHPUnit_Extensions_Database_DataSet_YamlDataSet extends AbstractDataSet
 {
     /**
      * @var array

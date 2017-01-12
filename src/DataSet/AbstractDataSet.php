@@ -8,16 +8,23 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet;
+
+use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+
 /**
  * Implements the basic functionality of data sets.
  */
-abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PHPUnit_Extensions_Database_DataSet_IDataSet
+abstract class AbstractDataSet implements PHPUnit_Extensions_Database_DataSet_IDataSet
 {
     /**
      * Creates an iterator over the tables in the data set. If $reverse is
      * true a reverse iterator will be returned.
      *
-     * @param  bool                                               $reverse
+     * @param  bool $reverse
      * @return PHPUnit_Extensions_Database_DataSet_ITableIterator
      */
     protected abstract function createIterator($reverse = false);
@@ -42,7 +49,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
     /**
      * Returns a table meta data object for the given table.
      *
-     * @param  string                                             $tableName
+     * @param  string $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
      */
     public function getTableMetaData($tableName)
@@ -53,7 +60,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
     /**
      * Returns a table object for the given table.
      *
-     * @param  string                                     $tableName
+     * @param  string $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITable
      */
     public function getTable($tableName)
@@ -93,7 +100,7 @@ abstract class PHPUnit_Extensions_Database_DataSet_AbstractDataSet implements PH
      */
     public function matches(PHPUnit_Extensions_Database_DataSet_IDataSet $other)
     {
-        $thisTableNames  = $this->getTableNames();
+        $thisTableNames = $this->getTableNames();
         $otherTableNames = $other->getTableNames();
 
         sort($thisTableNames);

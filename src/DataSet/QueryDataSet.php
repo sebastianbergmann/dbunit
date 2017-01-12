@@ -11,12 +11,13 @@
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\Database\TableIterator;
 use PHPUnit\DbUnit\Database\Table;
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
  * Provides access to a database instance as a data set.
  */
-class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class PHPUnit_Extensions_Database_DataSet_QueryDataSet extends AbstractDataSet
 {
     /**
      * An array of ITable objects.

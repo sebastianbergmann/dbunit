@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
  * Implements the basic functionality of data sets using a PHP array.
  */
-class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class PHPUnit_Extensions_Database_DataSet_ArrayDataSet extends AbstractDataSet
 {
     /**
      * @var array

@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
  * The default implementation of a data set.
  */
-abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+abstract class PHPUnit_Extensions_Database_DataSet_AbstractXmlDataSet extends AbstractDataSet
 {
     /**
      * @var array

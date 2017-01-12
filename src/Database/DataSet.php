@@ -12,14 +12,14 @@ namespace PHPUnit\DbUnit\Database;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
 use PHPUnit\DbUnit\RuntimeException;
-use PHPUnit_Extensions_Database_DataSet_AbstractDataSet;
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides access to a database instance as a data set.
  */
-class DataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class DataSet extends AbstractDataSet
 {
     /**
      * An array of ITable objects.

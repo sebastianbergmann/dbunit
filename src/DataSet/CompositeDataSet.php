@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -15,7 +16,7 @@ use PHPUnit\DbUnit\InvalidArgumentException;
  *
  * Allows for creating datasets from multiple sources (csv, query, xml, etc.)
  */
-class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class PHPUnit_Extensions_Database_DataSet_CompositeDataSet extends AbstractDataSet
 {
     protected $motherDataSet;
 

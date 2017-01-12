@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -15,7 +16,7 @@ use PHPUnit\DbUnit\InvalidArgumentException;
  *
  * You can incrementally add CSV files as tables to your datasets
  */
-class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class PHPUnit_Extensions_Database_DataSet_CsvDataSet extends AbstractDataSet
 {
     /**
      * @var array

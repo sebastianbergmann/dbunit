@@ -7,13 +7,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 
 /**
  * Allows for replacing arbitrary values or portions of values with new data.
  *
  * A usage for this is replacing all values == '[NULL'] with a true NULL value
  */
-class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends PHPUnit_Extensions_Database_DataSet_AbstractDataSet
+class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends AbstractDataSet
 {
     /**
      * @var PHPUnit_Extensions_Database_DataSet_IDataSet
