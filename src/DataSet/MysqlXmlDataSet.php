@@ -8,13 +8,14 @@
  * file that was distributed with this source code.
  */
 
-use PHPUnit\DbUnit\DataSet\AbstractXmlDataSet;
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\RuntimeException;
 
 /**
  * Data set implementation for the output of mysqldump --xml.
  */
-class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends AbstractXmlDataSet
+class MysqlXmlDataSet extends AbstractXmlDataSet
 {
     protected function getTableInfo(array &$tableColumns, array &$tableValues)
     {
@@ -27,7 +28,7 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends AbstractXmlDat
                 throw new RuntimeException('<table_data> elements must include a name attribute');
             }
 
-            $tableName = (string) $tableElement['name'];
+            $tableName = (string)$tableElement['name'];
 
             if (!isset($tableColumns[$tableName])) {
                 $tableColumns[$tableName] = [];
@@ -45,7 +46,7 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends AbstractXmlDat
                         throw new RuntimeException('<field> element name attributes cannot be empty');
                     }
 
-                    $columnName = (string) $columnElement['name'];
+                    $columnName = (string)$columnElement['name'];
 
                     if (!in_array($columnName, $tableColumns[$tableName])) {
                         $tableColumns[$tableName][] = $columnName;
@@ -53,15 +54,15 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends AbstractXmlDat
                 }
 
                 foreach ($tableColumns[$tableName] as $columnName) {
-                    $fields          = $rowElement->xpath('./field[@name="' . $columnName . '"]');
-                    $column          = $fields[0];
-                    $attr            = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
+                    $fields = $rowElement->xpath('./field[@name="' . $columnName . '"]');
+                    $column = $fields[0];
+                    $attr = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
 
-                    if (isset($attr['type']) && (string) $attr['type'] === 'xs:hexBinary') {
-                        $columnValue = pack('H*',(string) $column);
+                    if (isset($attr['type']) && (string)$attr['type'] === 'xs:hexBinary') {
+                        $columnValue = pack('H*', (string)$column);
                     } else {
-                        $null        = isset($column['nil']) || isset($attr[0]);
-                        $columnValue = $null ? null : (string) $column;
+                        $null = isset($column['nil']) || isset($attr[0]);
+                        $columnValue = $null ? null : (string)$column;
                     }
 
                     $rowValues[$columnName] = $columnValue;
@@ -77,14 +78,14 @@ class PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet extends AbstractXmlDat
                 throw new RuntimeException('<table_structure> elements must include a name attribute');
             }
 
-            $tableName = (string) $tableElement['name'];
+            $tableName = (string)$tableElement['name'];
 
             foreach ($tableElement->xpath('./field') as $fieldElement) {
                 if (empty($fieldElement['Field']) && empty($fieldElement['field'])) {
                     throw new RuntimeException('<field> elements must include a Field attribute');
                 }
 
-                $columnName = (string) (empty($fieldElement['Field']) ? $fieldElement['field'] : $fieldElement['Field']);
+                $columnName = (string)(empty($fieldElement['Field']) ? $fieldElement['field'] : $fieldElement['Field']);
 
                 if (!in_array($columnName, $tableColumns[$tableName])) {
                     $tableColumns[$tableName][] = $columnName;

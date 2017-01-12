@@ -18,7 +18,7 @@ use PHPUnit\DbUnit\DataSet\ArrayDataSet;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
-use PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet;
+use PHPUnit\DbUnit\DataSet\MysqlXmlDataSet;
 use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\Database\IConnection;
@@ -163,11 +163,11 @@ trait TestCaseTrait
      * Create a a new MysqlXmlDataSet with the given $xmlFile. (absolute path.)
      *
      * @param  string $xmlFile
-     * @return PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet
+     * @return MysqlXmlDataSet
      */
     protected function createMySQLXMLDataSet($xmlFile)
     {
-        return new PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet($xmlFile);
+        return new MysqlXmlDataSet($xmlFile);
     }
 
     /**

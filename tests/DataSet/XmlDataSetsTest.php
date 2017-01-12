@@ -13,6 +13,7 @@ use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
+use PHPUnit\DbUnit\DataSet\MysqlXmlDataSet;
 use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
@@ -97,7 +98,7 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
     public function testMysqlXmlDataSet()
     {
         $constraint      = new DataSetIsEqual($this->expectedDataSet);
-        $mysqlXmlDataSet = new PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/MysqlXmlDataSet.xml');
+        $mysqlXmlDataSet = new MysqlXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/MysqlXmlDataSet.xml');
 
         self::assertThat($mysqlXmlDataSet, $constraint);
     }
