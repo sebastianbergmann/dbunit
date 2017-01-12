@@ -8,12 +8,17 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet;
+
 use PHPUnit\DbUnit\InvalidArgumentException;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+use SimpleXMLElement;
 
 /**
  * Provides a basic functionality for dbunit tables
  */
-class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Extensions_Database_DataSet_ITable
+class AbstractTable implements PHPUnit_Extensions_Database_DataSet_ITable
 {
     /**
      * @var PHPUnit_Extensions_Database_DataSet_ITableMetaData
@@ -75,7 +80,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
         if (isset($this->data[$row][$column])) {
             $value = $this->data[$row][$column];
 
-            return ($value instanceof SimpleXMLElement) ? (string) $value : $value;
+            return ($value instanceof SimpleXMLElement) ? (string)$value : $value;
         } else {
             if (!in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
@@ -88,7 +93,7 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
     /**
      * Returns the an associative array keyed by columns for the given row.
      *
-     * @param  int   $row
+     * @param  int $row
      * @return array
      */
     public function getRow($row)
@@ -111,20 +116,21 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
      */
     public function matches(PHPUnit_Extensions_Database_DataSet_ITable $other)
     {
-        $thisMetaData  = $this->getTableMetaData();
+        $thisMetaData = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();
 
         if (!$thisMetaData->matches($otherMetaData) ||
-            $this->getRowCount() != $other->getRowCount()) {
+            $this->getRowCount() != $other->getRowCount()
+        ) {
             return false;
         }
 
-        $columns  = $thisMetaData->getColumns();
+        $columns = $thisMetaData->getColumns();
         $rowCount = $this->getRowCount();
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                $thisValue  = $this->getValue($i, $columnName);
+                $thisValue = $this->getValue($i, $columnName);
                 $otherValue = $other->getValue($i, $columnName);
                 if (is_numeric($thisValue) && is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
@@ -157,11 +163,11 @@ class PHPUnit_Extensions_Database_DataSet_AbstractTable implements PHPUnit_Exten
 
     public function __toString()
     {
-        $columns       = $this->getTableMetaData()->getColumns();
+        $columns = $this->getTableMetaData()->getColumns();
         $lineSeperator = str_repeat('+----------------------', count($columns)) . "+\n";
-        $lineLength    = strlen($lineSeperator) - 1;
+        $lineLength = strlen($lineSeperator) - 1;
 
-        $tableString  = $lineSeperator;
+        $tableString = $lineSeperator;
         $tableString .= '| ' . str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
         $tableString .= $lineSeperator;
         $tableString .= $this->rowToString($columns);

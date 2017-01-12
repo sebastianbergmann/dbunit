@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\Database;
 
 use PDO;
 use PDOStatement;
-use PHPUnit_Extensions_Database_DataSet_AbstractTable;
+use PHPUnit\DbUnit\DataSet\AbstractTable;
 use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
 
 /**
@@ -23,7 +23,7 @@ use PHPUnit_Extensions_Database_DataSet_DefaultTableMetaData;
  * @see        PHPUnit_Extension_Database_DataSet_QueryTable
  * @see        PHPUnit_Extension_Database_DataSet_QueryDataSet
  */
-class ResultSetTable extends PHPUnit_Extensions_Database_DataSet_AbstractTable
+class ResultSetTable extends AbstractTable
 {
     /**
      * Creates a new result set table.

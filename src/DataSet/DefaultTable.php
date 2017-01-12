@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractTable;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
  * Provides default table functionality.
  */
-class PHPUnit_Extensions_Database_DataSet_DefaultTable extends PHPUnit_Extensions_Database_DataSet_AbstractTable
+class PHPUnit_Extensions_Database_DataSet_DefaultTable extends AbstractTable
 {
     /**
      * Creates a new table object using the given $tableMetaData

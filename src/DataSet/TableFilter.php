@@ -8,12 +8,13 @@
  * file that was distributed with this source code.
  */
 
+use PHPUnit\DbUnit\DataSet\AbstractTable;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
  * A table decorator that allows filtering out table columns from results.
  */
-class PHPUnit_Extensions_Database_DataSet_TableFilter extends PHPUnit_Extensions_Database_DataSet_AbstractTable
+class PHPUnit_Extensions_Database_DataSet_TableFilter extends AbstractTable
 {
     /**
      * The table meta data being decorated.

@@ -11,13 +11,13 @@
 namespace PHPUnit\DbUnit\Database;
 
 use PDO;
-use PHPUnit_Extensions_Database_DataSet_AbstractTable;
+use PHPUnit\DbUnit\DataSet\AbstractTable;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 
 /**
  * Provides the functionality to represent a database table.
  */
-class Table extends PHPUnit_Extensions_Database_DataSet_AbstractTable
+class Table extends AbstractTable
 {
     /**
      * Creates a new database table object.

@@ -8,11 +8,12 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\DataSet\AbstractTable;
 
 /**
  * Provides the functionality to represent a database table.
  */
-class PHPUnit_Extensions_Database_DataSet_QueryTable extends PHPUnit_Extensions_Database_DataSet_AbstractTable
+class PHPUnit_Extensions_Database_DataSet_QueryTable extends AbstractTable
 {
     /**
      * @var string
