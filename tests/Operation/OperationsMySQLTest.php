@@ -14,6 +14,7 @@ use PHPUnit\DbUnit\DataSet\DefaultDataSet;
 use PHPUnit\DbUnit\DataSet\DefaultTable;
 use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
+use PHPUnit\DbUnit\Operation\Truncate;
 use PHPUnit\DbUnit\TestCase;
 
 require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
@@ -44,11 +45,11 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
     }
 
     /**
-     * @covers PHPUnit_Extensions_Database_Operation_Truncate::execute
+     * @covers Truncate::execute
      */
     public function testTruncate()
     {
-        $truncateOperation = new PHPUnit_Extensions_Database_Operation_Truncate();
+        $truncateOperation = new Truncate();
         $truncateOperation->execute($this->getConnection(), $this->getDataSet());
 
         $expectedDataSet = new DefaultDataSet([
@@ -81,7 +82,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 
     public function testTruncateComposite()
     {
-        $truncateOperation = new PHPUnit_Extensions_Database_Operation_Truncate();
+        $truncateOperation = new Truncate();
         $truncateOperation->execute($this->getConnection(), $this->getCompositeDataSet());
 
         $expectedDataSet = new DefaultDataSet([

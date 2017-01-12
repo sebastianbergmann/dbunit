@@ -15,6 +15,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\Operation\Delete;
 use PHPUnit\DbUnit\Operation\DeleteAll;
+use PHPUnit\DbUnit\Operation\Truncate;
 use PHPUnit\DbUnit\Operation\Replace;
 use PHPUnit\DbUnit\TestCase;
 
@@ -76,7 +77,7 @@ class Extensions_Database_Operation_OperationsTest extends TestCase
 
     public function testTruncate()
     {
-        $truncateOperation = new PHPUnit_Extensions_Database_Operation_Truncate();
+        $truncateOperation = new Truncate();
 
         $truncateOperation->execute($this->getConnection(), new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/DeleteAllOperationTest.xml'));
 

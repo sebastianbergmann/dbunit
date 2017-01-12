@@ -12,7 +12,6 @@ namespace PHPUnit\DbUnit\Operation;
 
 use PHPUnit_Extensions_Database_Operation_Insert;
 use PHPUnit_Extensions_Database_Operation_Null;
-use PHPUnit_Extensions_Database_Operation_Truncate;
 use PHPUnit_Extensions_Database_Operation_Update;
 
 /**
@@ -63,7 +62,7 @@ class Factory
      */
     public static function TRUNCATE($cascadeTruncates = false)
     {
-        $truncate = new PHPUnit_Extensions_Database_Operation_Truncate();
+        $truncate = new Truncate();
         $truncate->setCascade($cascadeTruncates);
 
         return $truncate;
