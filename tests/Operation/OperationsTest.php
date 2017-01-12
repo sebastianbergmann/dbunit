@@ -15,6 +15,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\Operation\Delete;
 use PHPUnit\DbUnit\Operation\DeleteAll;
+use PHPUnit\DbUnit\Operation\Insert;
 use PHPUnit\DbUnit\Operation\Update;
 use PHPUnit\DbUnit\Operation\Truncate;
 use PHPUnit\DbUnit\Operation\Replace;
@@ -102,7 +103,7 @@ class Extensions_Database_Operation_OperationsTest extends TestCase
 
     public function testInsert()
     {
-        $insertOperation = new PHPUnit_Extensions_Database_Operation_Insert();
+        $insertOperation = new Insert();
 
         $insertOperation->execute($this->getConnection(), new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/InsertOperationTest.xml'));
 
@@ -129,7 +130,7 @@ class Extensions_Database_Operation_OperationsTest extends TestCase
 
     public function testInsertEmptyTable()
     {
-        $insertOperation = new PHPUnit_Extensions_Database_Operation_Insert();
+        $insertOperation = new Insert();
 
         $insertOperation->execute($this->getConnection(), new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/EmptyTableInsertTest.xml'));
 
@@ -137,7 +138,7 @@ class Extensions_Database_Operation_OperationsTest extends TestCase
     }
     public function testInsertAllEmptyTables()
     {
-        $insertOperation = new PHPUnit_Extensions_Database_Operation_Insert();
+        $insertOperation = new Insert();
 
         $insertOperation->execute($this->getConnection(), new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/AllEmptyTableInsertTest.xml'));
 

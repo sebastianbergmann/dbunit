@@ -7,15 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\Operation;
+
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
-use PHPUnit\DbUnit\Operation\RowBased;
 
 /**
  * This class provides functionality for inserting rows from a dataset into a database.
  */
-class PHPUnit_Extensions_Database_Operation_Insert extends RowBased
+class Insert extends RowBased
 {
     protected $operationName = 'INSERT';
 

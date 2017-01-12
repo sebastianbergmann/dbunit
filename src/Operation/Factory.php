@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\Operation;
 
-use PHPUnit_Extensions_Database_Operation_Insert;
 use PHPUnit_Extensions_Database_Operation_Null;
 
 /**
@@ -50,7 +49,7 @@ class Factory
      */
     public static function INSERT()
     {
-        return new PHPUnit_Extensions_Database_Operation_Insert();
+        return new Insert();
     }
 
     /**
