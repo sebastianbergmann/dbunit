@@ -12,7 +12,6 @@ namespace PHPUnit\DbUnit\Operation;
 
 use PHPUnit_Extensions_Database_Operation_Insert;
 use PHPUnit_Extensions_Database_Operation_Null;
-use PHPUnit_Extensions_Database_Operation_Update;
 
 /**
  * A class factory to easily return database operations.
@@ -95,7 +94,7 @@ class Factory
      */
     public static function UPDATE()
     {
-        return new PHPUnit_Extensions_Database_Operation_Update();
+        return new Update();
     }
 
 }

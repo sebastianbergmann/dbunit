@@ -7,24 +7,26 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace PHPUnit\DbUnit\Operation;
+
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
-use PHPUnit\DbUnit\Operation\RowBased;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
  */
-class PHPUnit_Extensions_Database_Operation_Update extends RowBased
+class Update extends RowBased
 {
     protected $operationName = 'UPDATE';
 
     protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, IConnection $connection)
     {
-        $keys           = $databaseTableMetaData->getPrimaryKeys();
-        $columns        = $table->getTableMetaData()->getColumns();
+        $keys = $databaseTableMetaData->getPrimaryKeys();
+        $columns = $table->getTableMetaData()->getColumns();
         $whereStatement = 'WHERE ' . implode(' AND ', $this->buildPreparedColumnArray($keys, $connection));
-        $setStatement   = 'SET ' . implode(', ', $this->buildPreparedColumnArray($columns, $connection));
+        $setStatement = 'SET ' . implode(', ', $this->buildPreparedColumnArray($columns, $connection));
 
         $query = "
             UPDATE {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}

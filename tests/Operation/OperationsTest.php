@@ -15,6 +15,7 @@ use PHPUnit\DbUnit\DataSet\DefaultTableMetadata;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\Operation\Delete;
 use PHPUnit\DbUnit\Operation\DeleteAll;
+use PHPUnit\DbUnit\Operation\Update;
 use PHPUnit\DbUnit\Operation\Truncate;
 use PHPUnit\DbUnit\Operation\Replace;
 use PHPUnit\DbUnit\TestCase;
@@ -110,7 +111,7 @@ class Extensions_Database_Operation_OperationsTest extends TestCase
 
     public function testUpdate()
     {
-        $updateOperation = new PHPUnit_Extensions_Database_Operation_Update();
+        $updateOperation = new Update();
 
         $updateOperation->execute($this->getConnection(), new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/UpdateOperationTest.xml'));
 

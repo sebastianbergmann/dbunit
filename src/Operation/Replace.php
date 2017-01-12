@@ -15,7 +15,6 @@ use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\ITableMetadata;
 use PHPUnit_Extensions_Database_Operation_Insert;
-use PHPUnit_Extensions_Database_Operation_Update;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
@@ -57,7 +56,7 @@ class Replace extends RowBased
     public function execute(IConnection $connection, IDataSet $dataSet)
     {
         $insertOperation = new PHPUnit_Extensions_Database_Operation_Insert;
-        $updateOperation = new PHPUnit_Extensions_Database_Operation_Update;
+        $updateOperation = new Update;
         $databaseDataSet = $connection->createDataSet();
 
         foreach ($dataSet as $table) {
