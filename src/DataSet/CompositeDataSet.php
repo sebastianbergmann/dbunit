@@ -11,7 +11,6 @@
 namespace PHPUnit\DbUnit\DataSet;
 
 use PHPUnit\DbUnit\InvalidArgumentException;
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 
 /**
@@ -46,9 +45,9 @@ class CompositeDataSet extends AbstractDataSet
      *
      * The dataset may not define tables that already exist in the composite.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet
+     * @param IDataSet $dataSet
      */
-    public function addDataSet(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function addDataSet(IDataSet $dataSet)
     {
         foreach ($dataSet->getTableNames() as $tableName) {
             if (!in_array($tableName, $this->getTableNames())) {

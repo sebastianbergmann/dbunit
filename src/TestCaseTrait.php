@@ -16,7 +16,7 @@ use PHPUnit\DbUnit\Constraint\TableIsEqual;
 use PHPUnit\DbUnit\Constraint\TableRowCount;
 use PHPUnit\DbUnit\DataSet\ArrayDataSet;
 use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_MysqlXmlDataSet;
 use PHPUnit_Extensions_Database_DataSet_XmlDataSet;
@@ -68,7 +68,7 @@ trait TestCaseTrait
     /**
      * Returns the test dataset.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @return IDataSet
      */
     protected abstract function getDataSet();
 
@@ -232,7 +232,7 @@ trait TestCaseTrait
      * @param PHPUnit_Extensions_Database_DataSet_ITable $actual
      * @param string $message
      */
-    public static function assertDataSetsEqual(PHPUnit_Extensions_Database_DataSet_IDataSet $expected, PHPUnit_Extensions_Database_DataSet_IDataSet $actual, $message = '')
+    public static function assertDataSetsEqual(IDataSet $expected, IDataSet $actual, $message = '')
     {
         $constraint = new DataSetIsEqual($expected);
 

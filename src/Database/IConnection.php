@@ -11,7 +11,7 @@
 namespace PHPUnit\DbUnit\Database;
 
 use PDO;
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit\DbUnit\Database\Metadata\IMetadata;
 
@@ -31,7 +31,7 @@ interface IConnection
      * database.
      *
      * @param  array $tableNames
-     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @return IDataSet
      */
     public function createDataSet(array $tableNames = null);
 

@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
@@ -18,7 +17,7 @@ use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
 /**
  * Implements the basic functionality of data sets.
  */
-abstract class AbstractDataSet implements PHPUnit_Extensions_Database_DataSet_IDataSet
+abstract class AbstractDataSet implements IDataSet
 {
     /**
      * Creates an iterator over the tables in the data set. If $reverse is
@@ -96,9 +95,9 @@ abstract class AbstractDataSet implements PHPUnit_Extensions_Database_DataSet_ID
     /**
      * Asserts that the given data set matches this data set.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet $other
+     * @param IDataSet $other
      */
-    public function matches(PHPUnit_Extensions_Database_DataSet_IDataSet $other)
+    public function matches(IDataSet $other)
     {
         $thisTableNames = $this->getTableNames();
         $otherTableNames = $other->getTableNames();

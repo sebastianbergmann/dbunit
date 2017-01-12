@@ -8,10 +8,17 @@
  * file that was distributed with this source code.
  */
 
+namespace PHPUnit\DbUnit\DataSet;
+
+use IteratorAggregate;
+use PHPUnit_Extensions_Database_DataSet_ITable;
+use PHPUnit_Extensions_Database_DataSet_ITableIterator;
+use PHPUnit_Extensions_Database_DataSet_ITableMetaData;
+
 /**
  * Provides a basic interface for creating and reading data from data sets.
  */
-interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
+interface IDataSet extends IteratorAggregate
 {
     /**
      * Returns an array of table names contained in the dataset.
@@ -23,7 +30,7 @@ interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
     /**
      * Returns a table meta data object for the given table.
      *
-     * @param  string                                             $tableName
+     * @param  string $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITableMetaData
      */
     public function getTableMetaData($tableName);
@@ -31,7 +38,7 @@ interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
     /**
      * Returns a table object for the given table.
      *
-     * @param  string                                     $tableName
+     * @param  string $tableName
      * @return PHPUnit_Extensions_Database_DataSet_ITable
      */
     public function getTable($tableName);
@@ -46,7 +53,7 @@ interface PHPUnit_Extensions_Database_DataSet_IDataSet extends IteratorAggregate
     /**
      * Asserts that the given data set matches this data set.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet $other
+     * @param IDataSet $other
      */
-    public function matches(PHPUnit_Extensions_Database_DataSet_IDataSet $other);
+    public function matches(IDataSet $other);
 }

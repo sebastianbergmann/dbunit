@@ -9,6 +9,7 @@
  */
 
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\InvalidArgumentException;
 
 /**
@@ -40,7 +41,7 @@ class PHPUnit_Extensions_Database_Operation_Composite implements PHPUnit_Extensi
         }
     }
 
-    public function execute(IConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function execute(IConnection $connection, IDataSet $dataSet)
     {
         try {
             foreach ($this->operations as $operation) {

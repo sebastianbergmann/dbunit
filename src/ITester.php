@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit;
 
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
 
@@ -38,7 +38,7 @@ interface ITester
     /**
      * Returns the test dataset.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @return IDataSet
      */
     public function getDataSet();
 
@@ -55,9 +55,9 @@ interface ITester
     /**
      * Sets the test dataset to use.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet
+     * @param IDataSet $dataSet
      */
-    public function setDataSet(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet);
+    public function setDataSet(IDataSet $dataSet);
 
     /**
      * Sets the schema value.

@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 
 /**
  * Executes a truncate against all tables in a dataset.
@@ -21,7 +22,7 @@ class PHPUnit_Extensions_Database_Operation_Truncate implements PHPUnit_Extensio
         $this->useCascade = $cascade;
     }
 
-    public function execute(IConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function execute(IConnection $connection, IDataSet $dataSet)
     {
         foreach ($dataSet->getReverseIterator() as $table) {
             /* @var $table PHPUnit_Extensions_Database_DataSet_ITable */

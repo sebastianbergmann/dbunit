@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 
 /**
  * Updates the rows in a given dataset using primary key columns.
@@ -44,9 +45,9 @@ class PHPUnit_Extensions_Database_Operation_Replace extends PHPUnit_Extensions_D
 
     /**
      * @param IConnection $connection
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet       $dataSet
+     * @param IDataSet       $dataSet
      */
-    public function execute(IConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function execute(IConnection $connection, IDataSet $dataSet)
     {
         $insertOperation = new PHPUnit_Extensions_Database_Operation_Insert;
         $updateOperation = new PHPUnit_Extensions_Database_Operation_Update;

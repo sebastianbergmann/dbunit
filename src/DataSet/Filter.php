@@ -10,7 +10,6 @@
 
 namespace PHPUnit\DbUnit\DataSet;
 
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
 use PHPUnit_Extensions_Database_DataSet_ITable;
 use PHPUnit_Extensions_Database_DataSet_ITableIterator;
 use PHPUnit_Extensions_Database_DataSet_TableFilter;
@@ -23,7 +22,7 @@ class Filter extends AbstractDataSet
 {
     /**
      * The dataset being decorated.
-     * @var PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @var IDataSet
      */
     protected $originalDataSet;
 
@@ -59,10 +58,10 @@ class Filter extends AbstractDataSet
      * would like to exclude a full table set the value of the table's entry
      * to the special string '*'.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet
+     * @param IDataSet $originalDataSet
      * @param array $excludeTables @deprecated use set* methods instead.
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $originalDataSet, array $excludeTables = [])
+    public function __construct(IDataSet $originalDataSet, array $excludeTables = [])
     {
         $this->originalDataSet = $originalDataSet;
 

@@ -8,13 +8,14 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\Database\IConnection;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 
 /**
  * This class represents a null database operation.
  */
 class PHPUnit_Extensions_Database_Operation_Null implements PHPUnit_Extensions_Database_Operation_IDatabaseOperation
 {
-    public function execute(IConnection $connection, PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function execute(IConnection $connection, IDataSet $dataSet)
     {
         /* do nothing */
     }

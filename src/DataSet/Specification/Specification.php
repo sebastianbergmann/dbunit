@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit\DataSet\Specification;
 
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 
 /**
  * Provides an interface for creating data sets from data set spec strings.
@@ -21,7 +21,7 @@ interface Specification
      * Creates a data set from a data set spec string.
      *
      * @param  string $dataSetSpec
-     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @return IDataSet
      */
     public function getDataSet($dataSetSpec);
 }

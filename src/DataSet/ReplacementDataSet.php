@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 use PHPUnit\DbUnit\DataSet\AbstractDataSet;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 
 /**
  * Allows for replacing arbitrary values or portions of values with new data.
@@ -17,7 +18,7 @@ use PHPUnit\DbUnit\DataSet\AbstractDataSet;
 class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends AbstractDataSet
 {
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @var IDataSet
      */
     protected $dataSet;
 
@@ -40,7 +41,7 @@ class PHPUnit_Extensions_Database_DataSet_ReplacementDataSet extends AbstractDat
      * @param string $enclosure
      * @param string $escape
      */
-    public function __construct(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet, array $fullReplacements = [], array $subStrReplacements = [])
+    public function __construct(IDataSet $dataSet, array $fullReplacements = [], array $subStrReplacements = [])
     {
         $this->dataSet            = $dataSet;
         $this->fullReplacements   = $fullReplacements;

@@ -12,7 +12,7 @@ namespace PHPUnit\DbUnit\DataSet\Specification;
 
 use PHPUnit\DbUnit\Database\DefaultConnection;
 use PHPUnit\DbUnit\IDatabaseListConsumer;
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 use ReflectionClass;
 
 /**
@@ -58,7 +58,7 @@ class Table implements Specification, IDatabaseListConsumer
      * Creates a DB Data Set from a data set spec.
      *
      * @param  string $dataSetSpec
-     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @return IDataSet
      */
     public function getDataSet($dataSetSpec)
     {

@@ -10,7 +10,7 @@
 
 namespace PHPUnit\DbUnit;
 
-use PHPUnit_Extensions_Database_DataSet_IDataSet;
+use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\Database\IConnection;
 use PHPUnit_Extensions_Database_Operation_Factory;
 use PHPUnit_Extensions_Database_Operation_IDatabaseOperation;
@@ -31,7 +31,7 @@ abstract class AbstractTester implements ITester
     protected $tearDownOperation;
 
     /**
-     * @var PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @var IDataSet
      */
     protected $dataSet;
 
@@ -62,7 +62,7 @@ abstract class AbstractTester implements ITester
     /**
      * Returns the test dataset.
      *
-     * @return PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @return IDataSet
      */
     public function getDataSet()
     {
@@ -88,9 +88,9 @@ abstract class AbstractTester implements ITester
     /**
      * Sets the test dataset to use.
      *
-     * @param PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet
+     * @param IDataSet $dataSet
      */
-    public function setDataSet(PHPUnit_Extensions_Database_DataSet_IDataSet $dataSet)
+    public function setDataSet(IDataSet $dataSet)
     {
         $this->dataSet = $dataSet;
     }
