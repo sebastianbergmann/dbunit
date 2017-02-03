@@ -19,7 +19,6 @@
     "support": {
         "issues": "https://github.com/sebastianbergmann/dbunit/issues"
     },
-    "minimum-stability": "dev",
     "require": {
         "php": "^7.0",
         "phpunit/phpunit": "^6.0",
