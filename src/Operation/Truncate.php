@@ -59,6 +59,7 @@ class Truncate implements Operation
     private function disableForeignKeyChecksForMysql(Connection $connection)
     {
         if ($this->isMysql($connection)) {
+            $connection->getConnection()->query('SET @PHPUNIT_OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS');
             $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS = 0');
         }
     }
@@ -66,7 +67,7 @@ class Truncate implements Operation
     private function enableForeignKeyChecksForMysql(Connection $connection)
     {
         if ($this->isMysql($connection)) {
-            $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS = 1');
+            $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS=@PHPUNIT_OLD_FOREIGN_KEY_CHECKS');
         }
     }
 
