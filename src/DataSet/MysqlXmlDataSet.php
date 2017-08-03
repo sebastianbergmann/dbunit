@@ -55,6 +55,16 @@ class MysqlXmlDataSet extends AbstractXmlDataSet
 
                 foreach ($tableColumns[$tableName] as $columnName) {
                     $fields = $rowElement->xpath('./field[@name="' . $columnName . '"]');
+                    if (!isset($fields[0])) {
+                        throw new RuntimeException(
+                            sprintf(
+                                '%s column doesn\'t exist in current row for table %s',
+                                $columnName,
+                                $tableName
+                            )
+                        );
+                    }
+
                     $column = $fields[0];
                     $attr   = $column->attributes('http://www.w3.org/2001/XMLSchema-instance');
 
