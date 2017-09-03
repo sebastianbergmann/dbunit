@@ -214,7 +214,10 @@ class AbstractTable implements ITable
                 $value = 'NULL';
             }
 
-            $rowString .= '| ' . str_pad(substr($value, 0, 20), 20, ' ', STR_PAD_BOTH) . ' ';
+            $value_str = mb_substr($value, 0, 20);
+            // make str_pad act in multibyte manner
+            $correction = strlen($value_str) - mb_strlen($value_str);
+            $rowString .= '| ' . str_pad($value_str, 20 + $correction, ' ', STR_PAD_BOTH) . ' ';
         }
 
         return $rowString . "|\n";
