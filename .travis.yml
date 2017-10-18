@@ -11,6 +11,9 @@ php:
   - 7.2snapshot
   - master
 
+services:
+  - mysql
+
 env:
   matrix:
     - DEPENDENCIES="high"
@@ -21,13 +24,14 @@ env:
 before_install:
   - composer self-update
   - composer clear-cache
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS dbunit;'
 
 install:
   - if [[ "$DEPENDENCIES" = 'high' ]]; then travis_retry composer update $DEFAULT_COMPOSER_FLAGS; fi
   - if [[ "$DEPENDENCIES" = 'low' ]]; then travis_retry composer update $DEFAULT_COMPOSER_FLAGS --prefer-lowest; fi
 
 script:
-  - ./vendor/bin/phpunit
+  - ./vendor/bin/phpunit --configuration phpunit-travis.xml
 
 notifications:
   email: false
