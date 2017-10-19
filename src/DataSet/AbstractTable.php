@@ -166,7 +166,8 @@ class AbstractTable implements ITable
     {
         $columns = $this->getTableMetaData()->getColumns();
         $count   = \count($columns);
-        // if count less than 0 (when table is empty), then set count to one
+
+        // if count less than 0 (when table is empty), then set count to 1
         $count         = $count >= 1 ? $count : 1;
         $lineSeperator = \str_repeat('+----------------------', $count) . "+\n";
         $lineLength    = \strlen($lineSeperator) - 1;
@@ -215,15 +216,17 @@ class AbstractTable implements ITable
         $rowString = '';
 
         foreach ($row as $value) {
-            if (\is_null($value)) {
+            if (null === $value) {
                 $value = 'NULL';
             }
 
             $value_str = \mb_substr($value, 0, 20);
+
             // make str_pad act in multibyte manner
             $correction = \strlen($value_str) - \mb_strlen($value_str);
             $rowString .= '| ' . \str_pad($value_str, 20 + $correction, ' ', STR_PAD_BOTH) . ' ';
         }
+
         /** @see https://github.com/sebastianbergmann/dbunit/issues/195 */
         $rowString = !empty($row) ? $rowString . "|\n" : '';
 
