@@ -55,7 +55,7 @@ class TableFilter extends AbstractTable
      */
     public function getValue($row, $column)
     {
-        if (in_array($column, $this->getTableMetaData()->getColumns())) {
+        if (\in_array($column, $this->getTableMetaData()->getColumns())) {
             return $this->originalTable->getValue($row, $column);
         } else {
             throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");

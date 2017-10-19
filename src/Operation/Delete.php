@@ -27,7 +27,7 @@ class Delete extends RowBased
     {
         $keys = $databaseTableMetaData->getPrimaryKeys();
 
-        $whereStatement = 'WHERE ' . implode(' AND ', $this->buildPreparedColumnArray($keys, $connection));
+        $whereStatement = 'WHERE ' . \implode(' AND ', $this->buildPreparedColumnArray($keys, $connection));
 
         $query = "
             DELETE FROM {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}

@@ -42,7 +42,7 @@ class DefaultConnection implements Connection
     public function __construct(PDO $connection, $schema = '')
     {
         $this->connection = $connection;
-        $this->metaData = AbstractMetadata::createMetaData($connection, $schema);
+        $this->metaData   = AbstractMetadata::createMetaData($connection, $schema);
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

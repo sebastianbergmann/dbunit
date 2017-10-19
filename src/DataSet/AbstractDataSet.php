@@ -98,11 +98,11 @@ abstract class AbstractDataSet implements IDataSet
      */
     public function matches(IDataSet $other)
     {
-        $thisTableNames = $this->getTableNames();
+        $thisTableNames  = $this->getTableNames();
         $otherTableNames = $other->getTableNames();
 
-        sort($thisTableNames);
-        sort($otherTableNames);
+        \sort($thisTableNames);
+        \sort($otherTableNames);
 
         if ($thisTableNames != $otherTableNames) {
             return false;

@@ -35,46 +35,46 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
 
         $table1->addRow([
             'table1_id' => 1,
-            'column1' => 'tgfahgasdf',
-            'column2' => 200,
-            'column3' => 34.64,
-            'column4' => 'yghkf;a  hahfg8ja h;'
+            'column1'   => 'tgfahgasdf',
+            'column2'   => 200,
+            'column3'   => 34.64,
+            'column4'   => 'yghkf;a  hahfg8ja h;'
         ]);
         $table1->addRow([
             'table1_id' => 2,
-            'column1' => 'hk;afg',
-            'column2' => 654,
-            'column3' => 46.54,
-            'column4' => '24rwehhads'
+            'column1'   => 'hk;afg',
+            'column2'   => 654,
+            'column3'   => 46.54,
+            'column4'   => '24rwehhads'
         ]);
         $table1->addRow([
             'table1_id' => 3,
-            'column1' => 'ha;gyt',
-            'column2' => 462,
-            'column3' => 1654.4,
-            'column4' => 'asfgklg'
+            'column1'   => 'ha;gyt',
+            'column2'   => 462,
+            'column3'   => 1654.4,
+            'column4'   => 'asfgklg'
         ]);
 
         $table2->addRow([
             'table2_id' => 1,
-            'column5' => 'fhah',
-            'column6' => 456,
-            'column7' => 46.5,
-            'column8' => 'fsdbghfdas'
+            'column5'   => 'fhah',
+            'column6'   => 456,
+            'column7'   => 46.5,
+            'column8'   => 'fsdbghfdas'
         ]);
         $table2->addRow([
             'table2_id' => 2,
-            'column5' => 'asdhfoih',
-            'column6' => 654,
-            'column7' => null,
-            'column8' => '43asdfhgj'
+            'column5'   => 'asdhfoih',
+            'column6'   => 654,
+            'column7'   => null,
+            'column8'   => '43asdfhgj'
         ]);
         $table2->addRow([
             'table2_id' => 3,
-            'column5' => 'ajsdlkfguitah',
-            'column6' => 654,
-            'column7' => null,
-            'column8' => null
+            'column5'   => 'ajsdlkfguitah',
+            'column6'   => 654,
+            'column7'   => null,
+            'column8'   => null
         ]);
 
         $this->expectedDataSet = new DefaultDataSet([$table1, $table2]);
@@ -82,8 +82,8 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
 
     public function testFlatXmlDataSet()
     {
-        $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $xmlFlatDataSet = new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/FlatXmlDataSet.xml');
+        $constraint     = new DataSetIsEqual($this->expectedDataSet);
+        $xmlFlatDataSet = new FlatXmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/FlatXmlDataSet.xml');
 
         self::assertThat($xmlFlatDataSet, $constraint);
     }
@@ -91,15 +91,15 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
     public function testXmlDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $xmlDataSet = new XmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/XmlDataSet.xml');
+        $xmlDataSet = new XmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/XmlDataSet.xml');
 
         self::assertThat($xmlDataSet, $constraint);
     }
 
     public function testMysqlXmlDataSet()
     {
-        $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $mysqlXmlDataSet = new MysqlXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/MysqlXmlDataSet.xml');
+        $constraint      = new DataSetIsEqual($this->expectedDataSet);
+        $mysqlXmlDataSet = new MysqlXmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/MysqlXmlDataSet.xml');
 
         self::assertThat($mysqlXmlDataSet, $constraint);
     }

@@ -17,17 +17,17 @@ use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\Operation\Truncate;
 use PHPUnit\DbUnit\TestCase;
 
-require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
+require_once \dirname(\dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
 
 class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 {
     protected function setUp()
     {
-        if (!extension_loaded('pdo_mysql')) {
+        if (!\extension_loaded('pdo_mysql')) {
             $this->markTestSkipped('pdo_mysql is required to run this test.');
         }
 
-        if (!defined('PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_DSN')) {
+        if (!\defined('PHPUNIT_TESTSUITE_EXTENSION_DATABASE_MYSQL_DSN')) {
             $this->markTestSkipped('No MySQL server configured for this test.');
         }
 
@@ -41,7 +41,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 
     public function getDataSet()
     {
-        return new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/OperationsMySQLTestFixture.xml');
+        return new FlatXmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/OperationsMySQLTestFixture.xml');
     }
 
     /**
@@ -74,7 +74,7 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
     {
         $compositeDataset = new CompositeDataSet();
 
-        $dataset = $this->createXMLDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/TruncateCompositeTest.xml');
+        $dataset = $this->createXMLDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/TruncateCompositeTest.xml');
         $compositeDataset->addDataSet($dataset);
 
         return $compositeDataset;

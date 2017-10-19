@@ -20,15 +20,15 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function setUp()
     {
         $this->expectedDataSet = new FlatXmlDataSet(
-            dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestFixture.xml'
+            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestFixture.xml'
         );
     }
 
     public function testDeprecatedFilteredDataSetConstructor()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet = new FlatXmlDataSet(
-            dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
+        $dataSet    = new FlatXmlDataSet(
+            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
         $filteredDataSet = new Filter($dataSet, [
@@ -43,8 +43,8 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testExcludeFilteredDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet = new FlatXmlDataSet(
-            dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
+        $dataSet    = new FlatXmlDataSet(
+            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
         $filteredDataSet = new Filter($dataSet);
@@ -59,8 +59,8 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testIncludeFilteredDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet = new FlatXmlDataSet(
-            dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
+        $dataSet    = new FlatXmlDataSet(
+            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
         $filteredDataSet = new Filter($dataSet);
@@ -75,8 +75,8 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
     public function testIncludeExcludeMixedDataSet()
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $dataSet = new FlatXmlDataSet(
-            dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
+        $dataSet    = new FlatXmlDataSet(
+            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
         $filteredDataSet = new Filter($dataSet);

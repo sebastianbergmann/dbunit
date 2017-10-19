@@ -38,7 +38,7 @@ class DefaultTableIterator implements ITableIterator
      */
     public function __construct(array $tables, $reverse = false)
     {
-        $this->tables = $tables;
+        $this->tables  = $tables;
         $this->reverse = $reverse;
 
         $this->rewind();
@@ -71,7 +71,7 @@ class DefaultTableIterator implements ITableIterator
      */
     public function current()
     {
-        return current($this->tables);
+        return \current($this->tables);
     }
 
     /**
@@ -90,9 +90,9 @@ class DefaultTableIterator implements ITableIterator
     public function next()
     {
         if ($this->reverse) {
-            prev($this->tables);
+            \prev($this->tables);
         } else {
-            next($this->tables);
+            \next($this->tables);
         }
     }
 
@@ -102,9 +102,9 @@ class DefaultTableIterator implements ITableIterator
     public function rewind()
     {
         if ($this->reverse) {
-            end($this->tables);
+            \end($this->tables);
         } else {
-            reset($this->tables);
+            \reset($this->tables);
         }
     }
 

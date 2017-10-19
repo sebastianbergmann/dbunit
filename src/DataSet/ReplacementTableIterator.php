@@ -41,8 +41,8 @@ class ReplacementTableIterator implements OuterIterator, ITableIterator
      */
     public function __construct(ITableIterator $innerIterator, array $fullReplacements = [], array $subStrReplacements = [])
     {
-        $this->innerIterator = $innerIterator;
-        $this->fullReplacements = $fullReplacements;
+        $this->innerIterator      = $innerIterator;
+        $this->fullReplacements   = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 

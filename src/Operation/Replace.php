@@ -26,7 +26,7 @@ class Replace extends RowBased
     {
         $keys = $databaseTableMetaData->getPrimaryKeys();
 
-        $whereStatement = 'WHERE ' . implode(' AND ', $this->buildPreparedColumnArray($keys, $connection));
+        $whereStatement = 'WHERE ' . \implode(' AND ', $this->buildPreparedColumnArray($keys, $connection));
 
         $query = "
             SELECT COUNT(*)
@@ -74,22 +74,22 @@ class Replace extends RowBased
 
             for ($i = 0; $i < $rowCount; $i++) {
                 $selectArgs = $this->buildOperationArguments($databaseTableMetaData, $table, $i);
-                $query = $selectQuery;
-                $args = $selectArgs;
+                $query      = $selectQuery;
+                $args       = $selectArgs;
 
                 try {
                     $selectStatement->execute($selectArgs);
 
                     if ($selectStatement->fetchColumn(0) > 0) {
                         $updateArgs = $updateOperation->buildOperationArguments($databaseTableMetaData, $table, $i);
-                        $query = $updateQuery;
-                        $args = $updateArgs;
+                        $query      = $updateQuery;
+                        $args       = $updateArgs;
 
                         $updateStatement->execute($updateArgs);
                     } else {
                         $insertArgs = $insertOperation->buildOperationArguments($databaseTableMetaData, $table, $i);
-                        $query = $insertQuery;
-                        $args = $insertArgs;
+                        $query      = $insertQuery;
+                        $args       = $insertArgs;
 
                         $insertStatement->execute($insertArgs);
                     }

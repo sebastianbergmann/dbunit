@@ -46,7 +46,7 @@ class XmlDataSet extends AbstractXmlDataSet
                     throw new RuntimeException("Missing <column> elements for table $tableName. Add one or more <column> elements to the <table> element.");
                 }
 
-                if (!in_array($columnName, $tableColumns[$tableName])) {
+                if (!\in_array($columnName, $tableColumns[$tableName])) {
                     $tableColumns[$tableName][] = $columnName;
                 }
 
@@ -54,9 +54,9 @@ class XmlDataSet extends AbstractXmlDataSet
             }
 
             foreach ($tableElement->xpath('./row') as $rowElement) {
-                $rowValues = [];
-                $index = 0;
-                $numOfTableInstanceColumns = count($tableInstanceColumns);
+                $rowValues                 = [];
+                $index                     = 0;
+                $numOfTableInstanceColumns = \count($tableInstanceColumns);
 
                 foreach ($rowElement->children() as $columnValue) {
                     if ($index >= $numOfTableInstanceColumns) {

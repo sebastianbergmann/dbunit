@@ -39,8 +39,8 @@ class Csv implements Specification
     public function getDataSet($dataSetSpec)
     {
         $csvDataSetArgs = $this->getCsvOptions($dataSetSpec);
-        $csvDataSetRfl = new ReflectionClass(CsvDataSet::class);
-        $csvDataSet = $csvDataSetRfl->newInstanceArgs($csvDataSetArgs);
+        $csvDataSetRfl  = new ReflectionClass(CsvDataSet::class);
+        $csvDataSet     = $csvDataSetRfl->newInstanceArgs($csvDataSetArgs);
 
         foreach ($this->getTableFileMap($dataSetSpec) as $tableName => $file) {
             $csvDataSet->addTable($tableName, $file);
@@ -62,9 +62,9 @@ class Csv implements Specification
      */
     protected function getCsvOptions($dataSetSpec)
     {
-        list($csvOptStr) = explode('|', $dataSetSpec, 2);
+        list($csvOptStr) = \explode('|', $dataSetSpec, 2);
 
-        return str_split($csvOptStr);
+        return \str_split($csvOptStr);
     }
 
     /**
@@ -82,9 +82,9 @@ class Csv implements Specification
     {
         $tables = [];
 
-        foreach (explode(',', $dataSetSpec) as $csvfile) {
-            list($tableName, $file) = explode(':', $csvfile, 2);
-            $tables[$tableName] = $file;
+        foreach (\explode(',', $dataSetSpec) as $csvfile) {
+            list($tableName, $file) = \explode(':', $csvfile, 2);
+            $tables[$tableName]     = $file;
         }
 
         return $tables;

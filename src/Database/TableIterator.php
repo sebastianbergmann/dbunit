@@ -44,8 +44,8 @@ class TableIterator implements ITableIterator
     public function __construct($tableNames, DataSet $dataSet, $reverse = false)
     {
         $this->tableNames = $tableNames;
-        $this->dataSet = $dataSet;
-        $this->reverse = $reverse;
+        $this->dataSet    = $dataSet;
+        $this->reverse    = $reverse;
 
         $this->rewind();
     }
@@ -77,7 +77,7 @@ class TableIterator implements ITableIterator
      */
     public function current()
     {
-        $tableName = current($this->tableNames);
+        $tableName = \current($this->tableNames);
 
         return $this->dataSet->getTable($tableName);
     }
@@ -98,9 +98,9 @@ class TableIterator implements ITableIterator
     public function next()
     {
         if ($this->reverse) {
-            prev($this->tableNames);
+            \prev($this->tableNames);
         } else {
-            next($this->tableNames);
+            \next($this->tableNames);
         }
     }
 
@@ -110,9 +110,9 @@ class TableIterator implements ITableIterator
     public function rewind()
     {
         if ($this->reverse) {
-            end($this->tableNames);
+            \end($this->tableNames);
         } else {
-            reset($this->tableNames);
+            \reset($this->tableNames);
         }
     }
 
@@ -123,6 +123,6 @@ class TableIterator implements ITableIterator
      */
     public function valid()
     {
-        return (current($this->tableNames) !== false);
+        return (\current($this->tableNames) !== false);
     }
 }

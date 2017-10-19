@@ -35,8 +35,8 @@ class ResultSetTable extends AbstractTable
     {
         $this->data = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 
-        if (count($this->data)) {
-            $columns = array_keys($this->data[0]);
+        if (\count($this->data)) {
+            $columns = \array_keys($this->data[0]);
         } else {
             $columns = [];
         }

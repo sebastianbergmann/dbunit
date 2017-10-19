@@ -43,8 +43,8 @@ class ReplacementDataSet extends AbstractDataSet
      */
     public function __construct(IDataSet $dataSet, array $fullReplacements = [], array $subStrReplacements = [])
     {
-        $this->dataSet = $dataSet;
-        $this->fullReplacements = $fullReplacements;
+        $this->dataSet            = $dataSet;
+        $this->fullReplacements   = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 

@@ -34,7 +34,7 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
 
     protected function getDataSet()
     {
-        return $this->createFlatXMLDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/QueryDataSetTest.xml');
+        return $this->createFlatXMLDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/QueryDataSetTest.xml');
     }
 
     public function setUp()

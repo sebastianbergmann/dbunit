@@ -28,19 +28,19 @@ class FlatXmlDataSet extends AbstractXmlDataSet
 
             if (!isset($tableColumns[$tableName])) {
                 $tableColumns[$tableName] = [];
-                $tableValues[$tableName] = [];
+                $tableValues[$tableName]  = [];
             }
 
             $values = [];
             foreach ($row->attributes() as $name => $value) {
-                if (!in_array($name, $tableColumns[$tableName])) {
+                if (!\in_array($name, $tableColumns[$tableName])) {
                     $tableColumns[$tableName][] = $name;
                 }
 
                 $values[$name] = $value;
             }
 
-            if (count($values)) {
+            if (\count($values)) {
                 $tableValues[$tableName][] = $values;
             }
         }

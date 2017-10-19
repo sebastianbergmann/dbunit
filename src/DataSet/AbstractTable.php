@@ -64,7 +64,7 @@ class AbstractTable implements ITable
      */
     public function getRowCount()
     {
-        return count($this->data);
+        return \count($this->data);
     }
 
     /**
@@ -82,7 +82,7 @@ class AbstractTable implements ITable
 
             return ($value instanceof SimpleXMLElement) ? (string) $value : $value;
         } else {
-            if (!in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
+            if (!\in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
                 throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
             } else {
                 return;
@@ -117,7 +117,7 @@ class AbstractTable implements ITable
      */
     public function matches(ITable $other)
     {
-        $thisMetaData = $this->getTableMetaData();
+        $thisMetaData  = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();
 
         if (!$thisMetaData->matches($otherMetaData) ||
@@ -126,14 +126,14 @@ class AbstractTable implements ITable
             return false;
         }
 
-        $columns = $thisMetaData->getColumns();
+        $columns  = $thisMetaData->getColumns();
         $rowCount = $this->getRowCount();
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                $thisValue = $this->getValue($i, $columnName);
+                $thisValue  = $this->getValue($i, $columnName);
                 $otherValue = $other->getValue($i, $columnName);
-                if (is_numeric($thisValue) && is_numeric($otherValue)) {
+                if (\is_numeric($thisValue) && \is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
                         $this->other = $other;
 
@@ -159,21 +159,21 @@ class AbstractTable implements ITable
      */
     public function assertContainsRow(array $row)
     {
-        return in_array($row, $this->data);
+        return \in_array($row, $this->data);
     }
 
     public function __toString()
     {
         $columns = $this->getTableMetaData()->getColumns();
-        $count = count($columns);
+        $count   = \count($columns);
         // if count less than 0 (when table is empty), then set count to one
-        $count = $count >= 1 ? $count : 1;
-        $lineSeperator = str_repeat('+----------------------', $count) . "+\n";
-        $lineLength = strlen($lineSeperator) - 1;
+        $count         = $count >= 1 ? $count : 1;
+        $lineSeperator = \str_repeat('+----------------------', $count) . "+\n";
+        $lineLength    = \strlen($lineSeperator) - 1;
 
         $tableString = $lineSeperator;
-        $tblName = $this->getTableMetaData()->getTableName();
-        $tableString .= '| ' . str_pad($tblName, $lineLength - 4, ' ',
+        $tblName     = $this->getTableMetaData()->getTableName();
+        $tableString .= '| ' . \str_pad($tblName, $lineLength - 4, ' ',
                 STR_PAD_RIGHT) . " |\n";
         $tableString .= $lineSeperator;
         $rows = $this->rowToString($columns);
@@ -188,10 +188,10 @@ class AbstractTable implements ITable
                 if ($this->other) {
                     try {
                         if ($this->getValue($i, $columnName) != $this->other->getValue($i, $columnName)) {
-                            $values[] = sprintf(
+                            $values[] = \sprintf(
                                 '%s != actual %s',
-                                var_export($this->getValue($i, $columnName), true),
-                                var_export($this->other->getValue($i, $columnName), true)
+                                \var_export($this->getValue($i, $columnName), true),
+                                \var_export($this->other->getValue($i, $columnName), true)
                             );
                         } else {
                             $values[] = $this->getValue($i, $columnName);
@@ -215,14 +215,14 @@ class AbstractTable implements ITable
         $rowString = '';
 
         foreach ($row as $value) {
-            if (is_null($value)) {
+            if (\is_null($value)) {
                 $value = 'NULL';
             }
 
-            $value_str = mb_substr($value, 0, 20);
+            $value_str = \mb_substr($value, 0, 20);
             // make str_pad act in multibyte manner
-            $correction = strlen($value_str) - mb_strlen($value_str);
-            $rowString .= '| ' . str_pad($value_str, 20 + $correction, ' ', STR_PAD_BOTH) . ' ';
+            $correction = \strlen($value_str) - \mb_strlen($value_str);
+            $rowString .= '| ' . \str_pad($value_str, 20 + $correction, ' ', STR_PAD_BOTH) . ' ';
         }
         /** @see https://github.com/sebastianbergmann/dbunit/issues/195 */
         $rowString = !empty($row) ? $rowString . "|\n" : '';

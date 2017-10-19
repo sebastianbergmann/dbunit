@@ -90,7 +90,7 @@ class SqlSrv extends AbstractMetadata
      */
     public function getTablePrimaryKeys($tableName)
     {
-        $query = "EXEC sp_statistics '$tableName'";
+        $query     = "EXEC sp_statistics '$tableName'";
         $statement = $this->pdo->prepare($query);
         $statement->execute();
         $statement->setFetchMode(PDO::FETCH_ASSOC);

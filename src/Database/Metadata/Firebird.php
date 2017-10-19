@@ -103,7 +103,7 @@ class Firebird extends AbstractMetadata
     protected function loadColumnInfo($tableName)
     {
         $this->columns[$tableName] = [];
-        $this->keys[$tableName] = [];
+        $this->keys[$tableName]    = [];
 
         $columnQuery = '
             SELECT DISTINCT

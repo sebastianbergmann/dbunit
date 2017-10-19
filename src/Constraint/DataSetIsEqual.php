@@ -83,7 +83,7 @@ class DataSetIsEqual extends Constraint
      */
     public function toString()
     {
-        return sprintf(
+        return \sprintf(
             'is equal to expected %s', $this->value->__toString()
         );
     }

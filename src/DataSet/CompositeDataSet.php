@@ -49,7 +49,7 @@ class CompositeDataSet extends AbstractDataSet
     public function addDataSet(IDataSet $dataSet)
     {
         foreach ($dataSet->getTableNames() as $tableName) {
-            if (!in_array($tableName, $this->getTableNames())) {
+            if (!\in_array($tableName, $this->getTableNames())) {
                 $this->motherDataSet->addTable($dataSet->getTable($tableName));
             } else {
                 $other = $dataSet->getTable($tableName);

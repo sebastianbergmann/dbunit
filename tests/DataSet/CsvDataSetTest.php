@@ -32,54 +32,54 @@ class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\Test
 
         $table1->addRow([
             'table1_id' => 1,
-            'column1' => 'tgfahgasdf',
-            'column2' => 200,
-            'column3' => 34.64,
-            'column4' => 'yghkf;a  hahfg8ja h;'
+            'column1'   => 'tgfahgasdf',
+            'column2'   => 200,
+            'column3'   => 34.64,
+            'column4'   => 'yghkf;a  hahfg8ja h;'
         ]);
         $table1->addRow([
             'table1_id' => 2,
-            'column1' => 'hk;afg',
-            'column2' => 654,
-            'column3' => 46.54,
-            'column4' => '24rwehhads'
+            'column1'   => 'hk;afg',
+            'column2'   => 654,
+            'column3'   => 46.54,
+            'column4'   => '24rwehhads'
         ]);
         $table1->addRow([
             'table1_id' => 3,
-            'column1' => 'ha;gyt',
-            'column2' => 462,
-            'column3' => 1654.4,
-            'column4' => 'asfgklg'
+            'column1'   => 'ha;gyt',
+            'column2'   => 462,
+            'column3'   => 1654.4,
+            'column4'   => 'asfgklg'
         ]);
 
         $table2->addRow([
             'table2_id' => 1,
-            'column5' => 'fhah',
-            'column6' => 456,
-            'column7' => 46.5,
-            'column8' => 'fsdb, ghfdas'
+            'column5'   => 'fhah',
+            'column6'   => 456,
+            'column7'   => 46.5,
+            'column8'   => 'fsdb, ghfdas'
         ]);
         $table2->addRow([
             'table2_id' => 2,
-            'column5' => 'asdhfoih',
-            'column6' => 654,
-            'column7' => 'blah',
-            'column8' => '43asd "fhgj" sfadh'
+            'column5'   => 'asdhfoih',
+            'column6'   => 654,
+            'column7'   => 'blah',
+            'column8'   => '43asd "fhgj" sfadh'
         ]);
         $table2->addRow([
             'table2_id' => 3,
-            'column5' => 'ajsdlkfguitah',
-            'column6' => 654,
-            'column7' => 'blah',
-            'column8' => 'thesethasdl
+            'column5'   => 'ajsdlkfguitah',
+            'column6'   => 654,
+            'column7'   => 'blah',
+            'column8'   => 'thesethasdl
 asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         ]);
 
         $expectedDataSet = new DefaultDataSet([$table1, $table2]);
 
         $csvDataSet = new CsvDataSet();
-        $csvDataSet->addTable('table1', dirname(__FILE__) . '/../_files/CsvDataSets/table1.csv');
-        $csvDataSet->addTable('table2', dirname(__FILE__) . '/../_files/CsvDataSets/table2.csv');
+        $csvDataSet->addTable('table1', \dirname(__FILE__) . '/../_files/CsvDataSets/table1.csv');
+        $csvDataSet->addTable('table2', \dirname(__FILE__) . '/../_files/CsvDataSets/table2.csv');
 
         TestCase::assertDataSetsEqual($expectedDataSet, $csvDataSet);
     }

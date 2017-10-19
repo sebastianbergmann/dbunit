@@ -19,8 +19,8 @@ class Table extends DefaultTableMetadata
 {
     public function __construct($tableName, Metadata $databaseMetaData)
     {
-        $this->tableName = $tableName;
-        $this->columns = $databaseMetaData->getTableColumns($tableName);
+        $this->tableName   = $tableName;
+        $this->columns     = $databaseMetaData->getTableColumns($tableName);
         $this->primaryKeys = $databaseMetaData->getTablePrimaryKeys($tableName);
     }
 }

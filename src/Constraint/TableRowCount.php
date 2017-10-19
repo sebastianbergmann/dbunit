@@ -37,7 +37,7 @@ class TableRowCount extends Constraint
     {
         parent::__construct();
         $this->tableName = $tableName;
-        $this->value = $value;
+        $this->value     = $value;
     }
 
     /**
@@ -62,6 +62,6 @@ class TableRowCount extends Constraint
      */
     public function toString()
     {
-        return sprintf('is equal to expected row count %d', $this->value);
+        return \sprintf('is equal to expected row count %d', $this->value);
     }
 }

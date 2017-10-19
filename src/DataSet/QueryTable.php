@@ -42,9 +42,9 @@ class QueryTable extends AbstractTable
      */
     public function __construct($tableName, $query, Connection $databaseConnection)
     {
-        $this->query = $query;
+        $this->query              = $query;
         $this->databaseConnection = $databaseConnection;
-        $this->tableName = $tableName;
+        $this->tableName          = $tableName;
     }
 
     /**
@@ -128,7 +128,7 @@ class QueryTable extends AbstractTable
     {
         if ($this->data === null) {
             $pdoStatement = $this->databaseConnection->getConnection()->query($this->query);
-            $this->data = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+            $this->data   = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 
@@ -141,12 +141,12 @@ class QueryTable extends AbstractTable
             $columns = [];
             if (isset($this->data[0])) {
                 // get column names from data
-                $columns = array_keys($this->data[0]);
+                $columns = \array_keys($this->data[0]);
             } else {
                 // if no rows found, get column names from database
                 $pdoStatement = $this->databaseConnection->getConnection()->prepare('SELECT column_name FROM information_schema.COLUMNS WHERE table_schema=:schema AND table_name=:table');
                 $pdoStatement->execute([
-                    'table' => $this->tableName,
+                    'table'  => $this->tableName,
                     'schema' => $this->databaseConnection->getSchema()
                 ]);
 

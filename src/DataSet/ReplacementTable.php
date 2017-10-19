@@ -41,8 +41,8 @@ class ReplacementTable implements ITable
      */
     public function __construct(ITable $table, array $fullReplacements = [], array $subStrReplacements = [])
     {
-        $this->table = $table;
-        $this->fullReplacements = $fullReplacements;
+        $this->table              = $table;
+        $this->fullReplacements   = $fullReplacements;
         $this->subStrReplacements = $subStrReplacements;
     }
 
@@ -114,7 +114,7 @@ class ReplacementTable implements ITable
     {
         $row = $this->table->getRow($row);
 
-        return array_map([$this, 'getReplacedValue'], $row);
+        return \array_map([$this, 'getReplacedValue'], $row);
     }
 
     /**
@@ -124,7 +124,7 @@ class ReplacementTable implements ITable
      */
     public function matches(ITable $other)
     {
-        $thisMetaData = $this->getTableMetaData();
+        $thisMetaData  = $this->getTableMetaData();
         $otherMetaData = $other->getTableMetaData();
 
         if (!$thisMetaData->matches($otherMetaData) ||
@@ -133,14 +133,14 @@ class ReplacementTable implements ITable
             return false;
         }
 
-        $columns = $thisMetaData->getColumns();
+        $columns  = $thisMetaData->getColumns();
         $rowCount = $this->getRowCount();
 
         for ($i = 0; $i < $rowCount; $i++) {
             foreach ($columns as $columnName) {
-                $thisValue = $this->getValue($i, $columnName);
+                $thisValue  = $this->getValue($i, $columnName);
                 $otherValue = $other->getValue($i, $columnName);
-                if (is_numeric($thisValue) && is_numeric($otherValue)) {
+                if (\is_numeric($thisValue) && \is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
                         return false;
                     }
@@ -157,11 +157,11 @@ class ReplacementTable implements ITable
     {
         $columns = $this->getTableMetaData()->getColumns();
 
-        $lineSeperator = str_repeat('+----------------------', count($columns)) . "+\n";
-        $lineLength = strlen($lineSeperator) - 1;
+        $lineSeperator = \str_repeat('+----------------------', \count($columns)) . "+\n";
+        $lineLength    = \strlen($lineSeperator) - 1;
 
         $tableString = $lineSeperator;
-        $tableString .= '| ' . str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
+        $tableString .= '| ' . \str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
         $tableString .= $lineSeperator;
         $tableString .= $this->rowToString($columns);
         $tableString .= $lineSeperator;
@@ -187,11 +187,11 @@ class ReplacementTable implements ITable
         $rowString = '';
 
         foreach ($row as $value) {
-            if (is_null($value)) {
+            if (\is_null($value)) {
                 $value = 'NULL';
             }
 
-            $rowString .= '| ' . str_pad(substr($value, 0, 20), 20, ' ', STR_PAD_BOTH) . ' ';
+            $rowString .= '| ' . \str_pad(\substr($value, 0, 20), 20, ' ', STR_PAD_BOTH) . ' ';
         }
 
         return $rowString . "|\n";
@@ -199,10 +199,10 @@ class ReplacementTable implements ITable
 
     protected function getReplacedValue($value)
     {
-        if (is_scalar($value) && array_key_exists((string) $value, $this->fullReplacements)) {
+        if (\is_scalar($value) && \array_key_exists((string) $value, $this->fullReplacements)) {
             return $this->fullReplacements[$value];
-        } elseif (count($this->subStrReplacements) && isset($value)) {
-            return str_replace(array_keys($this->subStrReplacements), array_values($this->subStrReplacements), $value);
+        } elseif (\count($this->subStrReplacements) && isset($value)) {
+            return \str_replace(\array_keys($this->subStrReplacements), \array_values($this->subStrReplacements), $value);
         } else {
             return $value;
         }

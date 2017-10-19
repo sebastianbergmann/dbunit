@@ -68,7 +68,7 @@ class Filter extends AbstractDataSet
 
         $tables = [];
         foreach ($excludeTables as $tableName => $values) {
-            if (is_array($values)) {
+            if (\is_array($values)) {
                 $this->setExcludeColumnsForTable($tableName, $values);
             } elseif ($values == '*') {
                 $tables[] = $tableName;
@@ -91,14 +91,14 @@ class Filter extends AbstractDataSet
     protected function createIterator($reverse = false)
     {
         $original_tables = $this->originalDataSet->getIterator($reverse);
-        $new_tables = [];
+        $new_tables      = [];
 
         foreach ($original_tables as $table) {
             /* @var $table ITable */
             $tableName = $table->getTableMetaData()->getTableName();
 
-            if ((!in_array($tableName, $this->includeTables) && !empty($this->includeTables)) ||
-                in_array($tableName, $this->excludeTables)
+            if ((!\in_array($tableName, $this->includeTables) && !empty($this->includeTables)) ||
+                \in_array($tableName, $this->excludeTables)
             ) {
                 continue;
             } elseif (!empty($this->excludeColumns[$tableName]) || !empty($this->includeColumns[$tableName])) {
@@ -128,7 +128,7 @@ class Filter extends AbstractDataSet
      */
     public function addIncludeTables(array $tables)
     {
-        $this->includeTables = array_unique(array_merge($this->includeTables, $tables));
+        $this->includeTables = \array_unique(\array_merge($this->includeTables, $tables));
     }
 
     /**
@@ -138,7 +138,7 @@ class Filter extends AbstractDataSet
      */
     public function addExcludeTables(array $tables)
     {
-        $this->excludeTables = array_unique(array_merge($this->excludeTables, $tables));
+        $this->excludeTables = \array_unique(\array_merge($this->excludeTables, $tables));
     }
 
     /**

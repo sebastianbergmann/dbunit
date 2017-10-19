@@ -23,10 +23,10 @@ class Update extends RowBased
 
     protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
-        $keys = $databaseTableMetaData->getPrimaryKeys();
-        $columns = $table->getTableMetaData()->getColumns();
-        $whereStatement = 'WHERE ' . implode(' AND ', $this->buildPreparedColumnArray($keys, $connection));
-        $setStatement = 'SET ' . implode(', ', $this->buildPreparedColumnArray($columns, $connection));
+        $keys           = $databaseTableMetaData->getPrimaryKeys();
+        $columns        = $table->getTableMetaData()->getColumns();
+        $whereStatement = 'WHERE ' . \implode(' AND ', $this->buildPreparedColumnArray($keys, $connection));
+        $setStatement   = 'SET ' . \implode(', ', $this->buildPreparedColumnArray($columns, $connection));
 
         $query = "
             UPDATE {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}
@@ -53,7 +53,7 @@ class Update extends RowBased
 
     protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
-        if (count($databaseTableMetaData->getPrimaryKeys())) {
+        if (\count($databaseTableMetaData->getPrimaryKeys())) {
             return true;
         }
 

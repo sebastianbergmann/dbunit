@@ -19,13 +19,13 @@ use PHPUnit\DbUnit\DataSet\ITableMetadata;
 use PHPUnit\DbUnit\Operation\RowBased;
 use PHPUnit\DbUnit\TestCase;
 
-require_once dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
+require_once \dirname(\dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
 
 class Extensions_Database_Operation_RowBasedTest extends TestCase
 {
     protected function setUp()
     {
-        if (!extension_loaded('pdo_sqlite')) {
+        if (!\extension_loaded('pdo_sqlite')) {
             $this->markTestSkipped('PDO/SQLite is required to run this test.');
         }
 
@@ -67,18 +67,18 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
 
         $table1->addRow([
             'table1_id' => 1,
-            'column1' => 'foo',
-            'column2' => 42,
-            'column3' => 4.2,
-            'column4' => 'bar'
+            'column1'   => 'foo',
+            'column2'   => 42,
+            'column3'   => 4.2,
+            'column4'   => 'bar'
         ]);
 
         $table1->addRow([
             'table1_id' => 2,
-            'column1' => 'qwerty',
-            'column2' => 23,
-            'column3' => 2.3,
-            'column4' => 'dvorak'
+            'column1'   => 'qwerty',
+            'column2'   => 23,
+            'column3'   => 2.3,
+            'column4'   => 'dvorak'
         ]);
 
         $table2 = new DefaultTable(
@@ -87,10 +87,10 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
 
         $table2->addRow([
             'table2_id' => 1,
-            'column5' => 'fdyhkn',
-            'column6' => 64,
-            'column7' => 4568.64,
-            'column8' => 'hkladfg'
+            'column5'   => 'fdyhkn',
+            'column6'   => 64,
+            'column7'   => 4568.64,
+            'column8'   => 'hkladfg'
         ]);
 
         $dataSet = new DefaultDataSet([$table1, $table2]);
@@ -139,7 +139,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
         /* @var $mockOperation RowBased */
         $mockOperation->execute($connection, $dataSet);
 
-        $this->assertDataSetsEqual(new FlatXmlDataSet(dirname(__FILE__) . '/../_files/XmlDataSets/RowBasedExecute.xml'), $connection->createDataSet(['table1', 'table2']));
+        $this->assertDataSetsEqual(new FlatXmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/RowBasedExecute.xml'), $connection->createDataSet(['table1', 'table2']));
     }
 
     public function testExecuteWithBadQuery()

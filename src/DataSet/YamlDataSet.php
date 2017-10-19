@@ -56,11 +56,11 @@ class YamlDataSet extends AbstractDataSet
                 $rows = [];
             }
 
-            if (!is_array($rows)) {
+            if (!\is_array($rows)) {
                 continue;
             }
 
-            if (!array_key_exists($tableName, $this->tables)) {
+            if (!\array_key_exists($tableName, $this->tables)) {
                 $columns = $this->getColumns($rows);
 
                 $tableMetaData = new DefaultTableMetadata(
@@ -93,10 +93,10 @@ class YamlDataSet extends AbstractDataSet
         $columns = [];
 
         foreach ($rows as $row) {
-            $columns = array_merge($columns, array_keys($row));
+            $columns = \array_merge($columns, \array_keys($row));
         }
 
-        return array_values(array_unique($columns));
+        return \array_values(\array_unique($columns));
     }
 
     /**

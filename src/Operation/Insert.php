@@ -23,17 +23,17 @@ class Insert extends RowBased
 
     protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
-        $columnCount = count($table->getTableMetaData()->getColumns());
+        $columnCount = \count($table->getTableMetaData()->getColumns());
 
         if ($columnCount > 0) {
-            $placeHolders = implode(', ', array_fill(0, $columnCount, '?'));
+            $placeHolders = \implode(', ', \array_fill(0, $columnCount, '?'));
 
             $columns = '';
             foreach ($table->getTableMetaData()->getColumns() as $column) {
                 $columns .= $connection->quoteSchemaObject($column) . ', ';
             }
 
-            $columns = substr($columns, 0, -2);
+            $columns = \substr($columns, 0, -2);
 
             $query = "
                 INSERT INTO {$connection->quoteSchemaObject($table->getTableMetaData()->getTableName())}
@@ -60,7 +60,7 @@ class Insert extends RowBased
 
     protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
     {
-        if (count($databaseTableMetaData->getPrimaryKeys())) {
+        if (\count($databaseTableMetaData->getPrimaryKeys())) {
             return true;
         }
 
