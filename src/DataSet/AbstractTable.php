@@ -165,14 +165,19 @@ class AbstractTable implements ITable
     public function __toString()
     {
         $columns = $this->getTableMetaData()->getColumns();
-        $lineSeperator = str_repeat('+----------------------', count($columns)) . "+\n";
+        $count = count($columns);
+        // if count less than 0 (when table is empty), then set count to one
+        $count = $count >= 1 ? $count : 1;
+        $lineSeperator = str_repeat('+----------------------', $count) . "+\n";
         $lineLength = strlen($lineSeperator) - 1;
 
         $tableString = $lineSeperator;
-        $tableString .= '| ' . str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
+        $tblName = $this->getTableMetaData()->getTableName();
+        $tableString .= '| ' . str_pad($tblName, $lineLength - 4, ' ',
+                STR_PAD_RIGHT) . " |\n";
         $tableString .= $lineSeperator;
-        $tableString .= $this->rowToString($columns);
-        $tableString .= $lineSeperator;
+        $rows = $this->rowToString($columns);
+        $tableString .= !empty($rows) ? $rows . $lineSeperator : '';
 
         $rowCount = $this->getRowCount();
 
@@ -219,7 +224,9 @@ class AbstractTable implements ITable
             $correction = strlen($value_str) - mb_strlen($value_str);
             $rowString .= '| ' . str_pad($value_str, 20 + $correction, ' ', STR_PAD_BOTH) . ' ';
         }
+        /** @see https://github.com/sebastianbergmann/dbunit/issues/195 */
+        $rowString = !empty($row) ? $rowString . "|\n" : '';
 
-        return $rowString . "|\n";
+        return $rowString;
     }
 }
