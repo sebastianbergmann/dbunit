@@ -2,7 +2,7 @@
 
 All notable changes to DbUnit are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [3.0.1] - 2017-MM-DD
+## [3.0.1] - 2017-10-19
 
 ### Fixed
 
