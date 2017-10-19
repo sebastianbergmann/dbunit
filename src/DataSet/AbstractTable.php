@@ -169,16 +169,16 @@ class AbstractTable implements ITable
 
         // if count less than 0 (when table is empty), then set count to 1
         $count         = $count >= 1 ? $count : 1;
-        $lineSeperator = \str_repeat('+----------------------', $count) . "+\n";
-        $lineLength    = \strlen($lineSeperator) - 1;
+        $lineSeparator = \str_repeat('+----------------------', $count) . "+\n";
+        $lineLength    = \strlen($lineSeparator) - 1;
 
-        $tableString = $lineSeperator;
+        $tableString = $lineSeparator;
         $tblName     = $this->getTableMetaData()->getTableName();
         $tableString .= '| ' . \str_pad($tblName, $lineLength - 4, ' ',
                 STR_PAD_RIGHT) . " |\n";
-        $tableString .= $lineSeperator;
+        $tableString .= $lineSeparator;
         $rows = $this->rowToString($columns);
-        $tableString .= !empty($rows) ? $rows . $lineSeperator : '';
+        $tableString .= !empty($rows) ? $rows . $lineSeparator : '';
 
         $rowCount = $this->getRowCount();
 
@@ -205,7 +205,7 @@ class AbstractTable implements ITable
                 }
             }
 
-            $tableString .= $this->rowToString($values) . $lineSeperator;
+            $tableString .= $this->rowToString($values) . $lineSeparator;
         }
 
         return ($this->other ? '(table diff enabled)' : '') . "\n" . $tableString . "\n";
