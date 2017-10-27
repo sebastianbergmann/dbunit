@@ -93,7 +93,7 @@ class Replace extends RowBased
 
                         $insertStatement->execute($insertArgs);
                     }
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     throw new Exception(
                         $this->operationName, $query, $args, $table, $e->getMessage()
                     );

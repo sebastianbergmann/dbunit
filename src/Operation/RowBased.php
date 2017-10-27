@@ -91,7 +91,7 @@ abstract class RowBased implements Operation
 
                 try {
                     $statement->execute($args);
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     throw new Exception(
                         $this->operationName, $query, $args, $table, $e->getMessage()
                     );
