@@ -2,6 +2,12 @@
 
 All notable changes to DbUnit are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [3.0.2] - 2017-11-18
+
+### Changed
+
+* This component is now compatible with Symfony Console 4
+
 ## [3.0.1] - 2017-10-19
 
 ### Fixed
@@ -20,5 +26,6 @@ All notable changes to DbUnit are documented in this file using the [Keep a CHAN
 
 * The `dbunit` CLI tool was removed
 
+[3.0.2]: https://github.com/sebastianbergmann/dbunit/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/sebastianbergmann/dbunit/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/sebastianbergmann/dbunit/compare/2.0...3.0.0
