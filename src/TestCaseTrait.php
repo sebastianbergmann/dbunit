@@ -22,6 +22,7 @@ use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\MysqlXmlDataSet;
 use PHPUnit\DbUnit\DataSet\XmlDataSet;
+use PHPUnit\DbUnit\DataSet\YamlDataSet;
 use PHPUnit\DbUnit\Operation\Factory;
 use PHPUnit\DbUnit\Operation\Operation;
 
@@ -173,6 +174,18 @@ trait TestCaseTrait
     protected function createMySQLXMLDataSet($xmlFile)
     {
         return new MysqlXmlDataSet($xmlFile);
+    }
+
+    /**
+     * Create a new YamlDataSet with the given $yamlFile. (absolute path)
+     *
+     * @param string $yamlFile
+     *
+     * @return YamlDataSet
+     */
+    protected function createYamlDataSet($yamlFile)
+    {
+        return new YamlDataSet($yamlFile);
     }
 
     /**
