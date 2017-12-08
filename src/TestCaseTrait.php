@@ -205,6 +205,8 @@ trait TestCaseTrait
      */
     protected function tearDown()
     {
+        parent::tearDown();
+
         $this->getDatabaseTester()->setTearDownOperation($this->getTearDownOperation());
         $this->getDatabaseTester()->setDataSet($this->getDataSet());
         $this->getDatabaseTester()->onTearDown();
