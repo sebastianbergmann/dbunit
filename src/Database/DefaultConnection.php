@@ -51,7 +51,7 @@ class DefaultConnection implements Connection
      */
     public function close()
     {
-        unset($this->connection);
+        unset($this->connection, $this->metaData);
     }
 
     /**
