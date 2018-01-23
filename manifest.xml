@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phar xmlns="https://phar.io/xml/manifest/1.0">
-    <contains name="phpunit/dbunit" version="3.0.2" type="extension">
+    <contains name="phpunit/dbunit" version="3.0.3" type="extension">
         <extension for="phpunit/phpunit" compatible="^6.0"/>
     </contains>
 
