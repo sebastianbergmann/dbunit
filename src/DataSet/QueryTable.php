@@ -143,14 +143,7 @@ class QueryTable extends AbstractTable
                 // get column names from data
                 $columns = \array_keys($this->data[0]);
             } else {
-                // if no rows found, get column names from database
-                $pdoStatement = $this->databaseConnection->getConnection()->prepare('SELECT column_name FROM information_schema.COLUMNS WHERE table_schema=:schema AND table_name=:table');
-                $pdoStatement->execute([
-                    'table'  => $this->tableName,
-                    'schema' => $this->databaseConnection->getSchema()
-                ]);
-
-                $columns = $pdoStatement->fetchAll(PDO::FETCH_COLUMN, 0);
+                $columns = $this->databaseConnection->getMetaData()->getTableColumns($this->tableName);
             }
             // create metadata
             $this->tableMetaData = new DefaultTableMetadata($this->tableName, $columns);

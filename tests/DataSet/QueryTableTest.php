@@ -52,6 +52,35 @@ class Extensions_Database_DataSet_QueryTableTest extends TestCase
         ];
     }
 
+    public function testGetEmptyTableMetaData()
+    {
+        $metaData = new DefaultTableMetadata('table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']);
+
+        $conn = new PDO('sqlite::memory:');
+        $conn->exec(
+          'CREATE TABLE IF NOT EXISTS table1 (
+            table1_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            column1 VARCHAR(20),
+            column2 INT(10),
+            column3 DECIMAL(6,2),
+            column4 TEXT
+          )'
+        );
+
+        $query = '
+            SELECT *
+            FROM table1
+        ';
+
+        $empty_table = new QueryTable(
+            'table1',
+            $query,
+            new DefaultConnection($conn)
+        );
+
+        $this->assertEquals($metaData, $empty_table->getTableMetaData());
+    }
+
     public function testGetTableMetaData()
     {
         $metaData = new DefaultTableMetadata('table1', ['col1', 'col2', 'col3']);
