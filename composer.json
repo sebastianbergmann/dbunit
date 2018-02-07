@@ -20,8 +20,8 @@
         "issues": "https://github.com/sebastianbergmann/dbunit/issues"
     },
     "require": {
-        "php": "^7.0",
-        "phpunit/phpunit": "^6.0",
+        "php": "^7.1",
+        "phpunit/phpunit": "^7.0",
         "symfony/yaml": "^3.0 || ^4.0",
         "ext-pdo": "*",
         "ext-simplexml": "*"
@@ -33,7 +33,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "4.0-dev"
         }
     }
 }

@@ -50,7 +50,7 @@ class DataSetIsEqual extends Constraint
      *
      * @return bool
      */
-    protected function matches($other)
+    protected function matches($other): bool
     {
         if (!$other instanceof IDataSet) {
             throw new InvalidArgumentException(
@@ -71,7 +71,7 @@ class DataSetIsEqual extends Constraint
      *
      * @return string
      */
-    protected function failureDescription($other)
+    protected function failureDescription($other): string
     {
         return $other->__toString() . ' ' . $this->toString();
     }
@@ -81,7 +81,7 @@ class DataSetIsEqual extends Constraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return \sprintf(
             'is equal to expected %s', $this->value->__toString()

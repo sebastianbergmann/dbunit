@@ -2,6 +2,13 @@
 
 All notable changes to DbUnit are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [4.0.0] - 2018-MM-DD
+
+### Removed
+
+* This extension now requires PHPUnit 7
+* This extension is no longer supported on PHP 7.0
+
 ## [3.0.3] - 2018-01-23
 
 ### Fixed
@@ -16,7 +23,7 @@ All notable changes to DbUnit are documented in this file using the [Keep a CHAN
 
 ### Changed
 
-* This component is now compatible with Symfony Console 4
+* This extension is now compatible with Symfony Console 4
 
 ## [3.0.1] - 2017-10-19
 
@@ -36,6 +43,7 @@ All notable changes to DbUnit are documented in this file using the [Keep a CHAN
 
 * The `dbunit` CLI tool was removed
 
+[4.0.0]: https://github.com/sebastianbergmann/dbunit/compare/3.0.3...4.0.0
 [3.0.3]: https://github.com/sebastianbergmann/dbunit/compare/3.0.2...3.0.3
 [3.0.2]: https://github.com/sebastianbergmann/dbunit/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/sebastianbergmann/dbunit/compare/3.0.0...3.0.1

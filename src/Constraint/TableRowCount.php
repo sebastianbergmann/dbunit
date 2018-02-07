@@ -50,7 +50,7 @@ class TableRowCount extends Constraint
      *
      * @return bool
      */
-    protected function matches($other)
+    protected function matches($other): bool
     {
         return $other == $this->value;
     }
@@ -60,7 +60,7 @@ class TableRowCount extends Constraint
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return \sprintf('is equal to expected row count %d', $this->value);
     }

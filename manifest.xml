@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phar xmlns="https://phar.io/xml/manifest/1.0">
-    <contains name="phpunit/dbunit" version="3.0.3" type="extension">
-        <extension for="phpunit/phpunit" compatible="^6.0"/>
+    <contains name="phpunit/dbunit" version="4.0.0" type="extension">
+        <extension for="phpunit/phpunit" compatible="^7.0"/>
     </contains>
 
     <copyright>
@@ -10,6 +10,6 @@
     </copyright>
 
     <requires>
-        <php version="^7.0"/>
+        <php version="^7.1"/>
     </requires>
 </phar>
