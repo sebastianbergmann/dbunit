@@ -21,13 +21,15 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
      */
     protected $startingDataSet;
 
-    public function setUp()
+    public function setUp(): void
     {
         $table1MetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
         $table2MetaData = new DefaultTableMetadata(
-            'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
+            'table2',
+            ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
         $table1 = new DefaultTable($table1MetaData);
@@ -80,7 +82,7 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
         $this->startingDataSet = new DefaultDataSet([$table1, $table2]);
     }
 
-    public function testNoReplacement()
+    public function testNoReplacement(): void
     {
         TestCase::assertDataSetsEqual(
             $this->startingDataSet,
@@ -88,13 +90,15 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
         );
     }
 
-    public function testFullReplacement()
+    public function testFullReplacement(): void
     {
         $table1MetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
         $table2MetaData = new DefaultTableMetadata(
-            'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
+            'table2',
+            ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
         $table1 = new DefaultTable($table1MetaData);
@@ -151,13 +155,15 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
         TestCase::assertDataSetsEqual($expected, $actual);
     }
 
-    public function testSubStrReplacement()
+    public function testSubStrReplacement(): void
     {
         $table1MetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
         $table2MetaData = new DefaultTableMetadata(
-            'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
+            'table2',
+            ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
         $table1 = new DefaultTable($table1MetaData);
@@ -214,13 +220,15 @@ class Extensions_Database_DataSet_ReplacementDataSetTest extends \PHPUnit\Framew
         TestCase::assertDataSetsEqual($expected, $actual);
     }
 
-    public function testConstructorReplacements()
+    public function testConstructorReplacements(): void
     {
         $table1MetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
         $table2MetaData = new DefaultTableMetadata(
-            'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
+            'table2',
+            ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
         $table1 = new DefaultTable($table1MetaData);

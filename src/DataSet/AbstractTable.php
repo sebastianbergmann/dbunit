@@ -31,20 +31,61 @@ class AbstractTable implements ITable
     protected $data;
 
     /**
-     * @var ITable|null
+     * @var null|ITable
      */
     private $other;
 
-    /**
-     * Sets the metadata for this table.
-     *
-     * @param ITableMetadata $tableMetaData
-     *
-     * @deprecated
-     */
-    protected function setTableMetaData(ITableMetadata $tableMetaData)
+    public function __toString()
     {
-        $this->tableMetaData = $tableMetaData;
+        $columns = $this->getTableMetaData()->getColumns();
+        $count   = \count($columns);
+
+        // if count less than 0 (when table is empty), then set count to 1
+        $count         = $count >= 1 ? $count : 1;
+        $lineSeparator = \str_repeat('+----------------------', $count) . "+\n";
+        $lineLength    = \strlen($lineSeparator) - 1;
+
+        $tableString = $lineSeparator;
+        $tblName     = $this->getTableMetaData()->getTableName();
+        $tableString .= '| ' . \str_pad(
+            $tblName,
+            $lineLength - 4,
+            ' ',
+                STR_PAD_RIGHT
+        ) . " |\n";
+        $tableString .= $lineSeparator;
+        $rows = $this->rowToString($columns);
+        $tableString .= !empty($rows) ? $rows . $lineSeparator : '';
+
+        $rowCount = $this->getRowCount();
+
+        for ($i = 0; $i < $rowCount; $i++) {
+            $values = [];
+
+            foreach ($columns as $columnName) {
+                if ($this->other) {
+                    try {
+                        if ($this->getValue($i, $columnName) != $this->other->getValue($i, $columnName)) {
+                            $values[] = \sprintf(
+                                '%s != actual %s',
+                                \var_export($this->getValue($i, $columnName), true),
+                                \var_export($this->other->getValue($i, $columnName), true)
+                            );
+                        } else {
+                            $values[] = $this->getValue($i, $columnName);
+                        }
+                    } catch (\InvalidArgumentException $ex) {
+                        $values[] = $this->getValue($i, $columnName) . ': no row';
+                    }
+                } else {
+                    $values[] = $this->getValue($i, $columnName);
+                }
+            }
+
+            $tableString .= $this->rowToString($values) . $lineSeparator;
+        }
+
+        return ($this->other ? '(table diff enabled)' : '') . "\n" . $tableString . "\n";
     }
 
     /**
@@ -81,13 +122,12 @@ class AbstractTable implements ITable
             $value = $this->data[$row][$column];
 
             return ($value instanceof SimpleXMLElement) ? (string) $value : $value;
-        } else {
-            if (!\in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
-                throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
-            } else {
-                return;
-            }
         }
+        if (!\in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
+            throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
+        }
+
+        return;
     }
 
     /**
@@ -101,13 +141,12 @@ class AbstractTable implements ITable
     {
         if (isset($this->data[$row])) {
             return $this->data[$row];
-        } else {
-            if ($this->getRowCount() <= $row) {
-                throw new InvalidArgumentException("The given row ({$row}) does not exist in table {$this->getTableMetaData()->getTableName()}");
-            } else {
-                return;
-            }
         }
+        if ($this->getRowCount() <= $row) {
+            throw new InvalidArgumentException("The given row ({$row}) does not exist in table {$this->getTableMetaData()->getTableName()}");
+        }
+
+        return;
     }
 
     /**
@@ -162,53 +201,16 @@ class AbstractTable implements ITable
         return \in_array($row, $this->data);
     }
 
-    public function __toString()
+    /**
+     * Sets the metadata for this table.
+     *
+     * @param ITableMetadata $tableMetaData
+     *
+     * @deprecated
+     */
+    protected function setTableMetaData(ITableMetadata $tableMetaData): void
     {
-        $columns = $this->getTableMetaData()->getColumns();
-        $count   = \count($columns);
-
-        // if count less than 0 (when table is empty), then set count to 1
-        $count         = $count >= 1 ? $count : 1;
-        $lineSeparator = \str_repeat('+----------------------', $count) . "+\n";
-        $lineLength    = \strlen($lineSeparator) - 1;
-
-        $tableString = $lineSeparator;
-        $tblName     = $this->getTableMetaData()->getTableName();
-        $tableString .= '| ' . \str_pad($tblName, $lineLength - 4, ' ',
-                STR_PAD_RIGHT) . " |\n";
-        $tableString .= $lineSeparator;
-        $rows = $this->rowToString($columns);
-        $tableString .= !empty($rows) ? $rows . $lineSeparator : '';
-
-        $rowCount = $this->getRowCount();
-
-        for ($i = 0; $i < $rowCount; $i++) {
-            $values = [];
-
-            foreach ($columns as $columnName) {
-                if ($this->other) {
-                    try {
-                        if ($this->getValue($i, $columnName) != $this->other->getValue($i, $columnName)) {
-                            $values[] = \sprintf(
-                                '%s != actual %s',
-                                \var_export($this->getValue($i, $columnName), true),
-                                \var_export($this->other->getValue($i, $columnName), true)
-                            );
-                        } else {
-                            $values[] = $this->getValue($i, $columnName);
-                        }
-                    } catch (\InvalidArgumentException $ex) {
-                        $values[] = $this->getValue($i, $columnName) . ': no row';
-                    }
-                } else {
-                    $values[] = $this->getValue($i, $columnName);
-                }
-            }
-
-            $tableString .= $this->rowToString($values) . $lineSeparator;
-        }
-
-        return ($this->other ? '(table diff enabled)' : '') . "\n" . $tableString . "\n";
+        $this->tableMetaData = $tableMetaData;
     }
 
     protected function rowToString(array $row)

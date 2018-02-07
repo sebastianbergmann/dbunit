@@ -17,7 +17,7 @@ use PHPUnit\DbUnit\RuntimeException;
  */
 class MysqlXmlDataSet extends AbstractXmlDataSet
 {
-    protected function getTableInfo(array &$tableColumns, array &$tableValues)
+    protected function getTableInfo(array &$tableColumns, array &$tableValues): void
     {
         if ($this->xmlFileContents->getName() != 'mysqldump') {
             throw new RuntimeException('The root element of a MySQL XML data set file must be called <mysqldump>');
@@ -57,7 +57,7 @@ class MysqlXmlDataSet extends AbstractXmlDataSet
                     $fields = $rowElement->xpath('./field[@name="' . $columnName . '"]');
                     if (!isset($fields[0])) {
                         throw new RuntimeException(
-                            sprintf(
+                            \sprintf(
                                 '%s column doesn\'t exist in current row for table %s',
                                 $columnName,
                                 $tableName

@@ -62,7 +62,7 @@ class Csv implements Specification
      */
     protected function getCsvOptions($dataSetSpec)
     {
-        list($csvOptStr) = \explode('|', $dataSetSpec, 2);
+        [$csvOptStr] = \explode('|', $dataSetSpec, 2);
 
         return \str_split($csvOptStr);
     }
@@ -83,7 +83,7 @@ class Csv implements Specification
         $tables = [];
 
         foreach (\explode(',', $dataSetSpec) as $csvfile) {
-            list($tableName, $file) = \explode(':', $csvfile, 2);
+            [$tableName, $file]     = \explode(':', $csvfile, 2);
             $tables[$tableName]     = $file;
         }
 

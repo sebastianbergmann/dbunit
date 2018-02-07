@@ -56,11 +56,6 @@ class ArrayDataSet extends AbstractDataSet
         }
     }
 
-    protected function createIterator($reverse = false)
-    {
-        return new DefaultTableIterator($this->tables, $reverse);
-    }
-
     public function getTable($tableName)
     {
         if (!isset($this->tables[$tableName])) {
@@ -68,5 +63,10 @@ class ArrayDataSet extends AbstractDataSet
         }
 
         return $this->tables[$tableName];
+    }
+
+    protected function createIterator($reverse = false)
+    {
+        return new DefaultTableIterator($this->tables, $reverse);
     }
 }

@@ -54,7 +54,7 @@ abstract class AbstractTester implements Tester
      *
      * @param Connection $connection
      */
-    public function closeConnection(Connection $connection)
+    public function closeConnection(Connection $connection): void
     {
         $connection->close();
     }
@@ -72,7 +72,7 @@ abstract class AbstractTester implements Tester
     /**
      * TestCases must call this method inside setUp().
      */
-    public function onSetUp()
+    public function onSetUp(): void
     {
         $this->getSetUpOperation()->execute($this->getConnection(), $this->getDataSet());
     }
@@ -80,7 +80,7 @@ abstract class AbstractTester implements Tester
     /**
      * TestCases must call this method inside tearDown().
      */
-    public function onTearDown()
+    public function onTearDown(): void
     {
         $this->getTearDownOperation()->execute($this->getConnection(), $this->getDataSet());
     }
@@ -90,7 +90,7 @@ abstract class AbstractTester implements Tester
      *
      * @param IDataSet $dataSet
      */
-    public function setDataSet(IDataSet $dataSet)
+    public function setDataSet(IDataSet $dataSet): void
     {
         $this->dataSet = $dataSet;
     }
@@ -100,7 +100,7 @@ abstract class AbstractTester implements Tester
      *
      * @param string $schema
      */
-    public function setSchema($schema)
+    public function setSchema($schema): void
     {
         $this->schema = $schema;
     }
@@ -110,7 +110,7 @@ abstract class AbstractTester implements Tester
      *
      * @param Operation $setUpOperation
      */
-    public function setSetUpOperation(Operation $setUpOperation)
+    public function setSetUpOperation(Operation $setUpOperation): void
     {
         $this->setUpOperation = $setUpOperation;
     }
@@ -120,7 +120,7 @@ abstract class AbstractTester implements Tester
      *
      * @param Operation $tearDownOperation
      */
-    public function setTearDownOperation(Operation $tearDownOperation)
+    public function setTearDownOperation(Operation $tearDownOperation): void
     {
         $this->tearDownOperation = $tearDownOperation;
     }

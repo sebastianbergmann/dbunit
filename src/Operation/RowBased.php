@@ -33,29 +33,10 @@ abstract class RowBased implements Operation
     protected $iteratorDirection = self::ITERATOR_TYPE_FORWARD;
 
     /**
-     * @return string|bool String containing the query or FALSE if a valid query cannot be constructed
-     */
-    abstract protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection);
-
-    abstract protected function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row);
-
-    /**
-     * Allows an operation to disable primary keys if necessary.
-     *
-     * @param ITableMetadata $databaseTableMetaData
-     * @param ITable         $table
-     * @param Connection     $connection
-     */
-    protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
-    {
-        return false;
-    }
-
-    /**
      * @param Connection $connection
      * @param IDataSet   $dataSet
      */
-    public function execute(Connection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet): void
     {
         $databaseDataSet = $connection->createDataSet();
 
@@ -77,6 +58,7 @@ abstract class RowBased implements Operation
                 if ($table->getRowCount() > 0) {
                     throw new Exception($this->operationName, '', [], $table, 'Rows requested for insert, but no columns provided!');
                 }
+
                 continue;
             }
 
@@ -93,7 +75,11 @@ abstract class RowBased implements Operation
                     $statement->execute($args);
                 } catch (\Exception $e) {
                     throw new Exception(
-                        $this->operationName, $query, $args, $table, $e->getMessage()
+                        $this->operationName,
+                        $query,
+                        $args,
+                        $table,
+                        $e->getMessage()
                     );
                 }
             }
@@ -102,6 +88,25 @@ abstract class RowBased implements Operation
                 $connection->enablePrimaryKeys($databaseTableMetaData->getTableName());
             }
         }
+    }
+
+    /**
+     * @return bool|string String containing the query or FALSE if a valid query cannot be constructed
+     */
+    abstract protected function buildOperationQuery(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection);
+
+    abstract protected function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row);
+
+    /**
+     * Allows an operation to disable primary keys if necessary.
+     *
+     * @param ITableMetadata $databaseTableMetaData
+     * @param ITable         $table
+     * @param Connection     $connection
+     */
+    protected function disablePrimaryKeys(ITableMetadata $databaseTableMetaData, ITable $table, Connection $connection)
+    {
+        return false;
     }
 
     protected function buildPreparedColumnArray($columns, Connection $connection)

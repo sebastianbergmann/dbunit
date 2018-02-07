@@ -22,10 +22,11 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
      */
     protected $table;
 
-    public function setUp()
+    public function setUp(): void
     {
         $tableMetaData = new DefaultTableMetadata(
-            'table', ['id', 'column1']
+            'table',
+            ['id', 'column1']
         );
 
         $this->table = new DefaultTable($tableMetaData);
@@ -41,7 +42,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
      * @param bool  $exists
      * @dataProvider providerTableContainsRow
      */
-    public function testTableContainsRow($row, $exists)
+    public function testTableContainsRow($row, $exists): void
     {
         $result = $this->table->assertContainsRow($row);
         $this->assertEquals($exists, $result);
@@ -55,7 +56,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
         ];
     }
 
-    public function testMatchesWithNonMatchingMetaData()
+    public function testMatchesWithNonMatchingMetaData(): void
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
@@ -74,7 +75,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
         $this->assertFalse($table->matches($otherTable));
     }
 
-    public function testMatchesWithNonMatchingRowCount()
+    public function testMatchesWithNonMatchingRowCount(): void
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
@@ -109,7 +110,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
      * @param bool  $matches
      * @dataProvider providerMatchesWithColumnValueComparisons
      */
-    public function testMatchesWithColumnValueComparisons($tableColumnValues, $otherColumnValues, $matches)
+    public function testMatchesWithColumnValueComparisons($tableColumnValues, $otherColumnValues, $matches): void
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);

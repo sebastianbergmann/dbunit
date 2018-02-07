@@ -60,7 +60,7 @@ class Filter extends AbstractDataSet
      * to the special string '*'.
      *
      * @param IDataSet $originalDataSet
-     * @param array    $excludeTables   @deprecated use set* methods instead.
+     * @param array    $excludeTables   @deprecated use set* methods instead
      */
     public function __construct(IDataSet $originalDataSet, array $excludeTables = [])
     {
@@ -78,6 +78,48 @@ class Filter extends AbstractDataSet
         }
 
         $this->addExcludeTables($tables);
+    }
+
+    /**
+     * Adds tables to be included in the data set.
+     *
+     * @param array $tables
+     */
+    public function addIncludeTables(array $tables): void
+    {
+        $this->includeTables = \array_unique(\array_merge($this->includeTables, $tables));
+    }
+
+    /**
+     * Adds tables to be included in the data set.
+     *
+     * @param array $tables
+     */
+    public function addExcludeTables(array $tables): void
+    {
+        $this->excludeTables = \array_unique(\array_merge($this->excludeTables, $tables));
+    }
+
+    /**
+     * Adds columns to include in the data set for the given table.
+     *
+     * @param string $table
+     * @param array  $columns
+     */
+    public function setIncludeColumnsForTable($table, array $columns): void
+    {
+        $this->includeColumns[$table] = $columns;
+    }
+
+    /**
+     * Adds columns to include in the data set for the given table.
+     *
+     * @param string $table
+     * @param array  $columns
+     */
+    public function setExcludeColumnsForTable($table, array $columns): void
+    {
+        $this->excludeColumns[$table] = $columns;
     }
 
     /**
@@ -101,7 +143,8 @@ class Filter extends AbstractDataSet
                 \in_array($tableName, $this->excludeTables)
             ) {
                 continue;
-            } elseif (!empty($this->excludeColumns[$tableName]) || !empty($this->includeColumns[$tableName])) {
+            }
+            if (!empty($this->excludeColumns[$tableName]) || !empty($this->includeColumns[$tableName])) {
                 $new_table = new TableFilter($table);
 
                 if (!empty($this->includeColumns[$tableName])) {
@@ -119,47 +162,5 @@ class Filter extends AbstractDataSet
         }
 
         return new DefaultTableIterator($new_tables);
-    }
-
-    /**
-     * Adds tables to be included in the data set.
-     *
-     * @param array $tables
-     */
-    public function addIncludeTables(array $tables)
-    {
-        $this->includeTables = \array_unique(\array_merge($this->includeTables, $tables));
-    }
-
-    /**
-     * Adds tables to be included in the data set.
-     *
-     * @param array $tables
-     */
-    public function addExcludeTables(array $tables)
-    {
-        $this->excludeTables = \array_unique(\array_merge($this->excludeTables, $tables));
-    }
-
-    /**
-     * Adds columns to include in the data set for the given table.
-     *
-     * @param string $table
-     * @param array  $columns
-     */
-    public function setIncludeColumnsForTable($table, array $columns)
-    {
-        $this->includeColumns[$table] = $columns;
-    }
-
-    /**
-     * Adds columns to include in the data set for the given table.
-     *
-     * @param string $table
-     * @param array  $columns
-     */
-    public function setExcludeColumnsForTable($table, array $columns)
-    {
-        $this->excludeColumns[$table] = $columns;
     }
 }

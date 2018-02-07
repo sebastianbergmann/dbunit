@@ -100,7 +100,7 @@ class Dblib extends AbstractMetadata
      *
      * @param string $tableName
      */
-    protected function loadColumnInfo($tableName)
+    protected function loadColumnInfo($tableName): void
     {
         $query = "SELECT name
 			FROM sys.columns

@@ -20,7 +20,7 @@ use PHPUnit\DbUnit\DataSet\ITable;
  */
 class DeleteAll implements Operation
 {
-    public function execute(Connection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet): void
     {
         foreach ($dataSet->getReverseIterator() as $table) {
             /* @var $table ITable */

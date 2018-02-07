@@ -46,6 +46,35 @@ class ReplacementTable implements ITable
         $this->subStrReplacements = $subStrReplacements;
     }
 
+    public function __toString()
+    {
+        $columns = $this->getTableMetaData()->getColumns();
+
+        $lineSeperator = \str_repeat('+----------------------', \count($columns)) . "+\n";
+        $lineLength    = \strlen($lineSeperator) - 1;
+
+        $tableString = $lineSeperator;
+        $tableString .= '| ' . \str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
+        $tableString .= $lineSeperator;
+        $tableString .= $this->rowToString($columns);
+        $tableString .= $lineSeperator;
+
+        $rowCount = $this->getRowCount();
+
+        for ($i = 0; $i < $rowCount; $i++) {
+            $values = [];
+
+            foreach ($columns as $columnName) {
+                $values[] = $this->getValue($i, $columnName);
+            }
+
+            $tableString .= $this->rowToString($values);
+            $tableString .= $lineSeperator;
+        }
+
+        return "\n" . $tableString . "\n";
+    }
+
     /**
      * Adds a new full replacement
      *
@@ -54,7 +83,7 @@ class ReplacementTable implements ITable
      * @param string $value
      * @param string $replacement
      */
-    public function addFullReplacement($value, $replacement)
+    public function addFullReplacement($value, $replacement): void
     {
         $this->fullReplacements[$value] = $replacement;
     }
@@ -67,7 +96,7 @@ class ReplacementTable implements ITable
      * @param string $value
      * @param string $replacement
      */
-    public function addSubStrReplacement($value, $replacement)
+    public function addSubStrReplacement($value, $replacement): void
     {
         $this->subStrReplacements[$value] = $replacement;
     }
@@ -153,35 +182,6 @@ class ReplacementTable implements ITable
         return true;
     }
 
-    public function __toString()
-    {
-        $columns = $this->getTableMetaData()->getColumns();
-
-        $lineSeperator = \str_repeat('+----------------------', \count($columns)) . "+\n";
-        $lineLength    = \strlen($lineSeperator) - 1;
-
-        $tableString = $lineSeperator;
-        $tableString .= '| ' . \str_pad($this->getTableMetaData()->getTableName(), $lineLength - 4, ' ', STR_PAD_RIGHT) . " |\n";
-        $tableString .= $lineSeperator;
-        $tableString .= $this->rowToString($columns);
-        $tableString .= $lineSeperator;
-
-        $rowCount = $this->getRowCount();
-
-        for ($i = 0; $i < $rowCount; $i++) {
-            $values = [];
-
-            foreach ($columns as $columnName) {
-                $values[] = $this->getValue($i, $columnName);
-            }
-
-            $tableString .= $this->rowToString($values);
-            $tableString .= $lineSeperator;
-        }
-
-        return "\n" . $tableString . "\n";
-    }
-
     protected function rowToString(array $row)
     {
         $rowString = '';
@@ -201,10 +201,11 @@ class ReplacementTable implements ITable
     {
         if (\is_scalar($value) && \array_key_exists((string) $value, $this->fullReplacements)) {
             return $this->fullReplacements[$value];
-        } elseif (\count($this->subStrReplacements) && isset($value)) {
-            return \str_replace(\array_keys($this->subStrReplacements), \array_values($this->subStrReplacements), $value);
-        } else {
-            return $value;
         }
+        if (\count($this->subStrReplacements) && isset($value)) {
+            return \str_replace(\array_keys($this->subStrReplacements), \array_values($this->subStrReplacements), $value);
+        }
+
+        return $value;
     }
 }

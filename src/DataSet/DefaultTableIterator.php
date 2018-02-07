@@ -87,7 +87,7 @@ class DefaultTableIterator implements ITableIterator
     /**
      * advances to the next element.
      */
-    public function next()
+    public function next(): void
     {
         if ($this->reverse) {
             \prev($this->tables);
@@ -99,7 +99,7 @@ class DefaultTableIterator implements ITableIterator
     /**
      * Rewinds to the first element
      */
-    public function rewind()
+    public function rewind(): void
     {
         if ($this->reverse) {
             \end($this->tables);
@@ -115,6 +115,6 @@ class DefaultTableIterator implements ITableIterator
      */
     public function valid()
     {
-        return ($this->current() !== false);
+        return $this->current() !== false;
     }
 }

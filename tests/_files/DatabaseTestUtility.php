@@ -44,7 +44,7 @@ class DBUnitTestUtility
         return self::$mySQLConnection;
     }
 
-    protected static function setUpDatabase(PDO $connection)
+    protected static function setUpDatabase(PDO $connection): void
     {
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -89,7 +89,7 @@ class DBUnitTestUtility
      *
      * @see   DBUnitTestUtility::getMySQLDB()
      */
-    protected static function setUpMySqlDatabase(PDO $connection)
+    protected static function setUpMySqlDatabase(PDO $connection): void
     {
         $connection->exec(
           'CREATE TABLE IF NOT EXISTS table1 (
@@ -100,7 +100,8 @@ class DBUnitTestUtility
             column4 TEXT,
             PRIMARY KEY (table1_id)
           ) ENGINE=INNODB;
-        ');
+        '
+        );
 
         $connection->exec(
           'CREATE TABLE IF NOT EXISTS table2 (
@@ -113,7 +114,8 @@ class DBUnitTestUtility
             PRIMARY KEY (table2_id),
             FOREIGN KEY (table1_id) REFERENCES table1(table1_id)
           ) ENGINE=INNODB;
-        ');
+        '
+        );
 
         $connection->exec(
           'CREATE TABLE IF NOT EXISTS table3 (
@@ -126,6 +128,7 @@ class DBUnitTestUtility
             PRIMARY KEY (table3_id),
             FOREIGN KEY (table2_id) REFERENCES table2(table2_id)
           ) ENGINE=INNODB;
-        ');
+        '
+        );
     }
 }

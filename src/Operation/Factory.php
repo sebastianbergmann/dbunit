@@ -29,7 +29,7 @@ class Factory
      * Returns a clean insert database operation. It will remove all contents
      * from the table prior to re-inserting rows.
      *
-     * @param bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     * @param bool $cascadeTruncates set to true to force truncates to cascade on databases that support this
      *
      * @return Operation
      */
@@ -54,7 +54,7 @@ class Factory
     /**
      * Returns a truncate database operation.
      *
-     * @param bool $cascadeTruncates Set to true to force truncates to cascade on databases that support this.
+     * @param bool $cascadeTruncates set to true to force truncates to cascade on databases that support this
      *
      * @return Operation
      */

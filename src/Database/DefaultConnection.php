@@ -37,7 +37,7 @@ class DefaultConnection implements Connection
      * Creates a new database connection
      *
      * @param PDO    $connection
-     * @param string $schema     - The name of the database schema you will be testing against.
+     * @param string $schema     - The name of the database schema you will be testing against
      */
     public function __construct(PDO $connection, $schema = '')
     {
@@ -49,7 +49,7 @@ class DefaultConnection implements Connection
     /**
      * Close this connection.
      */
-    public function close()
+    public function close(): void
     {
         unset($this->connection, $this->metaData);
     }
@@ -90,9 +90,9 @@ class DefaultConnection implements Connection
     {
         if (empty($tableNames)) {
             return new DataSet($this);
-        } else {
-            return new FilteredDataSet($this, $tableNames);
         }
+
+        return new FilteredDataSet($this, $tableNames);
     }
 
     /**
@@ -111,7 +111,7 @@ class DefaultConnection implements Connection
     /**
      * Returns this connection database configuration
      */
-    public function getConfig()
+    public function getConfig(): void
     {
     }
 
@@ -182,7 +182,7 @@ class DefaultConnection implements Connection
      *
      * @param string $tableName
      */
-    public function disablePrimaryKeys($tableName)
+    public function disablePrimaryKeys($tableName): void
     {
         $this->getMetaData()->disablePrimaryKeys($tableName);
     }
@@ -192,7 +192,7 @@ class DefaultConnection implements Connection
      *
      * @param string $tableName
      */
-    public function enablePrimaryKeys($tableName)
+    public function enablePrimaryKeys($tableName): void
     {
         $this->getMetaData()->enablePrimaryKeys($tableName);
     }

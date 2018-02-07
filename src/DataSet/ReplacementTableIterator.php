@@ -54,7 +54,7 @@ class ReplacementTableIterator implements OuterIterator, ITableIterator
      * @param string $value
      * @param string $replacement
      */
-    public function addFullReplacement($value, $replacement)
+    public function addFullReplacement($value, $replacement): void
     {
         $this->fullReplacements[$value] = $replacement;
     }
@@ -67,7 +67,7 @@ class ReplacementTableIterator implements OuterIterator, ITableIterator
      * @param string $value
      * @param string $replacement
      */
-    public function addSubStrReplacement($value, $replacement)
+    public function addSubStrReplacement($value, $replacement): void
     {
         $this->subStrReplacements[$value] = $replacement;
     }
@@ -115,7 +115,7 @@ class ReplacementTableIterator implements OuterIterator, ITableIterator
     /**
      * advances to the next element.
      */
-    public function next()
+    public function next(): void
     {
         $this->innerIterator->next();
     }
@@ -123,7 +123,7 @@ class ReplacementTableIterator implements OuterIterator, ITableIterator
     /**
      * Rewinds to the first element
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->innerIterator->rewind();
     }

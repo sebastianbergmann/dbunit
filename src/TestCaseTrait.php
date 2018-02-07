@@ -33,11 +33,98 @@ trait TestCaseTrait
     protected $databaseTester;
 
     /**
+     * Performs operation returned by getSetUpOperation().
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->databaseTester = null;
+
+        $this->getDatabaseTester()->setSetUpOperation($this->getSetUpOperation());
+        $this->getDatabaseTester()->setDataSet($this->getDataSet());
+        $this->getDatabaseTester()->onSetUp();
+    }
+
+    /**
+     * Performs operation returned by getTearDownOperation().
+     */
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->getDatabaseTester()->setTearDownOperation($this->getTearDownOperation());
+        $this->getDatabaseTester()->setDataSet($this->getDataSet());
+        $this->getDatabaseTester()->onTearDown();
+
+        /*
+         * Destroy the tester after the test is run to keep DB connections
+         * from piling up.
+         */
+        $this->databaseTester = null;
+    }
+
+    /**
+     * Asserts that two given tables are equal.
+     *
+     * @param ITable $expected
+     * @param ITable $actual
+     * @param string $message
+     */
+    public static function assertTablesEqual(ITable $expected, ITable $actual, $message = ''): void
+    {
+        $constraint = new TableIsEqual($expected);
+
+        self::assertThat($actual, $constraint, $message);
+    }
+
+    /**
+     * Asserts that two given datasets are equal.
+     *
+     * @param ITable $expected
+     * @param ITable $actual
+     * @param string $message
+     */
+    public static function assertDataSetsEqual(IDataSet $expected, IDataSet $actual, $message = ''): void
+    {
+        $constraint = new DataSetIsEqual($expected);
+
+        self::assertThat($actual, $constraint, $message);
+    }
+
+    /**
+     * Assert that a given table has a given amount of rows
+     *
+     * @param string $tableName Name of the table
+     * @param int    $expected  Expected amount of rows in the table
+     * @param string $message   Optional message
+     */
+    public function assertTableRowCount($tableName, $expected, $message = ''): void
+    {
+        $constraint = new TableRowCount($tableName, $expected);
+        $actual     = $this->getConnection()->getRowCount($tableName);
+
+        self::assertThat($actual, $constraint, $message);
+    }
+
+    /**
+     * Asserts that a given table contains a given row
+     *
+     * @param array  $expectedRow Row expected to find
+     * @param ITable $table       Table to look into
+     * @param string $message     Optional message
+     */
+    public function assertTableContains(array $expectedRow, ITable $table, $message = ''): void
+    {
+        self::assertThat($table->assertContainsRow($expectedRow), self::isTrue(), $message);
+    }
+
+    /**
      * Closes the specified connection.
      *
      * @param Connection $connection
      */
-    protected function closeConnection(Connection $connection)
+    protected function closeConnection(Connection $connection): void
     {
         $this->getDatabaseTester()->closeConnection($connection);
     }
@@ -184,92 +271,5 @@ trait TestCaseTrait
     protected function getOperations()
     {
         return new Factory();
-    }
-
-    /**
-     * Performs operation returned by getSetUpOperation().
-     */
-    protected function setUp()
-    {
-        parent::setUp();
-
-        $this->databaseTester = null;
-
-        $this->getDatabaseTester()->setSetUpOperation($this->getSetUpOperation());
-        $this->getDatabaseTester()->setDataSet($this->getDataSet());
-        $this->getDatabaseTester()->onSetUp();
-    }
-
-    /**
-     * Performs operation returned by getTearDownOperation().
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
-
-        $this->getDatabaseTester()->setTearDownOperation($this->getTearDownOperation());
-        $this->getDatabaseTester()->setDataSet($this->getDataSet());
-        $this->getDatabaseTester()->onTearDown();
-
-        /*
-         * Destroy the tester after the test is run to keep DB connections
-         * from piling up.
-         */
-        $this->databaseTester = null;
-    }
-
-    /**
-     * Asserts that two given tables are equal.
-     *
-     * @param ITable $expected
-     * @param ITable $actual
-     * @param string $message
-     */
-    public static function assertTablesEqual(ITable $expected, ITable $actual, $message = '')
-    {
-        $constraint = new TableIsEqual($expected);
-
-        self::assertThat($actual, $constraint, $message);
-    }
-
-    /**
-     * Asserts that two given datasets are equal.
-     *
-     * @param ITable $expected
-     * @param ITable $actual
-     * @param string $message
-     */
-    public static function assertDataSetsEqual(IDataSet $expected, IDataSet $actual, $message = '')
-    {
-        $constraint = new DataSetIsEqual($expected);
-
-        self::assertThat($actual, $constraint, $message);
-    }
-
-    /**
-     * Assert that a given table has a given amount of rows
-     *
-     * @param string $tableName Name of the table
-     * @param int    $expected  Expected amount of rows in the table
-     * @param string $message   Optional message
-     */
-    public function assertTableRowCount($tableName, $expected, $message = '')
-    {
-        $constraint = new TableRowCount($tableName, $expected);
-        $actual     = $this->getConnection()->getRowCount($tableName);
-
-        self::assertThat($actual, $constraint, $message);
-    }
-
-    /**
-     * Asserts that a given table contains a given row
-     *
-     * @param array  $expectedRow Row expected to find
-     * @param ITable $table       Table to look into
-     * @param string $message     Optional message
-     */
-    public function assertTableContains(array $expectedRow, ITable $table, $message = '')
-    {
-        self::assertThat($table->assertContainsRow($expectedRow), self::isTrue(), $message);
     }
 }

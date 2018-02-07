@@ -33,6 +33,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
      * Creates a new dataset using the given tables.
      *
      * @param array $tables
+     * @param mixed $xmlFile
      */
     public function __construct($xmlFile)
     {
@@ -71,7 +72,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
      */
     abstract protected function getTableInfo(array &$tableColumns, array &$tableValues);
 
-    protected function createTables(array &$tableColumns, array &$tableValues)
+    protected function createTables(array &$tableColumns, array &$tableValues): void
     {
         foreach ($tableValues as $tableName => $values) {
             $table = $this->getOrCreateTable($tableName, $tableColumns[$tableName]);
@@ -86,6 +87,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
      * an empty one is created.
      *
      * @param string $tableName
+     * @param mixed  $tableColumns
      *
      * @return ITable
      */

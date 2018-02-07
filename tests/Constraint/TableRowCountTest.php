@@ -9,12 +9,12 @@
  */
 
 use PHPUnit\DbUnit\Constraint\TableRowCount;
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\TestCase;
 
 class Extensions_Database_Constraint_TableRowCountTest extends TestCase
 {
-    public function testConstraint()
+    public function testConstraint(): void
     {
         $constraint = new TableRowCount('name', 42);
 

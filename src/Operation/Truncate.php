@@ -23,12 +23,12 @@ class Truncate implements Operation
 {
     protected $useCascade = false;
 
-    public function setCascade($cascade = true)
+    public function setCascade($cascade = true): void
     {
         $this->useCascade = $cascade;
     }
 
-    public function execute(Connection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet): void
     {
         foreach ($dataSet->getReverseIterator() as $table) {
             /* @var $table ITable */
@@ -56,7 +56,7 @@ class Truncate implements Operation
         }
     }
 
-    private function disableForeignKeyChecksForMysql(Connection $connection)
+    private function disableForeignKeyChecksForMysql(Connection $connection): void
     {
         if ($this->isMysql($connection)) {
             $connection->getConnection()->query('SET @PHPUNIT_OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS');
@@ -64,7 +64,7 @@ class Truncate implements Operation
         }
     }
 
-    private function enableForeignKeyChecksForMysql(Connection $connection)
+    private function enableForeignKeyChecksForMysql(Connection $connection): void
     {
         if ($this->isMysql($connection)) {
             $connection->getConnection()->query('SET FOREIGN_KEY_CHECKS=@PHPUNIT_OLD_FOREIGN_KEY_CHECKS');

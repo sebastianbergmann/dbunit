@@ -41,21 +41,6 @@ class TableRowCount extends Constraint
     }
 
     /**
-     * Evaluates the constraint for parameter $other. Returns TRUE if the
-     * constraint is met, FALSE otherwise.
-     *
-     * This method can be overridden to implement the evaluation algorithm.
-     *
-     * @param mixed $other Value or object to evaluate.
-     *
-     * @return bool
-     */
-    protected function matches($other): bool
-    {
-        return $other == $this->value;
-    }
-
-    /**
      * Returns a string representation of the constraint.
      *
      * @return string
@@ -63,5 +48,20 @@ class TableRowCount extends Constraint
     public function toString(): string
     {
         return \sprintf('is equal to expected row count %d', $this->value);
+    }
+
+    /**
+     * Evaluates the constraint for parameter $other. Returns TRUE if the
+     * constraint is met, FALSE otherwise.
+     *
+     * This method can be overridden to implement the evaluation algorithm.
+     *
+     * @param mixed $other value or object to evaluate
+     *
+     * @return bool
+     */
+    protected function matches($other): bool
+    {
+        return $other == $this->value;
     }
 }

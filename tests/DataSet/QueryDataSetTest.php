@@ -24,20 +24,7 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
 
     protected $pdo;
 
-    /**
-     * @return DefaultConnection
-     */
-    protected function getConnection()
-    {
-        return $this->createDefaultDBConnection($this->pdo, 'test');
-    }
-
-    protected function getDataSet()
-    {
-        return $this->createFlatXMLDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/QueryDataSetTest.xml');
-    }
-
-    public function setUp()
+    public function setUp(): void
     {
         $this->pdo = DBUnitTestUtility::getSQLiteMemoryDB();
         parent::setUp();
@@ -52,7 +39,7 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
         ');
     }
 
-    public function testGetTable()
+    public function testGetTable(): void
     {
         $expectedTable1 = $this->getConnection()->createDataSet(['table1'])->getTable('table1');
 
@@ -66,12 +53,12 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
         $this->assertTablesEqual($expectedTable2, $this->dataSet->getTable('query1'));
     }
 
-    public function testGetTableNames()
+    public function testGetTableNames(): void
     {
         $this->assertEquals(['table1', 'query1'], $this->dataSet->getTableNames());
     }
 
-    public function testCreateIterator()
+    public function testCreateIterator(): void
     {
         $expectedTable1 = $this->getConnection()->createDataSet(['table1'])->getTable('table1');
 
@@ -86,13 +73,28 @@ class Extensions_Database_DataSet_QueryDataSetTest extends TestCase
             switch ($table->getTableMetaData()->getTableName()) {
                 case 'table1':
                     $this->assertTablesEqual($expectedTable1, $table);
+
                     break;
                 case 'query1':
                     $this->assertTablesEqual($expectedTable2, $table);
+
                     break;
                 default:
                     $this->fail('Proper keys not present from the iterator');
             }
         }
+    }
+
+    /**
+     * @return DefaultConnection
+     */
+    protected function getConnection()
+    {
+        return $this->createDefaultDBConnection($this->pdo, 'test');
+    }
+
+    protected function getDataSet()
+    {
+        return $this->createFlatXMLDataSet(__DIR__ . '/../_files/XmlDataSets/QueryDataSetTest.xml');
     }
 }

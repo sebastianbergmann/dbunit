@@ -37,7 +37,7 @@ class DefaultDataSet extends AbstractDataSet
      *
      * @param ITable $table
      */
-    public function addTable(ITable $table)
+    public function addTable(ITable $table): void
     {
         $this->tables[] = $table;
     }

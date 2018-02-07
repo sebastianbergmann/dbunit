@@ -85,12 +85,12 @@ abstract class AbstractMetadata implements Metadata
 
             if ($className instanceof ReflectionClass) {
                 return $className->newInstance($pdo, $schema);
-            } else {
-                return self::registerClassWithDriver($className, $driverName)->newInstance($pdo, $schema);
             }
-        } else {
-            throw new RuntimeException("Could not find a meta data driver for {$driverName} pdo driver.");
+
+            return self::registerClassWithDriver($className, $driverName)->newInstance($pdo, $schema);
         }
+
+        throw new RuntimeException("Could not find a meta data driver for {$driverName} pdo driver.");
     }
 
     /**
@@ -115,9 +115,9 @@ abstract class AbstractMetadata implements Metadata
         $reflection = new ReflectionClass($className);
         if ($reflection->isSubclassOf(self::class)) {
             return self::$metaDataClassMap[$pdoDriver] = $reflection;
-        } else {
-            throw new RuntimeException("Specified class for {$pdoDriver} driver ({$className}) does not extend PHPUnit_Extensions_Database_DB_MetaData.");
         }
+
+        throw new RuntimeException("Specified class for {$pdoDriver} driver ({$className}) does not extend PHPUnit_Extensions_Database_DB_MetaData.");
     }
 
     /**
@@ -167,12 +167,12 @@ abstract class AbstractMetadata implements Metadata
                 'schema' => \substr($fullTableName, 0, $dot),
                 'table'  => \substr($fullTableName, $dot + 1)
             ];
-        } else {
-            return [
+        }
+
+        return [
                 'schema' => null,
                 'table'  => $fullTableName
             ];
-        }
     }
 
     /**
@@ -200,7 +200,7 @@ abstract class AbstractMetadata implements Metadata
      *
      * @param string $tableName
      */
-    public function disablePrimaryKeys($tableName)
+    public function disablePrimaryKeys($tableName): void
     {
         return;
     }
@@ -210,7 +210,7 @@ abstract class AbstractMetadata implements Metadata
      *
      * @param string $tableName
      */
-    public function enablePrimaryKeys($tableName)
+    public function enablePrimaryKeys($tableName): void
     {
         return;
     }

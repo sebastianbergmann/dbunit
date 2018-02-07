@@ -39,6 +39,7 @@ class QueryTable extends AbstractTable
      * @param string     $table_name
      * @param string     $query
      * @param Connection $databaseConnection
+     * @param mixed      $tableName
      */
     public function __construct($tableName, $query, Connection $databaseConnection)
     {
@@ -124,7 +125,7 @@ class QueryTable extends AbstractTable
         return parent::matches($other);
     }
 
-    protected function loadData()
+    protected function loadData(): void
     {
         if ($this->data === null) {
             $pdoStatement = $this->databaseConnection->getConnection()->query($this->query);
@@ -132,7 +133,7 @@ class QueryTable extends AbstractTable
         }
     }
 
-    protected function createTableMetaData()
+    protected function createTableMetaData(): void
     {
         if ($this->tableMetaData === null) {
             $this->loadData();

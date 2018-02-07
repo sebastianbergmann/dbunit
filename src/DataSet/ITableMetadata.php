@@ -41,5 +41,5 @@ interface ITableMetadata
      *
      * @param ITableMetadata $other
      */
-    public function matches(ITableMetadata $other);
+    public function matches(self $other);
 }

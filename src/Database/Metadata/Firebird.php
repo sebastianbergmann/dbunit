@@ -96,11 +96,47 @@ class Firebird extends AbstractMetadata
     }
 
     /**
+     * Returns the schema for the connection.
+     *
+     * @return string
+     */
+    public function getSchema()
+    {
+        if (empty($this->schema)) {
+            return 'public';
+        }
+
+        return $this->schema;
+    }
+
+    /**
+     * Returns true if the rdbms allows cascading
+     *
+     * @return bool
+     */
+    public function allowsCascading()
+    {
+        return false;
+    }
+
+    /**
+     * Returns a quoted schema object. (table name, column name, etc)
+     *
+     * @param string $object
+     *
+     * @return string
+     */
+    public function quoteSchemaObject($object)
+    {
+        return $object; //firebird does not allow object quoting
+    }
+
+    /**
      * Loads column info from a database table.
      *
      * @param string $tableName
      */
-    protected function loadColumnInfo($tableName)
+    protected function loadColumnInfo($tableName): void
     {
         $this->columns[$tableName] = [];
         $this->keys[$tableName]    = [];
@@ -174,41 +210,5 @@ class Firebird extends AbstractMetadata
         while ($columName = $keyStatement->fetchColumn(0)) {
             $this->keys[$tableName][] = $columName;
         }
-    }
-
-    /**
-     * Returns the schema for the connection.
-     *
-     * @return string
-     */
-    public function getSchema()
-    {
-        if (empty($this->schema)) {
-            return 'public';
-        } else {
-            return $this->schema;
-        }
-    }
-
-    /**
-     * Returns true if the rdbms allows cascading
-     *
-     * @return bool
-     */
-    public function allowsCascading()
-    {
-        return false;
-    }
-
-    /**
-     * Returns a quoted schema object. (table name, column name, etc)
-     *
-     * @param string $object
-     *
-     * @return string
-     */
-    public function quoteSchemaObject($object)
-    {
-        return $object; //firebird does not allow object quoting
     }
 }

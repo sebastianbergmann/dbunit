@@ -64,7 +64,7 @@ class CsvDataSet extends AbstractDataSet
      * @param string $tableName
      * @param string $csvFile
      */
-    public function addTable($tableName, $csvFile)
+    public function addTable($tableName, $csvFile): void
     {
         if (!\is_file($csvFile)) {
             throw new InvalidArgumentException("Could not find csv file: {$csvFile}");
@@ -115,8 +115,8 @@ class CsvDataSet extends AbstractDataSet
     {
         if (\version_compare(PHP_VERSION, '5.3.0', '>')) {
             return \fgetcsv($fh, null, $this->delimiter, $this->enclosure, $this->escape);
-        } else {
-            return \fgetcsv($fh, null, $this->delimiter, $this->enclosure);
         }
+
+        return \fgetcsv($fh, null, $this->delimiter, $this->enclosure);
     }
 }

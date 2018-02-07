@@ -62,11 +62,12 @@ class TableMetadataFilter extends AbstractTableMetadata
     {
         if (!empty($this->includeColumns)) {
             return \array_values(\array_intersect($this->originalMetaData->getColumns(), $this->includeColumns));
-        } elseif (!empty($this->excludeColumns)) {
-            return \array_values(\array_diff($this->originalMetaData->getColumns(), $this->excludeColumns));
-        } else {
-            return $this->originalMetaData->getColumns();
         }
+        if (!empty($this->excludeColumns)) {
+            return \array_values(\array_diff($this->originalMetaData->getColumns(), $this->excludeColumns));
+        }
+
+        return $this->originalMetaData->getColumns();
     }
 
     /**
@@ -94,7 +95,7 @@ class TableMetadataFilter extends AbstractTableMetadata
      *
      * @param array $includeColumns
      */
-    public function addIncludeColumns(array $includeColumns)
+    public function addIncludeColumns(array $includeColumns): void
     {
         $this->includeColumns = \array_unique(\array_merge($this->includeColumns, $includeColumns));
     }
@@ -102,7 +103,7 @@ class TableMetadataFilter extends AbstractTableMetadata
     /**
      * Clears the included columns.
      */
-    public function clearIncludeColumns()
+    public function clearIncludeColumns(): void
     {
         $this->includeColumns = [];
     }
@@ -112,7 +113,7 @@ class TableMetadataFilter extends AbstractTableMetadata
      *
      * @param array $excludeColumns
      */
-    public function addExcludeColumns(array $excludeColumns)
+    public function addExcludeColumns(array $excludeColumns): void
     {
         $this->excludeColumns = \array_unique(\array_merge($this->excludeColumns, $excludeColumns));
     }
@@ -120,7 +121,7 @@ class TableMetadataFilter extends AbstractTableMetadata
     /**
      * Clears the excluded columns.
      */
-    public function clearExcludeColumns()
+    public function clearExcludeColumns(): void
     {
         $this->excludeColumns = [];
     }

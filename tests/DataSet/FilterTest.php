@@ -17,18 +17,18 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
 {
     protected $expectedDataSet;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->expectedDataSet = new FlatXmlDataSet(
-            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestFixture.xml'
+            __DIR__ . '/../_files/XmlDataSets/FilteredTestFixture.xml'
         );
     }
 
-    public function testDeprecatedFilteredDataSetConstructor()
+    public function testDeprecatedFilteredDataSetConstructor(): void
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
         $dataSet    = new FlatXmlDataSet(
-            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
+            __DIR__ . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
         $filteredDataSet = new Filter($dataSet, [
@@ -40,11 +40,11 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
         self::assertThat($filteredDataSet, $constraint);
     }
 
-    public function testExcludeFilteredDataSet()
+    public function testExcludeFilteredDataSet(): void
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
         $dataSet    = new FlatXmlDataSet(
-            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
+            __DIR__ . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
         $filteredDataSet = new Filter($dataSet);
@@ -56,11 +56,11 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
         self::assertThat($filteredDataSet, $constraint);
     }
 
-    public function testIncludeFilteredDataSet()
+    public function testIncludeFilteredDataSet(): void
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
         $dataSet    = new FlatXmlDataSet(
-            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
+            __DIR__ . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
         $filteredDataSet = new Filter($dataSet);
@@ -72,11 +72,11 @@ class Extensions_Database_DataSet_FilterTest extends TestCase
         self::assertThat($filteredDataSet, $constraint);
     }
 
-    public function testIncludeExcludeMixedDataSet()
+    public function testIncludeExcludeMixedDataSet(): void
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
         $dataSet    = new FlatXmlDataSet(
-            \dirname(__FILE__) . '/../_files/XmlDataSets/FilteredTestComparison.xml'
+            __DIR__ . '/../_files/XmlDataSets/FilteredTestComparison.xml'
         );
 
         $filteredDataSet = new Filter($dataSet);

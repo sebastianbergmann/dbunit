@@ -78,11 +78,35 @@ class PgSQL extends AbstractMetadata
     }
 
     /**
+     * Returns the schema for the connection.
+     *
+     * @return string
+     */
+    public function getSchema()
+    {
+        if (empty($this->schema)) {
+            return 'public';
+        }
+
+        return $this->schema;
+    }
+
+    /**
+     * Returns true if the rdbms allows cascading
+     *
+     * @return bool
+     */
+    public function allowsCascading()
+    {
+        return true;
+    }
+
+    /**
      * Loads column info from a database table.
      *
      * @param string $tableName
      */
-    protected function loadColumnInfo($tableName)
+    protected function loadColumnInfo($tableName): void
     {
         $this->columns[$tableName] = [];
         $this->keys[$tableName]    = [];
@@ -127,29 +151,5 @@ class PgSQL extends AbstractMetadata
         while ($columName = $keyStatement->fetchColumn(0)) {
             $this->keys[$tableName][] = $columName;
         }
-    }
-
-    /**
-     * Returns the schema for the connection.
-     *
-     * @return string
-     */
-    public function getSchema()
-    {
-        if (empty($this->schema)) {
-            return 'public';
-        } else {
-            return $this->schema;
-        }
-    }
-
-    /**
-     * Returns true if the rdbms allows cascading
-     *
-     * @return bool
-     */
-    public function allowsCascading()
-    {
-        return true;
     }
 }

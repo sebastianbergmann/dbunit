@@ -110,7 +110,7 @@ class SqlSrv extends AbstractMetadata
      *
      * @param string $tableName
      */
-    public function disablePrimaryKeys($tableName)
+    public function disablePrimaryKeys($tableName): void
     {
         try {
             $query = "SET IDENTITY_INSERT $tableName ON";
@@ -125,7 +125,7 @@ class SqlSrv extends AbstractMetadata
      *
      * @param string $tableName
      */
-    public function enablePrimaryKeys($tableName)
+    public function enablePrimaryKeys($tableName): void
     {
         try {
             $query = "SET IDENTITY_INSERT $tableName OFF";

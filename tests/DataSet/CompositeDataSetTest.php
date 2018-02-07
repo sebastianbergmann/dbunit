@@ -20,17 +20,20 @@ class Extensions_Database_DataSet_CompositeDataSetTest extends \PHPUnit\Framewor
     protected $expectedDataSet2;
     protected $expectedDataSet3;
 
-    public function setUp()
+    public function setUp(): void
     {
         $table1MetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
         $table2MetaData = new DefaultTableMetadata(
-            'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
+            'table2',
+            ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
         $table3MetaData = new DefaultTableMetadata(
-            'table3', ['table3_id', 'column9', 'column10', 'column11', 'column12']
+            'table3',
+            ['table3_id', 'column9', 'column10', 'column11', 'column12']
         );
 
         $table1 = new DefaultTable($table1MetaData);
@@ -109,14 +112,14 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         $this->expectedDataSet3 = new DefaultDataSet([$table1, $table2, $table3]);
     }
 
-    public function testCompositeDataSet()
+    public function testCompositeDataSet(): void
     {
         $actual = new CompositeDataSet([$this->expectedDataSet1, $this->expectedDataSet2]);
 
         TestCase::assertDataSetsEqual($this->expectedDataSet3, $actual);
     }
 
-    public function testCompatibleTablesInDifferentDataSetsNonDuplicateRows()
+    public function testCompatibleTablesInDifferentDataSetsNonDuplicateRows(): void
     {
         $compatibleTable = new DefaultTable(
             $this->expectedDataSet3->getTable('table3')->getTableMetaData()
@@ -142,10 +145,11 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
      * @expectedException           InvalidArgumentException
      * @expectedExceptionMessage    There is already a table named table3 with different table definition
      */
-    public function testExceptionOnIncompatibleTablesSameTableNames()
+    public function testExceptionOnIncompatibleTablesSameTableNames(): void
     {
         $inCompatibleTableMetaData = new DefaultTableMetadata(
-            'table3', ['table3_id', 'column13', 'column14', 'column15', 'column16']
+            'table3',
+            ['table3_id', 'column13', 'column14', 'column15', 'column16']
         );
 
         $inCompatibleTable = new DefaultTable($inCompatibleTableMetaData);
@@ -166,10 +170,11 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
      * @expectedException           InvalidArgumentException
      * @expectedExceptionMessage    There is already a table named table3 with different table definition
      */
-    public function testExceptionOnIncompatibleTablesSameTableNames2()
+    public function testExceptionOnIncompatibleTablesSameTableNames2(): void
     {
         $inCompatibleTableMetaData = new DefaultTableMetadata(
-            'table3', ['table3_id', 'column13', 'column14', 'column15', 'column16']
+            'table3',
+            ['table3_id', 'column13', 'column14', 'column15', 'column16']
         );
 
         $inCompatibleTable = new DefaultTable($inCompatibleTableMetaData);

@@ -44,26 +44,13 @@ class QueryDataSet extends AbstractDataSet
         $this->databaseConnection = $databaseConnection;
     }
 
-    public function addTable($tableName, $query = null)
+    public function addTable($tableName, $query = null): void
     {
         if ($query === null) {
             $query = 'SELECT * FROM ' . $tableName;
         }
 
         $this->tables[$tableName] = new QueryTable($tableName, $query, $this->databaseConnection);
-    }
-
-    /**
-     * Creates an iterator over the tables in the data set. If $reverse is
-     * true a reverse iterator will be returned.
-     *
-     * @param bool $reverse
-     *
-     * @return TableIterator
-     */
-    protected function createIterator($reverse = false)
-    {
-        return new DefaultTableIterator($this->tables, $reverse);
     }
 
     /**
@@ -90,5 +77,18 @@ class QueryDataSet extends AbstractDataSet
     public function getTableNames()
     {
         return \array_keys($this->tables);
+    }
+
+    /**
+     * Creates an iterator over the tables in the data set. If $reverse is
+     * true a reverse iterator will be returned.
+     *
+     * @param bool $reverse
+     *
+     * @return TableIterator
+     */
+    protected function createIterator($reverse = false)
+    {
+        return new DefaultTableIterator($this->tables, $reverse);
     }
 }

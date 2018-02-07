@@ -18,13 +18,15 @@ class Extensions_Database_DataSet_CsvDataSetTest extends \PHPUnit\Framework\Test
 {
     protected $expectedDataSet;
 
-    public function testCSVDataSet()
+    public function testCSVDataSet(): void
     {
         $table1MetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
         $table2MetaData = new DefaultTableMetadata(
-            'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
+            'table2',
+            ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
         $table1 = new DefaultTable($table1MetaData);
@@ -78,8 +80,8 @@ asdflkjsadf asdfsadfhl "adsf, halsdf" sadfhlasdf'
         $expectedDataSet = new DefaultDataSet([$table1, $table2]);
 
         $csvDataSet = new CsvDataSet();
-        $csvDataSet->addTable('table1', \dirname(__FILE__) . '/../_files/CsvDataSets/table1.csv');
-        $csvDataSet->addTable('table2', \dirname(__FILE__) . '/../_files/CsvDataSets/table2.csv');
+        $csvDataSet->addTable('table1', __DIR__ . '/../_files/CsvDataSets/table1.csv');
+        $csvDataSet->addTable('table2', __DIR__ . '/../_files/CsvDataSets/table2.csv');
 
         TestCase::assertDataSetsEqual($expectedDataSet, $csvDataSet);
     }

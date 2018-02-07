@@ -43,7 +43,7 @@ class Composite implements Operation
         }
     }
 
-    public function execute(Connection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet): void
     {
         try {
             foreach ($this->operations as $operation) {

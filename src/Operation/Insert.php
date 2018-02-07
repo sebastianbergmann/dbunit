@@ -43,9 +43,9 @@ class Insert extends RowBased
             ";
 
             return $query;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     protected function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row)

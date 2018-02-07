@@ -22,10 +22,11 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
      */
     protected $startingTable;
 
-    public function setUp()
+    public function setUp(): void
     {
         $tableMetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
         $table = new DefaultTable($tableMetaData);
@@ -55,7 +56,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         $this->startingTable = $table;
     }
 
-    public function testNoReplacement()
+    public function testNoReplacement(): void
     {
         TestCase::assertTablesEqual(
             $this->startingTable,
@@ -63,10 +64,11 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         );
     }
 
-    public function testFullReplacement()
+    public function testFullReplacement(): void
     {
         $tableMetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
         $table = new DefaultTable($tableMetaData);
@@ -99,10 +101,11 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         TestCase::assertTablesEqual($table, $actual);
     }
 
-    public function testSubStrReplacement()
+    public function testSubStrReplacement(): void
     {
         $tableMetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
         $table = new DefaultTable($tableMetaData);
@@ -135,10 +138,11 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         TestCase::assertTablesEqual($table, $actual);
     }
 
-    public function testConstructorReplacements()
+    public function testConstructorReplacements(): void
     {
         $tableMetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
 
         $table = new DefaultTable($tableMetaData);
@@ -174,7 +178,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         TestCase::assertTablesEqual($table, $actual);
     }
 
-    public function testGetRow()
+    public function testGetRow(): void
     {
         $actual = new ReplacementTable(
             $this->startingTable,
@@ -205,7 +209,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         );
     }
 
-    public function testGetValue()
+    public function testGetValue(): void
     {
         $actual = new ReplacementTable(
             $this->startingTable,
@@ -217,7 +221,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         $this->assertEquals('My name is Mike Lively', $actual->getValue(0, 'column1'));
     }
 
-    public function testMatchesWithNonMatchingMetaData()
+    public function testMatchesWithNonMatchingMetaData(): void
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
@@ -241,7 +245,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
         $this->assertFalse($replacementTable->matches($otherTable));
     }
 
-    public function testMatchesWithNonMatchingRowCount()
+    public function testMatchesWithNonMatchingRowCount(): void
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);
@@ -281,7 +285,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
      * @param bool  $matches
      * @dataProvider providerMatchesWithColumnValueComparisons
      */
-    public function testMatchesWithColumnValueComparisons($tableColumnValues, $otherColumnValues, $matches)
+    public function testMatchesWithColumnValueComparisons($tableColumnValues, $otherColumnValues, $matches): void
     {
         $tableMetaData = $this->createMock(ITableMetadata::class);
         $otherMetaData = $this->createMock(ITableMetadata::class);

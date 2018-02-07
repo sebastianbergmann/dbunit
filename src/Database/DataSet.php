@@ -56,7 +56,8 @@ class DataSet extends AbstractDataSet
     {
         if ($tableMetaData->getTableName() == '') {
             $e = new RuntimeException('Empty Table Name');
-            echo $e->getTraceAsString();
+            print $e->getTraceAsString();
+
             throw $e;
         }
 
@@ -83,19 +84,6 @@ class DataSet extends AbstractDataSet
         }
 
         return "SELECT {$columnList} FROM {$tableName} {$orderBy}";
-    }
-
-    /**
-     * Creates an iterator over the tables in the data set. If $reverse is
-     * true a reverse iterator will be returned.
-     *
-     * @param bool $reverse
-     *
-     * @return TableIterator
-     */
-    protected function createIterator($reverse = false)
-    {
-        return new TableIterator($this->getTableNames(), $this, $reverse);
     }
 
     /**
@@ -138,5 +126,18 @@ class DataSet extends AbstractDataSet
     public function getTableNames()
     {
         return $this->databaseConnection->getMetaData()->getTableNames();
+    }
+
+    /**
+     * Creates an iterator over the tables in the data set. If $reverse is
+     * true a reverse iterator will be returned.
+     *
+     * @param bool $reverse
+     *
+     * @return TableIterator
+     */
+    protected function createIterator($reverse = false)
+    {
+        return new TableIterator($this->getTableNames(), $this, $reverse);
     }
 }

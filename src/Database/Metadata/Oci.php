@@ -101,7 +101,7 @@ class Oci extends AbstractMetadata
      *
      * @param string $tableName
      */
-    protected function loadColumnInfo($tableName)
+    protected function loadColumnInfo($tableName): void
     {
         $ownerQuery    = '';
         $conOwnerQuery = '';

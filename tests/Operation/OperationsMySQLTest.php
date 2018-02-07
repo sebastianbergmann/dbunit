@@ -17,11 +17,11 @@ use PHPUnit\DbUnit\DataSet\FlatXmlDataSet;
 use PHPUnit\DbUnit\Operation\Truncate;
 use PHPUnit\DbUnit\TestCase;
 
-require_once \dirname(\dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
+require_once \dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'DatabaseTestUtility.php';
 
 class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         if (!\extension_loaded('pdo_mysql')) {
             $this->markTestSkipped('pdo_mysql is required to run this test.');
@@ -41,29 +41,35 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
 
     public function getDataSet()
     {
-        return new FlatXmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/OperationsMySQLTestFixture.xml');
+        return new FlatXmlDataSet(__DIR__ . '/../_files/XmlDataSets/OperationsMySQLTestFixture.xml');
     }
 
     /**
      * @covers Truncate::execute
      */
-    public function testTruncate()
+    public function testTruncate(): void
     {
         $truncateOperation = new Truncate();
         $truncateOperation->execute($this->getConnection(), $this->getDataSet());
 
         $expectedDataSet = new DefaultDataSet([
             new DefaultTable(
-                new DefaultTableMetadata('table1',
-                    ['table1_id', 'column1', 'column2', 'column3', 'column4'])
+                new DefaultTableMetadata(
+                    'table1',
+                    ['table1_id', 'column1', 'column2', 'column3', 'column4']
+                )
             ),
             new DefaultTable(
-                new DefaultTableMetadata('table2',
-                    ['table2_id', 'table1_id', 'column5', 'column6', 'column7', 'column8'])
+                new DefaultTableMetadata(
+                    'table2',
+                    ['table2_id', 'table1_id', 'column5', 'column6', 'column7', 'column8']
+                )
             ),
             new DefaultTable(
-                new DefaultTableMetadata('table3',
-                    ['table3_id', 'table2_id', 'column9', 'column10', 'column11', 'column12'])
+                new DefaultTableMetadata(
+                    'table3',
+                    ['table3_id', 'table2_id', 'column9', 'column10', 'column11', 'column12']
+                )
             ),
         ]);
 
@@ -74,29 +80,35 @@ class Extensions_Database_Operation_OperationsMySQLTest extends TestCase
     {
         $compositeDataset = new CompositeDataSet();
 
-        $dataset = $this->createXMLDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/TruncateCompositeTest.xml');
+        $dataset = $this->createXMLDataSet(__DIR__ . '/../_files/XmlDataSets/TruncateCompositeTest.xml');
         $compositeDataset->addDataSet($dataset);
 
         return $compositeDataset;
     }
 
-    public function testTruncateComposite()
+    public function testTruncateComposite(): void
     {
         $truncateOperation = new Truncate();
         $truncateOperation->execute($this->getConnection(), $this->getCompositeDataSet());
 
         $expectedDataSet = new DefaultDataSet([
             new DefaultTable(
-                new DefaultTableMetadata('table1',
-                    ['table1_id', 'column1', 'column2', 'column3', 'column4'])
+                new DefaultTableMetadata(
+                    'table1',
+                    ['table1_id', 'column1', 'column2', 'column3', 'column4']
+                )
             ),
             new DefaultTable(
-                new DefaultTableMetadata('table2',
-                    ['table2_id', 'table1_id', 'column5', 'column6', 'column7', 'column8'])
+                new DefaultTableMetadata(
+                    'table2',
+                    ['table2_id', 'table1_id', 'column5', 'column6', 'column7', 'column8']
+                )
             ),
             new DefaultTable(
-                new DefaultTableMetadata('table3',
-                    ['table3_id', 'table2_id', 'column9', 'column10', 'column11', 'column12'])
+                new DefaultTableMetadata(
+                    'table3',
+                    ['table3_id', 'table2_id', 'column9', 'column10', 'column11', 'column12']
+                )
             ),
         ]);
 

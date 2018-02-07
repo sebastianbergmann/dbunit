@@ -33,7 +33,7 @@ class DefaultTable extends AbstractTable
      *
      * @param array $values
      */
-    public function addRow($values = [])
+    public function addRow($values = []): void
     {
         $this->data[] = \array_replace(
             \array_fill_keys($this->getTableMetaData()->getColumns(), null),
@@ -46,7 +46,7 @@ class DefaultTable extends AbstractTable
      *
      * @param ITable $table
      */
-    public function addTableRows(ITable $table)
+    public function addTableRows(ITable $table): void
     {
         $tableColumns = $this->getTableMetaData()->getColumns();
         $rowCount     = $table->getRowCount();
@@ -67,7 +67,7 @@ class DefaultTable extends AbstractTable
      * @param string $column
      * @param mixed  $value
      */
-    public function setValue($row, $column, $value)
+    public function setValue($row, $column, $value): void
     {
         if (isset($this->data[$row])) {
             $this->data[$row][$column] = $value;

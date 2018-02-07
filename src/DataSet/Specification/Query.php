@@ -50,7 +50,7 @@ class Query implements Specification, DatabaseListConsumer
      *
      * @param array $databases
      */
-    public function setDatabases(array $databases)
+    public function setDatabases(array $databases): void
     {
         $this->databases = $databases;
     }
@@ -64,7 +64,7 @@ class Query implements Specification, DatabaseListConsumer
      */
     public function getDataSet($dataSetSpec)
     {
-        list($dbLabel, $schema, $table, $sql) = \explode(':', $dataSetSpec, 4);
+        [$dbLabel, $schema, $table, $sql]     = \explode(':', $dataSetSpec, 4);
         $databaseInfo                         = $this->databases[$dbLabel];
 
         $pdoRflc      = new ReflectionClass('PDO');

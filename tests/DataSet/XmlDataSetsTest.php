@@ -21,13 +21,15 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
 {
     protected $expectedDataSet;
 
-    public function setUp()
+    public function setUp(): void
     {
         $table1MetaData = new DefaultTableMetadata(
-            'table1', ['table1_id', 'column1', 'column2', 'column3', 'column4']
+            'table1',
+            ['table1_id', 'column1', 'column2', 'column3', 'column4']
         );
         $table2MetaData = new DefaultTableMetadata(
-            'table2', ['table2_id', 'column5', 'column6', 'column7', 'column8']
+            'table2',
+            ['table2_id', 'column5', 'column6', 'column7', 'column8']
         );
 
         $table1 = new DefaultTable($table1MetaData);
@@ -80,26 +82,26 @@ class Extensions_Database_DataSet_XmlDataSetsTest extends TestCase
         $this->expectedDataSet = new DefaultDataSet([$table1, $table2]);
     }
 
-    public function testFlatXmlDataSet()
+    public function testFlatXmlDataSet(): void
     {
         $constraint     = new DataSetIsEqual($this->expectedDataSet);
-        $xmlFlatDataSet = new FlatXmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/FlatXmlDataSet.xml');
+        $xmlFlatDataSet = new FlatXmlDataSet(__DIR__ . '/../_files/XmlDataSets/FlatXmlDataSet.xml');
 
         self::assertThat($xmlFlatDataSet, $constraint);
     }
 
-    public function testXmlDataSet()
+    public function testXmlDataSet(): void
     {
         $constraint = new DataSetIsEqual($this->expectedDataSet);
-        $xmlDataSet = new XmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/XmlDataSet.xml');
+        $xmlDataSet = new XmlDataSet(__DIR__ . '/../_files/XmlDataSets/XmlDataSet.xml');
 
         self::assertThat($xmlDataSet, $constraint);
     }
 
-    public function testMysqlXmlDataSet()
+    public function testMysqlXmlDataSet(): void
     {
         $constraint      = new DataSetIsEqual($this->expectedDataSet);
-        $mysqlXmlDataSet = new MysqlXmlDataSet(\dirname(__FILE__) . '/../_files/XmlDataSets/MysqlXmlDataSet.xml');
+        $mysqlXmlDataSet = new MysqlXmlDataSet(__DIR__ . '/../_files/XmlDataSets/MysqlXmlDataSet.xml');
 
         self::assertThat($mysqlXmlDataSet, $constraint);
     }

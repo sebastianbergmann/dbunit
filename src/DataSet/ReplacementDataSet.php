@@ -56,7 +56,7 @@ class ReplacementDataSet extends AbstractDataSet
      * @param string $value
      * @param string $replacement
      */
-    public function addFullReplacement($value, $replacement)
+    public function addFullReplacement($value, $replacement): void
     {
         $this->fullReplacements[$value] = $replacement;
     }
@@ -69,7 +69,7 @@ class ReplacementDataSet extends AbstractDataSet
      * @param string $value
      * @param string $replacement
      */
-    public function addSubStrReplacement($value, $replacement)
+    public function addSubStrReplacement($value, $replacement): void
     {
         $this->subStrReplacements[$value] = $replacement;
     }

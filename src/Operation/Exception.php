@@ -52,6 +52,7 @@ class Exception extends RuntimeException
      * @param string $current_query
      * @param ITable $current_table
      * @param string $error
+     * @param mixed  $current_args
      */
     public function __construct($operation, $current_query, $current_args, $current_table, $error)
     {

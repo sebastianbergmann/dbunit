@@ -51,5 +51,5 @@ interface ITable
      *
      * @param ITable $other
      */
-    public function matches(ITable $other);
+    public function matches(self $other);
 }

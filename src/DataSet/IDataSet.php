@@ -54,5 +54,5 @@ interface IDataSet extends IteratorAggregate
      *
      * @param IDataSet $other
      */
-    public function matches(IDataSet $other);
+    public function matches(self $other);
 }

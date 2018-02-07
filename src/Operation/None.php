@@ -18,7 +18,7 @@ use PHPUnit\DbUnit\DataSet\IDataSet;
  */
 class None implements Operation
 {
-    public function execute(Connection $connection, IDataSet $dataSet)
+    public function execute(Connection $connection, IDataSet $dataSet): void
     {
         /* do nothing */
     }

@@ -95,7 +95,7 @@ class TableIterator implements ITableIterator
     /**
      * advances to the next element.
      */
-    public function next()
+    public function next(): void
     {
         if ($this->reverse) {
             \prev($this->tableNames);
@@ -107,7 +107,7 @@ class TableIterator implements ITableIterator
     /**
      * Rewinds to the first element
      */
-    public function rewind()
+    public function rewind(): void
     {
         if ($this->reverse) {
             \end($this->tableNames);
@@ -123,6 +123,6 @@ class TableIterator implements ITableIterator
      */
     public function valid()
     {
-        return (\current($this->tableNames) !== false);
+        return \current($this->tableNames) !== false;
     }
 }
