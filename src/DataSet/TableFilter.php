@@ -38,6 +38,19 @@ class TableFilter extends AbstractTable
     }
 
     /**
+     * Returns the an associative array keyed by columns for the given row.
+     *
+     * @param int $row
+     *
+     * @return array
+     */
+    public function getRow($row)
+    {
+        $this->loadData();
+        return parent::getRow($row);
+    }
+
+    /**
      * Returns the number of rows in this table.
      *
      * @return int
