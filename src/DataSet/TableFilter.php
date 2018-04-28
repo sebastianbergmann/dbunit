@@ -57,7 +57,8 @@ class TableFilter extends AbstractTable
      */
     public function getRowCount()
     {
-        return $this->originalTable->getRowCount();
+        $this->loadData();
+        return parent::getRowCount();
     }
 
     /**
