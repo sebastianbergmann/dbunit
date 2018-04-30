@@ -42,6 +42,7 @@ class ArrayDataSet extends AbstractDataSet
     {
         foreach ($data as $tableName => $rows) {
             $columns = [];
+
             if (isset($rows[0])) {
                 $columns = \array_keys($rows[0]);
             }

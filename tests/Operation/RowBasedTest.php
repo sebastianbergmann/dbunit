@@ -156,6 +156,7 @@ class Extensions_Database_Operation_RowBasedTest extends TestCase
 
         $mockConnection = $this->createMock(Connection::class);
         $mockConnection->expects($this->once())->method('createDataSet')->will($this->returnValue($mockDatabaseDataSet));
+
         foreach (['getConnection', 'disablePrimaryKeys', 'enablePrimaryKeys'] as $method) {
             $mockConnection->expects($this->never())->method($method);
         }

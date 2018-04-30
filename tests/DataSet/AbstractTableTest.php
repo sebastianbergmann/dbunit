@@ -142,6 +142,7 @@ class Extensions_Database_DataSet_AbstractTableTest extends TestCase
 
         $tableMap = [];
         $otherMap = [];
+
         foreach ($tableColumnValues as $rowIndex => $rowData) {
             foreach ($rowData as $columnName => $columnValue) {
                 $tableMap[] = [$rowIndex, $columnName, $columnValue];

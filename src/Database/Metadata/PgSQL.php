@@ -36,6 +36,7 @@ class PgSQL extends AbstractMetadata
         $statement->execute([$this->getSchema()]);
 
         $tableNames = [];
+
         while ($tableName = $statement->fetchColumn(0)) {
             $tableNames[] = $tableName;
         }

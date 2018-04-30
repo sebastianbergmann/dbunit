@@ -47,6 +47,7 @@ class TableFilter extends AbstractTable
     public function getRow($row)
     {
         $this->loadData();
+
         return parent::getRow($row);
     }
 
@@ -58,6 +59,7 @@ class TableFilter extends AbstractTable
     public function getRowCount()
     {
         $this->loadData();
+
         return parent::getRowCount();
     }
 
@@ -133,8 +135,10 @@ class TableFilter extends AbstractTable
     {
         if ($this->data === null) {
             $data = [];
+
             for ($row = 0; $row < $this->originalTable->getRowCount(); $row++) {
                 $tRow = [];
+
                 foreach ($this->getTableMetaData()->getColumns() as $col) {
                     $tRow[$col] = $this->getValue($row, $col);
                 }

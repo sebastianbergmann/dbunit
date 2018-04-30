@@ -55,6 +55,7 @@ class MysqlXmlDataSet extends AbstractXmlDataSet
 
                 foreach ($tableColumns[$tableName] as $columnName) {
                     $fields = $rowElement->xpath('./field[@name="' . $columnName . '"]');
+
                     if (!isset($fields[0])) {
                         throw new RuntimeException(
                             \sprintf(

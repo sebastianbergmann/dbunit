@@ -140,6 +140,7 @@ class QueryTable extends AbstractTable
 
             // if some rows are in the table
             $columns = [];
+
             if (isset($this->data[0])) {
                 // get column names from data
                 $columns = \array_keys($this->data[0]);

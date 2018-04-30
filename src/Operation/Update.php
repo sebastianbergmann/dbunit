@@ -40,6 +40,7 @@ class Update extends RowBased
     protected function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row)
     {
         $args = [];
+
         foreach ($table->getTableMetaData()->getColumns() as $columnName) {
             $args[] = $table->getValue($row, $columnName);
         }

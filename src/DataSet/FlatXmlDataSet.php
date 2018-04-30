@@ -32,6 +32,7 @@ class FlatXmlDataSet extends AbstractXmlDataSet
             }
 
             $values = [];
+
             foreach ($row->attributes() as $name => $value) {
                 if (!\in_array($name, $tableColumns[$tableName])) {
                     $tableColumns[$tableName][] = $name;

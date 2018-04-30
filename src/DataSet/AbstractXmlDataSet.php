@@ -76,6 +76,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
     {
         foreach ($tableValues as $tableName => $values) {
             $table = $this->getOrCreateTable($tableName, $tableColumns[$tableName]);
+
             foreach ($values as $value) {
                 $table->addRow($value);
             }

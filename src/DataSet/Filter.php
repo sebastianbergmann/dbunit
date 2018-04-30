@@ -67,6 +67,7 @@ class Filter extends AbstractDataSet
         $this->originalDataSet = $originalDataSet;
 
         $tables = [];
+
         foreach ($excludeTables as $tableName => $values) {
             if (\is_array($values)) {
                 $this->setExcludeColumnsForTable($tableName, $values);
@@ -144,6 +145,7 @@ class Filter extends AbstractDataSet
             ) {
                 continue;
             }
+
             if (!empty($this->excludeColumns[$tableName]) || !empty($this->includeColumns[$tableName])) {
                 $new_table = new TableFilter($table);
 

@@ -169,6 +169,7 @@ class ReplacementTable implements ITable
             foreach ($columns as $columnName) {
                 $thisValue  = $this->getValue($i, $columnName);
                 $otherValue = $other->getValue($i, $columnName);
+
                 if (\is_numeric($thisValue) && \is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
                         return false;
@@ -202,6 +203,7 @@ class ReplacementTable implements ITable
         if (\is_scalar($value) && \array_key_exists((string) $value, $this->fullReplacements)) {
             return $this->fullReplacements[$value];
         }
+
         if (\count($this->subStrReplacements) && isset($value)) {
             return \str_replace(\array_keys($this->subStrReplacements), \array_values($this->subStrReplacements), $value);
         }

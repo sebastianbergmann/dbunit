@@ -47,6 +47,7 @@ class SqlSrv extends AbstractMetadata
         $statement->execute();
 
         $tableNames = [];
+
         while (($tableName = $statement->fetchColumn(0))) {
             $tableNames[] = $tableName;
         }
@@ -73,6 +74,7 @@ class SqlSrv extends AbstractMetadata
         $statement->execute();
 
         $columnNames = [];
+
         while (($columnName = $statement->fetchColumn(0))) {
             $columnNames[] = $columnName;
         }
@@ -96,6 +98,7 @@ class SqlSrv extends AbstractMetadata
         $statement->setFetchMode(PDO::FETCH_ASSOC);
 
         $columnNames = [];
+
         while (($column = $statement->fetch())) {
             if ($column['TYPE'] == 1) {
                 $columnNames[] = $column['COLUMN_NAME'];

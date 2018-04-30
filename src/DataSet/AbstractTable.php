@@ -123,6 +123,7 @@ class AbstractTable implements ITable
 
             return ($value instanceof SimpleXMLElement) ? (string) $value : $value;
         }
+
         if (!\in_array($column, $this->getTableMetaData()->getColumns()) || $this->getRowCount() <= $row) {
             throw new InvalidArgumentException("The given row ({$row}) and column ({$column}) do not exist in table {$this->getTableMetaData()->getTableName()}");
         }
@@ -142,6 +143,7 @@ class AbstractTable implements ITable
         if (isset($this->data[$row])) {
             return $this->data[$row];
         }
+
         if ($this->getRowCount() <= $row) {
             throw new InvalidArgumentException("The given row ({$row}) does not exist in table {$this->getTableMetaData()->getTableName()}");
         }
@@ -172,6 +174,7 @@ class AbstractTable implements ITable
             foreach ($columns as $columnName) {
                 $thisValue  = $this->getValue($i, $columnName);
                 $otherValue = $other->getValue($i, $columnName);
+
                 if (\is_numeric($thisValue) && \is_numeric($otherValue)) {
                     if ($thisValue != $otherValue) {
                         $this->other = $other;

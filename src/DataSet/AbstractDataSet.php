@@ -20,6 +20,7 @@ abstract class AbstractDataSet implements IDataSet
         $iterator = $this->getIterator();
 
         $dataSetString = '';
+
         foreach ($iterator as $table) {
             $dataSetString .= $table->__toString();
         }

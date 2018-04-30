@@ -29,6 +29,7 @@ class Insert extends RowBased
             $placeHolders = \implode(', ', \array_fill(0, $columnCount, '?'));
 
             $columns = '';
+
             foreach ($table->getTableMetaData()->getColumns() as $column) {
                 $columns .= $connection->quoteSchemaObject($column) . ', ';
             }
@@ -51,6 +52,7 @@ class Insert extends RowBased
     protected function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row)
     {
         $args = [];
+
         foreach ($table->getTableMetaData()->getColumns() as $columnName) {
             $args[] = $table->getValue($row, $columnName);
         }

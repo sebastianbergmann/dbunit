@@ -63,6 +63,7 @@ class TableMetadataFilter extends AbstractTableMetadata
         if (!empty($this->includeColumns)) {
             return \array_values(\array_intersect($this->originalMetaData->getColumns(), $this->includeColumns));
         }
+
         if (!empty($this->excludeColumns)) {
             return \array_values(\array_diff($this->originalMetaData->getColumns(), $this->excludeColumns));
         }

@@ -42,6 +42,7 @@ class XmlDataSet extends AbstractXmlDataSet
 
             foreach ($tableElement->xpath('./column') as $columnElement) {
                 $columnName = (string) $columnElement;
+
                 if (empty($columnName)) {
                     throw new RuntimeException("Missing <column> elements for table $tableName. Add one or more <column> elements to the <table> element.");
                 }
@@ -62,6 +63,7 @@ class XmlDataSet extends AbstractXmlDataSet
                     if ($index >= $numOfTableInstanceColumns) {
                         throw new RuntimeException("Row contains more values than the number of columns defined for table $tableName.");
                     }
+
                     switch ($columnValue->getName()) {
                         case 'value':
                             $rowValues[$tableInstanceColumns[$index]] = (string) $columnValue;

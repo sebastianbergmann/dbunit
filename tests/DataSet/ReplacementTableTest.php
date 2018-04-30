@@ -322,6 +322,7 @@ class Extensions_Database_DataSet_ReplacementTableTest extends \PHPUnit\Framewor
 
         $tableMap = [];
         $otherMap = [];
+
         foreach ($tableColumnValues as $rowIndex => $rowData) {
             foreach ($rowData as $columnName => $columnValue) {
                 $tableMap[] = [$rowIndex, $columnName, $columnValue];

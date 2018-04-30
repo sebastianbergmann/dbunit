@@ -40,6 +40,7 @@ class Delete extends RowBased
     protected function buildOperationArguments(ITableMetadata $databaseTableMetaData, ITable $table, $row)
     {
         $args = [];
+
         foreach ($databaseTableMetaData->getPrimaryKeys() as $columnName) {
             $args[] = $table->getValue($row, $columnName);
         }
