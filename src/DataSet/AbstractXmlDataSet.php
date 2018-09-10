@@ -43,6 +43,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
             );
         }
 
+        $libxmlEntityLoader    = \libxml_disable_entity_loader(false);
         $libxmlErrorReporting  = \libxml_use_internal_errors(true);
         $this->xmlFileContents = \simplexml_load_file($xmlFile, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_PARSEHUGE);
 
@@ -58,6 +59,7 @@ abstract class AbstractXmlDataSet extends AbstractDataSet
 
         \libxml_clear_errors();
         \libxml_use_internal_errors($libxmlErrorReporting);
+        \libxml_disable_entity_loader($libxmlEntityLoader);
 
         $tableColumns = [];
         $tableValues  = [];
