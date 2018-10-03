@@ -14,6 +14,7 @@ use PDO;
 use PHPUnit\DbUnit\Database\Metadata\AbstractMetadata;
 use PHPUnit\DbUnit\Database\Metadata\Metadata;
 use PHPUnit\DbUnit\DataSet\IDataSet;
+use PHPUnit\DBUnit\DataSet\ITable;
 use PHPUnit\DbUnit\DataSet\QueryTable;
 
 /**
@@ -101,7 +102,7 @@ class DefaultConnection implements Connection
      * @param string $resultName
      * @param string $sql
      *
-     * @return Table
+     * @return ITable
      */
     public function createQueryTable($resultName, $sql)
     {
